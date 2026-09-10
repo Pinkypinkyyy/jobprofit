@@ -152,7 +152,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .feat li:first-child{border-top:0}
 .feat li b{color:var(--ink)}
 .psub{color:var(--soft);margin:32px auto 0;max-width:44em}
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
 .tier{background:#fff;border:1px solid var(--line);padding:24px;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
 .tier:hover,.tier.is-on{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 16px 28px -18px rgba(237,22,81,.35)}
 .tier .tname{font-weight:650}
@@ -211,7 +211,8 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .foot .legal{margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:.74rem;color:rgba(255,255,255,.4)}
 
 @media(max-width:940px){
-  .hero .wrap,.feat,.pcols,.tiers,.steps,.meet,.foot .grid,.grid3,.funnel{grid-template-columns:1fr}
+  .hero .wrap,.feat,.pcols,.steps,.meet,.foot .grid,.grid3,.funnel{grid-template-columns:1fr}
+  .tiers{grid-template-columns:1fr 1fr}
   .links,.phone{display:none}
   .burger{display:flex}
   .nav.open .links{display:flex;position:absolute;top:80px;left:0;right:0;flex-direction:column;background:var(--paper);padding:20px 28px;gap:14px;border-bottom:1px solid var(--line)}
