@@ -115,10 +115,23 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 }
 .stage img.is-on{opacity:1;z-index:1;pointer-events:auto}
 .stage .cap{
-  position:absolute;left:16px;bottom:16px;z-index:2;
+  position:absolute;left:16px;top:16px;z-index:2;
   background:rgba(18,22,28,.86);color:#fff;padding:8px 12px;border-radius:4px;
   font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
 }
+.docket{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  background:rgba(18,22,28,.94);color:#fff;padding:16px 18px 18px;
+}
+.docket .label{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
+.docket-row{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;font-size:.95rem;color:rgba(255,255,255,.86)}
+.docket-row b{font-size:1.45rem;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.docket-row.is-miss b{color:#F3C14E}
+.docket p{margin-top:10px;font-size:.82rem;color:rgba(255,255,255,.78);line-height:1.45}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.stat{background:#fff;border-left:4px solid var(--accent);padding:20px 22px}
+.stat b{display:block;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{display:block;margin-top:8px;color:var(--soft);font-size:.92rem}
 
 .band{padding:88px 0}
 .band-bone{background:var(--paper-2)}
@@ -282,7 +295,8 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .burger{display:flex}
   .nav.open .links{display:flex;position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;background:var(--paper);padding:20px;gap:14px;border-bottom:1px solid var(--line)}
   .hero .wrap{min-height:0;padding-bottom:24px}
-  .stage{min-height:0;height:240px}
+  .stage{min-height:0;height:320px}
+  .stats{grid-template-columns:1fr}
   .meet .shot{max-width:none}
   .sticky-book{display:none !important}
   .feat{padding:24px;gap:20px}
@@ -310,7 +324,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .table-hint{display:none}
   .scope-cards{display:block}
   .tiers{grid-template-columns:1fr}
-  .stage{height:200px}
+  .stage{height:280px}
   .kicker{letter-spacing:.08em;font-size:.62rem}
   .live{min-height:0;font-size:.95rem}
   .trade{letter-spacing:.06em;padding:8px 12px}
