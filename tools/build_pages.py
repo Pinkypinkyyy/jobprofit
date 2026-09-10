@@ -207,7 +207,7 @@ def index():
     <section class="band">
       <div class="wrap meet">
         <div class="shot">
-          <img src="assets/pink-studio.jpg" width="900" height="984" alt="Huong Bui, principal, Service Profit">
+          <img src="assets/pink-home.jpg" width="1200" height="1800" alt="Huong Bui, principal of Service Profit">
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
@@ -324,7 +324,7 @@ def why():
     <section class="page" style="padding-bottom:0">
       <div class="wrap meet">
         <div class="shot">
-          <img src="assets/pink-studio.jpg" width="900" height="984" alt="Huong Bui, principal of Service Profit">
+          <img src="assets/pink-meet.jpg" width="1080" height="1350" alt="Huong Bui in a client meeting">
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
