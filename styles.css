@@ -144,6 +144,13 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .feat h3{font-size:1.7rem;margin:10px 0 0}
 .feat .fprice{font-size:2.2rem;margin:8px 0 0;font-variant-numeric:tabular-nums}
 .feat .fprice small{font-size:.8rem;color:var(--muted);font-weight:400;font-family:var(--body)}
+.fyear{font-size:.95rem;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+.addon{margin-top:28px;background:#fff;border:1px dashed var(--line);padding:20px 24px}
+.addon h3{font-size:1.15rem}
+.addon p{color:var(--soft);margin-top:8px}
+.money{margin-top:32px}
+.money h3{font-size:1.2rem;margin:0 0 12px}
+.money p{color:var(--soft);margin:0 0 10px}
 .feat .fdesc{color:var(--soft);margin-top:14px}
 .feat .fcta{margin-top:22px}
 .feat .fnote{margin-top:12px;font-size:.82rem;color:var(--muted)}
@@ -152,7 +159,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .feat li:first-child{border-top:0}
 .feat li b{color:var(--ink)}
 .psub{color:var(--soft);margin:32px auto 0;max-width:44em}
-.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
 .tier{
   display:block;background:#fff;border:1px solid var(--line);padding:24px;color:inherit;
   transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
