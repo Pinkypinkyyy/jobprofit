@@ -29,24 +29,22 @@ def index():
         <div>
           <p class="kicker">A Pink Accounting service · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">We keep the books current for HVAC, electrical and construction service businesses, then read labour, materials and cash against the job. A year-end P&amp;L cannot fix a quote you already sent.</p>
+          <p class="lead">Books stay current. We read labour and cash against the job. A year-end P&amp;L cannot fix a quote you already sent.</p>
           <div class="cta">
             <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
-            <a class="btn btn-outline" href="system.html">How the system works</a>
+            <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
           </div>
-          <p class="kicker" style="margin-top:28px">Choose a trade for a one-line example. Pricing and booking stay the same.</p>
+          <p class="kicker" style="margin-top:28px">Same plans for every trade.</p>
           <div class="trades" aria-label="Trade examples">
             <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
             <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
-          <p class="live" id="liveLine">For HVAC firms we watch labour against the quoted hours, materials on the van, and whether a call-out actually covered the next tax bill.</p>
-          <p class="trade-links">Read more: <a href="hvac.html">HVAC</a><a href="electrical.html">Electrical</a><a href="construction.html">Construction services</a></p>
+          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the van, and whether the call-out covered the next tax bill.</p>
           <div class="trust">
-            <span><a href="{GBP}" rel="noopener">Google reviews</a> for Pink Accounting</span>
+            <span><a href="{GBP}" rel="noopener">Google reviews</a></span>
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
-          <div class="under">Pink Accounting &amp; Tax Solutions Pty Ltd · Queensland</div>
         </div>
         <div class="stage" id="stage">
           <picture>
@@ -66,32 +64,19 @@ def index():
       </div>
     </section>
 
-    <section class="problem">
-      <div class="wrap">
-        <span class="eyebrow">Why this exists</span>
-        <h2 style="margin-top:14px">Tax is the end result of decisions made months earlier.</h2>
-        <p class="lead">If the first close look at a job is when the return is prepared, the file can still be right. The chance to price the next one better has often already passed. That gap shows up in quotes, labour, subcontractors and cash.</p>
-        <div class="pcols">
-          <div class="pcol"><div class="n">01</div><h3>The return is last</h3><p>It tells you what happened after the job was quoted, the van was on site, and the subcontractor was paid.</p></div>
-          <div class="pcol"><div class="n">02</div><h3>Busy is not the same as profitable</h3><p>A full diary can still hide a job that did not cover labour, materials or the next tax bill.</p></div>
-          <div class="pcol"><div class="n">03</div><h3>Somebody should be in the file during the year</h3><p>We keep the books current, so when a job or cash question comes up we can talk while there is still time.</p></div>
-        </div>
-      </div>
-    </section>
-
     <section class="band" id="pricing">
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">The plans</span>
-          <h2>Same firm. A defined monthly scope.</h2>
-          <p>Monthly, ex GST, for technical service businesses in Queensland. Each higher plan includes the plan below it. The fee is not unlimited work. Extra work is quoted before we start it.</p>
+          <h2>Monthly, ex GST. Higher plans include the one below.</h2>
+          <p>Not unlimited work. Extra is quoted first. The letter is the quote.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
             <span class="badge">Typical ongoing plan</span>
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
-            <p class="fdesc">Books and compliance stay current. Each week we look at jobs and cash inside the file. If something is off, we raise it. You get a note when a decision is needed. There is no standing monthly meeting.</p>
+            <p class="fdesc">Current books. Each week we look at jobs and cash. If something is off, we raise it. No monthly meeting.</p>
             <div class="fcta"><a class="btn btn-primary" href="book.html" data-event="pricing-book">Book a 15-minute call</a></div>
             <div class="fnote">If a lighter tier is enough, we will say so on the call.</div>
           </div>
@@ -124,7 +109,7 @@ def index():
             <p>Includes Weekly Visibility, plus forecasting written into the letter. Application only.</p>
           </a>
         </div>
-        <p class="psub">Compliance plus the minimum Bookkeeping add-on is $1,050 + GST. Job Profit is $1,650 + GST. The extra $600 is the weekly internal look, the firm raising job and cash exceptions, and WhatsApp. Bookkeeping volume, payroll headcount and catch-up of old periods can change the fee. The letter is the quote.</p>
+        <p class="psub">Books only is $1,050 + GST. Job Profit is $1,650 + GST. The extra $600 is the weekly look, exceptions we raise, and WhatsApp.</p>
         <div class="table-scroll" tabindex="0" aria-label="Plan comparison. Scroll sideways on a small screen to read every column.">
           <table class="scope">
             <thead>
@@ -164,7 +149,7 @@ def index():
             </tbody>
           </table>
         </div>
-        <p class="table-hint">On a phone, swipe the table sideways, or use the stacked cards below on the narrow layout.</p>
+        <p class="table-hint">Swipe sideways for every column.</p>
         <div class="scope-cards">
           <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 + GST / month</div><p><b>Included:</b> tax planning, BAS oversight and the annual return for one entity. Email only.</p><p><b>Not included:</b> full bookkeeping, WhatsApp, weekly job reads, catch-up, Xero subscription unless billed in the letter.</p></article>
           <article class="scope-card"><h3>Bookkeeping</h3><div class="price">from +$500 + GST / month</div><p><b>Included:</b> current books added to Compliance.</p><p><b>Not included:</b> standing job-and-cash review, WhatsApp.</p></article>
@@ -179,18 +164,12 @@ def index():
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">How it works</span>
-          <h2>We agree the start date and the boundary before you sign.</h2>
-          <p>Pink Accounting is the firm. Service Profit is how we work with technical service businesses in Queensland. We do not manufacture tax savings. We look early enough to name something worth discussing.</p>
+          <h2>Call. Letter. Then the file.</h2>
         </div>
         <div class="steps">
-          <div class="stepc"><div class="n">01</div><h3>Fifteen minutes</h3><p>A direct conversation about how the business runs. If we are not the right firm, we say so.</p></div>
-          <div class="stepc"><div class="n">02</div><h3>The right level, written down</h3><p>Exact fee in the letter of engagement before work begins. Once scope is agreed we usually issue the letter the same working day.</p></div>
-          <div class="stepc"><div class="n">03</div><h3>The system goes live</h3><p>Books stay current from the start date in the letter. We look at the file each week on Job Profit and above, and we raise what needs a decision.</p></div>
-        </div>
-        <div class="funnel">
-          <a class="card" href="book.html" data-event="funnel-book"><span class="eyebrow">Book</span><h2>15-minute call</h2><p>Use the booking page. The calendar is the Service Profit service, not the hospitality diary.</p></a>
-          <a class="card" href="mailto:admin@pinktax.com.au?subject=Service%20Profit%20enquiry" data-event="funnel-email"><span class="eyebrow">Email</span><h2>admin@pinktax.com.au</h2><p>The firm mailbox. A person reads it.</p></a>
-          <a class="card" href="tel:+61735446386" data-event="funnel-call"><span class="eyebrow">Call</span><h2>07 3544 6386</h2><p>Mon-Fri 9:00am-4:30pm. Saturday by appointment. Brendale QLD.</p></a>
+          <div class="stepc"><div class="n">01</div><h3>Fifteen minutes</h3><p>How the business runs. If we are not the right firm, we say so.</p></div>
+          <div class="stepc"><div class="n">02</div><h3>The letter</h3><p>Fee and boundary written down before work starts.</p></div>
+          <div class="stepc"><div class="n">03</div><h3>The file</h3><p>Books current from the start date. On Job Profit we look each week and raise what needs a decision.</p></div>
         </div>
       </div>
     </section>
@@ -203,18 +182,17 @@ def index():
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h2 style="margin-top:12px">Hello, I am Pink.</h2>
-          <p>I am Huong Bui. I founded Pink Accounting in 2020. Service Profit is our work with HVAC, electrical and construction service businesses in Queensland: full diaries, tight cash, and a year-end pack that arrives too late to change a job already quoted.</p>
-          <p>You deal with the principal on the discovery call where the diary allows. The firm is small on purpose. If I am already in a client meeting, another member of the team takes the call and I read the notes the same working day.</p>
-          <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA · Master of Professional Accounting (Griffith)</div>
-          <a class="btn btn-primary" href="why.html">Why Pink Accounting</a>
+          <p>Huong Bui. I founded Pink Accounting in 2020. Service Profit is this work with HVAC, electrical and construction services in Queensland.</p>
+          <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
+          <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA</div>
         </div>
       </div>
     </section>
 
     <section class="final">
       <div class="wrap">
-        <h2>Have a look first. Then we can look properly at the file.</h2>
-        <p>Compare us with other firms if you need to. The useful test is whether the scope, fee and what you must send us are a fit.</p>
+        <h2>Fifteen minutes. Then we look at the file.</h2>
+        <p>Compare fees if you need to. The useful test is the scope in the letter.</p>
         <a class="btn btn-white" href="book.html" data-event="final-book">Book a 15-minute call</a>
         <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland</div>
       </div>

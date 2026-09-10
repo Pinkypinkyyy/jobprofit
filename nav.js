@@ -23,9 +23,9 @@
   }
 
   var copy = {
-    hvac: "For HVAC firms we watch labour against the quoted hours, materials on the van, and whether a call-out actually covered the next tax bill.",
-    electrical: "For electrical businesses we watch quoted jobs versus hours on the tools, subcontractors, and cash sitting in unfinished work.",
-    construction: "For construction services we watch the job, not the building. Labour, subcontractors and materials, read while you can still change the next quote."
+    hvac: "HVAC: labour against quoted hours, materials on the van, and whether the call-out covered the next tax bill.",
+    electrical: "Electrical: quoted jobs versus hours on the tools, subcontractors, and cash in unfinished work.",
+    construction: "Construction services: the job, not the building. Labour, subcontractors and materials while you can still change the next quote."
   };
   var labels = { hvac: "HVAC", electrical: "Electrical", construction: "Construction services" };
   var trades = document.querySelectorAll(".trade");
