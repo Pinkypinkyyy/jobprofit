@@ -29,7 +29,7 @@ def index():
         <div>
           <p class="kicker">Accounting firm · Brendale · Brisbane · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">You stay on the jobs. We are the accounting firm. We hold billed hours, cash, tax, BAS and GST from our Brendale office.</p>
+          <p class="lead">You stay on the jobs. We are the accounting firm and the tax agent. Income tax, FBT, financial statements, BAS, billed hours and cash, from Brendale.</p>
           <div class="cta">
             <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
@@ -131,7 +131,7 @@ def index():
             <li><b>Billed time</b> quoted hours versus hours on the tools, each week. If a job ran long, the next quote should not repeat it</li>
             <li><b>Cash that is yours</b> unfinished work, GST, PAYG, super and wages pulled apart so you know what you can spend</li>
             <li><b>Utes, phones, FBT</b> watched in the file. Not left as a June surprise</li>
-            <li><b>Tax, BAS and GST held</b> for one trading entity, as written in the letter. Prepared from current records, so you are not paying tax on missing invoices</li>
+            <li><b>Income tax, FBT, financial statements, BAS and GST held</b> for one trading entity, as written in the letter</li>
           </ul>
         </div>
         <div class="tiers">
@@ -151,7 +151,7 @@ def index():
             <div class="tname">Compliance</div>
             <div class="tprice">$550<small> + GST/mo</small></div>
             <div class="fyear">$6,600 + GST a year</div>
-            <p>Tax and BAS. Return and GST from a file that is already in order, so compliance is not a June scramble.</p>
+            <p>Income tax, FBT, financial statements, BAS and GST from a file that is already in order.</p>
           </a>
         </div>
         <div class="addon" id="level-bookkeeping">
@@ -187,7 +187,7 @@ def index():
               <tr id="level-compliance">
                 <td><strong>Compliance</strong></td>
                 <td class="price">$550 / mo<br>$6,600 / yr</td>
-                <td>Tax and BAS. Return and GST from records already in order. We are the registered tax agent for the file.</td>
+                <td>Income tax, FBT, financial statements, BAS and GST from records already in order. We are the registered tax agent.</td>
                 <td>Job-and-cash look. WhatsApp. Catch-up. Unlimited advisory.</td>
               </tr>
             </tbody>
@@ -199,7 +199,7 @@ def index():
           <article class="scope-card"><h3>Job Profit</h3><div class="price">$1,650 / month · $19,800 / year</div><p><b>You care about:</b> billed hours vs quoted hours, and how much of the bank balance is yours.</p><p><b>Not included:</b> a monthly meeting, a published savings figure.</p></article>
           <article class="scope-card"><h3>Weekly Visibility</h3><div class="price">from $2,650 / month · from $31,800 / year</div><p><b>You care about:</b> seeing billed time while the job is still on site.</p></article>
           <article class="scope-card"><h3>Ready to Scale</h3><div class="price">from $3,500 / month · from $42,000 / year</div><p><b>You care about:</b> a written forecast before you hire or draw. Application only.</p></article>
-          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 / month · $6,600 / year</div><p>Tax and BAS. Return and GST from a file already in order. We hold this so you can stay on the jobs.</p></article>
+          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 / month · $6,600 / year</div><p>Income tax, FBT, financial statements, BAS and GST from a file already in order.</p></article>
         </div>
       </div>
     </section>
@@ -212,9 +212,9 @@ def index():
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h2 style="margin-top:12px">Hello, I am Pink.</h2>
-          <p>Huong Bui. I founded Pink Accounting in 2020. We are your tax agent. We take care of the file so you can do the jobs.</p>
-          <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
-          <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA · Brendale QLD</div>
+          <p>Huong Bui. Master of Professional Accounting (Griffith). MIPA AFA. Registered Tax Agent 26284368. More than ten years in the books. I founded the firm in 2020.</p>
+          <p>We hold income tax, FBT, financial statements, BAS, GST and payroll. You stay on the jobs.</p>
+          <div class="creds"><a href="why.html">Read more about Pink</a></div>
           <a class="btn btn-primary" href="book.html" data-event="meet-book" style="margin-top:22px">Book a 15-minute call</a>
         </div>
       </div>
@@ -223,7 +223,7 @@ def index():
     <section class="final final-photo">
       <div class="wrap">
         <h2>Fifteen minutes. Then we look at the file.</h2>
-        <p>You stay on the jobs. We hold tax, BAS, billed hours and cash from Brendale, across Brisbane and Queensland.</p>
+        <p>You stay on the jobs. We hold income tax, FBT, financial statements, BAS, billed hours and cash. Brendale, Brisbane and Queensland.</p>
         <a class="btn btn-white" href="book.html" data-event="final-book">Book a 15-minute call</a>
         <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="rights.html" style="color:#fff;text-decoration:underline">Your rights</a> · <a href="privacy.html" style="color:#fff;text-decoration:underline">Privacy</a> · <a href="terms.html" style="color:#fff;text-decoration:underline">Terms</a></div>
       </div>
@@ -292,7 +292,7 @@ def system():
       <div class="split-copy">
         <span class="eyebrow">Compliance</span>
         <h2>Tax and BAS stay in the file.</h2>
-        <p>We are the tax agent. Super, PAYG, GST, FBT on utes and phones, and the return, sit here so you are not paying tax on a mess. You stay on the jobs.</p>
+        <p>We are the tax agent. Income tax, FBT, financial statements, BAS, GST, super and PAYG sit in the file so you are not paying tax on a mess. You stay on the jobs.</p>
         <a class="btn btn-primary" href="book.html" data-event="system-comp" style="margin-top:22px">Book a 15-minute call</a>
       </div>
       <img src="assets/desk.jpg?v=nw1" width="1280" height="720" alt="Tax papers on a desk">
@@ -316,7 +316,7 @@ def system():
 def why():
     h = head(
         "Meet Pink | Service Profit",
-        "Huong Bui. Service Profit for HVAC, electrical and construction service businesses in Queensland.",
+        "Huong Bui, Master of Professional Accounting (Griffith), Registered Tax Agent 26284368. More than ten years in the books. Income tax, FBT, financial statements, BAS.",
         "/why.html",
     )
     body = f"""{nav("why")}
@@ -329,17 +329,38 @@ def why():
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h1 style="margin-top:12px">Hello, I am Pink.</h1>
-          <p class="lead">Huong Bui. I founded the firm in 2020. Service Profit is this accounting work with HVAC, electrical and construction services in Queensland. You stay on the jobs. We hold the file.</p>
+          <p class="lead">Huong Bui. I am a registered tax agent. I have spent more than ten years in the books. Service Profit is this accounting work with HVAC, electrical and construction services in Queensland.</p>
           <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
-          <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA · Brendale QLD</div>
           <a class="btn btn-primary" href="book.html" data-event="why-book" style="margin-top:22px">Book a 15-minute call</a>
         </div>
       </div>
     </section>
     <section class="band">
-      <div class="wrap prose">
-        <h2>Registered and accountable</h2>
-        <p>Our obligations to you are public. See <a href="rights.html">Your rights and our obligations</a>. ABN 51 682 301 891 · ASIC Registered Agent 52580.</p>
+      <div class="wrap">
+        <div class="hire">
+          <article>
+            <span class="eyebrow">Qualification</span>
+            <h3>Master of Professional Accounting</h3>
+            <p>Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
+          </article>
+          <article>
+            <span class="eyebrow">Years in the books</span>
+            <h3>More than ten years</h3>
+            <p>I founded the firm in 2020. The work is in the file, not in a once-a-year pack. You stay on the jobs. I stay in the numbers.</p>
+          </article>
+        </div>
+        <div class="hire" style="margin-top:var(--gutter)">
+          <article>
+            <span class="eyebrow">What we hold</span>
+            <h3>Not BAS alone</h3>
+            <p>Income tax and the return. FBT on utes, phones and other benefits. Financial statements. BAS and GST. Payroll, super and PAYG where you have staff. Tax compliance so you are not paying on missing invoices.</p>
+          </article>
+          <article>
+            <span class="eyebrow">Accountable</span>
+            <h3>Public register</h3>
+            <p>Search 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. Our obligations are written on <a href="rights.html">Your rights</a>. ABN 51 682 301 891.</p>
+          </article>
+        </div>
       </div>
     </section>
   </main>
