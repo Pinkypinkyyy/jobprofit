@@ -71,7 +71,7 @@ def index():
         <div class="pcols">
           <div class="pcol"><div class="n">01</div><h3>The next quote</h3><p>Quoted hours versus hours on the tools. If a job ran long, the next one should not be priced the same.</p></div>
           <div class="pcol"><div class="n">02</div><h3>Materials on the job</h3><p>Parts issued versus parts billed. Subcontractors on that job, not a lump that only makes sense in June.</p></div>
-          <div class="pcol"><div class="n">03</div><h3>Cash this month</h3><p>Unfinished work versus wages and the next BAS. A full diary can still hide money sitting in jobs not billed.</p></div>
+          <div class="pcol"><div class="n">03</div><h3>Cash this month</h3><p>Unfinished work versus wages and what you can actually spend. A full diary can still hide money sitting in jobs not billed.</p></div>
         </div>
       </div>
     </section>
@@ -80,36 +80,26 @@ def index():
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">The plans</span>
-          <h2>Monthly, ex GST. Higher plans include the one below.</h2>
-          <p>Not unlimited work. Extra is quoted first. The letter is the quote.</p>
+          <h2>Job and cash first. Books and BAS last.</h2>
+          <p>Monthly, ex GST. Tax is a slice of expense. We do not let a messy file become tax you should not have paid. Extra work is quoted first. The letter is the quote.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
             <span class="badge">Typical ongoing plan</span>
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
-            <p class="fdesc">This is not a tax-return fee. It is current books, then a weekly look at jobs. If hours, parts or cash are off, we raise it while you can still change the next quote.</p>
+            <p class="fdesc">This is not a tax-return fee. Each week we look at jobs and cash. If hours, parts or unfinished work are off, we raise it while you can still change the next quote. Books and BAS sit under that. They are not the product.</p>
             <div class="fcta"><a class="btn btn-primary" href="book.html" data-event="pricing-book">Book a 15-minute call</a></div>
-            <div class="fnote">If you already see labour against the quote during the month, Compliance may be enough. We will say so.</div>
+            <div class="fnote">If you only want a return, that is the last tier. We will say so if that is all you need.</div>
           </div>
           <ul>
-            <li><b>Includes books and BAS</b> for one trading entity, as written in the letter</li>
             <li><b>Each week we look at</b> quoted hours vs actual, materials, subcontractors and unfinished work. You do not have to chase us to start that look</li>
             <li><b>You get</b> a WhatsApp or email when a job or cash decision is needed. No monthly meeting</li>
             <li><b>We need</b> labour and materials on the job. If they are not, we will not dress a guess up as profit</li>
+            <li><b>Books and BAS sit last</b> for one trading entity, as written in the letter. Current records, so GST is not paid on a mess</li>
           </ul>
         </div>
         <div class="tiers">
-          <a class="tier" href="#level-compliance">
-            <div class="tname">Compliance</div>
-            <div class="tprice">$550<small> + GST/mo</small></div>
-            <p>Tax, BAS oversight and the return for one entity, while you keep more of the day-to-day.</p>
-          </a>
-          <a class="tier" href="#level-bookkeeping">
-            <div class="tname">Bookkeeping</div>
-            <div class="tprice">+$500<small> + GST/mo, from</small></div>
-            <p>Add-on to Compliance. We keep the books current. Starts from $500 + GST.</p>
-          </a>
           <a class="tier" href="#level-weekly">
             <div class="tname">Weekly Visibility</div>
             <div class="tprice">$2,650<small> + GST/mo, from</small></div>
@@ -120,37 +110,35 @@ def index():
             <div class="tprice">$3,500<small> + GST/mo, from</small></div>
             <p>Includes Weekly Visibility, plus forecasting written into the letter. Application only.</p>
           </a>
+          <a class="tier" href="#level-bookkeeping">
+            <div class="tname">Bookkeeping</div>
+            <div class="tprice">+$500<small> + GST/mo, from</small></div>
+            <p>Current books. Add-on if you are already on Compliance. Starts from $500 + GST.</p>
+          </a>
+          <a class="tier" href="#level-compliance">
+            <div class="tname">Compliance</div>
+            <div class="tprice">$550<small> + GST/mo</small></div>
+            <p>Last. The return, BAS and GST from a file that is already in order. Not the main offer.</p>
+          </a>
         </div>
-        <p class="psub">Books and BAS only is $1,050 + GST. Job Profit is $1,650 + GST. The extra $600 is the weekly job look. One long call-out that never goes back into the next quote will cost more than that. We do not invent a savings figure.</p>
+        <p class="psub">Job Profit is $1,650 + GST. Books and BAS without the weekly job look is $1,050 + GST. That cheaper pair is the last option, not the starting point.</p>
         <div class="table-scroll" tabindex="0" aria-label="Plan comparison. Scroll sideways on a small screen to read every column.">
           <table class="scope">
             <thead>
               <tr><th>Level</th><th>Fee</th><th>Included</th><th>Not included</th></tr>
             </thead>
             <tbody>
-              <tr id="level-compliance">
-                <td><strong>Compliance</strong></td>
-                <td class="price">$550 + GST</td>
-                <td>Tax planning, BAS oversight and the annual return for one trading entity. Email to admin@pinktax.com.au. Ordinary hours reply: next working day.</td>
-                <td>Full bookkeeping. WhatsApp. Weekly job reads. Catch-up of prior periods. Xero subscription unless the letter says we bill it. Unlimited advisory.</td>
-              </tr>
-              <tr id="level-bookkeeping">
-                <td><strong>Bookkeeping</strong></td>
-                <td class="price">from +$500 + GST</td>
-                <td>Adds current books to Compliance. Bank, suppliers, payroll and GST coded in Xero. Starting price; volume can lift it.</td>
-                <td>Job-and-cash exception review as a standing service. WhatsApp. Unlimited advisory.</td>
-              </tr>
               <tr class="pop" id="level-job">
                 <td><strong>Job Profit</strong></td>
                 <td class="price">$1,650 + GST</td>
-                <td>Includes Compliance and Bookkeeping. Weekly internal look. We raise job and cash exceptions. WhatsApp. One entity. Payroll where you have staff, as written.</td>
+                <td>Weekly look at jobs and cash. We raise exceptions. WhatsApp. Books and BAS sit under that, one entity, payroll where you have staff, as written.</td>
                 <td>A monthly meeting. Unlimited access. Catch-up. Software setup projects. Work outside the letter.</td>
               </tr>
               <tr id="level-weekly">
                 <td><strong>Weekly Visibility</strong></td>
                 <td class="price">from $2,650 + GST</td>
                 <td>Includes Job Profit. A weekly snapshot you can read while the job is still running.</td>
-                <td>Open-ended project work unless scoped. Application of extra entities unless written in.</td>
+                <td>Open-ended project work unless scoped. Extra entities unless written in.</td>
               </tr>
               <tr id="level-scale">
                 <td><strong>Ready to Scale</strong></td>
@@ -158,16 +146,28 @@ def index():
                 <td>Includes Weekly Visibility. Forecasting and decision support as written in the letter first. Application only.</td>
                 <td>A guaranteed result. Unlimited access.</td>
               </tr>
+              <tr id="level-bookkeeping">
+                <td><strong>Bookkeeping</strong></td>
+                <td class="price">from +$500 + GST</td>
+                <td>Current books. Bank, suppliers, payroll and GST coded in Xero. Add-on to Compliance. Starting price; volume can lift it.</td>
+                <td>Job-and-cash look as a standing service. WhatsApp. Unlimited advisory.</td>
+              </tr>
+              <tr id="level-compliance">
+                <td><strong>Compliance</strong></td>
+                <td class="price">$550 + GST</td>
+                <td>Last. Return, BAS and GST from records that are already in order, so you are not paying tax on missing invoices. Email. Next working day.</td>
+                <td>Full bookkeeping. WhatsApp. Weekly job reads. Catch-up. Xero subscription unless the letter says we bill it. Unlimited advisory.</td>
+              </tr>
             </tbody>
           </table>
         </div>
         <p class="table-hint">Swipe sideways for every column.</p>
         <div class="scope-cards">
-          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 + GST / month</div><p><b>Included:</b> tax planning, BAS oversight and the annual return for one entity. Email only.</p><p><b>Not included:</b> full bookkeeping, WhatsApp, weekly job reads, catch-up, Xero subscription unless billed in the letter.</p></article>
-          <article class="scope-card"><h3>Bookkeeping</h3><div class="price">from +$500 + GST / month</div><p><b>Included:</b> current books added to Compliance.</p><p><b>Not included:</b> standing job-and-cash review, WhatsApp.</p></article>
-          <article class="scope-card"><h3>Job Profit</h3><div class="price">$1,650 + GST / month</div><p><b>Included:</b> Compliance and Bookkeeping, weekly internal look, exceptions raised by us, WhatsApp.</p><p><b>Not included:</b> a monthly meeting, unlimited access, catch-up, software setup projects.</p></article>
+          <article class="scope-card"><h3>Job Profit</h3><div class="price">$1,650 + GST / month</div><p><b>Included:</b> weekly job and cash look, exceptions we raise, WhatsApp. Books and BAS sit under that.</p><p><b>Not included:</b> a monthly meeting, unlimited access, catch-up, software setup projects.</p></article>
           <article class="scope-card"><h3>Weekly Visibility</h3><div class="price">from $2,650 + GST / month</div><p><b>Included:</b> Job Profit plus a weekly snapshot while the job is running.</p><p><b>Not included:</b> unscoped project work.</p></article>
           <article class="scope-card"><h3>Ready to Scale</h3><div class="price">from $3,500 + GST / month</div><p><b>Included:</b> Weekly Visibility plus forecasting written into the letter. Application only.</p><p><b>Not included:</b> a guaranteed result.</p></article>
+          <article class="scope-card"><h3>Bookkeeping</h3><div class="price">from +$500 + GST / month</div><p><b>Included:</b> current books. Add-on to Compliance.</p><p><b>Not included:</b> standing job-and-cash look, WhatsApp.</p></article>
+          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 + GST / month</div><p><b>Included:</b> last. Return, BAS and GST from a file that is already in order.</p><p><b>Not included:</b> full bookkeeping, WhatsApp, weekly job reads, catch-up.</p></article>
         </div>
       </div>
     </section>
