@@ -23,7 +23,7 @@
   }
 
   var copy = {
-    hvac: "HVAC: labour against quoted hours, materials on the van, and whether the call-out covered the next tax bill.",
+    hvac: "HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.",
     electrical: "Electrical: quoted jobs versus hours on the tools, subcontractors, and cash in unfinished work.",
     construction: "Construction services: the job, not the building. Labour, subcontractors and materials while you can still change the next quote."
   };

@@ -29,7 +29,7 @@ def index():
         <div>
           <p class="kicker">A Pink Accounting service · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">We read labour against the quote, parts on the van, and cash in unfinished work. Tax is what those decisions add up to. It is not the job.</p>
+          <p class="lead">We read labour against the quote, materials on the job, and cash in unfinished work. Tax is what those decisions add up to. It is not the job.</p>
           <div class="cta">
             <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
@@ -40,7 +40,7 @@ def index():
             <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
-          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the van, and whether the call-out covered the next tax bill.</p>
+          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
           <div class="trust">
             <span><a href="{GBP}" rel="noopener">Google reviews</a></span>
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
@@ -67,10 +67,10 @@ def index():
     <section class="problem">
       <div class="wrap">
         <span class="eyebrow">Where the value is</span>
-        <h2 style="margin-top:14px">Not in the tax return. In the next quote, the van, and cash this month.</h2>
+        <h2 style="margin-top:14px">Not in the tax return. In the next quote, the job, and cash this month.</h2>
         <div class="pcols">
-          <div class="pcol"><div class="n">01</div><h3>The next quote</h3><p>Quoted hours versus hours on the tools. If a call-out ran long, the next one should not be priced the same.</p></div>
-          <div class="pcol"><div class="n">02</div><h3>The van</h3><p>Parts issued versus parts billed. Subcontractors on the job, not a lump that only makes sense in June.</p></div>
+          <div class="pcol"><div class="n">01</div><h3>The next quote</h3><p>Quoted hours versus hours on the tools. If a job ran long, the next one should not be priced the same.</p></div>
+          <div class="pcol"><div class="n">02</div><h3>Materials on the job</h3><p>Parts issued versus parts billed. Subcontractors on that job, not a lump that only makes sense in June.</p></div>
           <div class="pcol"><div class="n">03</div><h3>Cash this month</h3><p>Unfinished work versus wages and the next BAS. A full diary can still hide money sitting in jobs not billed.</p></div>
         </div>
       </div>
@@ -549,11 +549,11 @@ def main():
         trade_page(
             "hvac",
             "HVAC",
-            "Quoted hours versus hours on the van.",
-            "For air conditioning and refrigeration firms in Queensland. Labour against the quote, materials on the van, and whether a call-out covered the next tax bill.",
+            "Quoted hours versus hours on the job.",
+            "For air conditioning and refrigeration firms in Queensland. Labour against the quote, materials on the job, and whether a call-out covered the next tax bill.",
             [
                 ("Labour", "Call-out versus quoted hours", "A diary full of call-outs can still hide jobs that ran long and were never repriced."),
-                ("Materials", "What left the van", "Parts billed at cost, or not billed at all, do not show up in a year-end pack in time to change the next quote."),
+                ("Materials", "Parts on the job", "Parts billed at cost, or not billed at all, do not show up in a year-end pack in time to change the next quote."),
                 ("Cash", "The next tax bill", "We keep the books current so a busy week is not mistaken for a funded BAS."),
             ],
         ),
