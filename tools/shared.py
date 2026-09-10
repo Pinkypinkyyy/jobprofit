@@ -4,7 +4,7 @@ ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "book.html"
 MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
-ASSET = "rt14"
+ASSET = "rt15"
 
 
 def head(title, description, canonical, og_image="/assets/og.png"):
@@ -52,14 +52,13 @@ def nav(current=""):
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="Service Profit, a Pink Accounting service">
+      <a class="brand" href="index.html" aria-label="Service Profit">
         <img src="assets/logo.png" alt="">
-        <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
+        <span class="mark"><span class="offer">Service Profit</span></span>
       </a>
       <nav class="links" aria-label="Primary">
 {item("system.html", "The system", "system")}
 {item("index.html#pricing", "Pricing", "pricing")}
-{item("areas.html", "Areas", "areas")}
 {item("why.html", "Meet Pink", "why")}
 {item("book.html", "Book a call", "book")}
 {item("contact.html", "Contact", "contact")}
@@ -79,8 +78,8 @@ def footer():
     <div class="wrap">
       <div class="grid">
         <div>
-          <img src="assets/logo-white.png" alt="Pink Accounting">
-          <p class="blurb">Service Profit is a Pink Accounting service for HVAC, electrical and construction service businesses. Office in Brendale. We work across Brisbane and Queensland.</p>
+          <img src="assets/logo-white.png" alt="Service Profit">
+          <p class="blurb">Service Profit. HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland.</p>
         </div>
         <div>
           <h4>Explore</h4>
@@ -90,7 +89,6 @@ def footer():
           <a href="hvac.html">HVAC</a>
           <a href="electrical.html">Electrical</a>
           <a href="construction.html">Construction services</a>
-          <a href="areas.html">Brendale, Brisbane, Queensland</a>
           <a href="why.html">Meet Pink</a>
           <a href="book.html">Book a call</a>
         </div>

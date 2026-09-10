@@ -34,8 +34,7 @@ def test_queensland_not_australia_wide_claim():
     assert "Brendale" in home
     assert "Brisbane" in home
     assert "areaServed" in home and "Queensland" in home
-    areas = (ROOT / "areas.html").read_text(encoding="utf-8")
-    assert "Brendale" in areas and "Brisbane" in areas and "Queensland" in areas
+    assert "Brendale" in (ROOT / "contact.html").read_text(encoding="utf-8")
 
 
 def test_404_uses_service_profit_name():
@@ -58,7 +57,7 @@ def test_mobile_pricing_and_a11y_hooks():
 
 def test_sitemap_has_trade_pages():
     sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    for slug in ("hvac.html", "electrical.html", "construction.html", "terms.html", "areas.html"):
+    for slug in ("hvac.html", "electrical.html", "construction.html", "terms.html"):
         assert slug in sm
 
 

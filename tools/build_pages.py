@@ -114,9 +114,16 @@ def index():
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">The plans</span>
-          <h2>Jobs and cash in their place. Tax and compliance held.</h2>
-          <p>Monthly, ex GST. Year figures below. We are the tax agent. Job numbers sit during the year so the return is not rebuilt from a mess in June. You focus on the work.</p>
+          <h2>Can you relax on $150 + GST an hour?</h2>
+          <p>That is a billed hour, not profit. GST comes off first. Then labour — staff or contractor — then materials, then the ute and the insurance. What is left is yours. If nothing is left, the hour was not enough.</p>
         </div>
+        <div class="hour-board">
+          <div class="cell"><b>$150 + GST</b><span>Billed to the client. Worked example, not your rate.</span></div>
+          <div class="cell"><b>$15 GST</b><span>Not yours. It sits in the bank for the ATO.</span></div>
+          <div class="cell"><b>$150 left</b><span>On paper. Labour, parts and overhead still come out.</span></div>
+          <div class="cell is-miss"><b>Profit?</b><span>Only after staff or contractor, materials, and the business.</span></div>
+        </div>
+        <p class="note-ex">If a staff hour costs you $50 all-in, you need more than one billed hour to cover one hour of their time, before your own wage and any profit. Count the billed hours in the week before you hire.</p>
         <div class="feat" id="job-profit">
           <div>
             <span class="badge">Typical ongoing plan</span>
@@ -236,46 +243,78 @@ def index():
 
 def system():
     h = head(
-        "The system | Service Profit | Pink Accounting",
-        "How Pink Accounting works with HVAC, electrical and construction service businesses in Queensland: current books, jobs, cash, tax and BAS.",
+        "The system | Service Profit",
+        "Billed hours, staff versus contractors, cash that is yours, tax and BAS held. Service Profit for HVAC, electrical and construction services in Queensland.",
         "/system.html",
     )
     body = f"""{nav("system")}
-  <main id="main" class="page">
-    <div class="wrap">
-      <span class="eyebrow">The system</span>
-      <h1>Numbers read in time to act.</h1>
-      <p class="lead">Clean bookkeeping and compliance, with job and cash raised when the file shows a problem. Built for HVAC, electrical and construction services in Queensland.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="book.html" data-event="system-book">Book a 15-minute call</a>
-        <a class="btn btn-outline" href="index.html#pricing">See the service levels</a>
-      </div>
-      <div class="grid3">
-        <section class="card"><span class="eyebrow">01 · Books</span><h2>Clean source numbers</h2><p>Bank, suppliers, jobs, materials and subcontractor payments coded so the file is ready for decisions, not reconstructed at year end.</p></section>
-        <section class="card"><span class="eyebrow">02 · People</span><h2>Labour and subcontractors seen clearly</h2><p>Payroll and super where you have staff. Subcontractors left visible, not mixed into a lump that only makes sense in June.</p></section>
-        <section class="card"><span class="eyebrow">03 · Jobs</span><h2>Quote versus actual, when it matters</h2><p>On Job Profit and above we look at the file each week. If labour, materials or cash is off, we raise it. You get a note. There is no monthly performance.</p></section>
-      </div>
-      <div class="prose" style="margin-top:48px">
-        <h2>Who this is for</h2>
-        <p>Technical service businesses in Queensland: air conditioning and refrigeration, electrical contracting, and construction services. Construction services means contracted fit-out, maintenance, installation and similar job work. It does not mean building houses or commercial buildings as a builder. It is not the hospitality service line.</p>
-        <h2>What job profit actually needs</h2>
-        <p>Ordinary bookkeeping does not, by itself, produce a reliable profit per job. Job profit needs labour, materials and subcontractors on the job, plus a view of unfinished work. We work in Xero. If your job list lives in another system, we use an export or a job report you already keep. We do not claim a live integration with every field app. If costs are not assigned to jobs, we will say the figure is an estimate and quote any setup as a separate piece of work.</p>
-        <h2>What the monthly fee covers</h2>
-        <p>Each level has a defined scope. Higher plans include the plans below them. WhatsApp is for Job Profit and above. We aim to reply the next working day, Monday to Friday 9:00am to 4:30pm. That is not a 24-hour promise and not several working days.</p>
-        <div class="example">
-          <div class="label">Illustrative example · not a client result</div>
-          <p>A quoted 6-hour call-out runs 9 hours. Materials go out at cost. The extra labour never goes back into the next quote. The books can still be right. The next job stays underpriced until someone reads labour against the quote during the month.</p>
+  <main id="main">
+    <section class="page" style="padding-bottom:0">
+      <div class="wrap">
+        <span class="eyebrow">The system</span>
+        <h1>Is $150 + GST an hour enough to relax?</h1>
+        <p class="lead">That is a billed hour. It is not profit. GST comes off. Then the person on the tools — staff or contractor — then parts, then the business. We hold that picture, and we hold tax and BAS, so you can stay on the jobs.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="book.html" data-event="system-book">Book a 15-minute call</a>
+          <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
         </div>
-        <h2>Questions we hear before people sign</h2>
+        <div class="hour-board">
+          <div class="cell"><b>$150 + GST</b><span>Billed. Worked example, not your rate.</span></div>
+          <div class="cell"><b>$15</b><span>GST. Not yours.</span></div>
+          <div class="cell"><b>$150</b><span>Left on paper before labour and parts.</span></div>
+          <div class="cell is-miss"><b>Then profit</b><span>Only if billed hours cover the real cost.</span></div>
+        </div>
+        <p class="note-ex">If labour costs you $50 all-in for an hour, one billed hour does not buy you a spare hour of profit. Count billed hours in the week before you hire.</p>
       </div>
-      <div class="faq">
-        <details><summary>What happens in the first month?</summary><p>You give Xero, bank and payroll access, or send the source documents. We confirm the start date in the letter. From that date the books are kept current. Catch-up of earlier periods is a separate fee, quoted first.</p></details>
-        <details><summary>Can you take over from another accountant?</summary><p>Yes. We start from the agreed date. We do not silently rebuild last year unless catch-up is in the letter.</p></details>
-        <details><summary>What do I still have to do?</summary><p>Send invoices, bills, timesheets or job costs, or give us access to the systems that already hold them. We cannot invent missing source data.</p></details>
-        <details><summary>How do I cancel?</summary><p>The letter of engagement sets the term and how to end it. We will not hide that in marketing copy. Ask for it on the call if you want the wording before you book.</p></details>
-        <details><summary>Do you work outside Queensland?</summary><p>Service Profit is a Queensland service line. Hospitality work on pinktax.com.au stays Australia-wide. The two are not mixed.</p></details>
+    </section>
+    <section class="band">
+      <div class="wrap">
+        <span class="eyebrow">People</span>
+        <h2 style="margin-top:12px">Staff or contractor. The file should show the true cost before you hire.</h2>
+        <div class="hire">
+          <article>
+            <span class="eyebrow">Staff</span>
+            <h3>Wage is not the full cost</h3>
+            <p>Super, leave, workers compensation, PAYG and often a ute sit on top of the wage. How many $150 hours must actually be billed this week to cover that person, before your own time and any profit? If the diary cannot show those hours as billed, the hire is hope.</p>
+          </article>
+          <article>
+            <span class="eyebrow">Contractor</span>
+            <h3>The invoice is not automatically cheaper</h3>
+            <p>A contractor invoice is visible on the job. That is useful. It is not automatically better. If they work like staff, the cost and the compliance both change. We read the numbers. We do not write the contract.</p>
+          </article>
+        </div>
       </div>
-    </div>
+    </section>
+    <section class="band">
+      <div class="wrap stack">
+    <article class="split">
+      <img src="assets/tech-electrical.jpg" width="864" height="1152" alt="Electrician on the tools">
+      <div class="split-copy">
+        <span class="eyebrow">Hours you can afford</span>
+        <h2>How many billed hours does that person need?</h2>
+        <p>Take the weekly cost of the person. Divide by the billed rate after GST. That is the hours that must land on invoices this week, before materials and overhead. If that number is not in the diary, do not hire on a feeling.</p>
+      </div>
+    </article>
+    <article class="split reverse">
+      <div class="split-copy">
+        <span class="eyebrow">Compliance</span>
+        <h2>Tax and BAS stay in the file.</h2>
+        <p>We are the tax agent. Super, PAYG, GST, FBT on utes and phones, and the return, sit here so you are not paying tax on a mess. You stay on the jobs.</p>
+        <a class="btn btn-primary" href="book.html" data-event="system-comp" style="margin-top:22px">Book a 15-minute call</a>
+      </div>
+      <img src="assets/desk.jpg" width="1280" height="720" alt="Tax papers on a desk">
+    </article>
+      </div>
+    </section>
+    <section class="band">
+      <div class="wrap">
+        <div class="faq">
+          <details><summary>What happens in the first month?</summary><p>You give Xero, bank and payroll access, or send the source documents. We confirm the start date in the letter. Catch-up of earlier periods is a separate fee, quoted first.</p></details>
+          <details><summary>Do you tell me whether to hire staff or a contractor?</summary><p>We show the cost of each in the file. The employment decision is yours. If someone works like staff, that is a compliance issue as well as a cost issue.</p></details>
+          <details><summary>How do I cancel?</summary><p>The letter of engagement sets the term and how to end it.</p></details>
+        </div>
+      </div>
+    </section>
   </main>
 {footer()}"""
     return h + body
@@ -283,17 +322,17 @@ def system():
 
 def why():
     h = head(
-        "Meet Pink | Service Profit | Pink Accounting",
-        "Huong Bui founded Pink Accounting in 2020. Service Profit is the Pink Accounting work with HVAC, electrical and construction service businesses in Queensland.",
+        "Meet Pink | Service Profit",
+        "Huong Bui. Service Profit for HVAC, electrical and construction service businesses in Queensland.",
         "/why.html",
     )
     body = f"""{nav("why")}
   <main id="main" class="page">
     <div class="wrap">
-      <span class="eyebrow">Pink Accounting</span>
-      <h1>One firm. Service Profit is how we work with you.</h1>
+      <span class="eyebrow">Service Profit</span>
+      <h1>You stay on the jobs. We hold the file.</h1>
       <div class="prose">
-        <p>Service Profit is not a separate company. It is Pink Accounting for HVAC, electrical and construction service businesses in Queensland. It is not hospitality, and it is not for builders putting up houses or commercial buildings.</p>
+        <p>Service Profit is the brand for HVAC, electrical and construction service businesses in Queensland. It is not hospitality, and it is not for builders putting up houses or commercial buildings.</p>
         <h2>A system, not a once-a-year pack</h2>
         <p>We are a registered tax agent. Your file runs on documented coding rules, GST logic and review gates. Job and cash numbers sit in the year so the return is prepared from a file that is already in order. You stay on the tools.</p>
         <h2>Honest tiering</h2>
@@ -484,38 +523,6 @@ def terms():
     return h + body
 
 
-def areas():
-    h = head(
-        "Brendale, Brisbane and Queensland | Service Profit accounting",
-        "Service Profit sits in Brendale, Moreton Bay. HVAC, electrical and construction accounting for businesses across Brisbane and Queensland. Registered Tax Agent 26284368.",
-        "/areas.html",
-    )
-    body = f"""{nav("areas")}
-  <main id="main" class="page">
-    <div class="wrap">
-      <span class="eyebrow">Where we work</span>
-      <h1>Brendale office. Brisbane and Queensland files.</h1>
-      <p class="lead">The desk is in Brendale. The work is HVAC, electrical and construction service businesses across Brisbane and Queensland. We are the tax agent. You stay on the jobs.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="book.html" data-event="areas-book">Book a 15-minute call</a>
-        <a class="btn btn-outline" href="contact.html">Office details</a>
-      </div>
-      <div class="grid3">
-        <section class="card"><span class="eyebrow">Brendale</span><h2>The office</h2><p>Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Moreton Bay, north of Brisbane. Near Strathpine, Warner, Albany Creek, Eatons Hill, Petrie and North Lakes.</p></section>
-        <section class="card"><span class="eyebrow">Brisbane</span><h2>The city</h2><p>Calls, files and reviews from Brendale for businesses that work the Brisbane side. Same firm. Same tax agent registration.</p></section>
-        <section class="card"><span class="eyebrow">Queensland</span><h2>The state</h2><p>Service Profit is a Queensland line. It is not offered Australia-wide. Hospitality work of the same firm sits on pinktax.com.au.</p></section>
-      </div>
-      <div class="prose" style="margin-top:48px">
-        <h2>What we will not do</h2>
-        <p>We will not publish a separate thin page for every suburb. If you are a technical service business in Queensland, the Brendale office is the place. Book a call or come in.</p>
-        <p>Registered Tax Agent 26284368 · ABN 51 682 301 891 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a></p>
-      </div>
-    </div>
-  </main>
-{footer()}"""
-    return h + body
-
-
 def trade_page(slug, title, h1, lead, blocks):
     h = head(
         f"{title} accounting in Queensland | Service Profit, Brendale",
@@ -561,7 +568,7 @@ def not_found():
     <div class="wrap">
       <span class="eyebrow">Service Profit</span>
       <h1>That page is not here.</h1>
-      <p class="lead">Go back to Service Profit, a Pink Accounting service for HVAC, electrical and construction service businesses in Queensland.</p>
+      <p class="lead">Go back to Service Profit. HVAC, electrical and construction service businesses in Queensland.</p>
       <div class="cta"><a class="btn btn-primary" href="index.html">Home</a></div>
     </div>
   </main>
@@ -579,7 +586,6 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>{ORIGIN}/hvac.html</loc></url>
   <url><loc>{ORIGIN}/electrical.html</loc></url>
   <url><loc>{ORIGIN}/construction.html</loc></url>
-  <url><loc>{ORIGIN}/areas.html</loc></url>
   <url><loc>{ORIGIN}/rights.html</loc></url>
   <url><loc>{ORIGIN}/privacy.html</loc></url>
   <url><loc>{ORIGIN}/terms.html</loc></url>
@@ -596,7 +602,6 @@ def main():
     write("privacy.html", privacy())
     write("rights.html", rights())
     write("terms.html", terms())
-    write("areas.html", areas())
     write(
         "hvac.html",
         trade_page(
