@@ -335,7 +335,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .hero .wrap,.feat,.pcols,.steps,.meet,.foot .grid,.grid3,.funnel,.mosaic,.split,.split.reverse,.hour-board,.hire{grid-template-columns:1fr}
   .split.reverse .split-copy{order:0}
   .split,.split img,.split picture img,.meet .shot img,.stage{height:auto;min-height:0}
-  .split img,.split picture img,.tile img,.meet .shot img{height:320px;aspect-ratio:auto}
+  .split img,.split picture img,.meet .shot img{height:240px;aspect-ratio:auto}
+  .tile img{height:auto;aspect-ratio:1/1}
+  .mosaic{grid-template-columns:repeat(3,1fr)}
   :root{--section:48px;--gutter:16px;--media-h:320px}
   .tiers{grid-template-columns:1fr 1fr}
   .links,.phone{display:none}
@@ -372,9 +374,12 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .table-hint{display:none}
   .scope-cards{display:block}
   .tiers{grid-template-columns:1fr}
-  .stage{height:280px;min-height:280px}
+  .stage{height:220px;min-height:220px}
+  .split img,.split picture img,.meet .shot img{height:200px}
+  .page .meet{grid-template-columns:1fr}
+  .feat ul{margin-top:8px}
   .kicker{letter-spacing:.08em;font-size:.62rem}
-  .live{min-height:0;font-size:.95rem}
+  .live{display:none}
   .trade{letter-spacing:.06em;padding:8px 12px}
   .trade-links a{display:inline-block;margin:0 12px 8px 0}
 }

@@ -4,7 +4,7 @@ ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "book.html"
 MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
-ASSET = "rt17"
+ASSET = "rt18"
 
 
 def head(title, description, canonical, og_image="/assets/og.png"):

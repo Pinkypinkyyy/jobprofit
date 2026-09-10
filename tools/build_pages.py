@@ -113,17 +113,10 @@ def index():
     <section class="band" id="pricing">
       <div class="wrap">
         <div class="sec-head">
-          <span class="eyebrow">The plans</span>
-          <h2>Can you relax on $150 + GST an hour?</h2>
-          <p>That is a billed hour, not profit. GST comes off first. Then labour — staff or contractor — then materials, then the ute and the insurance. What is left is yours. If nothing is left, the hour was not enough.</p>
+          <span class="eyebrow">Our fees</span>
+          <h2>Job Profit $1,650 + GST a month.</h2>
+          <p>$19,800 + GST a year. Books, billed hours and cash in the file, tax and BAS held. Not unlimited work. The letter is the quote.</p>
         </div>
-        <div class="hour-board">
-          <div class="cell"><b>$150 + GST</b><span>Billed to the client. Worked example, not your rate.</span></div>
-          <div class="cell"><b>$15 GST</b><span>Not yours. It sits in the bank for the ATO.</span></div>
-          <div class="cell"><b>$150 left</b><span>On paper. Labour, parts and overhead still come out.</span></div>
-          <div class="cell is-miss"><b>Profit?</b><span>Only after staff or contractor, materials, and the business.</span></div>
-        </div>
-        <p class="note-ex">If a staff hour costs you $50 all-in, you need more than one billed hour to cover one hour of their time, before your own wage and any profit. Count the billed hours in the week before you hire.</p>
         <div class="feat" id="job-profit">
           <div>
             <span class="badge">Typical ongoing plan</span>
@@ -132,7 +125,7 @@ def index():
             <div class="fyear">$19,800 + GST a year</div>
             <p class="fdesc">The number you care about is billed hours versus quoted hours, and how much of the bank balance is actually yours. GST, PAYG, super and wages sit in that account. They are not drawings.</p>
             <div class="fcta"><a class="btn btn-primary" href="book.html" data-event="pricing-book">Book a 15-minute call</a></div>
-            <div class="fnote">We do not publish a savings figure for your firm. One unbilled day of labour is usually more than a month of this fee. That is a comparison, not a client result.</div>
+            <div class="fnote">If you only need the return, that is Compliance. Bookkeeping is an add-on when you need it, not a plan.</div>
           </div>
           <ul>
             <li><b>Billed time</b> quoted hours versus hours on the tools, each week. If a job ran long, the next quote should not repeat it</li>
@@ -214,7 +207,7 @@ def index():
     <section class="band">
       <div class="wrap meet">
         <div class="shot">
-          <img src="assets/pink-portrait.jpg" width="800" height="1000" alt="Huong Bui, principal of Pink Accounting">
+          <img src="assets/pink-studio.jpg" width="900" height="984" alt="Huong Bui, principal, Service Profit">
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
@@ -327,29 +320,28 @@ def why():
         "/why.html",
     )
     body = f"""{nav("why")}
-  <main id="main" class="page">
-    <div class="wrap">
-      <span class="eyebrow">Service Profit</span>
-      <h1>You stay on the jobs. We hold the file.</h1>
-      <div class="prose">
-        <p>Service Profit is the brand for HVAC, electrical and construction service businesses in Queensland. It is not hospitality, and it is not for builders putting up houses or commercial buildings.</p>
-        <h2>A system, not a once-a-year pack</h2>
-        <p>We are a registered tax agent. Your file runs on documented coding rules, GST logic and review gates. Job and cash numbers sit in the year so the return is prepared from a file that is already in order. You stay on the tools.</p>
-        <h2>Honest tiering</h2>
-        <p>If compliance at $550 is all you need, that is what we will recommend. Each level has a boundary. That is so the fee matches the work.</p>
-        <h2>Who is a fit</h2>
-        <p>Owners who want current books and someone in the file during the year. People who will send job costs, or already keep them. A comparison of fees is reasonable. We will also say if the work you want is outside the letter.</p>
+  <main id="main">
+    <section class="page" style="padding-bottom:0">
+      <div class="wrap meet">
+        <div class="shot">
+          <img src="assets/pink-studio.jpg" width="900" height="984" alt="Huong Bui, principal of Service Profit">
+        </div>
+        <div>
+          <span class="eyebrow">Meet Pink</span>
+          <h1 style="margin-top:12px">Hello, I am Pink.</h1>
+          <p class="lead">Huong Bui. I founded the firm in 2020. Service Profit is this accounting work with HVAC, electrical and construction services in Queensland. You stay on the jobs. We hold the file.</p>
+          <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
+          <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA · Brendale QLD</div>
+          <a class="btn btn-primary" href="book.html" data-event="why-book" style="margin-top:22px">Book a 15-minute call</a>
+        </div>
+      </div>
+    </section>
+    <section class="band">
+      <div class="wrap prose">
         <h2>Registered and accountable</h2>
-        <p>Registered Tax Agent 26284368. Our obligations to you are public. See <a href="rights.html">Your rights and our obligations</a>.</p>
-        <h2>How Pink started</h2>
-        <p>Pink Accounting was founded in 2020 by Huong (Pinky) Bui. The practice incorporated as Pink Accounting &amp; Tax Solutions Pty Ltd in November 2024, which is why the current ABN shows a 2024 start date. The work began in 2020.</p>
-        <p>Huong holds a Master of Professional Accounting (Griffith), is MIPA AFA, and is Registered Tax Agent 26284368. Discovery calls are with the principal where the diary allows. If she is already booked, a team member takes the call and she reads the notes the same working day.</p>
+        <p>Our obligations to you are public. See <a href="rights.html">Your rights and our obligations</a>. ABN 51 682 301 891 · ASIC Registered Agent 52580.</p>
       </div>
-      <div class="cta" style="margin-top:32px">
-        <a class="btn btn-primary" href="book.html" data-event="why-book">Book a 15-minute call</a>
-      </div>
-      <p class="creds">ABN 51 682 301 891 · Registered Tax Agent 26284368 · ASIC Registered Agent 52580</p>
-    </div>
+    </section>
   </main>
 {footer()}"""
     return h + body
