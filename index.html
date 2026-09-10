@@ -4,23 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Service Profit | Pink Accounting for HVAC, electrical and construction services</title>
-  <meta name="description" content="Pink Accounting for HVAC, electrical and construction service businesses. Compliance from $550 + GST. Job Profit $1,650 + GST a month. Book a 15-minute call.">
+  <meta name="description" content="Pink Accounting for HVAC, electrical and construction service businesses in Queensland. Job Profit $1,650 + GST a month. Book a 15-minute call.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://www.serviceprofit.com.au/">
-  <meta property="og:title" content="Service Profit | Pink Accounting">
-  <meta property="og:description" content="Accounting for HVAC, electrical and construction services. Tax is the end of the job, not the start.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; base-uri 'self'; form-action 'self' mailto:">
+  <meta property="og:title" content="Service Profit | Pink Accounting for HVAC, electrical and construction services">
+  <meta property="og:description" content="Pink Accounting for HVAC, electrical and construction service businesses in Queensland. Job Profit $1,650 + GST a month. Book a 15-minute call.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.serviceprofit.com.au/">
-  <meta property="og:image" content="https://www.serviceprofit.com.au/assets/hvac.jpg">
+  <meta property="og:image" content="https://www.serviceprofit.com.au/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_AU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Service Profit | Pink Accounting for HVAC, electrical and construction services">
+  <meta name="twitter:description" content="Pink Accounting for HVAC, electrical and construction service businesses in Queensland. Job Profit $1,650 + GST a month. Book a 15-minute call.">
+  <meta name="twitter:image" content="https://www.serviceprofit.com.au/assets/og.png">
   <link rel="icon" href="assets/logo.png">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"AccountingService","name":"Pink Accounting","alternateName":"Service Profit","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","knowsAbout":["HVAC accounting","electrical contractors","construction services"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":"AU","founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891"}
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=blk1">
+  <link rel="stylesheet" href="styles.css?v=rt2">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"AccountingService","name":"Pink Accounting","alternateName":"Service Profit","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","knowsAbout":["HVAC accounting","electrical contractors","construction services"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":{"@type":"AdministrativeArea","name":"Queensland"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891"}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -32,15 +40,15 @@
       </a>
       <nav class="links" aria-label="Primary">
         <a href="system.html">The system</a>
-        <a href="#pricing">Pricing</a>
+        <a href="index.html#pricing">Pricing</a>
         <a href="why.html">Meet Pink</a>
         <a href="book.html">Book a call</a>
         <a href="contact.html">Contact</a>
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
-        <a class="btn btn-primary" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener">Book a call</a>
-        <button class="burger" id="pinkBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <a class="btn btn-primary" href="book.html" data-event="nav-book"><span class="full">Book a call</span><span class="short">Book</span></a>
+        <button class="burger" id="pinkBurger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="pinkNav"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
@@ -49,29 +57,40 @@
     <section class="hero">
       <div class="wrap">
         <div>
-          <p class="kicker">Pick your trade. The page moves with you.</p>
-          <h1>A P&amp;L after 30 June cannot fix a job you quoted in March.</h1>
-          <div class="trades" role="tablist" aria-label="Trade">
-            <button class="trade is-on" type="button" data-trade="hvac">HVAC</button>
-            <button class="trade" type="button" data-trade="electrical">Electrical</button>
-            <button class="trade" type="button" data-trade="construction">Construction services</button>
-          </div>
-          <p class="live" id="liveLine">For HVAC firms we watch labour against the quoted hours, materials on the van, and whether a call-out actually covered the next tax bill.</p>
-          <p class="lead">Service Profit is how <b>Pink Accounting</b> works with technical service businesses. Air conditioning, electrical, and construction services. Not builders. We keep the books current, then read them while you can still change the next quote.</p>
+          <p class="kicker">A Pink Accounting service · Queensland</p>
+          <h1>See job profit while you can still change the next quote.</h1>
+          <p class="lead">We keep the books current for HVAC, electrical and construction service businesses, then read labour, materials and cash against the job. A year-end P&amp;L cannot fix a quote you already sent.</p>
           <div class="cta">
-            <a class="btn btn-primary" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener">Book a 15-minute call <span class="arw">→</span></a>
+            <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call <span class="arw">→</span></a>
             <a class="btn btn-outline" href="system.html">How the system works</a>
           </div>
+          <p class="kicker" style="margin-top:28px">Choose a trade for a one-line example. Pricing and booking stay the same.</p>
+          <div class="trades" aria-label="Trade examples">
+            <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
+            <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
+            <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
+          </div>
+          <p class="live" id="liveLine">For HVAC firms we watch labour against the quoted hours, materials on the van, and whether a call-out actually covered the next tax bill.</p>
+          <p class="trade-links">Read more: <a href="hvac.html">HVAC</a><a href="electrical.html">Electrical</a><a href="construction.html">Construction services</a></p>
           <div class="trust">
-            <span>5.0 on <a href="https://www.google.com/maps/search/Pink+Accounting+%26+Tax+Solutions+Brendale" rel="noopener">Google</a></span>
+            <span><a href="https://www.google.com/maps?cid=17544456102082616748" rel="noopener">Google reviews</a> for Pink Accounting</span>
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
-          <div class="under">Pink Accounting &amp; Tax Solutions Pty Ltd · Australia-wide</div>
+          <div class="under">Pink Accounting &amp; Tax Solutions Pty Ltd · Queensland</div>
         </div>
         <div class="stage" id="stage">
-          <img class="is-on" data-trade="hvac" src="assets/hvac.jpg" alt="Deep view of commercial HVAC services">
-          <img data-trade="electrical" src="assets/electrical.jpg" alt="Deep view of commercial electrical services">
-          <img data-trade="construction" src="assets/construction.jpg" alt="Deep view of construction services fit-out">
+          <picture>
+            <source type="image/webp" srcset="assets/hvac-480.webp 480w, assets/hvac-864.webp 864w, assets/hvac-1200.webp 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img class="is-on" data-trade="hvac" src="assets/hvac.jpg" width="864" height="1152" alt="Commercial HVAC plant">
+          </picture>
+          <picture>
+            <source type="image/webp" srcset="assets/electrical-480.webp 480w, assets/electrical-864.webp 864w, assets/electrical-1200.webp 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img data-trade="electrical" src="assets/electrical.jpg" width="864" height="1152" alt="Commercial electrical services" loading="lazy" aria-hidden="true" inert>
+          </picture>
+          <picture>
+            <source type="image/webp" srcset="assets/construction-480.webp 480w, assets/construction-864.webp 864w, assets/construction-1200.webp 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img data-trade="construction" src="assets/construction.jpg" width="864" height="1152" alt="Construction services fit-out" loading="lazy" aria-hidden="true" inert>
+          </picture>
           <div class="cap" id="stageCap">HVAC</div>
         </div>
       </div>
@@ -81,11 +100,11 @@
       <div class="wrap">
         <span class="eyebrow">Why this exists</span>
         <h2 style="margin-top:14px">Tax is the end result of decisions made months earlier.</h2>
-        <p class="lead">If the first close look at a job is when the return is prepared, it can still be reported correctly. The chance to price the next one better has often already passed. For HVAC, electrical and construction services that gap shows up in quotes, labour, subcontractors and cash.</p>
+        <p class="lead">If the first close look at a job is when the return is prepared, the file can still be right. The chance to price the next one better has often already passed. That gap shows up in quotes, labour, subcontractors and cash.</p>
         <div class="pcols">
           <div class="pcol"><div class="n">01</div><h3>The return is last</h3><p>It tells you what happened after the job was quoted, the van was on site, and the subcontractor was paid.</p></div>
           <div class="pcol"><div class="n">02</div><h3>Busy is not the same as profitable</h3><p>A full diary can still hide a job that did not cover labour, materials or the next tax bill.</p></div>
-          <div class="pcol"><div class="n">03</div><h3>Somebody should be in the file during the year</h3><p>A tax-only accountant files and forgets. We keep the books current, so when a job or cash question comes up, we can talk while there is still time.</p></div>
+          <div class="pcol"><div class="n">03</div><h3>Somebody should be in the file during the year</h3><p>We keep the books current, so when a job or cash question comes up we can talk while there is still time.</p></div>
         </div>
       </div>
     </section>
@@ -95,83 +114,94 @@
         <div class="sec-head">
           <span class="eyebrow">The plans</span>
           <h2>Same firm. A defined monthly scope.</h2>
-          <p>Monthly, ex GST. These prices are for technical service businesses. They are not the hospitality ladder. You choose the level. The fee is not unlimited work and not unlimited access to the team.</p>
+          <p>Monthly, ex GST, for technical service businesses in Queensland. Each higher plan includes the plan below it. The fee is not unlimited work. Extra work is quoted before we start it.</p>
         </div>
-        <div class="feat">
+        <div class="feat" id="job-profit">
           <div>
-            <span class="badge">Most used for ongoing clients</span>
+            <span class="badge">Typical ongoing plan</span>
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
-            <p class="fdesc">We keep the books current and keep compliance oversight. We are a team beside you. Job and cash get discussed when something needs a look, not as a monthly appearance.</p>
-            <div class="fcta"><a class="btn btn-primary" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener">Book a 15-minute call <span class="arw">→</span></a></div>
-            <div class="fnote">We will tell you honestly if a lighter tier is enough.</div>
+            <p class="fdesc">Books and compliance stay current. Each week we look at jobs and cash inside the file. If something is off, we raise it. You get a note when a decision is needed. There is no standing monthly meeting.</p>
+            <div class="fcta"><a class="btn btn-primary" href="book.html" data-event="pricing-book">Book a 15-minute call <span class="arw">→</span></a></div>
+            <div class="fnote">If a lighter tier is enough, we will say so on the call.</div>
           </div>
           <ul>
-            <li><b>Books kept current</b> - bank, jobs, subcontractors and payroll</li>
-            <li><b>Compliance oversight</b> - BAS and the file watched, not reconstructed in June</li>
-            <li>Job and cash <b>when needed</b> - we talk when something is worth discussing, not every month as a ritual</li>
-            <li>Direct <b>WhatsApp</b> to the firm. A team beside you. Scope is defined, not unlimited</li>
+            <li><b>Includes Compliance and Bookkeeping</b> for one trading entity, as written in the letter</li>
+            <li><b>Weekly internal look</b> at jobs, labour, materials, subcontractors and cash. The firm raises exceptions. You do not have to chase us to start that look</li>
+            <li><b>What you receive</b> a WhatsApp or email when something needs a decision, plus the current books and BAS oversight</li>
+            <li><b>What we need from you</b> Xero access, bank feeds, invoices, and labour or materials against jobs. If costs are not on jobs, job profit is an estimate until they are</li>
           </ul>
         </div>
         <div class="tiers">
-          <div class="tier">
+          <a class="tier" href="#level-compliance">
             <div class="tname">Compliance</div>
             <div class="tprice">$550<small> + GST/mo</small></div>
-            <p>Compliance and tax planning while you keep more of the day-to-day yourself. The floor for ongoing clients.</p>
-          </div>
-          <div class="tier">
+            <p>Tax, BAS oversight and the return for one entity, while you keep more of the day-to-day.</p>
+          </a>
+          <a class="tier" href="#level-bookkeeping">
             <div class="tname">Bookkeeping</div>
             <div class="tprice">+$500<small> + GST/mo, from</small></div>
-            <p>Add-on. We keep the books current. Starting from $500 + GST a month, on top of compliance.</p>
-          </div>
-          <div class="tier">
+            <p>Add-on to Compliance. We keep the books current. Starts from $500 + GST.</p>
+          </a>
+          <a class="tier" href="#level-weekly">
             <div class="tname">Weekly Visibility</div>
             <div class="tprice">$2,650<small> + GST/mo, from</small></div>
-            <p>Weekly snapshots while the job is still running, not a month-old pack.</p>
-          </div>
-          <div class="tier">
+            <p>Includes Job Profit, plus a weekly snapshot while the job is still running.</p>
+          </a>
+          <a class="tier" href="#level-scale">
             <div class="tname">Ready to Scale</div>
             <div class="tprice">$3,500<small> + GST/mo, from</small></div>
-            <p>Forecasting and decision support. Application only. Written into the letter first.</p>
-          </div>
+            <p>Includes Weekly Visibility, plus forecasting written into the letter. Application only.</p>
+          </a>
         </div>
-        <table class="scope">
-          <thead>
-            <tr><th>Level</th><th>Fee</th><th>Included</th><th>Not included</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Compliance</strong></td>
-              <td class="price">$550 + GST</td>
-              <td>Compliance and tax planning. Email to admin@pinktax.com.au.</td>
-              <td>Full bookkeeping. WhatsApp. Weekly reads. Unlimited advisory.</td>
-            </tr>
-            <tr>
-              <td><strong>Bookkeeping</strong></td>
-              <td class="price">from +$500 + GST</td>
-              <td>Books kept current. Add-on to compliance.</td>
-              <td>Job-and-cash discussion as a standing service. Unlimited advisory.</td>
-            </tr>
-            <tr class="pop">
-              <td><strong>Job Profit</strong></td>
-              <td class="price">$1,650 + GST</td>
-              <td>Books kept current. Compliance oversight. WhatsApp. Job and cash discussed when needed, not every month.</td>
-              <td>A monthly job-and-cash meeting. Unlimited access. Work outside the letter of engagement.</td>
-            </tr>
-            <tr>
-              <td><strong>Weekly Visibility</strong></td>
-              <td class="price">from $2,650 + GST</td>
-              <td>Weekly snapshots while the job is still running.</td>
-              <td>Open-ended project work unless scoped.</td>
-            </tr>
-            <tr>
-              <td><strong>Ready to Scale</strong></td>
-              <td class="price">from $3,500 + GST</td>
-              <td>Forecasting and decision support. Written into the letter first.</td>
-              <td>Application only.</td>
-            </tr>
-          </tbody>
-        </table>
+        <p class="psub">Compliance plus the minimum Bookkeeping add-on is $1,050 + GST. Job Profit is $1,650 + GST. The extra $600 is the weekly internal look, the firm raising job and cash exceptions, and WhatsApp. Bookkeeping volume, payroll headcount and catch-up of old periods can change the fee. The letter is the quote.</p>
+        <div class="table-scroll" tabindex="0" aria-label="Plan comparison. Scroll sideways on a small screen to read every column.">
+          <table class="scope">
+            <thead>
+              <tr><th>Level</th><th>Fee</th><th>Included</th><th>Not included</th></tr>
+            </thead>
+            <tbody>
+              <tr id="level-compliance">
+                <td><strong>Compliance</strong></td>
+                <td class="price">$550 + GST</td>
+                <td>Tax planning, BAS oversight and the annual return for one trading entity. Email to admin@pinktax.com.au. Ordinary hours reply: next working day.</td>
+                <td>Full bookkeeping. WhatsApp. Weekly job reads. Catch-up of prior periods. Xero subscription unless the letter says we bill it. Unlimited advisory.</td>
+              </tr>
+              <tr id="level-bookkeeping">
+                <td><strong>Bookkeeping</strong></td>
+                <td class="price">from +$500 + GST</td>
+                <td>Adds current books to Compliance. Bank, suppliers, payroll and GST coded in Xero. Starting price; volume can lift it.</td>
+                <td>Job-and-cash exception review as a standing service. WhatsApp. Unlimited advisory.</td>
+              </tr>
+              <tr class="pop" id="level-job">
+                <td><strong>Job Profit</strong></td>
+                <td class="price">$1,650 + GST</td>
+                <td>Includes Compliance and Bookkeeping. Weekly internal look. We raise job and cash exceptions. WhatsApp. One entity. Payroll where you have staff, as written.</td>
+                <td>A monthly meeting. Unlimited access. Catch-up. Software setup projects. Work outside the letter.</td>
+              </tr>
+              <tr id="level-weekly">
+                <td><strong>Weekly Visibility</strong></td>
+                <td class="price">from $2,650 + GST</td>
+                <td>Includes Job Profit. A weekly snapshot you can read while the job is still running.</td>
+                <td>Open-ended project work unless scoped. Application of extra entities unless written in.</td>
+              </tr>
+              <tr id="level-scale">
+                <td><strong>Ready to Scale</strong></td>
+                <td class="price">from $3,500 + GST</td>
+                <td>Includes Weekly Visibility. Forecasting and decision support as written in the letter first. Application only.</td>
+                <td>A guaranteed result. Unlimited access.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-hint">On a phone, swipe the table sideways, or use the stacked cards below on the narrow layout.</p>
+        <div class="scope-cards">
+          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 + GST / month</div><p><b>Included:</b> tax planning, BAS oversight and the annual return for one entity. Email only.</p><p><b>Not included:</b> full bookkeeping, WhatsApp, weekly job reads, catch-up, Xero subscription unless billed in the letter.</p></article>
+          <article class="scope-card"><h3>Bookkeeping</h3><div class="price">from +$500 + GST / month</div><p><b>Included:</b> current books added to Compliance.</p><p><b>Not included:</b> standing job-and-cash review, WhatsApp.</p></article>
+          <article class="scope-card"><h3>Job Profit</h3><div class="price">$1,650 + GST / month</div><p><b>Included:</b> Compliance and Bookkeeping, weekly internal look, exceptions raised by us, WhatsApp.</p><p><b>Not included:</b> a monthly meeting, unlimited access, catch-up, software setup projects.</p></article>
+          <article class="scope-card"><h3>Weekly Visibility</h3><div class="price">from $2,650 + GST / month</div><p><b>Included:</b> Job Profit plus a weekly snapshot while the job is running.</p><p><b>Not included:</b> unscoped project work.</p></article>
+          <article class="scope-card"><h3>Ready to Scale</h3><div class="price">from $3,500 + GST / month</div><p><b>Included:</b> Weekly Visibility plus forecasting written into the letter. Application only.</p><p><b>Not included:</b> a guaranteed result.</p></article>
+        </div>
       </div>
     </section>
 
@@ -180,17 +210,17 @@
         <div class="sec-head">
           <span class="eyebrow">How it works</span>
           <h2>We agree the start date and the boundary before you sign.</h2>
-          <p>Pink Accounting is the firm. Service Profit is the way we work with technical service businesses. We do not manufacture tax savings. We look early enough to identify something worth discussing.</p>
+          <p>Pink Accounting is the firm. Service Profit is how we work with technical service businesses in Queensland. We do not manufacture tax savings. We look early enough to name something worth discussing.</p>
         </div>
         <div class="steps">
-          <div class="stepc"><div class="n">01</div><h3>Fifteen minutes with Pink</h3><p>A direct conversation. We ask how the business actually runs. If we are not the right firm, we say so.</p></div>
-          <div class="stepc"><div class="n">02</div><h3>The right level, written down</h3><p>Exact fee in the letter of engagement before work begins. Same-day letter once scope is agreed.</p></div>
-          <div class="stepc"><div class="n">03</div><h3>The system goes live</h3><p>Books stay current. Raise a job or cash question when you are making the decision. We are beside you, not performing a monthly visit.</p></div>
+          <div class="stepc"><div class="n">01</div><h3>Fifteen minutes</h3><p>A direct conversation about how the business runs. If we are not the right firm, we say so.</p></div>
+          <div class="stepc"><div class="n">02</div><h3>The right level, written down</h3><p>Exact fee in the letter of engagement before work begins. Once scope is agreed we usually issue the letter the same working day.</p></div>
+          <div class="stepc"><div class="n">03</div><h3>The system goes live</h3><p>Books stay current from the start date in the letter. We look at the file each week on Job Profit and above, and we raise what needs a decision.</p></div>
         </div>
         <div class="funnel">
-          <a class="card" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener"><span class="eyebrow">Book</span><h2>Microsoft Bookings</h2><p>A 15-minute call with Pink. Confirmation to you and to admin@pinktax.com.au.</p></a>
-          <a class="card" href="mailto:admin@pinktax.com.au?subject=Service%20Profit%20enquiry"><span class="eyebrow">Email</span><h2>admin@pinktax.com.au</h2><p>The firm mailbox. A person reads it.</p></a>
-          <a class="card" href="tel:+61735446386"><span class="eyebrow">Call</span><h2>07 3544 6386</h2><p>Mon-Fri 9:00am-4:30pm. Saturday by appointment. Brendale QLD.</p></a>
+          <a class="card" href="book.html" data-event="funnel-book"><span class="eyebrow">Book</span><h2>15-minute call</h2><p>Use the booking page. The calendar is the Service Profit service, not the hospitality diary.</p></a>
+          <a class="card" href="mailto:admin@pinktax.com.au?subject=Service%20Profit%20enquiry" data-event="funnel-email"><span class="eyebrow">Email</span><h2>admin@pinktax.com.au</h2><p>The firm mailbox. A person reads it.</p></a>
+          <a class="card" href="tel:+61735446386" data-event="funnel-call"><span class="eyebrow">Call</span><h2>07 3544 6386</h2><p>Mon-Fri 9:00am-4:30pm. Saturday by appointment. Brendale QLD.</p></a>
         </div>
       </div>
     </section>
@@ -203,8 +233,8 @@
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h2 style="margin-top:12px">Hello, I am Pink.</h2>
-          <p>I am Huong Bui. I founded Pink Accounting in 2020. Service Profit is our work with HVAC, electrical and construction service businesses - the ones where the diary is full, cash is tight, and a year-end pack arrives too late to change a job you already quoted.</p>
-          <p>You deal with the principal. The firm stays small on purpose.</p>
+          <p>I am Huong Bui. I founded Pink Accounting in 2020. Service Profit is our work with HVAC, electrical and construction service businesses in Queensland: full diaries, tight cash, and a year-end pack that arrives too late to change a job already quoted.</p>
+          <p>You deal with the principal on the discovery call where the diary allows. The firm is small on purpose. If I am already in a client meeting, another member of the team takes the call and I read the notes the same working day.</p>
           <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA · Master of Professional Accounting (Griffith)</div>
           <a class="btn btn-primary" href="why.html">Why Pink Accounting</a>
         </div>
@@ -214,44 +244,49 @@
     <section class="final">
       <div class="wrap">
         <h2>Have a look first. Then we can look properly at the file.</h2>
-        <p>No pressure from our side. The important thing is a good fit between what you expect and the value we are expected to provide.</p>
-        <a class="btn btn-white" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener">Book a 15-minute call <span class="arw">→</span></a>
-        <div class="micro">Registered Tax Agent 26284368 · Business clients only · 5.0 on Google</div>
+        <p>Compare us with other firms if you need to. The useful test is whether the scope, fee and what you must send us are a fit.</p>
+        <a class="btn btn-white" href="book.html" data-event="final-book">Book a 15-minute call <span class="arw">→</span></a>
+        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland</div>
       </div>
     </section>
   </main>
+  <div class="sticky-book" id="bookBar">
+    <span>Fifteen minutes with the firm.</span>
+    <a class="btn btn-primary" href="book.html" data-event="sticky-book">Book a call <span class="arw">→</span></a>
+  </div>
 
   <footer class="foot">
     <div class="wrap">
       <div class="grid">
         <div>
           <img src="assets/logo-white.png" alt="Pink Accounting">
-          <p class="blurb">Service Profit is a Pink Accounting service for HVAC, electrical and construction service businesses. Pink Accounting &amp; Tax Solutions Pty Ltd.</p>
+          <p class="blurb">Service Profit is a Pink Accounting service for HVAC, electrical and construction service businesses in Queensland. Pink Accounting &amp; Tax Solutions Pty Ltd.</p>
         </div>
         <div>
           <h4>Explore</h4>
+          <a href="index.html">Home</a>
           <a href="system.html">The system</a>
           <a href="index.html#pricing">Pricing</a>
+          <a href="hvac.html">HVAC</a>
+          <a href="electrical.html">Electrical</a>
+          <a href="construction.html">Construction services</a>
           <a href="why.html">Meet Pink</a>
           <a href="book.html">Book a call</a>
-          <a href="rights.html">Your rights and our obligations</a>
-          <a href="privacy.html">Privacy</a>
         </div>
         <div>
-          <h4>Contact</h4>
+          <h4>Contact and legal</h4>
           <a href="tel:+61735446386">(07) 3544 6386</a>
           <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>
           <a href="contact.html">Contact</a>
+          <a href="rights.html">Your rights</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
           <p class="addr" style="margin-top:12px;line-height:1.8">Shop 15A, 18-22 Kremzow Rd<br>Brendale QLD 4500</p>
         </div>
       </div>
-      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener" style="display:inline;color:inherit">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation.</p>
+      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 10 September 2026.</p>
     </div>
   </footer>
-  <div class="sticky-book" id="bookBar">
-    <span>Fifteen minutes with Pink.</span>
-    <a class="btn btn-primary" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener">Book a call <span class="arw">→</span></a>
-  </div>
-  <script src="nav.js?v=blk1"></script>
+  <script src="nav.js?v=rt2"></script>
 </body>
 </html>

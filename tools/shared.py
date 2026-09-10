@@ -1,33 +1,54 @@
-<!DOCTYPE html>
+"""Shared HTML chrome for the Service Profit public site."""
+
+ORIGIN = "https://www.serviceprofit.com.au"
+BOOK = "book.html"
+MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
+GBP = "https://www.google.com/maps?cid=17544456102082616748"
+ASSET = "rt2"
+
+
+def head(title, description, canonical, og_image="/assets/og.png"):
+    if not canonical.startswith("http"):
+        canonical = ORIGIN + (canonical if canonical.startswith("/") else "/" + canonical)
+    og = ORIGIN + og_image if og_image.startswith("/") else og_image
+    return f"""<!DOCTYPE html>
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact | Service Profit | Pink Accounting</title>
-  <meta name="description" content="Talk to Pink Accounting. Brendale office. 07 3544 6386. admin@pinktax.com.au. Book a 15-minute Service Profit call.">
+  <title>{title}</title>
+  <meta name="description" content="{description}">
   <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://www.serviceprofit.com.au/contact.html">
+  <link rel="canonical" href="{canonical}">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; base-uri 'self'; form-action 'self' mailto:">
-  <meta property="og:title" content="Contact | Service Profit | Pink Accounting">
-  <meta property="og:description" content="Talk to Pink Accounting. Brendale office. 07 3544 6386. admin@pinktax.com.au. Book a 15-minute Service Profit call.">
+  <meta property="og:title" content="{title}">
+  <meta property="og:description" content="{description}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.serviceprofit.com.au/contact.html">
-  <meta property="og:image" content="https://www.serviceprofit.com.au/assets/og.png">
+  <meta property="og:url" content="{canonical}">
+  <meta property="og:image" content="{og}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_AU">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact | Service Profit | Pink Accounting">
-  <meta name="twitter:description" content="Talk to Pink Accounting. Brendale office. 07 3544 6386. admin@pinktax.com.au. Book a 15-minute Service Profit call.">
-  <meta name="twitter:image" content="https://www.serviceprofit.com.au/assets/og.png">
+  <meta name="twitter:title" content="{title}">
+  <meta name="twitter:description" content="{description}">
+  <meta name="twitter:image" content="{og}">
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=rt2">
+  <link rel="stylesheet" href="styles.css?v={ASSET}">
 </head>
-<body>
+"""
+
+
+def nav(current=""):
+    def item(href, label, key):
+        cur = ' aria-current="page"' if current == key else ""
+        return f'        <a href="{href}"{cur}>{label}</a>'
+
+    return f"""<body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
@@ -36,11 +57,11 @@
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-        <a href="system.html">The system</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="why.html">Meet Pink</a>
-        <a href="book.html">Book a call</a>
-        <a href="contact.html" aria-current="page">Contact</a>
+{item("system.html", "The system", "system")}
+{item("index.html#pricing", "Pricing", "pricing")}
+{item("why.html", "Meet Pink", "why")}
+{item("book.html", "Book a call", "book")}
+{item("contact.html", "Contact", "contact")}
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
@@ -49,24 +70,11 @@
       </div>
     </div>
   </header>
+"""
 
-  <main id="main" class="page">
-    <div class="wrap">
-      <span class="eyebrow">Contact Pink Accounting</span>
-      <h1>Talk to the accountant. Not a ticket queue.</h1>
-      <p class="lead">Bring the question, the messy numbers, or the decision you are about to make.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="book.html" data-event="contact-book">Book a 15-minute call <span class="arw">→</span></a>
-        <a class="btn btn-outline" href="tel:+61735446386">Call 07 3544 6386</a>
-      </div>
-      <div class="grid3">
-        <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Mon-Fri, 9:00am-4:30pm. Saturday by appointment.</p></section>
-        <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
-        <section class="card"><span class="eyebrow">Visit</span><h2>Brendale</h2><p>Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Service Profit is Queensland. Hospitality clients of the same firm may sit elsewhere.</p></section>
-      </div>
-    </div>
-  </main>
-  <footer class="foot">
+
+def footer():
+    return f"""  <footer class="foot">
     <div class="wrap">
       <div class="grid">
         <div>
@@ -98,6 +106,15 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 10 September 2026.</p>
     </div>
   </footer>
-  <script src="nav.js?v=rt2"></script>
+  <script src="nav.js?v={ASSET}"></script>
 </body>
 </html>
+"""
+
+
+def sticky():
+    return """  <div class="sticky-book" id="bookBar">
+    <span>Fifteen minutes with the firm.</span>
+    <a class="btn btn-primary" href="book.html" data-event="sticky-book">Book a call <span class="arw">→</span></a>
+  </div>
+"""

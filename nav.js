@@ -1,10 +1,24 @@
 (function () {
   var nav = document.getElementById("pinkNav");
   var btn = document.getElementById("pinkBurger");
+
+  function setMenu(open) {
+    if (!nav || !btn) return;
+    nav.classList.toggle("open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
   if (nav && btn) {
     btn.addEventListener("click", function () {
-      nav.classList.toggle("open");
-      btn.setAttribute("aria-expanded", nav.classList.contains("open") ? "true" : "false");
+      setMenu(!nav.classList.contains("open"));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setMenu(false);
+    });
+    document.addEventListener("click", function (e) {
+      if (!nav.classList.contains("open")) return;
+      if (nav.contains(e.target)) return;
+      setMenu(false);
     });
   }
 
@@ -18,25 +32,40 @@
   var live = document.getElementById("liveLine");
   var shots = document.querySelectorAll("#stage img");
   var cap = document.getElementById("stageCap");
+
   function setTrade(key) {
     trades.forEach(function (t) {
-      t.classList.toggle("is-on", t.getAttribute("data-trade") === key);
+      var on = t.getAttribute("data-trade") === key;
+      t.classList.toggle("is-on", on);
+      t.setAttribute("aria-pressed", on ? "true" : "false");
     });
     shots.forEach(function (img) {
-      img.classList.toggle("is-on", img.getAttribute("data-trade") === key);
+      var on = img.getAttribute("data-trade") === key;
+      img.classList.toggle("is-on", on);
+      if (on) {
+        img.removeAttribute("aria-hidden");
+        img.removeAttribute("inert");
+      } else {
+        img.setAttribute("aria-hidden", "true");
+        img.setAttribute("inert", "");
+      }
     });
     if (live && copy[key]) live.textContent = copy[key];
     if (cap && labels[key]) cap.textContent = labels[key];
   }
-  trades.forEach(function (t) {
-    t.addEventListener("click", function () {
-      setTrade(t.getAttribute("data-trade"));
+
+  if (trades.length) {
+    setTrade("hvac");
+    trades.forEach(function (t) {
+      t.addEventListener("click", function () {
+        setTrade(t.getAttribute("data-trade"));
+      });
     });
-  });
+  }
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduce) {
-    var nodes = document.querySelectorAll(".pcol, .feat, .tier, .stepc, .funnel .card, .meet, .pair figure");
+    var nodes = document.querySelectorAll(".pcol, .feat, .tier, .stepc, .funnel .card, .meet");
     nodes.forEach(function (el) { el.classList.add("reveal"); });
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (entries) {
@@ -62,10 +91,18 @@
     }, { passive: true });
   }
 
-  document.querySelectorAll(".tier").forEach(function (card) {
-    card.addEventListener("click", function () {
-      document.querySelectorAll(".tier").forEach(function (c) { c.classList.remove("is-on"); });
-      card.classList.add("is-on");
+  document.querySelectorAll("[data-event]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      try {
+        var row = {
+          t: Date.now(),
+          e: el.getAttribute("data-event"),
+          href: el.getAttribute("href") || ""
+        };
+        var prev = JSON.parse(sessionStorage.getItem("spEvents") || "[]");
+        prev.push(row);
+        sessionStorage.setItem("spEvents", JSON.stringify(prev.slice(-50)));
+      } catch (err) {}
     });
   });
 })();
