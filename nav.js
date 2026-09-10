@@ -13,28 +13,24 @@
     electrical: "For electrical businesses we watch quoted jobs versus hours on the tools, subcontractors, and cash sitting in unfinished work.",
     construction: "For construction services we watch the job, not the building. Labour, subcontractors and materials, read while you can still change the next quote."
   };
+  var labels = { hvac: "HVAC", electrical: "Electrical", construction: "Construction services" };
   var trades = document.querySelectorAll(".trade");
   var live = document.getElementById("liveLine");
-  var figs = document.querySelectorAll(".pair figure");
+  var shots = document.querySelectorAll("#stage img");
+  var cap = document.getElementById("stageCap");
   function setTrade(key) {
     trades.forEach(function (t) {
       t.classList.toggle("is-on", t.getAttribute("data-trade") === key);
     });
-    figs.forEach(function (f, i) {
-      var on = (key === "hvac" && i === 0) || (key === "electrical" && i === 1) || key === "construction";
-      f.classList.toggle("is-on", on);
+    shots.forEach(function (img) {
+      img.classList.toggle("is-on", img.getAttribute("data-trade") === key);
     });
     if (live && copy[key]) live.textContent = copy[key];
+    if (cap && labels[key]) cap.textContent = labels[key];
   }
   trades.forEach(function (t) {
     t.addEventListener("click", function () {
       setTrade(t.getAttribute("data-trade"));
-    });
-  });
-  figs.forEach(function (f) {
-    f.addEventListener("click", function () {
-      var key = f.getAttribute("data-trade");
-      if (key) setTrade(key);
     });
   });
 
