@@ -4,7 +4,7 @@ ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "book.html"
 MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
-ASSET = "rt2"
+ASSET = "rt3"
 
 
 def head(title, description, canonical, og_image="/assets/og.png"):
@@ -115,6 +115,6 @@ def footer():
 def sticky():
     return """  <div class="sticky-book" id="bookBar">
     <span>Fifteen minutes with the firm.</span>
-    <a class="btn btn-primary" href="book.html" data-event="sticky-book">Book a call <span class="arw">→</span></a>
+    <a class="btn btn-primary" href="book.html" data-event="sticky-book">Book a call</a>
   </div>
 """
