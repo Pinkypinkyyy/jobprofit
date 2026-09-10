@@ -48,16 +48,16 @@ def index():
         </div>
         <div class="stage" id="stage">
           <picture>
-            <source type="image/webp" srcset="assets/hvac-480.webp 480w, assets/hvac-864.webp 864w, assets/hvac-1200.webp 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img class="is-on" data-trade="hvac" src="assets/hvac.jpg" width="864" height="1152" alt="Commercial HVAC plant">
+            <source type="image/webp" srcset="assets/hvac-480.webp?v=nw1 480w, assets/hvac-864.webp?v=nw1 864w, assets/hvac-1200.webp?v=nw1 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img class="is-on" data-trade="hvac" src="assets/hvac.jpg?v=nw1" width="864" height="1152" alt="Commercial HVAC plant">
           </picture>
           <picture>
-            <source type="image/webp" srcset="assets/electrical-480.webp 480w, assets/electrical-864.webp 864w, assets/electrical-1200.webp 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img data-trade="electrical" src="assets/electrical.jpg" width="864" height="1152" alt="Commercial electrical services" loading="lazy" aria-hidden="true" inert>
+            <source type="image/webp" srcset="assets/electrical-480.webp?v=nw1 480w, assets/electrical-864.webp?v=nw1 864w, assets/electrical-1200.webp?v=nw1 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img data-trade="electrical" src="assets/electrical.jpg?v=nw1" width="864" height="1152" alt="Commercial electrical services" loading="lazy" aria-hidden="true" inert>
           </picture>
           <picture>
-            <source type="image/webp" srcset="assets/construction-480.webp 480w, assets/construction-864.webp 864w, assets/construction-1200.webp 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img data-trade="construction" src="assets/construction.jpg" width="864" height="1152" alt="Construction services fit-out" loading="lazy" aria-hidden="true" inert>
+            <source type="image/webp" srcset="assets/construction-480.webp?v=nw1 480w, assets/construction-864.webp?v=nw1 864w, assets/construction-1200.webp?v=nw1 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img data-trade="construction" src="assets/construction.jpg?v=nw1" width="864" height="1152" alt="Construction services fit-out" loading="lazy" aria-hidden="true" inert>
           </picture>
           <div class="cap" id="stageCap">HVAC</div>
         </div>
@@ -69,13 +69,13 @@ def index():
         <span class="eyebrow">The work</span>
         <h2 style="margin-top:12px">HVAC. Electrical. Construction services.</h2>
         <div class="mosaic">
-          <a class="tile" href="hvac.html"><img src="assets/hvac-864.webp" alt="HVAC plant, Brendale and Brisbane jobs" width="864" height="1152"><span>HVAC</span></a>
-          <a class="tile" href="electrical.html"><img src="assets/electrical-864.webp" alt="Electrical services" width="864" height="1152"><span>Electrical</span></a>
-          <a class="tile" href="construction.html"><img src="assets/construction-864.webp" alt="Construction services fit-out" width="864" height="1152"><span>Construction services</span></a>
+          <a class="tile" href="hvac.html"><img src="assets/hvac-864.webp?v=nw1" alt="HVAC plant, Brendale and Brisbane jobs" width="864" height="1152"><span>HVAC</span></a>
+          <a class="tile" href="electrical.html"><img src="assets/electrical-864.webp?v=nw1" alt="Electrical services" width="864" height="1152"><span>Electrical</span></a>
+          <a class="tile" href="construction.html"><img src="assets/construction-864.webp?v=nw1" alt="Construction services fit-out" width="864" height="1152"><span>Construction services</span></a>
         </div>
         <div class="stack" style="margin-top:var(--gutter)">
     <article class="split">
-      <img src="assets/tech-hvac.jpg" width="864" height="1152" alt="HVAC technician reading a job docket on a commercial roof">
+      <img src="assets/tech-hvac.jpg?v=nw1" width="864" height="1152" alt="HVAC technician reading a job docket on a commercial roof">
       <div class="split-copy">
         <span class="eyebrow">Billed hours</span>
         <h2>Quoted 6 hours. Nine on the tools.</h2>
@@ -95,11 +95,11 @@ def index():
         <p>Billed time, materials, unfinished work, tax, BAS and GST. Registered Tax Agent 26284368. Brendale, Brisbane and Queensland.</p>
         <a class="btn btn-primary" href="book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
       </div>
-      <img src="assets/tech-electrical.jpg" width="864" height="1152" alt="Electrician at a commercial switchboard">
+      <img src="assets/tech-electrical.jpg?v=nw1" width="864" height="1152" alt="Electrician at a commercial switchboard">
     </article>
 
     <article class="split">
-      <img src="assets/desk.jpg" width="1280" height="720" alt="Tax papers and a calculator on a desk">
+      <img src="assets/desk.jpg?v=nw1" width="1280" height="720" alt="Tax papers and a calculator on a desk">
       <div class="split-copy">
         <span class="eyebrow">Cash and tax</span>
         <h2>The bank mix is not all yours.</h2>
@@ -288,7 +288,7 @@ def system():
     <section class="band">
       <div class="wrap stack">
     <article class="split">
-      <img src="assets/tech-electrical.jpg" width="864" height="1152" alt="Electrician on the tools">
+      <img src="assets/tech-electrical.jpg?v=nw1" width="864" height="1152" alt="Electrician on the tools">
       <div class="split-copy">
         <span class="eyebrow">Hours you can afford</span>
         <h2>How many billed hours does that person need?</h2>
@@ -302,7 +302,7 @@ def system():
         <p>We are the tax agent. Super, PAYG, GST, FBT on utes and phones, and the return, sit here so you are not paying tax on a mess. You stay on the jobs.</p>
         <a class="btn btn-primary" href="book.html" data-event="system-comp" style="margin-top:22px">Book a 15-minute call</a>
       </div>
-      <img src="assets/desk.jpg" width="1280" height="720" alt="Tax papers on a desk">
+      <img src="assets/desk.jpg?v=nw1" width="1280" height="720" alt="Tax papers on a desk">
     </article>
       </div>
     </section>
