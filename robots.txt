@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://serviceprofit.com.au/sitemap.xml
+Sitemap: https://www.serviceprofit.com.au/sitemap.xml
+Host: https://www.serviceprofit.com.au
