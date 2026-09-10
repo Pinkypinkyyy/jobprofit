@@ -360,7 +360,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .cta{margin-top:16px}
   .cta .btn{width:100%;justify-content:center;white-space:nowrap}
   .brand{gap:8px}
-  .brand .firm{display:none}
+  .brand .firm{display:block}
   .brand .offer{font-size:.82rem}
   .brand img{height:26px}
   .navr{gap:8px}

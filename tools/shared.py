@@ -4,7 +4,7 @@ ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "book.html"
 MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
-ASSET = "rt15"
+ASSET = "rt16"
 
 
 def head(title, description, canonical, og_image="/assets/og.png"):
@@ -52,9 +52,9 @@ def nav(current=""):
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="Service Profit">
+      <a class="brand" href="index.html" aria-label="Service Profit, accounting firm">
         <img src="assets/logo.png" alt="">
-        <span class="mark"><span class="offer">Service Profit</span></span>
+        <span class="mark"><span class="offer">Service Profit</span><span class="firm">Accounting firm</span></span>
       </a>
       <nav class="links" aria-label="Primary">
 {item("system.html", "The system", "system")}
@@ -79,7 +79,7 @@ def footer():
       <div class="grid">
         <div>
           <img src="assets/logo-white.png" alt="Service Profit">
-          <p class="blurb">Service Profit. HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland.</p>
+          <p class="blurb">Service Profit is an accounting firm for HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland. Registered Tax Agent 26284368.</p>
         </div>
         <div>
           <h4>Explore</h4>

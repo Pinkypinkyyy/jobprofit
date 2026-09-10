@@ -27,9 +27,9 @@ def index():
     <section class="hero">
       <div class="wrap">
         <div>
-          <p class="kicker">Brendale · Brisbane · Queensland</p>
+          <p class="kicker">Accounting firm · Brendale · Brisbane · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">You stay on the jobs. We hold billed hours, cash, tax, BAS and GST from our Brendale office.</p>
+          <p class="lead">You stay on the jobs. We are the accounting firm. We hold billed hours, cash, tax, BAS and GST from our Brendale office.</p>
           <div class="cta">
             <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
