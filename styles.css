@@ -137,6 +137,23 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .stat span{display:block;margin-top:10px;color:var(--soft);font-size:.92rem;line-height:1.45}
 .geo-line{margin-top:22px;color:var(--soft);font-size:.95rem}
 .geo-line a{text-decoration:underline;text-underline-offset:3px}
+.mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.tile{position:relative;display:block;min-height:280px;overflow:hidden;color:#fff}
+.tile img{width:100%;height:100%;object-fit:cover;min-height:280px;aspect-ratio:3/4;transition:transform .35s ease}
+.tile:hover img{transform:scale(1.04)}
+.tile span{position:absolute;left:14px;bottom:14px;z-index:1;font-weight:650;letter-spacing:.04em;text-transform:uppercase;font-size:.82rem;background:rgba(18,22,28,.82);padding:8px 12px}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:0;margin-top:48px;background:#fff;border:1px solid var(--line);overflow:hidden}
+.split.reverse{grid-template-columns:.9fr 1.1fr}
+.split.reverse .split-copy{order:2}
+.split img,.split picture img{width:100%;height:100%;object-fit:cover;min-height:420px;display:block}
+.split-copy{padding:40px 36px;display:flex;flex-direction:column;justify-content:center}
+.split-copy h2{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:8px 0 12px}
+.split-copy p{color:var(--soft)}
+.split .docket{position:static;width:auto;margin-top:18px;background:var(--ink)}
+.scope-fold{margin-top:28px;background:#fff;border:1px solid var(--line);padding:16px 18px}
+.scope-fold summary{cursor:pointer;font-weight:650}
+.final-photo{position:relative;background:#12161C center/cover no-repeat;background-image:linear-gradient(180deg,rgba(18,22,28,.55),rgba(18,22,28,.78)),url("assets/yard-1200.webp")}
+.meet .shot img{width:100%;height:auto;display:block;aspect-ratio:4/5;object-fit:cover}
 
 .band{padding:88px 0}
 .band-bone{background:var(--paper-2)}
@@ -296,7 +313,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 @media(max-width:940px){
   body{background-attachment:scroll}
   .wrap{padding:0 20px}
-  .hero .wrap,.feat,.pcols,.steps,.meet,.foot .grid,.grid3,.funnel{grid-template-columns:1fr}
+  .hero .wrap,.feat,.pcols,.steps,.meet,.foot .grid,.grid3,.funnel,.mosaic,.split,.split.reverse{grid-template-columns:1fr}
+  .split.reverse .split-copy{order:0}
+  .split img,.split picture img{min-height:280px}
   .tiers{grid-template-columns:1fr 1fr}
   .links,.phone{display:none}
   .burger{display:flex}

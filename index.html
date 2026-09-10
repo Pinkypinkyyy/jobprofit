@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=rt11">
+  <link rel="stylesheet" href="styles.css?v=rt12">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#business","name":"Service Profit","alternateName":"Pink Accounting","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","image":"https://www.serviceprofit.com.au/assets/og.png","priceRange":"$$","knowsAbout":["HVAC accounting","electrical contractors","construction services","job costing","BAS","GST"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368"}
   </script>
@@ -91,27 +91,52 @@
             <img data-trade="construction" src="assets/construction.jpg" width="864" height="1152" alt="Construction services fit-out" loading="lazy" aria-hidden="true" inert>
           </picture>
           <div class="cap" id="stageCap">HVAC</div>
-          <div class="docket">
-            <div class="label">Worked example · not a client result</div>
-            <div class="docket-row"><span>Quoted</span><b>6 h</b></div>
-            <div class="docket-row"><span>On the tools</span><b>9 h</b></div>
-            <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
-            <p>Never went into the next quote. Tax, BAS and GST still lodged from this file.</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="problem">
+    <section class="band">
       <div class="wrap">
-        <span class="eyebrow">The figures that matter</span>
-        <h2 style="margin-top:14px">Quoted versus billed. What in the bank is yours. Tax held.</h2>
-        <div class="stats">
-          <div class="stat"><b>$19,800</b><span>Job Profit for the year, + GST. Billed hours versus quoted hours, every week.</span></div>
-          <div class="stat"><b>$100k–$500k</b><span>Turnover — sales in, not retained profit. GST, PAYG, super and wages sit in the same bank account.</span></div>
-          <div class="stat"><b>1 day</b><span>One unbilled day of labour is usually more than a month of Job Profit. Comparison, not a client result.</span></div>
+        <span class="eyebrow">The work</span>
+        <h2 style="margin-top:12px">HVAC. Electrical. Construction services.</h2>
+        <div class="mosaic">
+          <a class="tile" href="hvac.html"><img src="assets/hvac-864.webp" alt="HVAC plant, Brendale and Brisbane jobs" width="864" height="1152"><span>HVAC</span></a>
+          <a class="tile" href="electrical.html"><img src="assets/electrical-864.webp" alt="Electrical services" width="864" height="1152"><span>Electrical</span></a>
+          <a class="tile" href="construction.html"><img src="assets/construction-864.webp" alt="Construction services fit-out" width="864" height="1152"><span>Construction services</span></a>
         </div>
-        <p class="geo-line">Office in Brendale. HVAC, electrical and construction service firms across <a href="areas.html">Brisbane and Queensland</a>.</p>
+      </div>
+    </section>
+
+    <section class="split">
+      <img src="assets/tech-hvac.jpg" width="864" height="1152" alt="HVAC technician reading a job docket on a commercial roof">
+      <div class="split-copy">
+        <span class="eyebrow">Billed hours</span>
+        <h2>Quoted 6 hours. Nine on the tools.</h2>
+        <p>Those 3 hours never went into the next quote. Worked example, not a client result.</p>
+        <div class="docket">
+          <div class="docket-row"><span>Quoted</span><b>6 h</b></div>
+          <div class="docket-row"><span>On the tools</span><b>9 h</b></div>
+          <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="split reverse">
+      <div class="split-copy">
+        <span class="eyebrow">On the tools</span>
+        <h2>You stay on the jobs. We hold the file.</h2>
+        <p>Billed time, materials, unfinished work, tax, BAS and GST. Registered Tax Agent 26284368. Brendale, Brisbane and Queensland.</p>
+        <a class="btn btn-primary" href="book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
+      </div>
+      <img src="assets/tech-electrical.jpg" width="864" height="1152" alt="Electrician at a commercial switchboard">
+    </section>
+
+    <section class="split">
+      <img src="assets/desk.jpg" width="1280" height="720" alt="Tax papers and a calculator on a desk">
+      <div class="split-copy">
+        <span class="eyebrow">Cash and tax</span>
+        <h2>The bank mix is not all yours.</h2>
+        <p>$100k–$500k through the account is turnover, not profit. GST, PAYG, super and wages sit in it. We pull that apart during the year so June is not a reconstruction.</p>
       </div>
     </section>
 
@@ -163,6 +188,8 @@
           <h3>Bookkeeping add-on · from $500 + GST / month · from $6,000 + GST a year</h3>
           <p>Not a plan. Quoted when it is actually needed: tax time, a catch-up, or while Job Profit is more than the business can take yet. It does not include the weekly job-and-cash look.</p>
         </div>
+        <details class="scope-fold">
+          <summary>Full comparison — fees, included, not included</summary>
         <div class="table-scroll" tabindex="0" aria-label="Plan comparison. Scroll sideways on a small screen to read every column.">
           <table class="scope">
             <thead>
@@ -197,6 +224,7 @@
           </table>
         </div>
         <p class="table-hint">Swipe sideways for every column.</p>
+        </details>
         <div class="scope-cards">
           <article class="scope-card"><h3>Job Profit</h3><div class="price">$1,650 / month · $19,800 / year</div><p><b>You care about:</b> billed hours vs quoted hours, and how much of the bank balance is yours.</p><p><b>Not included:</b> a monthly meeting, a published savings figure.</p></article>
           <article class="scope-card"><h3>Weekly Visibility</h3><div class="price">from $2,650 / month · from $31,800 / year</div><p><b>You care about:</b> seeing billed time while the job is still on site.</p></article>
@@ -206,41 +234,28 @@
       </div>
     </section>
 
-    <section class="band band-bone">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">How it works</span>
-          <h2>Call. Letter. Then the file.</h2>
-        </div>
-        <div class="steps">
-          <div class="stepc"><div class="n">01</div><h3>Fifteen minutes</h3><p>How the business runs. If we are not the right firm, we say so.</p></div>
-          <div class="stepc"><div class="n">02</div><h3>The letter</h3><p>Fee and boundary written down before work starts.</p></div>
-          <div class="stepc"><div class="n">03</div><h3>The file</h3><p>Books current from the start date. On Job Profit we look each week and raise what needs a decision.</p></div>
-        </div>
-      </div>
-    </section>
-
     <section class="band">
       <div class="wrap meet">
         <div class="shot">
-          <div class="frame" role="img" aria-label="Huong Bui, principal of Pink Accounting"></div>
+          <img src="assets/pink-portrait.jpg" width="800" height="1000" alt="Huong Bui, principal of Pink Accounting">
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h2 style="margin-top:12px">Hello, I am Pink.</h2>
-          <p>Huong Bui. I founded Pink Accounting in 2020. We are your tax agent. Service Profit is this work with HVAC, electrical and construction services in Queensland: we take care of the file so you can do the jobs.</p>
+          <p>Huong Bui. I founded Pink Accounting in 2020. We are your tax agent. We take care of the file so you can do the jobs.</p>
           <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
-          <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA</div>
+          <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA · Brendale QLD</div>
+          <a class="btn btn-primary" href="book.html" data-event="meet-book" style="margin-top:22px">Book a 15-minute call</a>
         </div>
       </div>
     </section>
 
-    <section class="final">
+    <section class="final final-photo">
       <div class="wrap">
         <h2>Fifteen minutes. Then we look at the file.</h2>
-        <p>You stay on the jobs. We hold tax, BAS, billed hours and cash. Compare fees if you need to. The useful test is the scope in the letter.</p>
+        <p>You stay on the jobs. We hold tax, BAS, billed hours and cash from Brendale, across Brisbane and Queensland.</p>
         <a class="btn btn-white" href="book.html" data-event="final-book">Book a 15-minute call</a>
-        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland</div>
+        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="rights.html" style="color:#fff;text-decoration:underline">Your rights</a> · <a href="privacy.html" style="color:#fff;text-decoration:underline">Privacy</a> · <a href="terms.html" style="color:#fff;text-decoration:underline">Terms</a></div>
       </div>
     </section>
   </main>
@@ -282,6 +297,6 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 10 September 2026.</p>
     </div>
   </footer>
-  <script src="nav.js?v=rt11"></script>
+  <script src="nav.js?v=rt12"></script>
 </body>
 </html>
