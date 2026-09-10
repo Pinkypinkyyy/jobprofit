@@ -73,10 +73,8 @@ def index():
           <a class="tile" href="electrical.html"><img src="assets/electrical-864.webp" alt="Electrical services" width="864" height="1152"><span>Electrical</span></a>
           <a class="tile" href="construction.html"><img src="assets/construction-864.webp" alt="Construction services fit-out" width="864" height="1152"><span>Construction services</span></a>
         </div>
-      </div>
-    </section>
-
-    <section class="split">
+        <div class="stack" style="margin-top:var(--gutter)">
+    <article class="split">
       <img src="assets/tech-hvac.jpg" width="864" height="1152" alt="HVAC technician reading a job docket on a commercial roof">
       <div class="split-copy">
         <span class="eyebrow">Billed hours</span>
@@ -88,9 +86,9 @@ def index():
           <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
         </div>
       </div>
-    </section>
+    </article>
 
-    <section class="split reverse">
+    <article class="split reverse">
       <div class="split-copy">
         <span class="eyebrow">On the tools</span>
         <h2>You stay on the jobs. We hold the file.</h2>
@@ -98,14 +96,17 @@ def index():
         <a class="btn btn-primary" href="book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
       </div>
       <img src="assets/tech-electrical.jpg" width="864" height="1152" alt="Electrician at a commercial switchboard">
-    </section>
+    </article>
 
-    <section class="split">
+    <article class="split">
       <img src="assets/desk.jpg" width="1280" height="720" alt="Tax papers and a calculator on a desk">
       <div class="split-copy">
         <span class="eyebrow">Cash and tax</span>
         <h2>The bank mix is not all yours.</h2>
         <p>$100k–$500k through the account is turnover, not profit. GST, PAYG, super and wages sit in it. We pull that apart during the year so June is not a reconstruction.</p>
+      </div>
+    </article>
+        </div>
       </div>
     </section>
 
