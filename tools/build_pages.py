@@ -29,7 +29,7 @@ def index():
         <div>
           <p class="kicker">A Pink Accounting service · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">We read labour against the quote, materials on the job, and cash in unfinished work. Tax is what those decisions add up to. It is not the job.</p>
+          <p class="lead">You stay on the jobs. We hold the file: billed hours, cash, tax, BAS and GST. Registered Tax Agent 26284368.</p>
           <div class="cta">
             <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
@@ -67,7 +67,7 @@ def index():
     <section class="problem">
       <div class="wrap">
         <span class="eyebrow">Where the value is</span>
-        <h2 style="margin-top:14px">Not in the tax return. In the next quote, the job, and cash this month.</h2>
+        <h2 style="margin-top:14px">The next quote, the job, and cash this month. Tax and BAS stay in the file, done properly.</h2>
         <div class="pcols">
           <div class="pcol"><div class="n">01</div><h3>The next quote</h3><p>Quoted hours versus hours on the tools. If a job ran long, the next one should not be priced the same.</p></div>
           <div class="pcol"><div class="n">02</div><h3>Materials on the job</h3><p>Parts issued versus parts billed. Subcontractors on that job, not a lump that only makes sense in June.</p></div>
@@ -80,8 +80,8 @@ def index():
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">The plans</span>
-          <h2>Job and cash first. Books and BAS last.</h2>
-          <p>Monthly, ex GST. Figures below are also shown for the year. Tax is a slice of expense. We do not let a messy file become tax you should not have paid.</p>
+          <h2>Jobs and cash in their place. Tax and compliance held.</h2>
+          <p>Monthly, ex GST. Year figures below. We are the tax agent. Job numbers sit during the year so the return is not rebuilt from a mess in June. You focus on the work.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
@@ -97,7 +97,7 @@ def index():
             <li><b>Billed time</b> quoted hours versus hours on the tools, each week. If a job ran long, the next quote should not repeat it</li>
             <li><b>Cash that is yours</b> unfinished work, GST, PAYG, super and wages pulled apart so you know what you can spend</li>
             <li><b>Utes, phones, FBT</b> watched in the file. Not left as a June surprise</li>
-            <li><b>Books and BAS sit last</b> current records, so GST is not paid on missing invoices. They are not the product</li>
+            <li><b>Tax, BAS and GST held</b> for one trading entity, as written in the letter. Prepared from current records, so you are not paying tax on missing invoices</li>
           </ul>
         </div>
         <div class="money">
@@ -121,7 +121,7 @@ def index():
             <div class="tname">Compliance</div>
             <div class="tprice">$550<small> + GST/mo</small></div>
             <div class="fyear">$6,600 + GST a year</div>
-            <p>Last. Return, BAS and GST from a file that is already in order. Stops tax being inflated by missing invoices.</p>
+            <p>Tax and BAS. Return and GST from a file that is already in order, so compliance is not a June scramble.</p>
           </a>
         </div>
         <div class="addon" id="level-bookkeeping">
@@ -155,7 +155,7 @@ def index():
               <tr id="level-compliance">
                 <td><strong>Compliance</strong></td>
                 <td class="price">$550 / mo<br>$6,600 / yr</td>
-                <td>Last. Return, BAS and GST from records already in order, so tax is not inflated by missing invoices.</td>
+                <td>Tax and BAS. Return and GST from records already in order. We are the registered tax agent for the file.</td>
                 <td>Job-and-cash look. WhatsApp. Catch-up. Unlimited advisory.</td>
               </tr>
             </tbody>
@@ -166,7 +166,7 @@ def index():
           <article class="scope-card"><h3>Job Profit</h3><div class="price">$1,650 / month · $19,800 / year</div><p><b>You care about:</b> billed hours vs quoted hours, and how much of the bank balance is yours.</p><p><b>Not included:</b> a monthly meeting, a published savings figure.</p></article>
           <article class="scope-card"><h3>Weekly Visibility</h3><div class="price">from $2,650 / month · from $31,800 / year</div><p><b>You care about:</b> seeing billed time while the job is still on site.</p></article>
           <article class="scope-card"><h3>Ready to Scale</h3><div class="price">from $3,500 / month · from $42,000 / year</div><p><b>You care about:</b> a written forecast before you hire or draw. Application only.</p></article>
-          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 / month · $6,600 / year</div><p><b>Last.</b> Return and BAS from a file already in order, so tax is not inflated by missing invoices.</p></article>
+          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 / month · $6,600 / year</div><p>Tax and BAS. Return and GST from a file already in order. We hold this so you can stay on the jobs.</p></article>
         </div>
       </div>
     </section>
@@ -193,7 +193,7 @@ def index():
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h2 style="margin-top:12px">Hello, I am Pink.</h2>
-          <p>Huong Bui. I founded Pink Accounting in 2020. Service Profit is this work with HVAC, electrical and construction services in Queensland.</p>
+          <p>Huong Bui. I founded Pink Accounting in 2020. We are your tax agent. Service Profit is this work with HVAC, electrical and construction services in Queensland: we take care of the file so you can do the jobs.</p>
           <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
           <div class="creds">Registered Tax Agent 26284368 · MIPA / AFA</div>
         </div>
@@ -203,7 +203,7 @@ def index():
     <section class="final">
       <div class="wrap">
         <h2>Fifteen minutes. Then we look at the file.</h2>
-        <p>Compare fees if you need to. The useful test is the scope in the letter.</p>
+        <p>You stay on the jobs. We hold tax, BAS, billed hours and cash. Compare fees if you need to. The useful test is the scope in the letter.</p>
         <a class="btn btn-white" href="book.html" data-event="final-book">Book a 15-minute call</a>
         <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland</div>
       </div>
@@ -275,7 +275,7 @@ def why():
       <div class="prose">
         <p>Service Profit is not a separate company. It is Pink Accounting for HVAC, electrical and construction service businesses in Queensland. It is not hospitality, and it is not for builders putting up houses or commercial buildings.</p>
         <h2>A system, not a once-a-year pack</h2>
-        <p>Your file runs on documented coding rules, GST logic and review gates. The work is checked against the source. Tax still happens. It is not the only conversation.</p>
+        <p>We are a registered tax agent. Your file runs on documented coding rules, GST logic and review gates. Job and cash numbers sit in the year so the return is prepared from a file that is already in order. You stay on the tools.</p>
         <h2>Honest tiering</h2>
         <p>If compliance at $550 is all you need, that is what we will recommend. Each level has a boundary. That is so the fee matches the work.</p>
         <h2>Who is a fit</h2>
