@@ -49,9 +49,15 @@
     <section class="hero">
       <div class="wrap">
         <div>
-          <p class="kicker">HVAC · electrical · construction services</p>
+          <p class="kicker">Pick your trade. The page moves with you.</p>
           <h1>A P&amp;L after 30 June cannot fix a job you quoted in March.</h1>
-          <p class="lead">Service Profit is how <b>Pink Accounting</b> works with technical service businesses. Air conditioning, electrical, and construction services. Not builders. We keep the books current, then read them while you can still change the next quote. Tax and BAS sit in the same system. They are not the whole job.</p>
+          <div class="trades" role="tablist" aria-label="Trade">
+            <button class="trade is-on" type="button" data-trade="hvac">HVAC</button>
+            <button class="trade" type="button" data-trade="electrical">Electrical</button>
+            <button class="trade" type="button" data-trade="construction">Construction services</button>
+          </div>
+          <p class="live" id="liveLine">For HVAC firms we watch labour against the quoted hours, materials on the van, and whether a call-out actually covered the next tax bill.</p>
+          <p class="lead">Service Profit is how <b>Pink Accounting</b> works with technical service businesses. Air conditioning, electrical, and construction services. Not builders. We keep the books current, then read them while you can still change the next quote.</p>
           <div class="cta">
             <a class="btn btn-primary" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener">Book a 15-minute call <span class="arw">→</span></a>
             <a class="btn btn-outline" href="system.html">How the system works</a>
@@ -63,11 +69,11 @@
           <div class="under">Pink Accounting &amp; Tax Solutions Pty Ltd · Australia-wide</div>
         </div>
         <div class="pair">
-          <figure>
+          <figure class="is-on" data-trade="hvac">
             <img src="assets/hvac.jpg" alt="Commercial air-conditioning work">
             <figcaption>HVAC</figcaption>
           </figure>
-          <figure>
+          <figure data-trade="electrical">
             <img src="assets/electrical.jpg" alt="Commercial electrical services">
             <figcaption>Electrical</figcaption>
           </figure>
@@ -235,6 +241,10 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener" style="display:inline;color:inherit">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Bilingual service - English and Vietnamese.</p>
     </div>
   </footer>
+  <div class="sticky-book" id="bookBar">
+    <span>Fifteen minutes with Pink.</span>
+    <a class="btn btn-primary" href="https://outlook.office.com/book/PinkAccountingTaxSolutionsClientBookings@pinktax.com.au/" rel="noopener">Book a call <span class="arw">→</span></a>
+  </div>
   <script src="nav.js"></script>
 </body>
 </html>
