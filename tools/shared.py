@@ -4,7 +4,7 @@ ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "book.html"
 MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
-ASSET = "rt10"
+ASSET = "rt11"
 
 
 def head(title, description, canonical, og_image="/assets/og.png"):
@@ -59,6 +59,7 @@ def nav(current=""):
       <nav class="links" aria-label="Primary">
 {item("system.html", "The system", "system")}
 {item("index.html#pricing", "Pricing", "pricing")}
+{item("areas.html", "Areas", "areas")}
 {item("why.html", "Meet Pink", "why")}
 {item("book.html", "Book a call", "book")}
 {item("contact.html", "Contact", "contact")}
@@ -79,7 +80,7 @@ def footer():
       <div class="grid">
         <div>
           <img src="assets/logo-white.png" alt="Pink Accounting">
-          <p class="blurb">Service Profit is a Pink Accounting service for HVAC, electrical and construction service businesses in Queensland. Pink Accounting &amp; Tax Solutions Pty Ltd.</p>
+          <p class="blurb">Service Profit is a Pink Accounting service for HVAC, electrical and construction service businesses. Office in Brendale. We work across Brisbane and Queensland.</p>
         </div>
         <div>
           <h4>Explore</h4>
@@ -89,6 +90,7 @@ def footer():
           <a href="hvac.html">HVAC</a>
           <a href="electrical.html">Electrical</a>
           <a href="construction.html">Construction services</a>
+          <a href="areas.html">Brendale, Brisbane, Queensland</a>
           <a href="why.html">Meet Pink</a>
           <a href="book.html">Book a call</a>
         </div>

@@ -11,15 +11,15 @@ def write(name, html):
 
 
 JSONLD = """  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"AccountingService","name":"Pink Accounting","alternateName":"Service Profit","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","knowsAbout":["HVAC accounting","electrical contractors","construction services"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":{"@type":"AdministrativeArea","name":"Queensland"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891"}
+  {"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#business","name":"Service Profit","alternateName":"Pink Accounting","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","image":"https://www.serviceprofit.com.au/assets/og.png","priceRange":"$$","knowsAbout":["HVAC accounting","electrical contractors","construction services","job costing","BAS","GST"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368"}
   </script>
 """
 
 
 def index():
     h = head(
-        "Service Profit | Pink Accounting for HVAC, electrical and construction services",
-        "Pink Accounting for HVAC, electrical and construction service businesses in Queensland. Job Profit $1,650 + GST a month. Book a 15-minute call.",
+        "Service Profit | HVAC, electrical and construction accounting in Brendale, Brisbane and Queensland",
+        "Pink Accounting in Brendale for HVAC, electrical and construction service businesses across Brisbane and Queensland. Job Profit $1,650 + GST a month. Book a 15-minute call.",
         "/",
     ).replace("</head>", JSONLD + "</head>")
     body = f"""{nav("home")}
@@ -27,9 +27,9 @@ def index():
     <section class="hero">
       <div class="wrap">
         <div>
-          <p class="kicker">A Pink Accounting service · Queensland</p>
+          <p class="kicker">Brendale · Brisbane · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">You stay on the jobs. We hold billed hours, cash, tax, BAS and GST.</p>
+          <p class="lead">You stay on the jobs. We hold billed hours, cash, tax, BAS and GST from our Brendale office.</p>
           <div class="cta">
             <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
@@ -65,7 +65,7 @@ def index():
             <div class="docket-row"><span>Quoted</span><b>6 h</b></div>
             <div class="docket-row"><span>On the tools</span><b>9 h</b></div>
             <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
-            <p>Those 3 hours never went into the next quote. We still lodge tax, BAS and GST from this file.</p>
+            <p>Never went into the next quote. Tax, BAS and GST still lodged from this file.</p>
           </div>
         </div>
       </div>
@@ -77,9 +77,10 @@ def index():
         <h2 style="margin-top:14px">Quoted versus billed. What in the bank is yours. Tax held.</h2>
         <div class="stats">
           <div class="stat"><b>$19,800</b><span>Job Profit for the year, + GST. Billed hours versus quoted hours, every week.</span></div>
-          <div class="stat"><b>$100k–$500k</b><span>Turnover. Sales in. Not retained profit. The bank mix is yours, the ATO, staff and suppliers.</span></div>
+          <div class="stat"><b>$100k–$500k</b><span>Turnover — sales in, not retained profit. GST, PAYG, super and wages sit in the same bank account.</span></div>
           <div class="stat"><b>1 day</b><span>One unbilled day of labour is usually more than a month of Job Profit. Comparison, not a client result.</span></div>
         </div>
+        <p class="geo-line">Office in Brendale. HVAC, electrical and construction service firms across <a href="areas.html">Brisbane and Queensland</a>.</p>
       </div>
     </section>
 
@@ -106,10 +107,6 @@ def index():
             <li><b>Utes, phones, FBT</b> watched in the file. Not left as a June surprise</li>
             <li><b>Tax, BAS and GST held</b> for one trading entity, as written in the letter. Prepared from current records, so you are not paying tax on missing invoices</li>
           </ul>
-        </div>
-        <div class="money">
-          <h3>$100,000 to $500,000 through the bank is turnover, not profit.</h3>
-          <p>At about $100,000 a year in sales, Job Profit is a large slice of the year. Compliance may be the honest start. At about $500,000, $19,800 a year is the cost of knowing whether that is retained profit or a busy diary. The bank balance is a mix: your money, the ATO, staff and suppliers.</p>
         </div>
         <div class="tiers">
           <a class="tier" href="#level-weekly">
@@ -337,8 +334,8 @@ def book():
 
 def contact():
     h = head(
-        "Contact | Service Profit | Pink Accounting",
-        "Talk to Pink Accounting. Brendale office. 07 3544 6386. admin@pinktax.com.au. Book a 15-minute Service Profit call.",
+        "Contact | Service Profit Brendale | Pink Accounting",
+        "Talk to Pink Accounting at Shop 15A, 18-22 Kremzow Rd, Brendale QLD. HVAC, electrical and construction accounting across Brisbane and Queensland. 07 3544 6386.",
         "/contact.html",
     )
     body = f"""{nav("contact")}
@@ -346,7 +343,7 @@ def contact():
     <div class="wrap">
       <span class="eyebrow">Contact Pink Accounting</span>
       <h1>Talk to the accountant. Not a ticket queue.</h1>
-      <p class="lead">Bring the question, the messy numbers, or the decision you are about to make.</p>
+      <p class="lead">Brendale office. HVAC, electrical and construction service businesses across Brisbane and Queensland.</p>
       <div class="cta">
         <a class="btn btn-primary" href="book.html" data-event="contact-book">Book a 15-minute call</a>
         <a class="btn btn-outline" href="tel:+61735446386">Call 07 3544 6386</a>
@@ -354,7 +351,7 @@ def contact():
       <div class="grid3">
         <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Mon-Fri, 9:00am-4:30pm. Saturday by appointment.</p></section>
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
-        <section class="card"><span class="eyebrow">Visit</span><h2>Brendale</h2><p>Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Service Profit is Queensland. Hospitality clients of the same firm may sit elsewhere.</p></section>
+        <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
     </div>
   </main>
@@ -471,9 +468,41 @@ def terms():
     return h + body
 
 
+def areas():
+    h = head(
+        "Brendale, Brisbane and Queensland | Service Profit accounting",
+        "Service Profit sits in Brendale, Moreton Bay. HVAC, electrical and construction accounting for businesses across Brisbane and Queensland. Registered Tax Agent 26284368.",
+        "/areas.html",
+    )
+    body = f"""{nav("areas")}
+  <main id="main" class="page">
+    <div class="wrap">
+      <span class="eyebrow">Where we work</span>
+      <h1>Brendale office. Brisbane and Queensland files.</h1>
+      <p class="lead">The desk is in Brendale. The work is HVAC, electrical and construction service businesses across Brisbane and Queensland. We are the tax agent. You stay on the jobs.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="book.html" data-event="areas-book">Book a 15-minute call</a>
+        <a class="btn btn-outline" href="contact.html">Office details</a>
+      </div>
+      <div class="grid3">
+        <section class="card"><span class="eyebrow">Brendale</span><h2>The office</h2><p>Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Moreton Bay, north of Brisbane. Near Strathpine, Warner, Albany Creek, Eatons Hill, Petrie and North Lakes.</p></section>
+        <section class="card"><span class="eyebrow">Brisbane</span><h2>The city</h2><p>Calls, files and reviews from Brendale for businesses that work the Brisbane side. Same firm. Same tax agent registration.</p></section>
+        <section class="card"><span class="eyebrow">Queensland</span><h2>The state</h2><p>Service Profit is a Queensland line. It is not offered Australia-wide. Hospitality work of the same firm sits on pinktax.com.au.</p></section>
+      </div>
+      <div class="prose" style="margin-top:48px">
+        <h2>What we will not do</h2>
+        <p>We will not publish a separate thin page for every suburb. If you are a technical service business in Queensland, the Brendale office is the place. Book a call or come in.</p>
+        <p>Registered Tax Agent 26284368 · ABN 51 682 301 891 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a></p>
+      </div>
+    </div>
+  </main>
+{footer()}"""
+    return h + body
+
+
 def trade_page(slug, title, h1, lead, blocks):
     h = head(
-        f"{title} | Service Profit | Pink Accounting",
+        f"{title} accounting in Queensland | Service Profit, Brendale",
         lead,
         f"/{slug}.html",
     )
@@ -497,7 +526,7 @@ def trade_page(slug, title, h1, lead, blocks):
       <div class="prose" style="margin-top:48px">
         <h2>What we need from the file</h2>
         <p>Xero for the books. Labour and materials on the job, or a job report you already keep. If those are missing, we can still keep the books current. We will not dress that up as job profit.</p>
-        <p>This page is for {title.lower()} work. It does not change the fee table. Builders of houses or commercial buildings are outside this line.</p>
+        <p>This page is for {title.lower()} work from our Brendale office, across Brisbane and Queensland. It does not change the fee table. Builders of houses or commercial buildings are outside this line.</p>
       </div>
     </div>
   </main>
@@ -534,6 +563,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>{ORIGIN}/hvac.html</loc></url>
   <url><loc>{ORIGIN}/electrical.html</loc></url>
   <url><loc>{ORIGIN}/construction.html</loc></url>
+  <url><loc>{ORIGIN}/areas.html</loc></url>
   <url><loc>{ORIGIN}/rights.html</loc></url>
   <url><loc>{ORIGIN}/privacy.html</loc></url>
   <url><loc>{ORIGIN}/terms.html</loc></url>
@@ -550,13 +580,14 @@ def main():
     write("privacy.html", privacy())
     write("rights.html", rights())
     write("terms.html", terms())
+    write("areas.html", areas())
     write(
         "hvac.html",
         trade_page(
             "hvac",
             "HVAC",
             "Quoted hours versus hours on the job.",
-            "For air conditioning and refrigeration firms in Queensland. Labour against the quote, materials on the job, and whether a call-out covered the next tax bill.",
+            "HVAC accounting from Brendale for air conditioning and refrigeration firms across Brisbane and Queensland. Labour against the quote, materials on the job, tax and BAS held.",
             [
                 ("Labour", "Call-out versus quoted hours", "A diary full of call-outs can still hide jobs that ran long and were never repriced."),
                 ("Materials", "Parts on the job", "Parts billed at cost, or not billed at all, do not show up in a year-end pack in time to change the next quote."),
@@ -570,7 +601,7 @@ def main():
             "electrical",
             "Electrical",
             "Quoted jobs versus hours on the tools.",
-            "For electrical contracting businesses in Queensland. Quoted work, subcontractors, and cash sitting in unfinished jobs.",
+            "Electrical contracting accounting from Brendale, for firms across Brisbane and Queensland. Quoted work, subcontractors, unfinished jobs, tax and BAS held.",
             [
                 ("Jobs", "Quote versus actual", "Hours on the tools against the quote, while the next tender can still change."),
                 ("People", "Subcontractors in plain sight", "Subcontractors left visible, not mixed into a lump that only makes sense in June."),
@@ -584,7 +615,7 @@ def main():
             "construction",
             "Construction services",
             "The job, not the building.",
-            "For contracted fit-out, maintenance and installation in Queensland. Not house builders. Not commercial builders.",
+            "Construction services accounting from Brendale: fit-out, maintenance and installation across Brisbane and Queensland. Not house builders.",
             [
                 ("Scope", "What construction services means here", "Fit-out, maintenance, installation and similar contracted job work. Not building houses or commercial buildings as a builder."),
                 ("Jobs", "Labour, subcontractors, materials", "Read while you can still change the next quote, not after 30 June."),
