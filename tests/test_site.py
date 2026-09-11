@@ -3,7 +3,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HTML = list(ROOT.glob("*.html"))
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
-FIELD = "g5puGFTA9kmn6ukDa4XssQ2"
+FIELD = "ServiceProfit@pinktax.com.au"
 CACHE = "rt25"
 
 
@@ -13,12 +13,13 @@ def test_no_hospitality_booking():
         assert HOSP not in text, p.name
 
 
-def test_book_captures_lead_without_live_calendar():
+def test_book_uses_service_profit_calendar():
     text = (ROOT / "book.html").read_text(encoding="utf-8")
-    assert 'id="enquiryForm"' in text
-    assert "formsubmit.co/admin@pinktax.com.au" in text
-    assert "The online calendar is not taking new times" in text
     assert FIELD in text
+    assert HOSP not in text
+    assert "Open the Service Profit calendar" in text
+    assert "not taking new times" not in text
+    assert 'id="enquiryForm"' in text
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert 'href="/book.html"' in home
 

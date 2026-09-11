@@ -480,7 +480,7 @@ def why():
 def book():
     h = head(
         "Book a 15-minute call | Service Profit | Pink Accounting",
-        "Send a Service Profit enquiry for Queensland HVAC, electrical and construction services. We reply within one business day. Confirmation to admin@pinktax.com.au.",
+        "Book a 15-minute Service Profit call for Queensland HVAC, electrical and construction services. Calendar confirmation to you and to admin@pinktax.com.au.",
         "/book.html",
         extra=jsonld(
             {
@@ -498,20 +498,21 @@ def book():
       <span class="eyebrow">Service Profit</span>
       <h1>Book a 15-minute call</h1>
       <p class="lead">This call is for HVAC, electrical and construction service businesses in Queensland. It is not a hospitality or venue call. Bring how the business runs, the software you use, and what you want from the file. You do not need a street address for a discovery call.</p>
-      <h2>Send this and we will reply</h2>
-      <p class="lead" style="margin-top:10px">The online calendar is not taking new times at the moment. Use the form, email or phone. We reply within one business day from admin@pinktax.com.au.</p>
-{enquiry_form("book")}
       <div class="cta">
+        <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the Service Profit calendar</a>
         <a class="btn btn-outline" href="mailto:admin@pinktax.com.au?subject=Service%20Profit%20enquiry" data-event="book-email">Email admin@pinktax.com.au</a>
         <a class="btn btn-outline" href="tel:+61735446386" data-event="book-call">Call 07 3544 6386</a>
       </div>
       <div class="prose">
         <h2>Who you will speak with</h2>
-        <p>The booking is with Pink Accounting. Huong (Pink) takes the call when she is free. If a team member takes it, Pink reads the notes the same working day. That is team-led delivery with principal review, not a promise that every slot is only her.</p>
-        <h2>If the calendar opens again</h2>
-        <p>Microsoft Bookings is the firm calendar. Right now that page is not offering times. If it comes back, a confirmation still goes to you and to admin@pinktax.com.au. A click is not a completed enquiry.</p>
+        <p>The booking is with Service Profit. Huong (Pink) takes the call when she is free. If a team member takes it, Pink reads the notes the same working day.</p>
+        <h2>What happens after you book</h2>
+        <p>Microsoft Bookings sends a confirmation to you. A copy goes to admin@pinktax.com.au. A click is not a completed enquiry until the appointment is booked.</p>
       </div>
-      <p class="creds"><a href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the Service Profit calendar anyway</a> · Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
+      <h2>Or send this</h2>
+      <p class="lead" style="margin-top:10px">If none of the times suit, use the form. We reply within one business day.</p>
+{enquiry_form("book")}
+      <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>
 {footer()}"""

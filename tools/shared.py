@@ -2,7 +2,7 @@
 
 ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "/book.html"
-MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
+MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/pinkaccountingtax/"
 LI = "https://au.linkedin.com/company/pinkaccountingtax"

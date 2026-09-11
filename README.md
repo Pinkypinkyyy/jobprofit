@@ -7,7 +7,7 @@ Public site: GitHub Pages from this repository (`www.serviceprofit.com.au`).
 Entity: Pink Accounting & Tax Solutions Pty Ltd  
 ABN 51 682 301 891 · Registered Tax Agent 26284368
 
-Booking calendar for this site is the field-service Bookings service, not the hospitality diary. When that calendar is closed, `book.html` captures the lead with a form to admin@pinktax.com.au.
+Booking calendar is the Service Profit Bookings page (`ServiceProfit@pinktax.com.au`), not the hospitality diary. `book.html` also has a form to admin@pinktax.com.au if none of the times suit.
 
 Pricing lives at `pricing.html` so the plans can be linked and indexed.
 
