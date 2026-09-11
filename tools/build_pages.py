@@ -34,7 +34,7 @@ def index():
             <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
           </div>
-          <p class="kicker" style="margin-top:28px">Same plans for every trade.</p>
+          <p class="kicker kicker-sub">Same plans for every trade.</p>
           <div class="trades" aria-label="Trade examples">
             <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
             <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
