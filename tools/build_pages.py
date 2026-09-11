@@ -46,14 +46,20 @@ def index():
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
         </div>
-        <div class="stage board" id="stage">
-          <div class="cap" id="stageCap">Worked example · not a client result</div>
-          <div class="docket docket-hero">
-            <div class="docket-row"><span>Quoted</span><b>6 h</b></div>
-            <div class="docket-row"><span>On the tools</span><b>9 h</b></div>
-            <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
-            <p>Those 3 hours never went into the next quote. Income tax, FBT, financial statements, BAS and GST still sit in this file.</p>
-          </div>
+        <div class="stage" id="stage">
+          <picture>
+            <source type="image/webp" srcset="assets/hvac-480.webp?v=real1 480w, assets/hvac-864.webp?v=real1 864w, assets/hvac-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img class="is-on" data-trade="hvac" src="assets/hvac.jpg?v=real1" width="838" height="1059" alt="HVAC plant room">
+          </picture>
+          <picture>
+            <source type="image/webp" srcset="assets/electrical-480.webp?v=real1 480w, assets/electrical-864.webp?v=real1 864w, assets/electrical-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img data-trade="electrical" src="assets/electrical.jpg?v=real1" width="838" height="1059" alt="Electrical switchboard" loading="lazy" aria-hidden="true" inert>
+          </picture>
+          <picture>
+            <source type="image/webp" srcset="assets/construction-480.webp?v=real1 480w, assets/construction-864.webp?v=real1 864w, assets/construction-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img data-trade="construction" src="assets/construction.jpg?v=real1" width="838" height="1036" alt="Construction services fit-out" loading="lazy" aria-hidden="true" inert>
+          </picture>
+          <div class="cap" id="stageCap">HVAC</div>
         </div>
       </div>
     </section>
@@ -62,21 +68,33 @@ def index():
       <div class="wrap">
         <span class="eyebrow">The work</span>
         <h2 style="margin-top:12px">HVAC. Electrical. Construction services.</h2>
-        <div class="mosaic mosaic-text">
-          <a class="tile tile-text" href="hvac.html"><span>HVAC</span><p>Quoted hours versus hours on the job.</p></a>
-          <a class="tile tile-text" href="electrical.html"><span>Electrical</span><p>Quoted jobs versus hours on the tools.</p></a>
-          <a class="tile tile-text" href="construction.html"><span>Construction services</span><p>The job, not the building.</p></a>
+        <div class="mosaic">
+          <a class="tile" href="hvac.html"><img src="assets/hvac-864.webp?v=real1" alt="HVAC plant room" width="864" height="1092"><span>HVAC</span></a>
+          <a class="tile" href="electrical.html"><img src="assets/electrical-864.webp?v=real1" alt="Electrical switchboard" width="864" height="1092"><span>Electrical</span></a>
+          <a class="tile" href="construction.html"><img src="assets/construction-864.webp?v=real1" alt="Fit-out in progress" width="864" height="1068"><span>Construction services</span></a>
         </div>
-        <div class="hire" style="margin-top:var(--gutter)">
-          <article>
-            <span class="eyebrow">Cash</span>
-            <h3>The bank mix is not all yours</h3>
-            <p>$100k–$500k through the account is turnover, not profit. GST, PAYG, super and wages sit in it.</p>
+        <div class="stack" style="margin-top:var(--gutter)">
+          <article class="split">
+            <img src="assets/tech-hvac.jpg?v=real1" width="838" height="1059" alt="HVAC technician on a roof">
+            <div class="split-copy">
+              <span class="eyebrow">Billed hours</span>
+              <h2>Quoted 6 hours. Nine on the tools.</h2>
+              <p>Those 3 hours never went into the next quote. Worked example, not a client result.</p>
+              <div class="docket">
+                <div class="docket-row"><span>Quoted</span><b>6 h</b></div>
+                <div class="docket-row"><span>On the tools</span><b>9 h</b></div>
+                <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
+              </div>
+            </div>
           </article>
-          <article>
-            <span class="eyebrow">Tax agent</span>
-            <h3>Income tax, FBT, financial statements</h3>
-            <p>The return, FBT, BAS and GST from a file that is already in order. You stay on the jobs.</p>
+          <article class="split reverse">
+            <div class="split-copy">
+              <span class="eyebrow">On the tools</span>
+              <h2>You stay on the jobs. We hold the file.</h2>
+              <p>Income tax, FBT, financial statements, BAS and GST. Billed hours and cash. Registered Tax Agent 26284368.</p>
+              <a class="btn btn-primary" href="book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
+            </div>
+            <img src="assets/tech-electrical.jpg?v=real1" width="838" height="1059" alt="Electrician testing a switchboard">
           </article>
         </div>
       </div>

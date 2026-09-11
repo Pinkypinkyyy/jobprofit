@@ -111,11 +111,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 
 .stage{
   position:relative;min-height:var(--media-h);height:100%;overflow:hidden;
-  background:#12161C;border-radius:var(--radius);
+  background:#C5CDD6;border-radius:var(--radius);
   box-shadow:0 24px 48px -28px rgba(18,22,28,.45);
-  display:flex;align-items:flex-end;
 }
-.stage.board .docket-hero{position:static;width:auto;border:0;background:transparent;padding:28px 32px 32px}
 .stage picture{
   position:absolute;inset:0;display:block;width:100%;height:100%;
 }
