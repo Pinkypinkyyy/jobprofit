@@ -51,7 +51,6 @@
       }
     });
     if (live && copy[key]) live.textContent = copy[key];
-    if (cap && labels[key]) cap.textContent = labels[key];
   }
 
   if (trades.length) {

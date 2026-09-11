@@ -52,7 +52,7 @@ def test_mobile_pricing_and_a11y_hooks():
     assert "Escape" in js
     assert "aria-pressed" in home
     assert "role=\"tablist\"" not in home
-    assert "assets/hvac-864.webp" in home
+    assert "hvac.html" in home
 
 
 def test_sitemap_has_trade_pages():
