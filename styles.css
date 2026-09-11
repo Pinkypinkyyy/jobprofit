@@ -167,6 +167,8 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .stack{display:flex;flex-direction:column;gap:var(--gutter)}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;border:1px solid var(--line);overflow:hidden;min-height:var(--media-h);border-radius:var(--radius);box-shadow:0 18px 36px -26px rgba(18,22,28,.35)}
 .split.reverse .split-copy{order:2}
+.split-text{grid-template-columns:1fr;min-height:0}
+.split-text .split-copy{max-width:40em;padding:40px 36px}
 .split img,.split picture img{width:100%;height:var(--media-h);object-fit:cover;object-position:center;display:block}
 .split-copy{padding:32px 36px;display:flex;flex-direction:column;justify-content:center}
 .split-copy h2{font-size:clamp(1.5rem,2.4vw,2rem);margin:8px 0 12px}

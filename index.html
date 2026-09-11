@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt24">
+  <link rel="stylesheet" href="/styles.css?v=rt25">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#business","name":"Service Profit","alternateName":"Pink Accounting","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","image":"https://www.serviceprofit.com.au/assets/og.png","logo":"https://www.serviceprofit.com.au/assets/logo.png","priceRange":"$$","knowsAbout":["HVAC accounting","electrical contractors","construction services","job costing","BAS","GST"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368","sameAs":["https://www.google.com/maps?cid=17544456102082616748","https://www.facebook.com/pinkaccountingtax/","https://au.linkedin.com/company/pinkaccountingtax"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"25","bestRating":"5","worstRating":"1"}}
   </script>
@@ -73,6 +73,11 @@
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
           <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
+          <p class="trade-links">
+            <a href="/hvac.html">HVAC</a>
+            <a href="/electrical.html">Electrical</a>
+            <a href="/construction.html">Construction services</a>
+          </p>
           <div class="trust">
             <a class="stars" href="https://www.google.com/maps?cid=17544456102082616748" rel="noopener">
               <span class="star-value">5.0</span>
@@ -88,8 +93,8 @@
             <img class="is-on" data-trade="hvac" src="/assets/tech-hvac.jpg?v=real1" width="838" height="1059" alt="HVAC technician on a rooftop unit">
           </picture>
           <picture>
-            <source type="image/webp" srcset="/assets/tech-electrical-480.webp?v=real1 480w, /assets/tech-electrical-864.webp?v=real1 864w, /assets/tech-electrical-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img data-trade="electrical" aria-hidden="true" inert src="/assets/tech-electrical.jpg?v=real1" width="838" height="1059" alt="Electrician testing a switchboard" loading="lazy">
+            <source type="image/webp" srcset="/assets/electrical-480.webp?v=real1 480w, /assets/electrical-864.webp?v=real1 864w, /assets/electrical-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
+            <img data-trade="electrical" aria-hidden="true" inert src="/assets/electrical.jpg?v=real1" width="838" height="1059" alt="Electrical switchboard" loading="lazy">
           </picture>
           <picture>
             <source type="image/webp" srcset="/assets/construction-480.webp?v=real1 480w, /assets/construction-864.webp?v=real1 864w, /assets/construction-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
@@ -102,16 +107,9 @@
 
     <section class="band">
       <div class="wrap">
-        <span class="eyebrow">The work</span>
-        <h2 style="margin-top:12px">HVAC. Electrical. Construction services.</h2>
-        <div class="mosaic">
-          <a class="tile" href="/hvac.html"><img src="/assets/tech-hvac-864.webp?v=real1" alt="HVAC technician on a rooftop unit" width="864" height="1092" loading="lazy"><span>HVAC</span></a>
-          <a class="tile" href="/electrical.html"><img src="/assets/tech-electrical-864.webp?v=real1" alt="Electrician testing a switchboard" width="864" height="1092" loading="lazy"><span>Electrical</span></a>
-          <a class="tile" href="/construction.html"><img src="/assets/construction-864.webp?v=real1" alt="Fit-out in progress" width="864" height="1068" loading="lazy"><span>Construction services</span></a>
-        </div>
-        <div class="stack" style="margin-top:var(--gutter)">
+        <div class="stack">
           <article class="split">
-            <img src="/assets/tech-hvac-864.webp?v=real1" width="864" height="1092" alt="HVAC technician on a rooftop unit" loading="lazy">
+            <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
             <div class="split-copy">
               <span class="eyebrow">Billed hours</span>
               <h2>Quoted 6 hours. Nine on the tools.</h2>
@@ -123,14 +121,13 @@
               </div>
             </div>
           </article>
-          <article class="split reverse">
+          <article class="split split-text">
             <div class="split-copy">
               <span class="eyebrow">On the tools</span>
               <h2>You stay on the jobs. We hold the file.</h2>
               <p>Income tax, FBT, financial statements, BAS and GST. Billed hours and cash. Registered Tax Agent 26284368.</p>
               <a class="btn btn-primary" href="/book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
             </div>
-            <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
           </article>
         </div>
       </div>
@@ -274,7 +271,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 11 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt24"></script>
-  <script src="/nav.js?v=rt24"></script>
+  <script src="/track.js?v=rt25"></script>
+  <script src="/nav.js?v=rt25"></script>
 </body>
 </html>

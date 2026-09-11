@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/pinkaccountingtax/"
 LI = "https://au.linkedin.com/company/pinkaccountingtax"
-ASSET = "rt24"
+ASSET = "rt25"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.

@@ -103,6 +103,11 @@ def index():
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
           <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
+          <p class="trade-links">
+            <a href="/hvac.html">HVAC</a>
+            <a href="/electrical.html">Electrical</a>
+            <a href="/construction.html">Construction services</a>
+          </p>
           <div class="trust">
             <a class="stars" href="{GBP}" rel="noopener">
               <span class="star-value">5.0</span>
@@ -114,7 +119,7 @@ def index():
         </div>
         <div class="stage" id="stage">
 {picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac"', False)}
-{picture("tech-electrical", "Electrician testing a switchboard", ' data-trade="electrical" aria-hidden="true" inert', True)}
+{picture("electrical", "Electrical switchboard", ' data-trade="electrical" aria-hidden="true" inert', True)}
 {picture("construction", "Construction services fit-out", ' data-trade="construction" aria-hidden="true" inert', True)}
           <div class="cap" id="stageCap">HVAC</div>
         </div>
@@ -123,16 +128,9 @@ def index():
 
     <section class="band">
       <div class="wrap">
-        <span class="eyebrow">The work</span>
-        <h2 style="margin-top:12px">HVAC. Electrical. Construction services.</h2>
-        <div class="mosaic">
-          <a class="tile" href="/hvac.html"><img src="/assets/tech-hvac-864.webp?v=real1" alt="HVAC technician on a rooftop unit" width="864" height="1092" loading="lazy"><span>HVAC</span></a>
-          <a class="tile" href="/electrical.html"><img src="/assets/tech-electrical-864.webp?v=real1" alt="Electrician testing a switchboard" width="864" height="1092" loading="lazy"><span>Electrical</span></a>
-          <a class="tile" href="/construction.html"><img src="/assets/construction-864.webp?v=real1" alt="Fit-out in progress" width="864" height="1068" loading="lazy"><span>Construction services</span></a>
-        </div>
-        <div class="stack" style="margin-top:var(--gutter)">
+        <div class="stack">
           <article class="split">
-            <img src="/assets/tech-hvac-864.webp?v=real1" width="864" height="1092" alt="HVAC technician on a rooftop unit" loading="lazy">
+            <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
             <div class="split-copy">
               <span class="eyebrow">Billed hours</span>
               <h2>Quoted 6 hours. Nine on the tools.</h2>
@@ -144,14 +142,13 @@ def index():
               </div>
             </div>
           </article>
-          <article class="split reverse">
+          <article class="split split-text">
             <div class="split-copy">
               <span class="eyebrow">On the tools</span>
               <h2>You stay on the jobs. We hold the file.</h2>
               <p>Income tax, FBT, financial statements, BAS and GST. Billed hours and cash. Registered Tax Agent 26284368.</p>
               <a class="btn btn-primary" href="/book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
             </div>
-            <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
           </article>
         </div>
       </div>

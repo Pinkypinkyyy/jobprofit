@@ -4,7 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML = list(ROOT.glob("*.html"))
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "g5puGFTA9kmn6ukDa4XssQ2"
-CACHE = "rt24"
+CACHE = "rt25"
 
 
 def test_no_hospitality_booking():
@@ -41,6 +41,16 @@ def test_hero_is_not_plenum():
     assert 'data-trade="hvac"' in home
     assert "assets/hvac.jpg" not in home
     assert "HVAC technician on a rooftop unit" in home
+
+
+def test_homepage_does_not_repeat_trade_photos():
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert 'class="tile"' not in home
+    assert home.count('alt="HVAC technician on a rooftop unit"') == 1
+    assert home.count('alt="Electrician testing a switchboard"') == 1
+    assert home.count('alt="Electrical switchboard"') == 1
+    assert home.count('alt="Construction services fit-out"') == 1
+    assert 'href="/hvac.html"' in home
 
 
 def test_google_reviews_visible():
@@ -80,8 +90,8 @@ def test_structured_data_on_inner_pages():
 
 def test_lazy_load_and_webp():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
-    assert home.count("loading=\"lazy\"") >= 6
-    assert "tech-hvac-864.webp" in home
+    assert home.count("loading=\"lazy\"") >= 3
+    assert "tech-hvac-480.webp" in home
     assert (ROOT / "assets" / "pink-home.webp").exists()
     assert (ROOT / "assets" / "tech-hvac-480.webp").exists()
     assert (ROOT / "favicon.ico").exists()
