@@ -4,6 +4,21 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 
+JPEG_STEMS = (
+    "hvac",
+    "electrical",
+    "construction",
+    "tech-hvac",
+    "tech-electrical",
+    "desk",
+    "yard",
+    "pink-home",
+    "pink-meet",
+    "pink-office",
+    "pink-portrait",
+    "pink-studio",
+)
+
 
 def to_webp(src: Path, stem: str, widths=(480, 864, 1200)) -> None:
     im = Image.open(src).convert("RGB")
@@ -14,6 +29,9 @@ def to_webp(src: Path, stem: str, widths=(480, 864, 1200)) -> None:
         out = ASSETS / f"{stem}-{w}.webp"
         resized.save(out, "WEBP", quality=78, method=6)
         print(out.name, out.stat().st_size)
+    full = ASSETS / f"{stem}.webp"
+    im.save(full, "WEBP", quality=78, method=6)
+    print(full.name, full.stat().st_size)
 
 
 def build_og() -> None:
@@ -49,7 +67,18 @@ def build_og() -> None:
     print("og", png.stat().st_size, webp.stat().st_size)
 
 
+def build_favicon() -> None:
+    src = ASSETS / "logo.png"
+    im = Image.open(src).convert("RGBA")
+    ico = ROOT / "favicon.ico"
+    im.save(ico, format="ICO", sizes=[(16, 16), (32, 32), (48, 48)])
+    print("favicon.ico", ico.stat().st_size)
+
+
 if __name__ == "__main__":
-    for name in ("hvac", "electrical", "construction"):
-        to_webp(ASSETS / f"{name}.jpg", name)
+    for stem in JPEG_STEMS:
+        src = ASSETS / f"{stem}.jpg"
+        if src.exists():
+            to_webp(src, stem)
     build_og()
+    build_favicon()

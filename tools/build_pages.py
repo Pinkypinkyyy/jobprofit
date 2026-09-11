@@ -1,5 +1,19 @@
 from pathlib import Path
-from shared import BOOK, GBP, MSBOOK, ORIGIN, footer, head, nav, sticky
+from shared import (
+    GBP,
+    MSBOOK,
+    ORIGIN,
+    enquiry_form,
+    faq_node,
+    footer,
+    head,
+    jsonld,
+    business_node,
+    local_business_node,
+    nav,
+    service_node,
+    sticky,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -10,10 +24,57 @@ def write(name, html):
     print("wrote", name, path.stat().st_size)
 
 
-JSONLD = """  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#business","name":"Service Profit","alternateName":"Pink Accounting","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","image":"https://www.serviceprofit.com.au/assets/og.png","priceRange":"$$","knowsAbout":["HVAC accounting","electrical contractors","construction services","job costing","BAS","GST"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368"}
-  </script>
-"""
+SYSTEM_FAQ = [
+    (
+        "What happens in the first month?",
+        "You give Xero, bank and payroll access, or send the source documents. We confirm the start date in the letter. Catch-up of earlier periods is a separate fee, quoted first.",
+    ),
+    (
+        "Do you tell me whether to hire staff or a contractor?",
+        "We show the cost of each in the file. The employment decision is yours. If someone works like staff, that is a compliance issue as well as a cost issue.",
+    ),
+    (
+        "How do I cancel?",
+        "The letter of engagement sets the term and how to end it.",
+    ),
+]
+
+PRICING_FAQ = [
+    (
+        "What is in Job Profit?",
+        "Billed hours versus quoted hours each week, cash that is yours versus GST, PAYG, super and wages, FBT watched in the file, and income tax, FBT, financial statements, BAS and GST held for one trading entity as written in the letter.",
+    ),
+    (
+        "What is not included?",
+        "A monthly meeting, unlimited access, catch-up of earlier periods, a published savings figure, and extra entities unless the letter says so. Xero subscription is yours.",
+    ),
+    (
+        "Do the higher plans include Job Profit?",
+        "Weekly Visibility includes Job Profit. Ready to Scale includes Weekly Visibility. Compliance does not include the job-and-cash look.",
+    ),
+    (
+        "Is bookkeeping a plan?",
+        "No. It is an add-on from $500 + GST a month, quoted when it is actually needed. It does not include the weekly job-and-cash look.",
+    ),
+    (
+        "Are the fees plus GST?",
+        "Yes. Published fees are monthly, exclusive of GST, for one trading entity unless the letter says otherwise.",
+    ),
+    (
+        "How do I start?",
+        "Send the enquiry on the book page or call. A booked call is a conversation to see whether there is a fit. It is not an engagement until the letter is issued.",
+    ),
+]
+
+
+def picture(stem, alt, extra="", lazy=False):
+    loading = ' loading="lazy"' if lazy else ""
+    return (
+        f'          <picture>\n'
+        f'            <source type="image/webp" srcset="/assets/{stem}-480.webp?v=real1 480w, /assets/{stem}-864.webp?v=real1 864w, /assets/{stem}-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">\n'
+        f'            <img{extra} src="/assets/{stem}.jpg?v=real1" width="838" height="1059" alt="{alt}"{loading}>\n'
+        f'          </picture>'
+    )
 
 
 def index():
@@ -21,7 +82,8 @@ def index():
         "Service Profit | HVAC, electrical and construction accounting in Brendale, Brisbane and Queensland",
         "Pink Accounting in Brendale for HVAC, electrical and construction service businesses across Brisbane and Queensland. Job Profit $1,650 + GST a month. Book a 15-minute call.",
         "/",
-    ).replace("</head>", JSONLD + "</head>")
+        extra=jsonld(business_node()),
+    )
     body = f"""{nav("home")}
   <main id="main">
     <section class="hero">
@@ -31,8 +93,8 @@ def index():
           <h1>See job profit while you can still change the next quote.</h1>
           <p class="lead">You stay on the jobs. We are the accounting firm and the tax agent. Income tax, FBT, financial statements, BAS, billed hours and cash, from Brendale.</p>
           <div class="cta">
-            <a class="btn btn-primary" href="book.html" data-event="hero-book">Book a 15-minute call</a>
-            <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
+            <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book a 15-minute call</a>
+            <a class="btn btn-outline" href="/pricing.html">See the plans</a>
           </div>
           <p class="kicker kicker-sub">Same plans for every trade.</p>
           <div class="trades" aria-label="Trade examples">
@@ -42,23 +104,18 @@ def index():
           </div>
           <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
           <div class="trust">
-            <span><a href="{GBP}" rel="noopener">Google reviews</a></span>
+            <a class="stars" href="{GBP}" rel="noopener">
+              <span class="star-value">5.0</span>
+              <span class="star-icons" aria-hidden="true">★★★★★</span>
+              <span>25 Google reviews</span>
+            </a>
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
         </div>
         <div class="stage" id="stage">
-          <picture>
-            <source type="image/webp" srcset="assets/hvac-480.webp?v=real1 480w, assets/hvac-864.webp?v=real1 864w, assets/hvac-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img class="is-on" data-trade="hvac" src="assets/hvac.jpg?v=real1" width="838" height="1059" alt="HVAC plant room">
-          </picture>
-          <picture>
-            <source type="image/webp" srcset="assets/electrical-480.webp?v=real1 480w, assets/electrical-864.webp?v=real1 864w, assets/electrical-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img data-trade="electrical" src="assets/electrical.jpg?v=real1" width="838" height="1059" alt="Electrical switchboard" loading="lazy" aria-hidden="true" inert>
-          </picture>
-          <picture>
-            <source type="image/webp" srcset="assets/construction-480.webp?v=real1 480w, assets/construction-864.webp?v=real1 864w, assets/construction-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img data-trade="construction" src="assets/construction.jpg?v=real1" width="838" height="1036" alt="Construction services fit-out" loading="lazy" aria-hidden="true" inert>
-          </picture>
+{picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac"', False)}
+{picture("tech-electrical", "Electrician testing a switchboard", ' data-trade="electrical" aria-hidden="true" inert', True)}
+{picture("construction", "Construction services fit-out", ' data-trade="construction" aria-hidden="true" inert', True)}
           <div class="cap" id="stageCap">HVAC</div>
         </div>
       </div>
@@ -69,13 +126,13 @@ def index():
         <span class="eyebrow">The work</span>
         <h2 style="margin-top:12px">HVAC. Electrical. Construction services.</h2>
         <div class="mosaic">
-          <a class="tile" href="hvac.html"><img src="assets/hvac-864.webp?v=real1" alt="HVAC plant room" width="864" height="1092"><span>HVAC</span></a>
-          <a class="tile" href="electrical.html"><img src="assets/electrical-864.webp?v=real1" alt="Electrical switchboard" width="864" height="1092"><span>Electrical</span></a>
-          <a class="tile" href="construction.html"><img src="assets/construction-864.webp?v=real1" alt="Fit-out in progress" width="864" height="1068"><span>Construction services</span></a>
+          <a class="tile" href="/hvac.html"><img src="/assets/tech-hvac-864.webp?v=real1" alt="HVAC technician on a rooftop unit" width="864" height="1092" loading="lazy"><span>HVAC</span></a>
+          <a class="tile" href="/electrical.html"><img src="/assets/tech-electrical-864.webp?v=real1" alt="Electrician testing a switchboard" width="864" height="1092" loading="lazy"><span>Electrical</span></a>
+          <a class="tile" href="/construction.html"><img src="/assets/construction-864.webp?v=real1" alt="Fit-out in progress" width="864" height="1068" loading="lazy"><span>Construction services</span></a>
         </div>
         <div class="stack" style="margin-top:var(--gutter)">
           <article class="split">
-            <img src="assets/tech-hvac.jpg?v=real1" width="838" height="1059" alt="HVAC technician on a roof">
+            <img src="/assets/tech-hvac-864.webp?v=real1" width="864" height="1092" alt="HVAC technician on a rooftop unit" loading="lazy">
             <div class="split-copy">
               <span class="eyebrow">Billed hours</span>
               <h2>Quoted 6 hours. Nine on the tools.</h2>
@@ -92,9 +149,9 @@ def index():
               <span class="eyebrow">On the tools</span>
               <h2>You stay on the jobs. We hold the file.</h2>
               <p>Income tax, FBT, financial statements, BAS and GST. Billed hours and cash. Registered Tax Agent 26284368.</p>
-              <a class="btn btn-primary" href="book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
+              <a class="btn btn-primary" href="/book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
             </div>
-            <img src="assets/tech-electrical.jpg?v=real1" width="838" height="1059" alt="Electrician testing a switchboard">
+            <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
           </article>
         </div>
       </div>
@@ -114,7 +171,7 @@ def index():
             <div class="fprice">$1,650<small> + GST / month</small></div>
             <div class="fyear">$19,800 + GST a year</div>
             <p class="fdesc">The number you care about is billed hours versus quoted hours, and how much of the bank balance is actually yours. GST, PAYG, super and wages sit in that account. They are not drawings.</p>
-            <div class="fcta"><a class="btn btn-primary" href="book.html" data-event="pricing-book">Book a 15-minute call</a></div>
+            <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-book">Book a 15-minute call</a></div>
             <div class="fnote">If you only need the return, that is Compliance. Bookkeeping is an add-on when you need it, not a plan.</div>
           </div>
           <ul>
@@ -125,87 +182,69 @@ def index():
           </ul>
         </div>
         <div class="tiers">
-          <a class="tier" href="#level-weekly">
+          <a class="tier" href="/pricing.html#level-weekly">
             <div class="tname">Weekly Visibility</div>
             <div class="tprice">$2,650<small> + GST/mo, from</small></div>
             <div class="fyear">from $31,800 + GST a year</div>
             <p>Job Profit, plus a snapshot while the job is still on site. You see billed time before the job is closed.</p>
           </a>
-          <a class="tier" href="#level-scale">
+          <a class="tier" href="/pricing.html#level-scale">
             <div class="tname">Ready to Scale</div>
             <div class="tprice">$3,500<small> + GST/mo, from</small></div>
             <div class="fyear">from $42,000 + GST a year</div>
             <p>Plus a written forecast: hire, draw, hold. Application only. Not a guaranteed result.</p>
           </a>
-          <a class="tier" href="#level-compliance">
+          <a class="tier" href="/pricing.html#level-compliance">
             <div class="tname">Compliance</div>
             <div class="tprice">$550<small> + GST/mo</small></div>
             <div class="fyear">$6,600 + GST a year</div>
             <p>Income tax, FBT, financial statements, BAS and GST from a file that is already in order.</p>
           </a>
         </div>
-        <div class="addon" id="level-bookkeeping">
-          <h3>Bookkeeping add-on · from $500 + GST / month · from $6,000 + GST a year</h3>
-          <p>Not a plan. Quoted when it is actually needed: tax time, a catch-up, or while Job Profit is more than the business can take yet. It does not include the weekly job-and-cash look.</p>
+        <p class="pricing-more"><a href="/pricing.html">Full plans, what is in, what is out, and the FAQ</a></p>
+      </div>
+    </section>
+
+    <section class="band" id="reviews">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Google reviews</span>
+          <h2>5.0 on Google. Real clients, not a worked example.</h2>
+          <p>These are Google reviews of Pink Accounting, the same firm. They are not labelled as HVAC job-profit results.</p>
         </div>
-        <details class="scope-fold">
-          <summary>Full comparison — fees, included, not included</summary>
-        <div class="table-scroll" tabindex="0" aria-label="Plan comparison. Scroll sideways on a small screen to read every column.">
-          <table class="scope">
-            <thead>
-              <tr><th>Level</th><th>Fee</th><th>Included</th><th>Not included</th></tr>
-            </thead>
-            <tbody>
-              <tr class="pop" id="level-job">
-                <td><strong>Job Profit</strong></td>
-                <td class="price">$1,650 / mo<br>$19,800 / yr</td>
-                <td>Billed hours vs quoted hours. Cash that is yours vs GST, PAYG, super, wages. FBT watched in the file. Books and BAS sit under that.</td>
-                <td>A monthly meeting. Unlimited access. Catch-up. A published savings figure.</td>
-              </tr>
-              <tr id="level-weekly">
-                <td><strong>Weekly Visibility</strong></td>
-                <td class="price">from $2,650 / mo<br>from $31,800 / yr</td>
-                <td>Includes Job Profit. Snapshot while the job is still on site.</td>
-                <td>Open-ended project work unless scoped.</td>
-              </tr>
-              <tr id="level-scale">
-                <td><strong>Ready to Scale</strong></td>
-                <td class="price">from $3,500 / mo<br>from $42,000 / yr</td>
-                <td>Includes Weekly Visibility. Written forecast: hire, draw, hold. Application only.</td>
-                <td>A guaranteed result. Unlimited access.</td>
-              </tr>
-              <tr id="level-compliance">
-                <td><strong>Compliance</strong></td>
-                <td class="price">$550 / mo<br>$6,600 / yr</td>
-                <td>Income tax, FBT, financial statements, BAS and GST from records already in order. We are the registered tax agent.</td>
-                <td>Job-and-cash look. WhatsApp. Catch-up. Unlimited advisory.</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="quotes">
+          <blockquote>
+            <p>I’ve had a fantastic experience working with Pinky. She is professional, knowledgeable, and always takes the time to explain things clearly. As a small business owner, I really appreciate her patience, attention to detail, and prompt responses.</p>
+            <footer>T D · Google</footer>
+          </blockquote>
+          <blockquote>
+            <p>Huong is super knowledgeable and keeps your books tidy and taxes up to date. She explains things clearly so you actually understand your tax, not just the numbers.</p>
+            <footer>N T · Google</footer>
+          </blockquote>
+          <blockquote>
+            <p>Pink is amazing — super quick, really knows her stuff, and an absolute gem for any business. She makes everything easy.</p>
+            <footer>N M · Google</footer>
+          </blockquote>
         </div>
-        <p class="table-hint">Swipe sideways for every column.</p>
-        </details>
-        <div class="scope-cards">
-          <article class="scope-card"><h3>Job Profit</h3><div class="price">$1,650 / month · $19,800 / year</div><p><b>You care about:</b> billed hours vs quoted hours, and how much of the bank balance is yours.</p><p><b>Not included:</b> a monthly meeting, a published savings figure.</p></article>
-          <article class="scope-card"><h3>Weekly Visibility</h3><div class="price">from $2,650 / month · from $31,800 / year</div><p><b>You care about:</b> seeing billed time while the job is still on site.</p></article>
-          <article class="scope-card"><h3>Ready to Scale</h3><div class="price">from $3,500 / month · from $42,000 / year</div><p><b>You care about:</b> a written forecast before you hire or draw. Application only.</p></article>
-          <article class="scope-card" id="card-compliance"><h3>Compliance</h3><div class="price">$550 / month · $6,600 / year</div><p>Income tax, FBT, financial statements, BAS and GST from a file already in order.</p></article>
-        </div>
+        <p class="creds"><a href="{GBP}" rel="noopener">Read all 25 Google reviews</a></p>
       </div>
     </section>
 
     <section class="band">
       <div class="wrap meet">
         <div class="shot">
-          <img src="assets/pink-home.jpg" width="1200" height="1800" alt="Huong Bui, principal of Service Profit">
+          <picture>
+            <source type="image/webp" srcset="/assets/pink-home.webp?v=real1">
+            <img src="/assets/pink-home.jpg?v=real1" width="1200" height="1800" alt="Huong Bui, principal of Service Profit" loading="lazy">
+          </picture>
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h2 style="margin-top:12px">Hello, I am Pink.</h2>
           <p>Huong Bui. Master of Professional Accounting (Griffith). MIPA AFA. Registered Tax Agent 26284368. More than ten years in the books. I founded the firm in 2020.</p>
           <p>We hold income tax, FBT, financial statements, BAS, GST and payroll. You stay on the jobs.</p>
-          <div class="creds"><a href="why.html">Read more about Pink</a></div>
-          <a class="btn btn-primary" href="book.html" data-event="meet-book" style="margin-top:22px">Book a 15-minute call</a>
+          <div class="creds"><a href="/why.html">Read more about Pink</a></div>
+          <a class="btn btn-primary" href="/book.html" data-event="meet-book" style="margin-top:22px">Book a 15-minute call</a>
         </div>
       </div>
     </section>
@@ -214,8 +253,8 @@ def index():
       <div class="wrap">
         <h2>Fifteen minutes. Then we look at the file.</h2>
         <p>You stay on the jobs. We hold income tax, FBT, financial statements, BAS, billed hours and cash. Brendale, Brisbane and Queensland.</p>
-        <a class="btn btn-white" href="book.html" data-event="final-book">Book a 15-minute call</a>
-        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="rights.html" style="color:#fff;text-decoration:underline">Your rights</a> · <a href="privacy.html" style="color:#fff;text-decoration:underline">Privacy</a> · <a href="terms.html" style="color:#fff;text-decoration:underline">Terms</a></div>
+        <a class="btn btn-white" href="/book.html" data-event="final-book">Book a 15-minute call</a>
+        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="/rights.html" style="color:#fff;text-decoration:underline">Your rights</a> · <a href="/privacy.html" style="color:#fff;text-decoration:underline">Privacy</a> · <a href="/terms.html" style="color:#fff;text-decoration:underline">Terms</a></div>
       </div>
     </section>
   </main>
@@ -229,6 +268,10 @@ def system():
         "The system | Service Profit",
         "Billed hours, staff versus contractors, cash that is yours, tax and BAS held. Service Profit for HVAC, electrical and construction services in Queensland.",
         "/system.html",
+        extra=jsonld(faq_node(SYSTEM_FAQ)),
+    )
+    faqs = "\n".join(
+        f"          <details><summary>{q}</summary><p>{a}</p></details>" for q, a in SYSTEM_FAQ
     )
     body = f"""{nav("system")}
   <main id="main">
@@ -238,8 +281,8 @@ def system():
         <h1>Is $150 + GST an hour enough to relax?</h1>
         <p class="lead">That is a billed hour. It is not profit. GST comes off. Then the person on the tools — staff or contractor — then parts, then the business. We hold that picture, and we hold tax and BAS, so you can stay on the jobs.</p>
         <div class="cta">
-          <a class="btn btn-primary" href="book.html" data-event="system-book">Book a 15-minute call</a>
-          <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
+          <a class="btn btn-primary" href="/book.html" data-event="system-book">Book a 15-minute call</a>
+          <a class="btn btn-outline" href="/pricing.html">See the plans</a>
         </div>
         <div class="hour-board">
           <div class="cell"><b>$150 + GST</b><span>Billed. Worked example, not your rate.</span></div>
@@ -279,16 +322,114 @@ def system():
           <span class="eyebrow">Compliance</span>
           <h3>Income tax, FBT, financial statements</h3>
           <p>We are the tax agent. The return, FBT, BAS, GST, super and PAYG sit in the file so you are not paying tax on a mess. You stay on the jobs.</p>
-          <a class="btn btn-primary" href="book.html" data-event="system-comp" style="margin-top:18px">Book a 15-minute call</a>
+          <a class="btn btn-primary" href="/book.html" data-event="system-comp" style="margin-top:18px">Book a 15-minute call</a>
         </article>
       </div>
     </section>
     <section class="band">
       <div class="wrap">
         <div class="faq">
-          <details><summary>What happens in the first month?</summary><p>You give Xero, bank and payroll access, or send the source documents. We confirm the start date in the letter. Catch-up of earlier periods is a separate fee, quoted first.</p></details>
-          <details><summary>Do you tell me whether to hire staff or a contractor?</summary><p>We show the cost of each in the file. The employment decision is yours. If someone works like staff, that is a compliance issue as well as a cost issue.</p></details>
-          <details><summary>How do I cancel?</summary><p>The letter of engagement sets the term and how to end it.</p></details>
+{faqs}
+        </div>
+      </div>
+    </section>
+  </main>
+{footer()}"""
+    return h + body
+
+
+def pricing():
+    h = head(
+        "Pricing | Service Profit HVAC, electrical and construction accounting",
+        "Job Profit $1,650 + GST a month. Weekly Visibility from $2,650. Ready to Scale from $3,500. Compliance $550. What is in, what is out, and the FAQ. Queensland.",
+        "/pricing.html",
+        extra=jsonld(faq_node(PRICING_FAQ)),
+    )
+    faqs = "\n".join(
+        f"          <details><summary>{q}</summary><p>{a}</p></details>" for q, a in PRICING_FAQ
+    )
+    body = f"""{nav("pricing")}
+  <main id="main">
+    <section class="page" style="padding-bottom:0">
+      <div class="wrap">
+        <span class="eyebrow">Pricing</span>
+        <h1>Four plans. The letter is the quote.</h1>
+        <p class="lead">Monthly, exclusive of GST, for one trading entity unless the letter says otherwise. Same plans for HVAC, electrical and construction services. Not unlimited work.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="/book.html" data-event="pricing-page-book">Book a 15-minute call</a>
+        </div>
+      </div>
+    </section>
+    <section class="band">
+      <div class="wrap">
+        <div class="feat" id="job-profit">
+          <div>
+            <span class="badge">Typical ongoing plan</span>
+            <h2>Job Profit</h2>
+            <div class="fprice">$1,650<small> + GST / month</small></div>
+            <div class="fyear">$19,800 + GST a year</div>
+            <p class="fdesc">Billed hours versus quoted hours, and how much of the bank balance is actually yours.</p>
+            <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-job">Book a 15-minute call</a></div>
+          </div>
+          <ul>
+            <li><b>In:</b> billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity</li>
+            <li><b>Out:</b> a monthly meeting, unlimited access, catch-up, a published savings figure</li>
+          </ul>
+        </div>
+        <div class="table-scroll" tabindex="0" aria-label="Plan comparison. Scroll sideways on a small screen to read every column.">
+          <table class="scope">
+            <thead>
+              <tr><th>Level</th><th>Fee</th><th>Included</th><th>Not included</th></tr>
+            </thead>
+            <tbody>
+              <tr class="pop" id="level-job">
+                <td><strong>Job Profit</strong></td>
+                <td class="price">$1,650 / mo<br>$19,800 / yr</td>
+                <td>Billed hours vs quoted hours. Cash that is yours vs GST, PAYG, super, wages. FBT watched in the file. Books and BAS sit under that.</td>
+                <td>A monthly meeting. Unlimited access. Catch-up. A published savings figure.</td>
+              </tr>
+              <tr id="level-weekly">
+                <td><strong>Weekly Visibility</strong></td>
+                <td class="price">from $2,650 / mo<br>from $31,800 / yr</td>
+                <td>Includes Job Profit. Snapshot while the job is still on site.</td>
+                <td>Open-ended project work unless scoped.</td>
+              </tr>
+              <tr id="level-scale">
+                <td><strong>Ready to Scale</strong></td>
+                <td class="price">from $3,500 / mo<br>from $42,000 / yr</td>
+                <td>Includes Weekly Visibility. Written forecast: hire, draw, hold. Application only.</td>
+                <td>A guaranteed result. Unlimited access.</td>
+              </tr>
+              <tr id="level-compliance">
+                <td><strong>Compliance</strong></td>
+                <td class="price">$550 / mo<br>$6,600 / yr</td>
+                <td>Income tax, FBT, financial statements, BAS and GST from records already in order. We are the registered tax agent.</td>
+                <td>Job-and-cash look. WhatsApp. Catch-up. Unlimited advisory.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-hint">Swipe sideways for every column.</p>
+        <div class="scope-cards">
+          <article class="scope-card" id="card-job"><h2>Job Profit</h2><div class="price">$1,650 / month · $19,800 / year</div><p><b>In:</b> billed hours vs quoted hours, cash that is yours, FBT watched, tax and BAS held.</p><p><b>Out:</b> a monthly meeting, a published savings figure, catch-up.</p></article>
+          <article class="scope-card"><h2>Weekly Visibility</h2><div class="price">from $2,650 / month · from $31,800 / year</div><p><b>In:</b> Job Profit, plus a snapshot while the job is still on site.</p><p><b>Out:</b> open-ended project work unless scoped.</p></article>
+          <article class="scope-card"><h2>Ready to Scale</h2><div class="price">from $3,500 / month · from $42,000 / year</div><p><b>In:</b> Weekly Visibility, plus a written forecast: hire, draw, hold. Application only.</p><p><b>Out:</b> a guaranteed result. Unlimited access.</p></article>
+          <article class="scope-card" id="card-compliance"><h2>Compliance</h2><div class="price">$550 / month · $6,600 / year</div><p><b>In:</b> income tax, FBT, financial statements, BAS and GST from a file already in order.</p><p><b>Out:</b> job-and-cash look, WhatsApp, catch-up, unlimited advisory.</p></article>
+        </div>
+        <div class="addon" id="level-bookkeeping">
+          <h2>Bookkeeping add-on · from $500 + GST / month · from $6,000 + GST a year</h2>
+          <p>Not a plan. Quoted when it is actually needed: tax time, a catch-up, or while Job Profit is more than the business can take yet. It does not include the weekly job-and-cash look.</p>
+        </div>
+      </div>
+    </section>
+    <section class="band">
+      <div class="wrap">
+        <h2>Questions about the fees</h2>
+        <div class="faq">
+{faqs}
+        </div>
+        <div class="cta">
+          <a class="btn btn-primary" href="/book.html" data-event="pricing-faq-book">Book a 15-minute call</a>
         </div>
       </div>
     </section>
@@ -308,43 +449,30 @@ def why():
     <section class="page" style="padding-bottom:0">
       <div class="wrap meet">
         <div class="shot">
-          <img src="assets/pink-meet.jpg" width="1080" height="1350" alt="Huong Bui in a client meeting">
+          <picture>
+            <source type="image/webp" srcset="/assets/pink-meet.webp?v=real1">
+            <img src="/assets/pink-meet.jpg?v=real1" width="1080" height="1350" alt="Huong Bui in a client meeting">
+          </picture>
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h1 style="margin-top:12px">Hello, I am Pink.</h1>
           <p class="lead">Huong Bui. I am a registered tax agent. I have spent more than ten years in the books. Service Profit is this accounting work with HVAC, electrical and construction services in Queensland.</p>
           <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
-          <a class="btn btn-primary" href="book.html" data-event="why-book" style="margin-top:22px">Book a 15-minute call</a>
+          <a class="btn btn-primary" href="/book.html" data-event="why-book" style="margin-top:22px">Book a 15-minute call</a>
         </div>
       </div>
     </section>
     <section class="band">
       <div class="wrap">
-        <div class="hire">
-          <article>
-            <span class="eyebrow">Qualification</span>
-            <h3>Master of Professional Accounting</h3>
-            <p>Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
-          </article>
-          <article>
-            <span class="eyebrow">Years in the books</span>
-            <h3>More than ten years</h3>
-            <p>I founded the firm in 2020. The work is in the file, not in a once-a-year pack. You stay on the jobs. I stay in the numbers.</p>
-          </article>
-        </div>
-        <div class="hire" style="margin-top:var(--gutter)">
-          <article>
-            <span class="eyebrow">What we hold</span>
-            <h3>Income tax, FBT, financial statements</h3>
-            <p>The return. FBT on utes, phones and other benefits. Financial statements. BAS and GST. Payroll, super and PAYG where you have staff. Tax compliance so you are not paying on missing invoices.</p>
-          </article>
-          <article>
-            <span class="eyebrow">Accountable</span>
-            <h3>Public register</h3>
-            <p>Search 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. Our obligations are written on <a href="rights.html">Your rights</a>. ABN 51 682 301 891.</p>
-          </article>
-        </div>
+        <h2>Qualification</h2>
+        <p class="lead" style="margin-top:12px">Master of Professional Accounting, Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
+        <h2>Years in the books</h2>
+        <p class="lead" style="margin-top:12px">More than ten years. I founded the firm in 2020. The work is in the file, not in a once-a-year pack. You stay on the jobs. I stay in the numbers.</p>
+        <h2>What we hold</h2>
+        <p class="lead" style="margin-top:12px">The return. FBT on utes, phones and other benefits. Financial statements. BAS and GST. Payroll, super and PAYG where you have staff. Tax compliance so you are not paying on missing invoices.</p>
+        <h2>On the public register</h2>
+        <p class="lead" style="margin-top:12px">Search 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. Our obligations are written on <a href="/rights.html">Your rights</a>. ABN 51 682 301 891.</p>
       </div>
     </section>
   </main>
@@ -355,8 +483,17 @@ def why():
 def book():
     h = head(
         "Book a 15-minute call | Service Profit | Pink Accounting",
-        "Book a 15-minute Service Profit call with Pink Accounting. Queensland HVAC, electrical and construction services. Confirmation to you and to admin@pinktax.com.au.",
+        "Send a Service Profit enquiry for Queensland HVAC, electrical and construction services. We reply within one business day. Confirmation to admin@pinktax.com.au.",
         "/book.html",
+        extra=jsonld(
+            {
+                "@context": "https://schema.org",
+                "@type": "ContactPage",
+                "name": "Book a 15-minute call",
+                "url": f"{ORIGIN}/book.html",
+                "about": {"@id": f"{ORIGIN}/#business"},
+            }
+        ),
     )
     body = f"""{nav("book")}
   <main id="main" class="page">
@@ -364,20 +501,20 @@ def book():
       <span class="eyebrow">Service Profit</span>
       <h1>Book a 15-minute call</h1>
       <p class="lead">This call is for HVAC, electrical and construction service businesses in Queensland. It is not a hospitality or venue call. Bring how the business runs, the software you use, and what you want from the file. You do not need a street address for a discovery call.</p>
-      <div class="prose">
-        <h2>Who you will speak with</h2>
-        <p>The booking is with Pink Accounting. Huong (Pink) takes the call when she is free. The calendar may show Anyone because the firm covers the slot. If a team member takes it, Pink reads the notes the same working day. That is team-led delivery with principal review, not a promise that every slot is only her.</p>
-        <h2>When the first slot appears</h2>
-        <p>The first open time is often a few working days out. That is ordinary diary lead time, not a permanent delay. If none of the times suit, email or call and we will find another slot.</p>
-        <h2>What happens after you book</h2>
-        <p>Microsoft Bookings sends a confirmation to you. A copy goes to admin@pinktax.com.au. That is the firm mailbox. We have not treated a click on this page as a completed enquiry.</p>
-      </div>
+      <h2>Send this and we will reply</h2>
+      <p class="lead" style="margin-top:10px">The online calendar is not taking new times at the moment. Use the form, email or phone. We reply within one business day from admin@pinktax.com.au.</p>
+{enquiry_form("book")}
       <div class="cta">
-        <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the Service Profit calendar</a>
         <a class="btn btn-outline" href="mailto:admin@pinktax.com.au?subject=Service%20Profit%20enquiry" data-event="book-email">Email admin@pinktax.com.au</a>
         <a class="btn btn-outline" href="tel:+61735446386" data-event="book-call">Call 07 3544 6386</a>
       </div>
-      <p class="creds">By booking you agree to our <a href="terms.html">terms</a> and <a href="privacy.html">privacy</a> pages. Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
+      <div class="prose">
+        <h2>Who you will speak with</h2>
+        <p>The booking is with Pink Accounting. Huong (Pink) takes the call when she is free. If a team member takes it, Pink reads the notes the same working day. That is team-led delivery with principal review, not a promise that every slot is only her.</p>
+        <h2>If the calendar opens again</h2>
+        <p>Microsoft Bookings is the firm calendar. Right now that page is not offering times. If it comes back, a confirmation still goes to you and to admin@pinktax.com.au. A click is not a completed enquiry.</p>
+      </div>
+      <p class="creds"><a href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the Service Profit calendar anyway</a> · Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>
 {footer()}"""
@@ -389,6 +526,7 @@ def contact():
         "Contact | Service Profit Brendale | Pink Accounting",
         "Talk to Pink Accounting at Shop 15A, 18-22 Kremzow Rd, Brendale QLD. HVAC, electrical and construction accounting across Brisbane and Queensland. 07 3544 6386.",
         "/contact.html",
+        extra=jsonld(local_business_node()),
     )
     body = f"""{nav("contact")}
   <main id="main" class="page">
@@ -397,7 +535,7 @@ def contact():
       <h1>Talk to the accountant. Not a ticket queue.</h1>
       <p class="lead">Brendale office. HVAC, electrical and construction service businesses across Brisbane and Queensland.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="book.html" data-event="contact-book">Book a 15-minute call</a>
+        <a class="btn btn-primary" href="/book.html" data-event="contact-book">Book a 15-minute call</a>
         <a class="btn btn-outline" href="tel:+61735446386">Call 07 3544 6386</a>
       </div>
       <div class="grid3">
@@ -423,17 +561,17 @@ def privacy():
       <span class="eyebrow">Pink Accounting</span>
       <h1>Privacy</h1>
       <div class="prose">
-        <p>Pink Accounting &amp; Tax Solutions Pty Ltd (ABN 51 682 301 891) handles personal information under the Privacy Act 1988. Service Profit is a service of this firm. This page applies to the whole practice. Last reviewed 10 September 2026.</p>
+        <p>Pink Accounting &amp; Tax Solutions Pty Ltd (ABN 51 682 301 891) handles personal information under the Privacy Act 1988. Service Profit is a service of this firm. This page applies to the whole practice. Last reviewed 11 September 2026.</p>
         <h2>What we collect</h2>
-        <p>Name, contact details, business details, and the financial and tax information needed to provide accounting and tax services. If you book a call or email us, we keep that correspondence. Microsoft Bookings also holds the appointment details you enter there.</p>
+        <p>Name, contact details, business details, and the financial and tax information needed to provide accounting and tax services. If you send the enquiry form, book a call or email us, we keep that correspondence. Microsoft Bookings also holds the appointment details you enter there, when that calendar is open.</p>
         <h2>Why we collect it</h2>
         <p>To provide the service you asked for, meet our tax-agent and legal obligations, and run the practice. We do not sell lists.</p>
         <h2>How we hold it</h2>
         <p>Client files live in the firm’s Microsoft 365, Xero and related practice systems. Access is limited to people doing the work. We keep records for as long as tax and professional rules require, then destroy or de-identify them in the ordinary course.</p>
         <h2>Who we share it with</h2>
-        <p>Only where the job requires it: the ATO, ASIC, your bank or software provider with your authority, professional indemnity insurers, and regulators when the law requires it. Microsoft, Xero and similar suppliers process information to run those tools. Some of those suppliers store or support data outside Australia. We use them because the practice cannot run without them. Tell us if you do not want a named tool used on your file.</p>
+        <p>Only where the job requires it: the ATO, ASIC, your bank or software provider with your authority, professional indemnity insurers, and regulators when the law requires it. Microsoft, Xero, Google Analytics, Meta (when the advertising pixel is active) and similar suppliers process information to run those tools. Some of those suppliers store or support data outside Australia. We use them because the practice cannot run without them. Tell us if you do not want a named tool used on your file.</p>
         <h2>This website</h2>
-        <p>This site does not currently run advertising or audience analytics tags. Clicks on book, email and call links may be stored in your own browser session so we can test the pages. That does not leave your device. Search engines may still crawl public pages.</p>
+        <p>This site runs Google Analytics 4 so we can see which pages are used and whether an enquiry was sent. If a Meta pixel ID is configured, Meta also receives a page view and a lead event after a successful enquiry. We do not treat a click on Book a call as a completed enquiry. The enquiry form is sent through Formsubmit to admin@pinktax.com.au. You can ask us not to use analytics on a future visit by writing to admin@pinktax.com.au.</p>
         <h2>Access and correction</h2>
         <p>You can ask to see the personal information we hold about you, and ask us to correct it. Write to admin@pinktax.com.au. We will respond within 30 days. If we refuse, we will say why and how to complain.</p>
         <h2>Complaints</h2>
@@ -459,7 +597,7 @@ def rights():
       <span class="eyebrow">Pink Accounting</span>
       <h1>Your rights and our obligations</h1>
       <div class="prose">
-        <p>We are a registered tax practitioner. Service Profit is a service of Pink Accounting &amp; Tax Solutions Pty Ltd, not a separate firm. Owner of these statements: Huong Bui. Last reviewed 10 September 2026.</p>
+        <p>We are a registered tax practitioner. Service Profit is a service of Pink Accounting &amp; Tax Solutions Pty Ltd, not a separate firm. Owner of these statements: Huong Bui. Last reviewed 11 September 2026.</p>
         <h2>The TPB public register</h2>
         <p>The Tax Practitioners Board maintains a public register of all registered tax and BAS agents. Search it at <a href="https://www.tpb.gov.au/public-register" rel="noopener">tpb.gov.au/public-register</a>. Our registration number is <b>26284368</b>.</p>
         <h2>How to make a complaint</h2>
@@ -479,8 +617,8 @@ def rights():
         <h2>Smart technology, real expertise</h2>
         <p>Pink pairs experienced people with business-grade tools for research, data and drafting. We do the thinking, the judgment and the advice. Every output is reviewed and signed off by a qualified member of the team. No automated tool makes decisions about your tax affairs. We do not allow confidential information to train public models. Personal information is handled under the Privacy Act 1988. If you would prefer we did not use those tools on your file, tell us.</p>
         <h2>Disclosure statements</h2>
-        <p>No prescribed events under section 45 of the Tax Agent Services (Code of Professional Conduct) Determination 2024 have occurred in the last 5 years. Owner: Huong Bui. Review date: 10 September 2026.</p>
-        <p>Our registration is not subject to any conditions limiting the scope of services we can provide. Owner: Huong Bui. Review date: 10 September 2026.</p>
+        <p>No prescribed events under section 45 of the Tax Agent Services (Code of Professional Conduct) Determination 2024 have occurred in the last 5 years. Owner: Huong Bui. Review date: 11 September 2026.</p>
+        <p>Our registration is not subject to any conditions limiting the scope of services we can provide. Owner: Huong Bui. Review date: 11 September 2026.</p>
       </div>
     </div>
   </main>
@@ -500,11 +638,11 @@ def terms():
       <span class="eyebrow">Pink Accounting</span>
       <h1>Terms</h1>
       <div class="prose">
-        <p>These terms cover this website and an enquiry or discovery call. Paid work is governed by the letter of engagement, not this page. Last reviewed 10 September 2026.</p>
+        <p>These terms cover this website and an enquiry or discovery call. Paid work is governed by the letter of engagement, not this page. Last reviewed 11 September 2026.</p>
         <h2>Who we are</h2>
         <p>Pink Accounting &amp; Tax Solutions Pty Ltd, ABN 51 682 301 891, Registered Tax Agent 26284368. Service Profit is a Queensland service line of that firm.</p>
         <h2>The call</h2>
-        <p>A booked call is a conversation to see whether there is a fit. It is not tax advice, not an engagement, and not a quote until the letter is issued. Booking software is Microsoft Bookings. Confirmation goes to you and to admin@pinktax.com.au.</p>
+        <p>A booked call is a conversation to see whether there is a fit. It is not tax advice, not an engagement, and not a quote until the letter is issued. The enquiry form on this site emails admin@pinktax.com.au. Booking software is Microsoft Bookings when that calendar is open. Confirmation then goes to you and to admin@pinktax.com.au.</p>
         <h2>Fees on this site</h2>
         <p>Published fees are monthly, exclusive of GST, for one trading entity unless the letter says otherwise. Starting prices can rise with volume, payroll, extra entities or catch-up. The letter is the quote.</p>
         <h2>No unlimited work</h2>
@@ -525,11 +663,27 @@ def trade_page(slug, title, h1, lead, blocks):
         f"{title} accounting in Queensland | Service Profit, Brendale",
         lead,
         f"/{slug}.html",
+        extra=jsonld(service_node(f"{title} accounting", f"{ORIGIN}/{slug}.html", lead)),
     )
     cards = "\n".join(
         f'        <section class="card"><span class="eyebrow">{k}</span><h2>{t}</h2><p>{p}</p></section>'
         for k, t, p in blocks
     )
+    others = {
+        "hvac": [
+            ("Electrician instead?", "/electrical.html", "Electrical accounting"),
+            ("Fit-out or maintenance?", "/construction.html", "Construction services"),
+        ],
+        "electrical": [
+            ("HVAC instead?", "/hvac.html", "HVAC accounting"),
+            ("Fit-out or maintenance?", "/construction.html", "Construction services"),
+        ],
+        "construction": [
+            ("HVAC instead?", "/hvac.html", "HVAC accounting"),
+            ("Electrician instead?", "/electrical.html", "Electrical accounting"),
+        ],
+    }[slug]
+    cross = " · ".join(f'{label} <a href="{href}">{name}</a>' for label, href, name in others)
     body = f"""{nav()}
   <main id="main" class="page">
     <div class="wrap">
@@ -537,8 +691,8 @@ def trade_page(slug, title, h1, lead, blocks):
       <h1>{h1}</h1>
       <p class="lead">{lead}</p>
       <div class="cta">
-        <a class="btn btn-primary" href="book.html" data-event="trade-book-{slug}">Book a 15-minute call</a>
-        <a class="btn btn-outline" href="index.html#pricing">See the plans</a>
+        <a class="btn btn-primary" href="/book.html" data-event="trade-book-{slug}">Book a 15-minute call</a>
+        <a class="btn btn-outline" href="/pricing.html">See the plans</a>
       </div>
       <div class="grid3">
 {cards}
@@ -548,6 +702,7 @@ def trade_page(slug, title, h1, lead, blocks):
         <p>Xero for the books. Labour and materials on the job, or a job report you already keep. If those are missing, we can still keep the books current. We will not dress that up as job profit.</p>
         <p>This page is for {title.lower()} work from our Brendale office, across Brisbane and Queensland. It does not change the fee table. Builders of houses or commercial buildings are outside this line.</p>
       </div>
+      <p class="trade-next">{cross}</p>
     </div>
   </main>
 {footer()}"""
@@ -566,7 +721,7 @@ def not_found():
       <span class="eyebrow">Service Profit</span>
       <h1>That page is not here.</h1>
       <p class="lead">Go back to Service Profit. HVAC, electrical and construction service businesses in Queensland.</p>
-      <div class="cta"><a class="btn btn-primary" href="index.html">Home</a></div>
+      <div class="cta"><a class="btn btn-primary" href="/index.html">Home</a></div>
     </div>
   </main>
 {footer()}"""
@@ -577,6 +732,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>{ORIGIN}/</loc></url>
   <url><loc>{ORIGIN}/system.html</loc></url>
+  <url><loc>{ORIGIN}/pricing.html</loc></url>
   <url><loc>{ORIGIN}/why.html</loc></url>
   <url><loc>{ORIGIN}/book.html</loc></url>
   <url><loc>{ORIGIN}/contact.html</loc></url>
@@ -593,6 +749,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
 def main():
     write("index.html", index())
     write("system.html", system())
+    write("pricing.html", pricing())
     write("why.html", why())
     write("book.html", book())
     write("contact.html", contact())

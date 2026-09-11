@@ -1,16 +1,36 @@
 """Shared HTML chrome for the Service Profit public site."""
 
 ORIGIN = "https://www.serviceprofit.com.au"
-BOOK = "book.html"
+BOOK = "/book.html"
 MSBOOK = "https://outlook.office.com/book/booking@pinktax.com.au/s/g5puGFTA9kmn6ukDa4XssQ2"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
-ASSET = "rt23"
+FB = "https://www.facebook.com/pinkaccountingtax/"
+LI = "https://au.linkedin.com/company/pinkaccountingtax"
+ASSET = "rt24"
+GA4 = "G-8T6SXPNSCW"
+GTAG = "GT-WVXQ29L2"
+# Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
+META_PIXEL = ""
+
+CSP = (
+    "default-src 'self'; "
+    "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com "
+    "https://www.google.com https://www.google.com.au https://www.facebook.com https://www.facebook.com.au; "
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+    "font-src https://fonts.gstatic.com; "
+    "script-src 'self' https://www.googletagmanager.com https://connect.facebook.net; "
+    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com "
+    "https://region1.google-analytics.com https://www.facebook.com https://formsubmit.co; "
+    "form-action 'self' mailto: https://formsubmit.co; "
+    "base-uri 'self'"
+)
 
 
-def head(title, description, canonical, og_image="/assets/og.png"):
+def head(title, description, canonical, og_image="/assets/og.png", extra=""):
     if not canonical.startswith("http"):
         canonical = ORIGIN + (canonical if canonical.startswith("/") else "/" + canonical)
     og = ORIGIN + og_image if og_image.startswith("/") else og_image
+    extra_block = extra if extra else ""
     return f"""<!DOCTYPE html>
 <html lang="en-AU">
 <head>
@@ -21,7 +41,7 @@ def head(title, description, canonical, og_image="/assets/og.png"):
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="{canonical}">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; base-uri 'self'; form-action 'self' mailto:">
+  <meta http-equiv="Content-Security-Policy" content="{CSP}">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
   <meta property="og:type" content="website">
@@ -34,13 +54,111 @@ def head(title, description, canonical, og_image="/assets/og.png"):
   <meta name="twitter:title" content="{title}">
   <meta name="twitter:description" content="{description}">
   <meta name="twitter:image" content="{og}">
-  <link rel="icon" href="assets/logo.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v={ASSET}">
-</head>
+  <link rel="stylesheet" href="/styles.css?v={ASSET}">
+{extra_block}</head>
 """
+
+
+def jsonld(obj):
+    import json
+    payload = json.dumps(obj, ensure_ascii=True, separators=(",", ":"))
+    return f'  <script type="application/ld+json">\n  {payload}\n  </script>\n'
+
+
+def business_node():
+    return {
+        "@context": "https://schema.org",
+        "@type": "AccountingService",
+        "@id": f"{ORIGIN}/#business",
+        "name": "Service Profit",
+        "alternateName": "Pink Accounting",
+        "url": f"{ORIGIN}/",
+        "telephone": "+61735446386",
+        "email": "admin@pinktax.com.au",
+        "image": f"{ORIGIN}/assets/og.png",
+        "logo": f"{ORIGIN}/assets/logo.png",
+        "priceRange": "$$",
+        "knowsAbout": [
+            "HVAC accounting",
+            "electrical contractors",
+            "construction services",
+            "job costing",
+            "BAS",
+            "GST",
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Shop 15A, 18-22 Kremzow Rd",
+            "addressLocality": "Brendale",
+            "addressRegion": "QLD",
+            "postalCode": "4500",
+            "addressCountry": "AU",
+        },
+        "areaServed": [
+            {"@type": "Place", "name": "Brendale"},
+            {"@type": "AdministrativeArea", "name": "Moreton Bay"},
+            {"@type": "City", "name": "Brisbane"},
+            {"@type": "State", "name": "Queensland"},
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "16:30",
+        },
+        "founder": {"@type": "Person", "name": "Huong Bui"},
+        "taxID": "51682301891",
+        "identifier": "26284368",
+        "sameAs": [GBP, FB, LI],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "25",
+            "bestRating": "5",
+            "worstRating": "1",
+        },
+    }
+
+
+def service_node(name, url, description):
+    return {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": name,
+        "url": url,
+        "description": description,
+        "provider": {"@id": f"{ORIGIN}/#business"},
+        "areaServed": {"@type": "State", "name": "Queensland"},
+        "serviceType": "Accounting",
+    }
+
+
+def faq_node(pairs):
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {"@type": "Answer", "text": a},
+            }
+            for q, a in pairs
+        ],
+    }
+
+
+def local_business_node():
+    node = business_node()
+    node["@type"] = "AccountingService"
+    node["@id"] = f"{ORIGIN}/contact.html#local"
+    return node
 
 
 def nav(current=""):
@@ -52,20 +170,20 @@ def nav(current=""):
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="Service Profit, accounting firm">
-        <img src="assets/logo.png" alt="">
+      <a class="brand" href="/index.html" aria-label="Service Profit, accounting firm">
+        <img src="/assets/logo.png" alt="">
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Accounting firm</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-{item("system.html", "The system", "system")}
-{item("index.html#pricing", "Pricing", "pricing")}
-{item("why.html", "Meet Pink", "why")}
-{item("book.html", "Book a call", "book")}
-{item("contact.html", "Contact", "contact")}
+{item("/system.html", "The system", "system")}
+{item("/pricing.html", "Pricing", "pricing")}
+{item("/why.html", "Meet Pink", "why")}
+{item("/book.html", "Book a call", "book")}
+{item("/contact.html", "Contact", "contact")}
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
-        <a class="btn btn-primary" href="book.html" data-event="nav-book"><span class="full">Book a call</span><span class="short">Book</span></a>
+        <a class="btn btn-primary" href="/book.html" data-event="nav-book"><span class="full">Book a call</span><span class="short">Book</span></a>
         <button class="burger" id="pinkBurger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="pinkNav"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -78,35 +196,36 @@ def footer():
     <div class="wrap">
       <div class="grid">
         <div>
-          <img src="assets/logo-white.png" alt="Service Profit">
+          <img src="/assets/logo-white.png" alt="Service Profit">
           <p class="blurb">Service Profit is an accounting firm for HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland. Registered Tax Agent 26284368.</p>
         </div>
         <div>
           <h4>Explore</h4>
-          <a href="index.html">Home</a>
-          <a href="system.html">The system</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="hvac.html">HVAC</a>
-          <a href="electrical.html">Electrical</a>
-          <a href="construction.html">Construction services</a>
-          <a href="why.html">Meet Pink</a>
-          <a href="book.html">Book a call</a>
+          <a href="/index.html">Home</a>
+          <a href="/system.html">The system</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/hvac.html">HVAC</a>
+          <a href="/electrical.html">Electrical</a>
+          <a href="/construction.html">Construction services</a>
+          <a href="/why.html">Meet Pink</a>
+          <a href="/book.html">Book a call</a>
         </div>
         <div>
           <h4>Contact and legal</h4>
           <a href="tel:+61735446386">(07) 3544 6386</a>
           <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>
-          <a href="contact.html">Contact</a>
-          <a href="rights.html">Your rights</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/rights.html">Your rights</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
           <p class="addr" style="margin-top:12px;line-height:1.8">Shop 15A, 18-22 Kremzow Rd<br>Brendale QLD 4500</p>
         </div>
       </div>
-      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 10 September 2026.</p>
+      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 11 September 2026.</p>
     </div>
   </footer>
-  <script src="nav.js?v={ASSET}"></script>
+  <script src="/track.js?v={ASSET}"></script>
+  <script src="/nav.js?v={ASSET}"></script>
 </body>
 </html>
 """
@@ -115,6 +234,42 @@ def footer():
 def sticky():
     return """  <div class="sticky-book" id="bookBar">
     <span>Fifteen minutes with the firm.</span>
-    <a class="btn btn-primary" href="book.html" data-event="sticky-book">Book a call</a>
+    <a class="btn btn-primary" href="/book.html" data-event="sticky-book">Book a call</a>
   </div>
+"""
+
+
+def enquiry_form(prefix="book"):
+    return f"""      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="{prefix}-form">
+        <input type="hidden" name="_subject" value="Service Profit enquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="{ORIGIN}/book.html?sent=1">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fields">
+          <label>Name
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" required autocomplete="tel">
+          </label>
+          <label>Trade
+            <select name="trade" required>
+              <option value="">Choose one</option>
+              <option>HVAC</option>
+              <option>Electrical</option>
+              <option>Construction services</option>
+            </select>
+          </label>
+        </div>
+        <label>What do you want from the file?
+          <textarea name="message" rows="4" required maxlength="2000" placeholder="How the business runs, the software you use, and what you want looked at."></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send the enquiry</button>
+        <p class="form-note">Goes to admin@pinktax.com.au. We reply within one business day. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+      </form>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Sent. We will reply from admin@pinktax.com.au within one business day.</p>
 """

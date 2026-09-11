@@ -8,7 +8,7 @@
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://www.serviceprofit.com.au/why.html">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; base-uri 'self'; form-action 'self' mailto:">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.com.au https://www.facebook.com https://www.facebook.com.au; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://www.googletagmanager.com https://connect.facebook.net; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://www.facebook.com https://formsubmit.co; form-action 'self' mailto: https://formsubmit.co; base-uri 'self'">
   <meta property="og:title" content="Meet Pink | Service Profit">
   <meta property="og:description" content="Huong Bui, Master of Professional Accounting (Griffith), Registered Tax Agent 26284368. More than ten years in the books. Income tax, FBT, financial statements, BAS.">
   <meta property="og:type" content="website">
@@ -21,30 +21,32 @@
   <meta name="twitter:title" content="Meet Pink | Service Profit">
   <meta name="twitter:description" content="Huong Bui, Master of Professional Accounting (Griffith), Registered Tax Agent 26284368. More than ten years in the books. Income tax, FBT, financial statements, BAS.">
   <meta name="twitter:image" content="https://www.serviceprofit.com.au/assets/og.png">
-  <link rel="icon" href="assets/logo.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=rt20">
+  <link rel="stylesheet" href="/styles.css?v=rt24">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
-      <a class="brand" href="index.html" aria-label="Service Profit, accounting firm">
-        <img src="assets/logo.png" alt="">
+      <a class="brand" href="/index.html" aria-label="Service Profit, accounting firm">
+        <img src="/assets/logo.png" alt="">
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Accounting firm</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-        <a href="system.html">The system</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="why.html" aria-current="page">Meet Pink</a>
-        <a href="book.html">Book a call</a>
-        <a href="contact.html">Contact</a>
+        <a href="/system.html">The system</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/why.html" aria-current="page">Meet Pink</a>
+        <a href="/book.html">Book a call</a>
+        <a href="/contact.html">Contact</a>
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
-        <a class="btn btn-primary" href="book.html" data-event="nav-book"><span class="full">Book a call</span><span class="short">Book</span></a>
+        <a class="btn btn-primary" href="/book.html" data-event="nav-book"><span class="full">Book a call</span><span class="short">Book</span></a>
         <button class="burger" id="pinkBurger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="pinkNav"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -54,43 +56,30 @@
     <section class="page" style="padding-bottom:0">
       <div class="wrap meet">
         <div class="shot">
-          <img src="assets/pink-meet.jpg" width="1080" height="1350" alt="Huong Bui in a client meeting">
+          <picture>
+            <source type="image/webp" srcset="/assets/pink-meet.webp?v=real1">
+            <img src="/assets/pink-meet.jpg?v=real1" width="1080" height="1350" alt="Huong Bui in a client meeting">
+          </picture>
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
           <h1 style="margin-top:12px">Hello, I am Pink.</h1>
           <p class="lead">Huong Bui. I am a registered tax agent. I have spent more than ten years in the books. Service Profit is this accounting work with HVAC, electrical and construction services in Queensland.</p>
           <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
-          <a class="btn btn-primary" href="book.html" data-event="why-book" style="margin-top:22px">Book a 15-minute call</a>
+          <a class="btn btn-primary" href="/book.html" data-event="why-book" style="margin-top:22px">Book a 15-minute call</a>
         </div>
       </div>
     </section>
     <section class="band">
       <div class="wrap">
-        <div class="hire">
-          <article>
-            <span class="eyebrow">Qualification</span>
-            <h3>Master of Professional Accounting</h3>
-            <p>Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
-          </article>
-          <article>
-            <span class="eyebrow">Years in the books</span>
-            <h3>More than ten years</h3>
-            <p>I founded the firm in 2020. The work is in the file, not in a once-a-year pack. You stay on the jobs. I stay in the numbers.</p>
-          </article>
-        </div>
-        <div class="hire" style="margin-top:var(--gutter)">
-          <article>
-            <span class="eyebrow">What we hold</span>
-            <h3>Income tax, FBT, financial statements</h3>
-            <p>The return. FBT on utes, phones and other benefits. Financial statements. BAS and GST. Payroll, super and PAYG where you have staff. Tax compliance so you are not paying on missing invoices.</p>
-          </article>
-          <article>
-            <span class="eyebrow">Accountable</span>
-            <h3>Public register</h3>
-            <p>Search 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. Our obligations are written on <a href="rights.html">Your rights</a>. ABN 51 682 301 891.</p>
-          </article>
-        </div>
+        <h2>Qualification</h2>
+        <p class="lead" style="margin-top:12px">Master of Professional Accounting, Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
+        <h2>Years in the books</h2>
+        <p class="lead" style="margin-top:12px">More than ten years. I founded the firm in 2020. The work is in the file, not in a once-a-year pack. You stay on the jobs. I stay in the numbers.</p>
+        <h2>What we hold</h2>
+        <p class="lead" style="margin-top:12px">The return. FBT on utes, phones and other benefits. Financial statements. BAS and GST. Payroll, super and PAYG where you have staff. Tax compliance so you are not paying on missing invoices.</p>
+        <h2>On the public register</h2>
+        <p class="lead" style="margin-top:12px">Search 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. Our obligations are written on <a href="/rights.html">Your rights</a>. ABN 51 682 301 891.</p>
       </div>
     </section>
   </main>
@@ -98,34 +87,35 @@
     <div class="wrap">
       <div class="grid">
         <div>
-          <img src="assets/logo-white.png" alt="Service Profit">
+          <img src="/assets/logo-white.png" alt="Service Profit">
           <p class="blurb">Service Profit is an accounting firm for HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland. Registered Tax Agent 26284368.</p>
         </div>
         <div>
           <h4>Explore</h4>
-          <a href="index.html">Home</a>
-          <a href="system.html">The system</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="hvac.html">HVAC</a>
-          <a href="electrical.html">Electrical</a>
-          <a href="construction.html">Construction services</a>
-          <a href="why.html">Meet Pink</a>
-          <a href="book.html">Book a call</a>
+          <a href="/index.html">Home</a>
+          <a href="/system.html">The system</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/hvac.html">HVAC</a>
+          <a href="/electrical.html">Electrical</a>
+          <a href="/construction.html">Construction services</a>
+          <a href="/why.html">Meet Pink</a>
+          <a href="/book.html">Book a call</a>
         </div>
         <div>
           <h4>Contact and legal</h4>
           <a href="tel:+61735446386">(07) 3544 6386</a>
           <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>
-          <a href="contact.html">Contact</a>
-          <a href="rights.html">Your rights</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/rights.html">Your rights</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
           <p class="addr" style="margin-top:12px;line-height:1.8">Shop 15A, 18-22 Kremzow Rd<br>Brendale QLD 4500</p>
         </div>
       </div>
-      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 10 September 2026.</p>
+      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 11 September 2026.</p>
     </div>
   </footer>
-  <script src="nav.js?v=rt20"></script>
+  <script src="/track.js?v=rt24"></script>
+  <script src="/nav.js?v=rt24"></script>
 </body>
 </html>
