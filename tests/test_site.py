@@ -62,6 +62,8 @@ def test_google_reviews_visible():
     assert "N T · Google" in home
     assert "N M · Google" in home
     assert "Worked example, not a client result" in home
+    assert "Real clients, not a worked example" not in home
+    assert "not labelled as HVAC" not in home
     assert "aggregateRating" in home
 
 
