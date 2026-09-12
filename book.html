@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt35">
+  <link rel="stylesheet" href="/styles.css?v=rt36">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"ContactPage","name":"Book a 15-minute call","url":"https://www.serviceprofit.com.au/book.html","about":{"@id":"https://www.serviceprofit.com.au/#business"}}
   </script>
@@ -58,14 +58,9 @@
     <div class="wrap book-wide">
       <span class="eyebrow">Book</span>
       <h1>Book your 15-minute call</h1>
-      <p class="lead">Direct with Pink. Bring how you quote a job, and last BAS if you have it. If not, bring the questions. Air con, electrical and construction services in Queensland.</p>
-      <section class="pick-time is-open" id="pick-time">
-        <h2>Choose your date and time</h2>
-        <p>Microsoft Bookings opens as a full page so the calendar is not cramped.</p>
-        <a class="btn btn-primary" href="https://outlook.office.com/book/ServiceProfit@pinktax.com.au/" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
-      </section>
-      <h2>Rather write first?</h2>
-      <p>Name, business, phone, email, the work. Room below for anything else. We reply within one business day.</p>
+      <p class="lead">A few questions first so the call is not wasted. Then pick a time. Direct with Pink. Air con, electrical and construction services in Queensland.</p>
+      <h2>Before you pick a time</h2>
+      <p>Revenue, staff, what is hurting, where the business sits now, and where you want it in 12 months. We read this before the call.</p>
       <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="book-form">
         <input type="hidden" name="_subject" value="Service Profit intake">
         <input type="hidden" name="_template" value="table">
@@ -94,15 +89,44 @@
               <option>Mix of those</option>
             </select>
           </label>
+          <label>Annual revenue
+            <select name="revenue" required>
+              <option value="">Choose one</option>
+              <option>Under $1M</option>
+              <option>$1M-$3M</option>
+              <option>$3M-$5M</option>
+              <option>$5M+</option>
+            </select>
+          </label>
+          <label>Staff
+            <select name="staff" required>
+              <option value="">Choose one</option>
+              <option>Just me</option>
+              <option>2 to 5</option>
+              <option>6 to 15</option>
+              <option>16 or more</option>
+            </select>
+          </label>
         </div>
-        <label>What should we know before the call
-          <textarea name="message" rows="8" maxlength="2000" placeholder="How you quote. Whether jobs run long. Last BAS if you have it. What you want from the file."></textarea>
+        <label>What is hurting
+          <textarea class="short" name="hurt" rows="4" maxlength="1000" required placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
         </label>
-        <button class="btn btn-primary" type="submit">Send this</button>
-        <p class="form-note">Goes to admin@pinktax.com.au. We reply within one business day. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+        <label>Where is the business now
+          <textarea class="short" name="position" rows="4" maxlength="1000" required placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
+        </label>
+        <label>Where do you want it in 12 months
+          <textarea class="short" name="vision" rows="4" maxlength="1000" required placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send this, then pick a time</button>
+        <p class="form-note">Goes to admin@pinktax.com.au. We read it before the call. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
-      <p class="enquiry-ok" id="enquiryOk" hidden>Sent. Pick a time below with the same email, or wait for us to write back.</p>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. Pick a time below with the same email so we are not chasing you.</p>
 
+      <section class="pick-time" id="pick-time">
+        <h2>Then pick a time</h2>
+        <p>Microsoft Bookings opens as a full page so the calendar is not cramped. Use the same email you put on the form.</p>
+        <a class="btn btn-primary" href="https://outlook.office.com/book/ServiceProfit@pinktax.com.au/" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
+      </section>
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>
@@ -137,7 +161,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 12 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt35"></script>
-  <script src="/nav.js?v=rt35"></script>
+  <script src="/track.js?v=rt36"></script>
+  <script src="/nav.js?v=rt36"></script>
 </body>
 </html>

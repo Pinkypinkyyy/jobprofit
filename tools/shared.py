@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt35"
+ASSET = "rt36"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -348,12 +348,36 @@ def enquiry_form(prefix="book"):
               <option>Mix of those</option>
             </select>
           </label>
+          <label>Annual revenue
+            <select name="revenue" required>
+              <option value="">Choose one</option>
+              <option>Under $1M</option>
+              <option>$1M-$3M</option>
+              <option>$3M-$5M</option>
+              <option>$5M+</option>
+            </select>
+          </label>
+          <label>Staff
+            <select name="staff" required>
+              <option value="">Choose one</option>
+              <option>Just me</option>
+              <option>2 to 5</option>
+              <option>6 to 15</option>
+              <option>16 or more</option>
+            </select>
+          </label>
         </div>
-        <label>What should we know before the call
-          <textarea name="message" rows="8" maxlength="2000" placeholder="How you quote. Whether jobs run long. Last BAS if you have it. What you want from the file."></textarea>
+        <label>What is hurting
+          <textarea class="short" name="hurt" rows="4" maxlength="1000" required placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
         </label>
-        <button class="btn btn-primary" type="submit">Send this</button>
-        <p class="form-note">Goes to admin@pinktax.com.au. We reply within one business day. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+        <label>Where is the business now
+          <textarea class="short" name="position" rows="4" maxlength="1000" required placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
+        </label>
+        <label>Where do you want it in 12 months
+          <textarea class="short" name="vision" rows="4" maxlength="1000" required placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send this, then pick a time</button>
+        <p class="form-note">Goes to admin@pinktax.com.au. We read it before the call. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
-      <p class="enquiry-ok" id="enquiryOk" hidden>Sent. Pick a time below with the same email, or wait for us to write back.</p>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. Pick a time below with the same email so we are not chasing you.</p>
 """

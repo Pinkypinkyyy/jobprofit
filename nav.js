@@ -192,10 +192,11 @@
             "\nEmail: " + (data.email || "") +
             "\nPhone: " + (data.phone || "") +
             "\nWork: " + (data.trade || "") +
-            "\nCrew: " + (data.crew || "") +
-            "\nBooks: " + (data.software || "") +
+            "\nRevenue: " + (data.revenue || "") +
+            "\nStaff: " + (data.staff || "") +
             "\nHurting: " + (data.hurt || "") +
-            "\n\n" + (data.message || "");
+            "\nCurrent position: " + (data.position || "") +
+            "\n12-month vision: " + (data.vision || "");
           window.location.href =
             "mailto:admin@pinktax.com.au?subject=" +
             encodeURIComponent("Service Profit intake") +

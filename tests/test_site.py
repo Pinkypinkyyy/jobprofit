@@ -6,7 +6,7 @@ REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt35"
+CACHE = "rt36"
 
 
 def test_no_hospitality_booking():
@@ -24,7 +24,15 @@ def test_book_uses_service_profit_calendar():
     assert 'id="enquiryForm"' in text
     assert 'name="business"' in text
     assert 'name="trade"' in text
-    assert 'name="crew"' not in text
+    assert 'name="revenue"' in text
+    assert 'name="staff"' in text
+    assert 'name="hurt"' in text
+    assert 'name="position"' in text
+    assert 'name="vision"' in text
+    assert "Annual revenue" in text
+    assert "Where is the business now" in text
+    assert "Where do you want it in 12 months" in text
+    assert text.find('id="enquiryForm"') < text.find('id="pick-time"')
     assert "sell-grid" not in text
     assert "book-steps" not in text
     assert "You quoted 6 hours. You did 9." not in text

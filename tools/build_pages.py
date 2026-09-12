@@ -520,15 +520,15 @@ def book():
     <div class="wrap book-wide">
       <span class="eyebrow">Book</span>
       <h1>Book your 15-minute call</h1>
-      <p class="lead">Direct with Pink. Bring how you quote a job, and last BAS if you have it. If not, bring the questions. Air con, electrical and construction services in Queensland.</p>
-      <section class="pick-time is-open" id="pick-time">
-        <h2>Choose your date and time</h2>
-        <p>Microsoft Bookings opens as a full page so the calendar is not cramped.</p>
+      <p class="lead">A few questions first so the call is not wasted. Then pick a time. Direct with Pink. Air con, electrical and construction services in Queensland.</p>
+      <h2>Before you pick a time</h2>
+      <p>Revenue, staff, what is hurting, where the business sits now, and where you want it in 12 months. We read this before the call.</p>
+{enquiry_form("book")}
+      <section class="pick-time" id="pick-time">
+        <h2>Then pick a time</h2>
+        <p>Microsoft Bookings opens as a full page so the calendar is not cramped. Use the same email you put on the form.</p>
         <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
       </section>
-      <h2>Rather write first?</h2>
-      <p>Name, business, phone, email, the work. Room below for anything else. We reply within one business day.</p>
-{enquiry_form("book")}
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>

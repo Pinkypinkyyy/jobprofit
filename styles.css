@@ -432,6 +432,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   border-radius:12px;font:inherit;background:#fff;color:var(--ink)
 }
 .enquiry textarea{resize:vertical;min-height:180px}
+.enquiry textarea.short{min-height:92px}
 .enquiry .btn{margin-top:18px}
 .enquiry .form-note{margin-top:12px;font-size:.82rem;color:var(--muted);font-weight:400}
 .enquiry .form-note a{text-decoration:underline;text-underline-offset:3px}
