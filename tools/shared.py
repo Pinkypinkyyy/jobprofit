@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt26"
+ASSET = "rt28"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -59,7 +59,7 @@ def head(title, description, canonical, og_image="/assets/og.png", extra=""):
   <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v={ASSET}">
 {extra_block}</head>
 """
@@ -221,6 +221,71 @@ def footer():
   <script src="/nav.js?v={ASSET}"></script>
 </body>
 </html>
+"""
+
+
+def hours_chart():
+    return """      <figure class="chart-hours">
+        <p class="chart-kicker">One job</p>
+        <h3>Quoted 6 hours. Nine on the tools.</h3>
+        <p class="chart-note">Worked example, not a client result.</p>
+        <svg class="chart-svg" viewBox="0 0 560 176" role="img" aria-label="Quoted 6 hours. Nine hours on the tools. Three hours unbilled.">
+          <text x="0" y="18" fill="currentColor" font-size="12">Quoted</text>
+          <text x="560" y="18" text-anchor="end" fill="currentColor" font-size="18" font-weight="700">6 h</text>
+          <rect x="0" y="26" width="560" height="12" rx="6" fill="rgba(255,255,255,.12)"/>
+          <rect x="0" y="26" width="373" height="12" rx="6" fill="#fff"/>
+          <text x="0" y="70" fill="currentColor" font-size="12">On the tools</text>
+          <text x="560" y="70" text-anchor="end" fill="currentColor" font-size="18" font-weight="700">9 h</text>
+          <rect x="0" y="78" width="560" height="12" rx="6" fill="#fff"/>
+          <text x="0" y="122" fill="currentColor" font-size="12">Unbilled</text>
+          <text x="560" y="122" text-anchor="end" fill="#ED1651" font-size="18" font-weight="700">3 h</text>
+          <rect x="0" y="130" width="560" height="12" rx="6" fill="rgba(255,255,255,.12)"/>
+          <rect x="0" y="130" width="187" height="12" rx="6" fill="#ED1651"/>
+        </svg>
+        <p class="chart-foot">Those 3 hours never went into the next quote.</p>
+      </figure>
+"""
+
+
+def cash_chart():
+    return """      <figure class="chart-cash">
+        <p class="chart-kicker">Cash</p>
+        <h3>The bank is not drawings.</h3>
+        <p class="chart-note">GST, PAYG, super and wages sit in that account. They are not yours to spend. Illustration of the split, not a client file.</p>
+        <div class="cash-bar" role="img" aria-label="Illustration. GST, PAYG, super, wages and what is yours sit in the same bank balance.">
+          <span class="seg">GST</span>
+          <span class="seg">PAYG</span>
+          <span class="seg">Super</span>
+          <span class="seg">Wages</span>
+          <span class="seg yours">Yours</span>
+        </div>
+      </figure>
+"""
+
+
+def hour_waterfall():
+    return """      <figure class="chart-fall">
+        <p class="chart-kicker">One billed hour</p>
+        <p class="chart-note">Worked example, not your rate.</p>
+        <svg class="chart-svg light" viewBox="0 0 640 220" role="img" aria-label="Billed 165 dollars including GST. GST 15 dollars. 150 left. Labour 50 dollars. 100 left before parts and overhead.">
+          <rect x="0" y="16" width="560" height="28" rx="8" fill="#0E0E12"/>
+          <text x="12" y="35" fill="#fff" font-size="13">Billed</text>
+          <text x="548" y="35" text-anchor="end" fill="#fff" font-size="16" font-weight="700">$165</text>
+          <rect x="0" y="56" width="51" height="28" rx="8" fill="#ED1651"/>
+          <text x="12" y="75" fill="#fff" font-size="13">GST</text>
+          <text x="200" y="75" fill="#0E0E12" font-size="16" font-weight="700">−$15</text>
+          <rect x="0" y="96" width="509" height="28" rx="8" fill="#0E0E12"/>
+          <text x="12" y="115" fill="#fff" font-size="13">After GST</text>
+          <text x="497" y="115" text-anchor="end" fill="#fff" font-size="16" font-weight="700">$150</text>
+          <rect x="0" y="136" width="170" height="28" rx="8" fill="#B45309"/>
+          <text x="12" y="155" fill="#fff" font-size="13">Labour, if $50 all-in</text>
+          <text x="280" y="155" fill="#0E0E12" font-size="16" font-weight="700">−$50</text>
+          <rect x="0" y="176" width="339" height="28" rx="8" fill="#0E0E12"/>
+          <text x="12" y="195" fill="#fff" font-size="13">Left before parts and overhead</text>
+          <text x="327" y="195" text-anchor="end" fill="#fff" font-size="16" font-weight="700">$100</text>
+        </svg>
+        <p class="chart-foot">Then parts. Then overhead. Then profit, if the billed hours actually landed.</p>
+      </figure>
 """
 
 

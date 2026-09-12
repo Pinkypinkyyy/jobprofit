@@ -26,8 +26,8 @@
   <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt26">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=rt28">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#business","name":"Service Profit","alternateName":"Pink Accounting","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","image":"https://www.serviceprofit.com.au/assets/og.png","logo":"https://www.serviceprofit.com.au/assets/logo.png","priceRange":"$$","knowsAbout":["HVAC accounting","electrical contractors","construction services","job costing","BAS","GST"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368","sameAs":["https://www.facebook.com/profile.php?id=61594432044788","https://www.linkedin.com/company/143802027/"]}
   </script>
@@ -56,28 +56,38 @@
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="wrap">
-        <div>
-          <p class="kicker">Accounting firm · Brendale · Brisbane · Queensland</p>
+    <section class="hero-bleed">
+      <div class="hero-media" id="stage">
+          <picture>
+            <source type="image/webp" srcset="/assets/tech-hvac-480.webp?v=real1 480w, /assets/tech-hvac-864.webp?v=real1 864w, /assets/tech-hvac-1200.webp?v=real1 1200w" sizes="100vw">
+            <img class="is-on" data-trade="hvac" src="/assets/tech-hvac.jpg?v=real1" width="838" height="1059" alt="HVAC technician on a rooftop unit">
+          </picture>
+          <picture>
+            <source type="image/webp" srcset="/assets/electrical-480.webp?v=real1 480w, /assets/electrical-864.webp?v=real1 864w, /assets/electrical-1200.webp?v=real1 1200w" sizes="100vw">
+            <img data-trade="electrical" aria-hidden="true" inert src="/assets/electrical.jpg?v=real1" width="838" height="1059" alt="Electrical switchboard" loading="lazy">
+          </picture>
+          <picture>
+            <source type="image/webp" srcset="/assets/construction-480.webp?v=real1 480w, /assets/construction-864.webp?v=real1 864w, /assets/construction-1200.webp?v=real1 1200w" sizes="100vw">
+            <img data-trade="construction" aria-hidden="true" inert src="/assets/construction.jpg?v=real1" width="838" height="1059" alt="Construction services fit-out" loading="lazy">
+          </picture>
+        <div class="hero-scrim"></div>
+        <div class="cap" id="stageCap">HVAC</div>
+      </div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Pink Accounting · HVAC, electrical, construction · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">You stay on the jobs. We are the accounting firm and the tax agent. Income tax, FBT, financial statements, BAS, billed hours and cash, from Brendale.</p>
+          <p class="lead">You stay on the jobs. We hold billed hours, cash, income tax, FBT, financial statements and BAS, from Brendale.</p>
           <div class="cta">
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book a 15-minute call</a>
-            <a class="btn btn-outline" href="/pricing.html">See the plans</a>
+            <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
           </div>
-          <p class="kicker kicker-sub">Same plans for every trade.</p>
           <div class="trades" aria-label="Trade examples">
             <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
             <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
           <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
-          <p class="trade-links">
-            <a href="/hvac.html">HVAC</a>
-            <a href="/electrical.html">Electrical</a>
-            <a href="/construction.html">Construction services</a>
-          </p>
           <div class="trust">
             <a class="stars" href="https://www.google.com/maps?cid=17544456102082616748" rel="noopener">
               <span class="star-value">5.0</span>
@@ -87,48 +97,51 @@
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
         </div>
-        <div class="stage" id="stage">
-          <picture>
-            <source type="image/webp" srcset="/assets/tech-hvac-480.webp?v=real1 480w, /assets/tech-hvac-864.webp?v=real1 864w, /assets/tech-hvac-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img class="is-on" data-trade="hvac" src="/assets/tech-hvac.jpg?v=real1" width="838" height="1059" alt="HVAC technician on a rooftop unit">
-          </picture>
-          <picture>
-            <source type="image/webp" srcset="/assets/electrical-480.webp?v=real1 480w, /assets/electrical-864.webp?v=real1 864w, /assets/electrical-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img data-trade="electrical" aria-hidden="true" inert src="/assets/electrical.jpg?v=real1" width="838" height="1059" alt="Electrical switchboard" loading="lazy">
-          </picture>
-          <picture>
-            <source type="image/webp" srcset="/assets/construction-480.webp?v=real1 480w, /assets/construction-864.webp?v=real1 864w, /assets/construction-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">
-            <img data-trade="construction" aria-hidden="true" inert src="/assets/construction.jpg?v=real1" width="838" height="1059" alt="Construction services fit-out" loading="lazy">
-          </picture>
-          <div class="cap" id="stageCap">HVAC</div>
-        </div>
+      <figure class="chart-hours">
+        <p class="chart-kicker">One job</p>
+        <h3>Quoted 6 hours. Nine on the tools.</h3>
+        <p class="chart-note">Worked example, not a client result.</p>
+        <svg class="chart-svg" viewBox="0 0 560 176" role="img" aria-label="Quoted 6 hours. Nine hours on the tools. Three hours unbilled.">
+          <text x="0" y="18" fill="currentColor" font-size="12">Quoted</text>
+          <text x="560" y="18" text-anchor="end" fill="currentColor" font-size="18" font-weight="700">6 h</text>
+          <rect x="0" y="26" width="560" height="12" rx="6" fill="rgba(255,255,255,.12)"/>
+          <rect x="0" y="26" width="373" height="12" rx="6" fill="#fff"/>
+          <text x="0" y="70" fill="currentColor" font-size="12">On the tools</text>
+          <text x="560" y="70" text-anchor="end" fill="currentColor" font-size="18" font-weight="700">9 h</text>
+          <rect x="0" y="78" width="560" height="12" rx="6" fill="#fff"/>
+          <text x="0" y="122" fill="currentColor" font-size="12">Unbilled</text>
+          <text x="560" y="122" text-anchor="end" fill="#ED1651" font-size="18" font-weight="700">3 h</text>
+          <rect x="0" y="130" width="560" height="12" rx="6" fill="rgba(255,255,255,.12)"/>
+          <rect x="0" y="130" width="187" height="12" rx="6" fill="#ED1651"/>
+        </svg>
+        <p class="chart-foot">Those 3 hours never went into the next quote.</p>
+      </figure>
+
       </div>
     </section>
 
-    <section class="band">
-      <div class="wrap">
-        <div class="stack">
-          <article class="split">
-            <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
-            <div class="split-copy">
-              <span class="eyebrow">Billed hours</span>
-              <h2>Quoted 6 hours. Nine on the tools.</h2>
-              <p>Those 3 hours never went into the next quote. Worked example, not a client result.</p>
-              <div class="docket">
-                <div class="docket-row"><span>Quoted</span><b>6 h</b></div>
-                <div class="docket-row"><span>On the tools</span><b>9 h</b></div>
-                <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
-              </div>
-            </div>
-          </article>
-          <article class="split split-text">
-            <div class="split-copy">
-              <span class="eyebrow">On the tools</span>
-              <h2>You stay on the jobs. We hold the file.</h2>
-              <p>Income tax, FBT, financial statements, BAS and GST. Billed hours and cash. Registered Tax Agent 26284368.</p>
-              <a class="btn btn-primary" href="/book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
-            </div>
-          </article>
+    <section class="band band-photo">
+      <div class="wrap split-visual">
+        <div class="photo-frame">
+          <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
+        </div>
+        <div class="split-copy">
+          <h2>You stay on the jobs. We hold the file.</h2>
+          <p>Income tax, FBT, financial statements, BAS and GST. Billed hours versus quoted hours, each week. Cash that is yours versus GST, PAYG, super and wages. Registered Tax Agent 26284368.</p>
+      <figure class="chart-cash">
+        <p class="chart-kicker">Cash</p>
+        <h3>The bank is not drawings.</h3>
+        <p class="chart-note">GST, PAYG, super and wages sit in that account. They are not yours to spend. Illustration of the split, not a client file.</p>
+        <div class="cash-bar" role="img" aria-label="Illustration. GST, PAYG, super, wages and what is yours sit in the same bank balance.">
+          <span class="seg">GST</span>
+          <span class="seg">PAYG</span>
+          <span class="seg">Super</span>
+          <span class="seg">Wages</span>
+          <span class="seg yours">Yours</span>
+        </div>
+      </figure>
+
+          <a class="btn btn-primary" href="/book.html" data-event="split-book">Book a 15-minute call</a>
         </div>
       </div>
     </section>
@@ -207,7 +220,7 @@
 
     <section class="band">
       <div class="wrap meet">
-        <div class="shot">
+        <div class="shot photo-frame">
           <picture>
             <source type="image/webp" srcset="/assets/pink-home.webp?v=real1">
             <img src="/assets/pink-home.jpg?v=real1" width="1200" height="1800" alt="Huong Bui, principal of Service Profit" loading="lazy">
@@ -215,21 +228,21 @@
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
-          <h2 style="margin-top:12px">Hello, I am Pink.</h2>
+          <h2>Hello, I am Pink.</h2>
           <p>Huong Bui. Master of Professional Accounting (Griffith). MIPA AFA. Registered Tax Agent 26284368. More than ten years in the books. I founded the firm in 2020.</p>
           <p>We hold income tax, FBT, financial statements, BAS, GST and payroll. You stay on the jobs.</p>
           <div class="creds"><a href="/why.html">Read more about Pink</a></div>
-          <a class="btn btn-primary" href="/book.html" data-event="meet-book" style="margin-top:22px">Book a 15-minute call</a>
+          <a class="btn btn-primary" href="/book.html" data-event="meet-book">Book a 15-minute call</a>
         </div>
       </div>
     </section>
 
-    <section class="final final-photo">
+    <section class="final">
       <div class="wrap">
         <h2>Fifteen minutes. Then we look at the file.</h2>
-        <p>You stay on the jobs. We hold income tax, FBT, financial statements, BAS, billed hours and cash. Brendale, Brisbane and Queensland.</p>
+        <p>You stay on the jobs. We hold billed hours, cash, tax and BAS. Brendale, Brisbane and Queensland.</p>
         <a class="btn btn-white" href="/book.html" data-event="final-book">Book a 15-minute call</a>
-        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="/rights.html" style="color:#fff;text-decoration:underline">Your rights</a> · <a href="/privacy.html" style="color:#fff;text-decoration:underline">Privacy</a> · <a href="/terms.html" style="color:#fff;text-decoration:underline">Terms</a></div>
+        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="/rights.html">Your rights</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
       </div>
     </section>
   </main>
@@ -270,7 +283,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 12 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt26"></script>
-  <script src="/nav.js?v=rt26"></script>
+  <script src="/track.js?v=rt28"></script>
+  <script src="/nav.js?v=rt28"></script>
 </body>
 </html>

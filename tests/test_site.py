@@ -4,7 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML = list(ROOT.glob("*.html"))
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt26"
+CACHE = "rt28"
 
 
 def test_no_hospitality_booking():
@@ -62,6 +62,10 @@ def test_google_reviews_visible():
     assert "N T · Google" in home
     assert "N M · Google" in home
     assert "Worked example, not a client result" in home
+    assert "chart-hours" in home
+    assert "Quoted 6 hours. Nine on the tools." in home
+    assert "chart-cash" in home
+    assert "chart-fall" in (ROOT / "system.html").read_text(encoding="utf-8")
     assert "Real clients, not a worked example" not in home
     assert "not labelled as HVAC" not in home
     assert "aggregateRating" not in home

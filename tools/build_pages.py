@@ -3,10 +3,13 @@ from shared import (
     GBP,
     MSBOOK,
     ORIGIN,
+    cash_chart,
     enquiry_form,
     faq_node,
     footer,
     head,
+    hour_waterfall,
+    hours_chart,
     jsonld,
     business_node,
     local_business_node,
@@ -67,11 +70,11 @@ PRICING_FAQ = [
 ]
 
 
-def picture(stem, alt, extra="", lazy=False):
+def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55vw"):
     loading = ' loading="lazy"' if lazy else ""
     return (
         f'          <picture>\n'
-        f'            <source type="image/webp" srcset="/assets/{stem}-480.webp?v=real1 480w, /assets/{stem}-864.webp?v=real1 864w, /assets/{stem}-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 55vw">\n'
+        f'            <source type="image/webp" srcset="/assets/{stem}-480.webp?v=real1 480w, /assets/{stem}-864.webp?v=real1 864w, /assets/{stem}-1200.webp?v=real1 1200w" sizes="{sizes}">\n'
         f'            <img{extra} src="/assets/{stem}.jpg?v=real1" width="838" height="1059" alt="{alt}"{loading}>\n'
         f'          </picture>'
     )
@@ -86,28 +89,29 @@ def index():
     )
     body = f"""{nav("home")}
   <main id="main">
-    <section class="hero">
-      <div class="wrap">
-        <div>
-          <p class="kicker">Accounting firm · Brendale · Brisbane · Queensland</p>
+    <section class="hero-bleed">
+      <div class="hero-media" id="stage">
+{picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac"', False, "100vw")}
+{picture("electrical", "Electrical switchboard", ' data-trade="electrical" aria-hidden="true" inert', True, "100vw")}
+{picture("construction", "Construction services fit-out", ' data-trade="construction" aria-hidden="true" inert', True, "100vw")}
+        <div class="hero-scrim"></div>
+        <div class="cap" id="stageCap">HVAC</div>
+      </div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Pink Accounting · HVAC, electrical, construction · Queensland</p>
           <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">You stay on the jobs. We are the accounting firm and the tax agent. Income tax, FBT, financial statements, BAS, billed hours and cash, from Brendale.</p>
+          <p class="lead">You stay on the jobs. We hold billed hours, cash, income tax, FBT, financial statements and BAS, from Brendale.</p>
           <div class="cta">
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book a 15-minute call</a>
-            <a class="btn btn-outline" href="/pricing.html">See the plans</a>
+            <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
           </div>
-          <p class="kicker kicker-sub">Same plans for every trade.</p>
           <div class="trades" aria-label="Trade examples">
             <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
             <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
           <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
-          <p class="trade-links">
-            <a href="/hvac.html">HVAC</a>
-            <a href="/electrical.html">Electrical</a>
-            <a href="/construction.html">Construction services</a>
-          </p>
           <div class="trust">
             <a class="stars" href="{GBP}" rel="noopener">
               <span class="star-value">5.0</span>
@@ -117,39 +121,20 @@ def index():
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
         </div>
-        <div class="stage" id="stage">
-{picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac"', False)}
-{picture("electrical", "Electrical switchboard", ' data-trade="electrical" aria-hidden="true" inert', True)}
-{picture("construction", "Construction services fit-out", ' data-trade="construction" aria-hidden="true" inert', True)}
-          <div class="cap" id="stageCap">HVAC</div>
-        </div>
+{hours_chart()}
       </div>
     </section>
 
-    <section class="band">
-      <div class="wrap">
-        <div class="stack">
-          <article class="split">
-            <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
-            <div class="split-copy">
-              <span class="eyebrow">Billed hours</span>
-              <h2>Quoted 6 hours. Nine on the tools.</h2>
-              <p>Those 3 hours never went into the next quote. Worked example, not a client result.</p>
-              <div class="docket">
-                <div class="docket-row"><span>Quoted</span><b>6 h</b></div>
-                <div class="docket-row"><span>On the tools</span><b>9 h</b></div>
-                <div class="docket-row is-miss"><span>Unbilled</span><b>3 h</b></div>
-              </div>
-            </div>
-          </article>
-          <article class="split split-text">
-            <div class="split-copy">
-              <span class="eyebrow">On the tools</span>
-              <h2>You stay on the jobs. We hold the file.</h2>
-              <p>Income tax, FBT, financial statements, BAS and GST. Billed hours and cash. Registered Tax Agent 26284368.</p>
-              <a class="btn btn-primary" href="/book.html" data-event="split-book" style="margin-top:22px">Book a 15-minute call</a>
-            </div>
-          </article>
+    <section class="band band-photo">
+      <div class="wrap split-visual">
+        <div class="photo-frame">
+          <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
+        </div>
+        <div class="split-copy">
+          <h2>You stay on the jobs. We hold the file.</h2>
+          <p>Income tax, FBT, financial statements, BAS and GST. Billed hours versus quoted hours, each week. Cash that is yours versus GST, PAYG, super and wages. Registered Tax Agent 26284368.</p>
+{cash_chart()}
+          <a class="btn btn-primary" href="/book.html" data-event="split-book">Book a 15-minute call</a>
         </div>
       </div>
     </section>
@@ -228,7 +213,7 @@ def index():
 
     <section class="band">
       <div class="wrap meet">
-        <div class="shot">
+        <div class="shot photo-frame">
           <picture>
             <source type="image/webp" srcset="/assets/pink-home.webp?v=real1">
             <img src="/assets/pink-home.jpg?v=real1" width="1200" height="1800" alt="Huong Bui, principal of Service Profit" loading="lazy">
@@ -236,21 +221,21 @@ def index():
         </div>
         <div>
           <span class="eyebrow">Meet Pink</span>
-          <h2 style="margin-top:12px">Hello, I am Pink.</h2>
+          <h2>Hello, I am Pink.</h2>
           <p>Huong Bui. Master of Professional Accounting (Griffith). MIPA AFA. Registered Tax Agent 26284368. More than ten years in the books. I founded the firm in 2020.</p>
           <p>We hold income tax, FBT, financial statements, BAS, GST and payroll. You stay on the jobs.</p>
           <div class="creds"><a href="/why.html">Read more about Pink</a></div>
-          <a class="btn btn-primary" href="/book.html" data-event="meet-book" style="margin-top:22px">Book a 15-minute call</a>
+          <a class="btn btn-primary" href="/book.html" data-event="meet-book">Book a 15-minute call</a>
         </div>
       </div>
     </section>
 
-    <section class="final final-photo">
+    <section class="final">
       <div class="wrap">
         <h2>Fifteen minutes. Then we look at the file.</h2>
-        <p>You stay on the jobs. We hold income tax, FBT, financial statements, BAS, billed hours and cash. Brendale, Brisbane and Queensland.</p>
+        <p>You stay on the jobs. We hold billed hours, cash, tax and BAS. Brendale, Brisbane and Queensland.</p>
         <a class="btn btn-white" href="/book.html" data-event="final-book">Book a 15-minute call</a>
-        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="/rights.html" style="color:#fff;text-decoration:underline">Your rights</a> · <a href="/privacy.html" style="color:#fff;text-decoration:underline">Privacy</a> · <a href="/terms.html" style="color:#fff;text-decoration:underline">Terms</a></div>
+        <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="/rights.html">Your rights</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
       </div>
     </section>
   </main>
@@ -280,6 +265,7 @@ def system():
           <a class="btn btn-primary" href="/book.html" data-event="system-book">Book a 15-minute call</a>
           <a class="btn btn-outline" href="/pricing.html">See the plans</a>
         </div>
+{hour_waterfall()}
         <div class="hour-board">
           <div class="cell"><b>$150 + GST</b><span>Billed. Worked example, not your rate.</span></div>
           <div class="cell"><b>$15</b><span>GST. Not yours.</span></div>
