@@ -4,7 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML = list(ROOT.glob("*.html"))
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt25"
+CACHE = "rt26"
 
 
 def test_no_hospitality_booking():
@@ -64,7 +64,7 @@ def test_google_reviews_visible():
     assert "Worked example, not a client result" in home
     assert "Real clients, not a worked example" not in home
     assert "not labelled as HVAC" not in home
-    assert "aggregateRating" in home
+    assert "aggregateRating" not in home
 
 
 def test_analytics_tags():
@@ -87,8 +87,10 @@ def test_structured_data_on_inner_pages():
     contact = (ROOT / "contact.html").read_text(encoding="utf-8")
     assert "AccountingService" in contact
     assert "sameAs" in (ROOT / "index.html").read_text(encoding="utf-8")
-    assert "facebook.com/pinkaccountingtax" in (ROOT / "index.html").read_text(encoding="utf-8")
-    assert "linkedin.com/company/pinkaccountingtax" in (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "facebook.com/profile.php?id=61594432044788" in (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "linkedin.com/company/143802027" in (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "facebook.com/pinkaccountingtax" not in (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "linkedin.com/company/pinkaccountingtax" not in (ROOT / "index.html").read_text(encoding="utf-8")
 
 
 def test_lazy_load_and_webp():
@@ -166,6 +168,20 @@ def test_mobile_pricing_and_a11y_hooks():
     assert "aria-pressed" in home
     assert 'role="tablist"' not in home
     assert "hvac.html" in home
+
+
+def test_pink_brand_not_a_second_identity():
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "Montserrat" in css
+    assert "IBM Plex" not in css
+    assert "#ED1651" in css
+    assert "#1E6BD6" not in css
+    assert "logo-white.png" in home
+    assert "Pink Accounting" in home
+    assert 'alt="pink"' in home
+    og = ROOT / "assets" / "og.png"
+    assert og.exists()
 
 
 def test_sitemap_has_trade_pages():

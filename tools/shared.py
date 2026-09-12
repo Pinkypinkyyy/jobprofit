@@ -4,9 +4,9 @@ ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "/book.html"
 MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
-FB = "https://www.facebook.com/pinkaccountingtax/"
-LI = "https://au.linkedin.com/company/pinkaccountingtax"
-ASSET = "rt25"
+FB = "https://www.facebook.com/profile.php?id=61594432044788"
+LI = "https://www.linkedin.com/company/143802027/"
+ASSET = "rt26"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -59,7 +59,7 @@ def head(title, description, canonical, og_image="/assets/og.png", extra=""):
   <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v={ASSET}">
 {extra_block}</head>
 """
@@ -115,14 +115,7 @@ def business_node():
         "founder": {"@type": "Person", "name": "Huong Bui"},
         "taxID": "51682301891",
         "identifier": "26284368",
-        "sameAs": [GBP, FB, LI],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "reviewCount": "25",
-            "bestRating": "5",
-            "worstRating": "1",
-        },
+        "sameAs": [FB, LI],
     }
 
 
@@ -170,9 +163,9 @@ def nav(current=""):
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
-      <a class="brand" href="/index.html" aria-label="Service Profit, accounting firm">
-        <img src="/assets/logo.png" alt="">
-        <span class="mark"><span class="offer">Service Profit</span><span class="firm">Accounting firm</span></span>
+      <a class="brand" href="/index.html" aria-label="Pink Accounting, Service Profit">
+        <img src="/assets/logo-white.png" alt="pink">
+        <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
 {item("/system.html", "The system", "system")}
@@ -196,8 +189,8 @@ def footer():
     <div class="wrap">
       <div class="grid">
         <div>
-          <img src="/assets/logo-white.png" alt="Service Profit">
-          <p class="blurb">Service Profit is an accounting firm for HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland. Registered Tax Agent 26284368.</p>
+          <img src="/assets/logo-white.png" alt="pink">
+          <p class="blurb">Service Profit is Pink Accounting’s line for HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland. Registered Tax Agent 26284368.</p>
         </div>
         <div>
           <h4>Explore</h4>
@@ -221,7 +214,7 @@ def footer():
           <p class="addr" style="margin-top:12px;line-height:1.8">Shop 15A, 18-22 Kremzow Rd<br>Brendale QLD 4500</p>
         </div>
       </div>
-      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 11 September 2026.</p>
+      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 12 September 2026.</p>
     </div>
   </footer>
   <script src="/track.js?v={ASSET}"></script>

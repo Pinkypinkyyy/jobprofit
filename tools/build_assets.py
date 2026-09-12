@@ -34,37 +34,98 @@ def to_webp(src: Path, stem: str, widths=(480, 864, 1200)) -> None:
     print(full.name, full.stat().st_size)
 
 
-def build_og() -> None:
-    og = Image.new("RGB", (1200, 630), "#12161C")
-    d = ImageDraw.Draw(og)
-    d.rectangle([0, 0, 18, 630], fill="#1E6BD6")
-    logo_path = ASSETS / "logo-white.png"
-    if logo_path.exists():
-        logo = Image.open(logo_path).convert("RGBA")
-        logo.thumbnail((72, 72), Image.Resampling.LANCZOS)
-        og.paste(logo, (72, 72), logo)
-    font_lg = font_md = font_sm = ImageFont.load_default()
-    for path in (
-        r"C:\Windows\Fonts\segoeuib.ttf",
-        r"C:\Windows\Fonts\arialbd.ttf",
-        r"C:\Windows\Fonts\calibrib.ttf",
-    ):
+INK = "#0E0E12"
+PINK = "#ED1651"
+WHITE = "#FFFFFF"
+MUTED = "#C8C8C8"
+SOFT = "#8A8A8A"
+
+
+def _font(size, bold=True):
+    names = (
+        r"C:\Windows\Fonts\segoeuib.ttf" if bold else r"C:\Windows\Fonts\segoeui.ttf",
+        r"C:\Windows\Fonts\arialbd.ttf" if bold else r"C:\Windows\Fonts\arial.ttf",
+    )
+    for path in names:
         try:
-            font_lg = ImageFont.truetype(path, 64)
-            font_md = ImageFont.truetype(path, 32)
-            font_sm = ImageFont.truetype(path, 22)
-            break
+            return ImageFont.truetype(path, size)
         except OSError:
             continue
-    d.text((72, 180), "Service Profit", fill="#FFFFFF", font=font_lg)
-    d.text((72, 270), "Pink Accounting for HVAC, electrical", fill="#C8D0D8", font=font_md)
-    d.text((72, 318), "and construction service businesses.", fill="#C8D0D8", font=font_md)
-    d.text((72, 520), "Queensland  ·  Registered Tax Agent 26284368", fill="#8A93A0", font=font_sm)
+    return ImageFont.load_default()
+
+
+def _paste_logo(canvas, xy, height):
+    logo_path = ASSETS / "logo-white.png"
+    if not logo_path.exists():
+        return
+    logo = Image.open(logo_path).convert("RGBA")
+    ratio = height / logo.height
+    logo = logo.resize((max(1, int(logo.width * ratio)), height), Image.Resampling.LANCZOS)
+    canvas.paste(logo, xy, logo)
+
+
+def build_og() -> None:
+    og = Image.new("RGB", (1200, 630), INK)
+    d = ImageDraw.Draw(og)
+    d.rectangle([0, 0, 8, 630], fill=PINK)
+    _paste_logo(og, (72, 56), 56)
+    d.text((72, 200), "Service Profit", fill=WHITE, font=_font(64))
+    d.text((72, 286), "Pink Accounting for HVAC, electrical", fill=MUTED, font=_font(32, bold=False))
+    d.text((72, 330), "and construction service businesses.", fill=MUTED, font=_font(32, bold=False))
+    d.text((72, 520), "Queensland  ·  Registered Tax Agent 26284368", fill=SOFT, font=_font(22, bold=False))
     png = ASSETS / "og.png"
     webp = ASSETS / "og.webp"
     og.save(png, "PNG", optimize=True)
     og.save(webp, "WEBP", quality=82, method=6)
     print("og", png.stat().st_size, webp.stat().st_size)
+
+
+def build_social() -> None:
+    social = ASSETS / "social"
+    social.mkdir(exist_ok=True)
+
+    def save(im, name):
+        path = social / name
+        im.save(path, "PNG", optimize=True)
+        print(name, im.size, path.stat().st_size)
+
+    av = Image.new("RGB", (1080, 1080), INK)
+    d = ImageDraw.Draw(av)
+    d.rectangle([0, 0, 16, 1080], fill=PINK)
+    _paste_logo(av, (96, 280), 88)
+    d.text((96, 420), "Service Profit", fill=WHITE, font=_font(64))
+    d.text((96, 510), "HVAC, electrical and construction", fill=MUTED, font=_font(28, bold=False))
+    d.text((96, 900), "Pink Accounting  ·  Tax Agent 26284368", fill=SOFT, font=_font(24, bold=False))
+    save(av, "profile-1080.png")
+
+    fb = Image.new("RGB", (1640, 924), INK)
+    d = ImageDraw.Draw(fb)
+    d.rectangle([0, 0, 12, 924], fill=PINK)
+    _paste_logo(fb, (80, 220), 72)
+    d.text((80, 340), "Service Profit", fill=WHITE, font=_font(72))
+    d.text((80, 440), "Accounting for HVAC, electrical", fill=MUTED, font=_font(36, bold=False))
+    d.text((80, 492), "and construction service businesses.", fill=MUTED, font=_font(36, bold=False))
+    d.text((80, 760), "Pink Accounting  ·  Brendale  ·  Queensland", fill=SOFT, font=_font(24, bold=False))
+    save(fb, "cover-facebook.png")
+
+    li = Image.new("RGB", (1584, 396), INK)
+    d = ImageDraw.Draw(li)
+    d.rectangle([0, 0, 10, 396], fill=PINK)
+    _paste_logo(li, (64, 48), 56)
+    d.text((64, 140), "Service Profit", fill=WHITE, font=_font(48))
+    d.text((64, 210), "HVAC, electrical and construction accounting  ·  Queensland", fill=MUTED, font=_font(22, bold=False))
+    d.text((64, 300), "Pink Accounting  ·  Registered Tax Agent 26284368", fill=SOFT, font=_font(18, bold=False))
+    save(li, "cover-linkedin.png")
+
+    g = Image.new("RGB", (1200, 675), INK)
+    d = ImageDraw.Draw(g)
+    d.rectangle([0, 0, 10, 675], fill=PINK)
+    _paste_logo(g, (64, 120), 56)
+    d.text((64, 220), "Service Profit", fill=WHITE, font=_font(56))
+    d.text((64, 300), "Job profit while you can still", fill=MUTED, font=_font(28, bold=False))
+    d.text((64, 344), "change the next quote.", fill=MUTED, font=_font(28, bold=False))
+    d.text((64, 540), "Pink Accounting  ·  Brendale QLD  ·  Tax Agent 26284368", fill=SOFT, font=_font(20, bold=False))
+    save(g, "cover-google.png")
 
 
 def build_favicon() -> None:
@@ -81,4 +142,5 @@ if __name__ == "__main__":
         if src.exists():
             to_webp(src, stem)
     build_og()
+    build_social()
     build_favicon()

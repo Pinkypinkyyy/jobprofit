@@ -1,8 +1,9 @@
 # Service Profit channel lock — 11 September 2026
 
 Legal entity (about / footer only): Pink Accounting & Tax Solutions Pty Ltd  
-Public brand: **Service Profit**  
-Not: Pink Accounting hospitality, Margin Check, venues, Australia-wide.
+Public brand: **Service Profit** (the line). Firm: **Pink Accounting**.  
+Logo and colour: official Pink working papers only (black / white / `#ED1651` accent, Montserrat, lowercase pink wordmark).  
+Not: a second logo, blue/copper palettes, hospitality copy, Margin Check, venues, Australia-wide.
 
 | Field | Locked value |
 |---|---|
