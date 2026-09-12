@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt33"
+ASSET = "rt34"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -198,6 +198,7 @@ def footer():
           <a href="/pricing.html">Pricing</a>
           <a href="/system.html">The system</a>
           <a href="/why.html">Meet Pink</a>
+          <a href="/check.html">Hours check</a>
           <a href="/book.html">Book a call</a>
           <a href="/contact.html">Contact</a>
         </div>
@@ -292,6 +293,29 @@ def sticky():
     <span>Book 15 minutes. See if we can take the file.</span>
     <a class="btn btn-primary" href="/book.html" data-event="sticky-book">Book a call</a>
   </div>
+"""
+
+
+def hours_check():
+    return """      <form class="hours-check" id="hoursCheck">
+        <div class="fields">
+          <label>Hours you quoted
+            <input type="number" name="quoted" min="0.5" step="0.5" required inputmode="decimal">
+          </label>
+          <label>Hours on the tools
+            <input type="number" name="tools" min="0.5" step="0.5" required inputmode="decimal">
+          </label>
+          <label>Rate you billed, ex GST
+            <input type="number" name="rate" min="1" step="1" value="150" required inputmode="decimal">
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Show the gap</button>
+      </form>
+      <div class="hours-result" id="hoursResult" hidden>
+        <p id="hoursResultLine"></p>
+        <p class="chart-note">Sketch from the numbers you typed. Not your file. Not a promise.</p>
+        <a class="btn btn-primary" href="/book.html" data-event="check-book">Book 15 minutes</a>
+      </div>
 """
 
 

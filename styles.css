@@ -581,6 +581,25 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .pick-time h2{margin:0 0 8px;font-size:1.4rem}
 .pick-time .btn{margin-top:16px}
 .pick-time.is-next{outline:2px solid var(--ink)}
+.sell-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 32px}
+.sell-grid article{background:var(--paper-2);border-radius:18px;padding:20px 18px}
+.sell-grid h2{font-size:1.05rem;margin:0 0 8px}
+.sell-grid p{margin:0;color:var(--soft);font-size:.95rem}
+.hours-check{margin:12px 0 28px;max-width:44em;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.hours-check .fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.hours-check label{display:block;font-weight:650;font-size:.92rem;color:var(--ink)}
+.hours-check input{
+  display:block;width:100%;margin-top:6px;padding:12px 12px;border:1px solid var(--line);
+  border-radius:12px;font:inherit;background:#fff
+}
+.hours-check .btn{margin-top:16px}
+.hours-result{margin:0 0 28px;max-width:44em;padding:22px 20px;background:var(--ink);color:#fff;border-radius:var(--radius)}
+.hours-result p{margin:0 0 10px;font-size:1.15rem}
+.hours-result .chart-note{color:rgba(255,255,255,.7);font-size:.9rem}
+.hours-result .btn{margin-top:8px;background:#fff;color:var(--ink)}
+@media(max-width:940px){
+  .sell-grid,.hours-check .fields{grid-template-columns:1fr}
+}
 
 @media(max-width:940px){
   .hero-bleed{min-height:0}

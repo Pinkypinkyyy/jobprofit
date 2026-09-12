@@ -5,6 +5,7 @@ from shared import (
     ORIGIN,
     cash_chart,
     enquiry_form,
+    hours_check,
     faq_node,
     footer,
     head,
@@ -104,7 +105,7 @@ def index():
           <p class="lead">Then you quoted 6 again. We keep billed hours, cash and tax in the file so you can stay on the tools. Air con, electrical, construction services. Queensland.</p>
           <div class="cta">
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book 15 minutes</a>
-            <a class="btn btn-ghost" href="/pricing.html">See the fees</a>
+            <a class="btn btn-ghost" href="/check.html" data-event="hero-check">Free 60-second hours check</a>
           </div>
           <p class="why-call">The call is to see if we can take the file. You have not signed anything.</p>
           <div class="trades" aria-label="The same work on three kinds of job">
@@ -476,6 +477,29 @@ def why():
     return h + body
 
 
+def check():
+    h = head(
+        "Hours check | Service Profit",
+        "Type the last job. Hours quoted versus hours on the tools. Then book 15 minutes if you want the file held.",
+        "/check.html",
+    )
+    body = f"""{nav()}
+  <main id="main" class="page">
+    <div class="wrap book-funnel">
+      <span class="eyebrow">Hours check</span>
+      <h1>Where did the last job leak?</h1>
+      <p class="lead">Hours you quoted. Hours on the tools. The rate you billed. Sixty seconds. Then we will tell you if the call is worth it.</p>
+{hours_check()}
+      <div class="prose">
+        <p>This is a sketch from the numbers you type. Not your file. Not tax advice. On the call we look at the real jobs, the bank, and tax.</p>
+        <p>Job Profit is $1,650 + GST a month for most files. The letter is the quote. You have not signed anything by booking.</p>
+      </div>
+    </div>
+  </main>
+{footer()}"""
+    return h + body
+
+
 def book():
     h = head(
         "Book a 15-minute call | Service Profit | Pink Accounting",
@@ -495,24 +519,42 @@ def book():
   <main id="main" class="page">
     <div class="wrap book-funnel">
       <span class="eyebrow">Book</span>
-      <h1>Tell us about the jobs. Then pick a time.</h1>
-      <p class="lead">Fifteen minutes. You leave knowing if we can take the file. Job Profit is $1,650 + GST a month for most files. The letter is the quote. You have not signed anything by booking.</p>
+      <h1>You already know the jobs ran long. The call is to see if we take the file.</h1>
+      <p class="lead">Fifteen minutes with Pink, or a team member whose notes she reads the same day. You leave knowing if we can take it. You have not signed anything.</p>
+      <div class="sell-grid">
+        <article>
+          <h2>The problem</h2>
+          <p>You quoted 6 hours. You did 9. Then you quoted 6 again. The bank looks full. GST, PAYG, super and wages are sitting in it.</p>
+        </article>
+        <article>
+          <h2>What you get</h2>
+          <p>Billed hours versus quoted hours, each week. Cash that is yours versus tax. Income tax, FBT, financial statements, BAS. You stay on the tools.</p>
+        </article>
+        <article>
+          <h2>What it costs</h2>
+          <p>Job Profit is $1,650 + GST a month for most files. Compliance is $550 if you only need the return. Catch-up is quoted separate. The letter is the quote before work starts.</p>
+        </article>
+      </div>
       <ol class="book-steps">
-        <li><b>1. This form.</b> How the work runs, how many on the tools, what is hurting.</li>
-        <li><b>2. A time.</b> Same email so the notes and the calendar match.</li>
-        <li><b>3. The call.</b> Pink takes it when she is free. If a team member takes it, she reads the notes the same working day. If it is a fit, you get a letter.</li>
+        <li><b>1. The gap.</b> Type the last job. See the hours that never made the next quote.</li>
+        <li><b>2. The file.</b> How the work runs, how many on the tools, what is hurting.</li>
+        <li><b>3. The time.</b> Same email. Confirmation to you and to admin@pinktax.com.au.</li>
+        <li><b>4. The call.</b> If it is a fit, you get a letter. Most files are set up once you agree the start date.</li>
       </ol>
-      <h2>1. About the business</h2>
+      <h2>1. Last job</h2>
+      <p>Sixty seconds. Your numbers. Not a client result.</p>
+{hours_check()}
+      <h2>2. About the business</h2>
       <p>Air con, electrical and construction services in Queensland. Not hospitality. Not house builders.</p>
 {enquiry_form("book")}
       <section class="pick-time" id="pick-time">
-        <h2>2. Pick a time</h2>
+        <h2>3. Pick a time</h2>
         <p>Use the same email you put on the form. Confirmation goes to you and to admin@pinktax.com.au.</p>
         <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the calendar</a>
       </section>
       <div class="prose">
         <h2>Have nearby if you can</h2>
-        <p>How you quote a job. Whether jobs run long. Last BAS if you have it. You do not need to share passwords or a street address on this call.</p>
+        <p>How you quote a job. Whether jobs run long. Last BAS if you have it. You do not need to share passwords on this call.</p>
       </div>
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
@@ -701,6 +743,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>{ORIGIN}/pricing.html</loc></url>
   <url><loc>{ORIGIN}/why.html</loc></url>
   <url><loc>{ORIGIN}/book.html</loc></url>
+  <url><loc>{ORIGIN}/check.html</loc></url>
   <url><loc>{ORIGIN}/contact.html</loc></url>
   <url><loc>{ORIGIN}/rights.html</loc></url>
   <url><loc>{ORIGIN}/privacy.html</loc></url>
@@ -715,6 +758,7 @@ def main():
     write("pricing.html", pricing())
     write("why.html", why())
     write("book.html", book())
+    write("check.html", check())
     write("contact.html", contact())
     write("privacy.html", privacy())
     write("rights.html", rights())

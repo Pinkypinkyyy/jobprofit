@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy | Service Profit | Pink Accounting</title>
-  <meta name="description" content="Privacy policy for Pink Accounting & Tax Solutions Pty Ltd, including the Service Profit service.">
+  <title>Hours check | Service Profit</title>
+  <meta name="description" content="Type the last job. Hours quoted versus hours on the tools. Then book 15 minutes if you want the file held.">
   <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://www.serviceprofit.com.au/privacy.html">
+  <link rel="canonical" href="https://www.serviceprofit.com.au/check.html">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.com.au https://www.facebook.com https://www.facebook.com.au; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://www.googletagmanager.com https://connect.facebook.net; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://www.facebook.com https://formsubmit.co; form-action 'self' mailto: https://formsubmit.co; media-src 'self'; base-uri 'self'">
-  <meta property="og:title" content="Privacy | Service Profit | Pink Accounting">
-  <meta property="og:description" content="Privacy policy for Pink Accounting & Tax Solutions Pty Ltd, including the Service Profit service.">
+  <meta property="og:title" content="Hours check | Service Profit">
+  <meta property="og:description" content="Type the last job. Hours quoted versus hours on the tools. Then book 15 minutes if you want the file held.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.serviceprofit.com.au/privacy.html">
+  <meta property="og:url" content="https://www.serviceprofit.com.au/check.html">
   <meta property="og:image" content="https://www.serviceprofit.com.au/assets/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_AU">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Privacy | Service Profit | Pink Accounting">
-  <meta name="twitter:description" content="Privacy policy for Pink Accounting & Tax Solutions Pty Ltd, including the Service Profit service.">
+  <meta name="twitter:title" content="Hours check | Service Profit">
+  <meta name="twitter:description" content="Type the last job. Hours quoted versus hours on the tools. Then book 15 minutes if you want the file held.">
   <meta name="twitter:image" content="https://www.serviceprofit.com.au/assets/og.png">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/assets/logo.png">
@@ -52,27 +52,33 @@
   </header>
 
   <main id="main" class="page">
-    <div class="wrap">
-      <span class="eyebrow">Pink Accounting</span>
-      <h1>Privacy</h1>
+    <div class="wrap book-funnel">
+      <span class="eyebrow">Hours check</span>
+      <h1>Where did the last job leak?</h1>
+      <p class="lead">Hours you quoted. Hours on the tools. The rate you billed. Sixty seconds. Then we will tell you if the call is worth it.</p>
+      <form class="hours-check" id="hoursCheck">
+        <div class="fields">
+          <label>Hours you quoted
+            <input type="number" name="quoted" min="0.5" step="0.5" required inputmode="decimal">
+          </label>
+          <label>Hours on the tools
+            <input type="number" name="tools" min="0.5" step="0.5" required inputmode="decimal">
+          </label>
+          <label>Rate you billed, ex GST
+            <input type="number" name="rate" min="1" step="1" value="150" required inputmode="decimal">
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Show the gap</button>
+      </form>
+      <div class="hours-result" id="hoursResult" hidden>
+        <p id="hoursResultLine"></p>
+        <p class="chart-note">Sketch from the numbers you typed. Not your file. Not a promise.</p>
+        <a class="btn btn-primary" href="/book.html" data-event="check-book">Book 15 minutes</a>
+      </div>
+
       <div class="prose">
-        <p>Pink Accounting &amp; Tax Solutions Pty Ltd (ABN 51 682 301 891) handles personal information under the Privacy Act 1988. Service Profit is a service of this firm. This page applies to the whole practice. Last reviewed 11 September 2026.</p>
-        <h2>What we collect</h2>
-        <p>Name, contact details, business details, and the financial and tax information needed to provide accounting and tax services. If you send the enquiry form, book a call or email us, we keep that correspondence. Microsoft Bookings also holds the appointment details you enter there, when that calendar is open.</p>
-        <h2>Why we collect it</h2>
-        <p>To provide the service you asked for, meet our tax-agent and legal obligations, and run the practice. We do not sell lists.</p>
-        <h2>How we hold it</h2>
-        <p>Client files live in the firm’s Microsoft 365, Xero and related practice systems. Access is limited to people doing the work. We keep records for as long as tax and professional rules require, then destroy or de-identify them in the ordinary course.</p>
-        <h2>Who we share it with</h2>
-        <p>Only where the job requires it: the ATO, ASIC, your bank or software provider with your authority, professional indemnity insurers, and regulators when the law requires it. Microsoft, Xero, Google Analytics, Meta (when the advertising pixel is active) and similar suppliers process information to run those tools. Some of those suppliers store or support data outside Australia. We use them because the practice cannot run without them. Tell us if you do not want a named tool used on your file.</p>
-        <h2>This website</h2>
-        <p>This site runs Google Analytics 4 so we can see which pages are used and whether an enquiry was sent. If a Meta pixel ID is configured, Meta also receives a page view and a lead event after a successful enquiry. We do not treat a click on Book a call as a completed enquiry. The enquiry form is sent through Formsubmit to admin@pinktax.com.au. You can ask us not to use analytics on a future visit by writing to admin@pinktax.com.au.</p>
-        <h2>Access and correction</h2>
-        <p>You can ask to see the personal information we hold about you, and ask us to correct it. Write to admin@pinktax.com.au. We will respond within 30 days. If we refuse, we will say why and how to complain.</p>
-        <h2>Complaints</h2>
-        <p>Privacy complaints go first to admin@pinktax.com.au or 07 3544 6386. The principal reviews them. If we cannot resolve it, you can contact the Office of the Australian Information Commissioner at oaic.gov.au.</p>
-        <h2>How to contact us</h2>
-        <p>admin@pinktax.com.au or 07 3544 6386. Shop 15A, 18–22 Kremzow Rd, Brendale QLD 4500.</p>
+        <p>This is a sketch from the numbers you type. Not your file. Not tax advice. On the call we look at the real jobs, the bank, and tax.</p>
+        <p>Job Profit is $1,650 + GST a month for most files. The letter is the quote. You have not signed anything by booking.</p>
       </div>
     </div>
   </main>

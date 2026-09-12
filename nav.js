@@ -109,6 +109,35 @@
     });
   });
 
+  var hoursForm = document.getElementById("hoursCheck");
+  var hoursOut = document.getElementById("hoursResult");
+  var hoursLine = document.getElementById("hoursResultLine");
+  if (hoursForm && hoursOut && hoursLine) {
+    hoursForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var quoted = parseFloat(hoursForm.quoted.value);
+      var tools = parseFloat(hoursForm.tools.value);
+      var rate = parseFloat(hoursForm.rate.value);
+      if (!(quoted > 0) || !(tools > 0) || !(rate > 0)) return;
+      var extra = Math.max(0, Math.round((tools - quoted) * 10) / 10);
+      var dollars = Math.round(extra * rate);
+      if (extra <= 0) {
+        hoursLine.textContent =
+          "That job landed on quote. The leak is often the next job, or the bank. Book 15 minutes if the quotes and the tax still do not match.";
+      } else {
+        hoursLine.textContent =
+          "That job ran " + extra + " hours over. At $" + rate +
+          " an hour, about $" + dollars +
+          " never made the next quote.";
+      }
+      hoursOut.hidden = false;
+      hoursOut.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      try {
+        if (typeof gtag === "function") gtag("event", "generate_lead", { method: "hours-check" });
+      } catch (err) {}
+    });
+  }
+
   var form = document.getElementById("enquiryForm");
   var ok = document.getElementById("enquiryOk");
   if (form) {

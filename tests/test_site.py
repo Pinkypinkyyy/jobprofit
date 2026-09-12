@@ -6,7 +6,7 @@ REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt33"
+CACHE = "rt34"
 
 
 def test_no_hospitality_booking():
@@ -26,8 +26,14 @@ def test_book_uses_service_profit_calendar():
     assert 'name="crew"' in text
     assert 'name="software"' in text
     assert 'name="hurt"' in text
-    assert "Tell us about the jobs" in text
+    assert "You already know the jobs ran long" in text
     assert "book-steps" in text
+    assert "hoursCheck" in text
+    assert "What it costs" in text
+    assert 'href="/check.html"' in (ROOT / "index.html").read_text(encoding="utf-8")
+    check = (ROOT / "check.html").read_text(encoding="utf-8")
+    assert "hoursCheck" in check
+    assert "Where did the last job leak?" in check
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert 'href="/book.html"' in home
 
@@ -214,7 +220,7 @@ def test_pink_brand_not_a_second_identity():
 
 def test_sitemap_has_real_pages_not_fake_trades():
     sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    for slug in ("terms.html", "pricing.html", "system.html"):
+    for slug in ("terms.html", "pricing.html", "system.html", "check.html"):
         assert slug in sm
     assert "hvac.html" not in sm
     assert "electrical.html" not in sm
