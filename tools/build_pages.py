@@ -641,7 +641,7 @@ def terms():
     return h + body
 
 
-def trade_page(slug, title, h1, lead, blocks):
+def trade_page(slug, title, h1, lead, blocks, extra_html=""):
     h = head(
         f"{title} accounting in Queensland | Service Profit, Brendale",
         lead,
@@ -680,6 +680,7 @@ def trade_page(slug, title, h1, lead, blocks):
       <div class="grid3">
 {cards}
       </div>
+{extra_html}
       <div class="prose" style="margin-top:48px">
         <h2>What we need from the file</h2>
         <p>Xero for the books. Labour and materials on the job, or a job report you already keep. If those are missing, we can still keep the books current. We will not dress that up as job profit.</p>
@@ -751,6 +752,18 @@ def main():
                 ("Materials", "Parts on the job", "Parts billed at cost, or not billed at all, do not show up in a year-end pack in time to change the next quote."),
                 ("Cash", "The next tax bill", "We keep the books current so a busy week is not mistaken for a funded BAS."),
             ],
+            extra_html="""      <figure class="watch">
+        <div class="watch-frame">
+          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="1080" height="1920">
+            <source src="/assets/video/callback-cost.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <h2>What a callback really costs</h2>
+          <p>Two technicians. Labour on the clock. A $600 job given away because the callback was never counted. Worked example, not a client result.</p>
+        </figcaption>
+      </figure>
+""",
         ),
     )
     write(

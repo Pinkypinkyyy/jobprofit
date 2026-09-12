@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt28"
+ASSET = "rt29"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -22,6 +22,7 @@ CSP = (
     "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com "
     "https://region1.google-analytics.com https://www.facebook.com https://formsubmit.co; "
     "form-action 'self' mailto: https://formsubmit.co; "
+    "media-src 'self'; "
     "base-uri 'self'"
 )
 

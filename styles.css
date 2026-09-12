@@ -249,6 +249,20 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .card h2{font-size:1.15rem;margin:8px 0 8px}
 .card p{color:var(--soft);font-size:.95rem}
 
+.watch{
+  margin-top:48px;display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:36px;align-items:center;
+}
+.watch-frame{
+  border-radius:var(--radius-photo);overflow:hidden;background:#0E0E12;box-shadow:var(--shadow-deep);
+}
+.watch video{display:block;width:100%;height:auto;max-height:min(78vh,720px);background:#0E0E12}
+.watch figcaption h2{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:0 0 12px}
+.watch figcaption p{color:var(--soft);max-width:34em}
+@media(max-width:940px){
+  .watch{grid-template-columns:1fr;gap:18px}
+  .watch video{max-height:min(70vh,640px)}
+}
+
 .table-scroll{
   margin-top:32px;
   overflow-x:auto;

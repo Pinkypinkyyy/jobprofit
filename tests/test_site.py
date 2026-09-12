@@ -4,7 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML = list(ROOT.glob("*.html"))
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt28"
+CACHE = "rt29"
 
 
 def test_no_hospitality_booking():
@@ -148,6 +148,16 @@ def test_why_has_subheadings():
     assert "Years in the books" in text
     assert "What we hold" in text
     assert "On the public register" in text
+
+
+def test_hvac_has_callback_video():
+    text = (ROOT / "hvac.html").read_text(encoding="utf-8")
+    assert 'callback-cost.mp4' in text
+    assert "<video" in text
+    assert (ROOT / "assets" / "video" / "callback-cost.mp4").exists()
+    assert (ROOT / "assets" / "video" / "callback-cost-poster.jpg").exists()
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "callback-cost.mp4" not in home
 
 
 def test_trade_pages_cross_link():
