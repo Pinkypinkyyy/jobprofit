@@ -84,8 +84,8 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .brand .mark{display:flex;flex-direction:column;line-height:1.15}
 .brand .offer{font-size:.92rem;font-weight:650;letter-spacing:-.01em;color:#fff}
 .brand .firm{font-size:.68rem;color:rgba(255,255,255,.62);letter-spacing:.04em}
-.links{display:flex;align-items:center;gap:26px}
-.links a{color:rgba(255,255,255,.82);font-size:.95rem}
+.links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.links a{color:rgba(255,255,255,.82);font-size:.92rem}
 .links a:hover,.links a[aria-current="page"]{color:#fff}
 .navr{display:flex;align-items:center;gap:18px}
 .phone{font-size:.95rem;font-weight:500;white-space:nowrap;color:#fff}
@@ -483,7 +483,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
 .hero-bleed .trade{background:transparent;color:#fff;border-color:rgba(255,255,255,.35);box-shadow:none;border-radius:var(--radius-btn)}
-.hero-bleed .trade:hover,.hero-bleed .trade.is-on,.hero-bleed .trade[aria-pressed="true"]{
+.hero-bleed .trade:hover,.hero-bleed .trade.is-on{
   background:#fff;color:var(--ink);border-color:#fff;transform:translateY(-2px)
 }
 .hero-bleed .nav .btn-primary{background:#fff;color:var(--ink)}

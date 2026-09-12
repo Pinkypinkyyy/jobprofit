@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt29">
+  <link rel="stylesheet" href="/styles.css?v=rt30">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#business","name":"Service Profit","alternateName":"Pink Accounting","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","image":"https://www.serviceprofit.com.au/assets/og.png","logo":"https://www.serviceprofit.com.au/assets/logo.png","priceRange":"$$","knowsAbout":["HVAC accounting","electrical contractors","construction services","job costing","BAS","GST"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368","sameAs":["https://www.facebook.com/profile.php?id=61594432044788","https://www.linkedin.com/company/143802027/"]}
   </script>
@@ -41,11 +41,11 @@
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-        <a href="/system.html">The system</a>
+        <a href="/hvac.html">HVAC</a>
+        <a href="/electrical.html">Electrical</a>
+        <a href="/construction.html">Construction</a>
         <a href="/pricing.html">Pricing</a>
-        <a href="/why.html">Meet Pink</a>
-        <a href="/book.html">Book a call</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/system.html">The system</a>
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
@@ -82,12 +82,12 @@
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
           </div>
-          <div class="trades" aria-label="Trade examples">
-            <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
-            <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
-            <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
+          <div class="trades" aria-label="Open a trade page">
+            <a class="trade is-on" href="/hvac.html" data-trade="hvac">HVAC</a>
+            <a class="trade" href="/electrical.html" data-trade="electrical">Electrical</a>
+            <a class="trade" href="/construction.html" data-trade="construction">Construction</a>
           </div>
-          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
+          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill. Open the HVAC page.</p>
           <div class="trust">
             <a class="stars" href="https://www.google.com/maps?cid=17544456102082616748" rel="noopener">
               <span class="star-value">5.0</span>
@@ -146,19 +146,36 @@
       </div>
     </section>
 
+    <section class="band">
+      <div class="wrap">
+      <figure class="watch">
+        <div class="watch-frame">
+          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="1080" height="1920">
+            <source src="/assets/video/callback-cost.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <h2>What a callback really costs</h2>
+          <p>Two technicians. Labour on the clock. A $600 job given away because the callback was never counted. Worked example, not a client result. Same story as the HVAC page.</p>
+          <p class="trade-links"><a href="/hvac.html">HVAC</a> · <a href="/electrical.html">Electrical</a> · <a href="/construction.html">Construction</a></p>
+        </figcaption>
+      </figure>
+      </div>
+    </section>
+
     <section class="band" id="pricing">
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">Our fees</span>
           <h2>Job Profit $1,650 + GST a month.</h2>
-          <p>$19,800 + GST a year. Books, billed hours and cash in the file, tax and BAS held. Not unlimited work. The letter is the quote.</p>
+          <p>Monthly. Books, billed hours and cash in the file, tax and BAS held. Not unlimited work. The letter is the quote.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
             <span class="badge">Typical ongoing plan</span>
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
-            <div class="fyear">$19,800 + GST a year</div>
+
             <p class="fdesc">The number you care about is billed hours versus quoted hours, and how much of the bank balance is actually yours. GST, PAYG, super and wages sit in that account. They are not drawings.</p>
             <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-book">Book a 15-minute call</a></div>
             <div class="fnote">If you only need the return, that is Compliance. Bookkeeping is an add-on when you need it, not a plan.</div>
@@ -174,19 +191,16 @@
           <a class="tier" href="/pricing.html#level-weekly">
             <div class="tname">Weekly Visibility</div>
             <div class="tprice">$2,650<small> + GST/mo, from</small></div>
-            <div class="fyear">from $31,800 + GST a year</div>
             <p>Job Profit, plus a snapshot while the job is still on site. You see billed time before the job is closed.</p>
           </a>
           <a class="tier" href="/pricing.html#level-scale">
             <div class="tname">Ready to Scale</div>
             <div class="tprice">$3,500<small> + GST/mo, from</small></div>
-            <div class="fyear">from $42,000 + GST a year</div>
             <p>Plus a written forecast: hire, draw, hold. Application only. Not a guaranteed result.</p>
           </a>
           <a class="tier" href="/pricing.html#level-compliance">
             <div class="tname">Compliance</div>
             <div class="tprice">$550<small> + GST/mo</small></div>
-            <div class="fyear">$6,600 + GST a year</div>
             <p>Income tax, FBT, financial statements, BAS and GST from a file that is already in order.</p>
           </a>
         </div>
@@ -283,7 +297,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 12 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt29"></script>
-  <script src="/nav.js?v=rt29"></script>
+  <script src="/track.js?v=rt30"></script>
+  <script src="/nav.js?v=rt30"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML = list(ROOT.glob("*.html"))
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt29"
+CACHE = "rt30"
 
 
 def test_no_hospitality_booking():
@@ -52,6 +52,10 @@ def test_homepage_does_not_repeat_trade_photos():
     assert home.count('alt="Electrical switchboard"') == 1
     assert home.count('alt="Construction services fit-out"') == 1
     assert 'href="/hvac.html"' in home
+    nav_home = home
+    assert 'href="/hvac.html">HVAC</a>' in nav_home
+    assert 'href="/electrical.html">Electrical</a>' in nav_home
+    assert 'href="/construction.html">Construction</a>' in nav_home
 
 
 def test_google_reviews_visible():
@@ -157,7 +161,15 @@ def test_hvac_has_callback_video():
     assert (ROOT / "assets" / "video" / "callback-cost.mp4").exists()
     assert (ROOT / "assets" / "video" / "callback-cost-poster.jpg").exists()
     home = (ROOT / "index.html").read_text(encoding="utf-8")
-    assert "callback-cost.mp4" not in home
+    assert "callback-cost.mp4" in home
+
+
+def test_fees_are_monthly_only():
+    banned = ("$19,800", "$31,800", "$42,000", "$6,600", "/ yr", "/ year", "+ GST a year")
+    for p in HTML:
+        text = p.read_text(encoding="utf-8")
+        for token in banned:
+            assert token not in text, (p.name, token)
 
 
 def test_trade_pages_cross_link():
@@ -179,7 +191,7 @@ def test_mobile_pricing_and_a11y_hooks():
     assert ".table-scroll" in css
     assert ".scope-cards" in css
     assert "Escape" in js
-    assert "aria-pressed" in home
+    assert 'href="/hvac.html" data-trade="hvac"' in home
     assert 'role="tablist"' not in home
     assert "hvac.html" in home
 

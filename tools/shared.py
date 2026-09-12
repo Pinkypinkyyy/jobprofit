@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt29"
+ASSET = "rt30"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -169,11 +169,11 @@ def nav(current=""):
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-{item("/system.html", "The system", "system")}
+{item("/hvac.html", "HVAC", "hvac")}
+{item("/electrical.html", "Electrical", "electrical")}
+{item("/construction.html", "Construction", "construction")}
 {item("/pricing.html", "Pricing", "pricing")}
-{item("/why.html", "Meet Pink", "why")}
-{item("/book.html", "Book a call", "book")}
-{item("/contact.html", "Contact", "contact")}
+{item("/system.html", "The system", "system")}
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>

@@ -106,12 +106,12 @@ def index():
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
           </div>
-          <div class="trades" aria-label="Trade examples">
-            <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
-            <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
-            <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
+          <div class="trades" aria-label="Open a trade page">
+            <a class="trade is-on" href="/hvac.html" data-trade="hvac">HVAC</a>
+            <a class="trade" href="/electrical.html" data-trade="electrical">Electrical</a>
+            <a class="trade" href="/construction.html" data-trade="construction">Construction</a>
           </div>
-          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
+          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill. Open the HVAC page.</p>
           <div class="trust">
             <a class="stars" href="{GBP}" rel="noopener">
               <span class="star-value">5.0</span>
@@ -139,19 +139,36 @@ def index():
       </div>
     </section>
 
+    <section class="band">
+      <div class="wrap">
+      <figure class="watch">
+        <div class="watch-frame">
+          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="1080" height="1920">
+            <source src="/assets/video/callback-cost.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <h2>What a callback really costs</h2>
+          <p>Two technicians. Labour on the clock. A $600 job given away because the callback was never counted. Worked example, not a client result. Same story as the HVAC page.</p>
+          <p class="trade-links"><a href="/hvac.html">HVAC</a> · <a href="/electrical.html">Electrical</a> · <a href="/construction.html">Construction</a></p>
+        </figcaption>
+      </figure>
+      </div>
+    </section>
+
     <section class="band" id="pricing">
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">Our fees</span>
           <h2>Job Profit $1,650 + GST a month.</h2>
-          <p>$19,800 + GST a year. Books, billed hours and cash in the file, tax and BAS held. Not unlimited work. The letter is the quote.</p>
+          <p>Monthly. Books, billed hours and cash in the file, tax and BAS held. Not unlimited work. The letter is the quote.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
             <span class="badge">Typical ongoing plan</span>
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
-            <div class="fyear">$19,800 + GST a year</div>
+
             <p class="fdesc">The number you care about is billed hours versus quoted hours, and how much of the bank balance is actually yours. GST, PAYG, super and wages sit in that account. They are not drawings.</p>
             <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-book">Book a 15-minute call</a></div>
             <div class="fnote">If you only need the return, that is Compliance. Bookkeeping is an add-on when you need it, not a plan.</div>
@@ -167,19 +184,16 @@ def index():
           <a class="tier" href="/pricing.html#level-weekly">
             <div class="tname">Weekly Visibility</div>
             <div class="tprice">$2,650<small> + GST/mo, from</small></div>
-            <div class="fyear">from $31,800 + GST a year</div>
             <p>Job Profit, plus a snapshot while the job is still on site. You see billed time before the job is closed.</p>
           </a>
           <a class="tier" href="/pricing.html#level-scale">
             <div class="tname">Ready to Scale</div>
             <div class="tprice">$3,500<small> + GST/mo, from</small></div>
-            <div class="fyear">from $42,000 + GST a year</div>
             <p>Plus a written forecast: hire, draw, hold. Application only. Not a guaranteed result.</p>
           </a>
           <a class="tier" href="/pricing.html#level-compliance">
             <div class="tname">Compliance</div>
             <div class="tprice">$550<small> + GST/mo</small></div>
-            <div class="fyear">$6,600 + GST a year</div>
             <p>Income tax, FBT, financial statements, BAS and GST from a file that is already in order.</p>
           </a>
         </div>
@@ -349,7 +363,7 @@ def pricing():
             <span class="badge">Typical ongoing plan</span>
             <h2>Job Profit</h2>
             <div class="fprice">$1,650<small> + GST / month</small></div>
-            <div class="fyear">$19,800 + GST a year</div>
+
             <p class="fdesc">Billed hours versus quoted hours, and how much of the bank balance is actually yours.</p>
             <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-job">Book a 15-minute call</a></div>
           </div>
@@ -366,25 +380,25 @@ def pricing():
             <tbody>
               <tr class="pop" id="level-job">
                 <td><strong>Job Profit</strong></td>
-                <td class="price">$1,650 / mo<br>$19,800 / yr</td>
+                <td class="price">$1,650 + GST / month</td>
                 <td>Billed hours vs quoted hours. Cash that is yours vs GST, PAYG, super, wages. FBT watched in the file. Books and BAS sit under that.</td>
                 <td>A monthly meeting. Unlimited access. Catch-up. A published savings figure.</td>
               </tr>
               <tr id="level-weekly">
                 <td><strong>Weekly Visibility</strong></td>
-                <td class="price">from $2,650 / mo<br>from $31,800 / yr</td>
+                <td class="price">from $2,650 + GST / month</td>
                 <td>Includes Job Profit. Snapshot while the job is still on site.</td>
                 <td>Open-ended project work unless scoped.</td>
               </tr>
               <tr id="level-scale">
                 <td><strong>Ready to Scale</strong></td>
-                <td class="price">from $3,500 / mo<br>from $42,000 / yr</td>
+                <td class="price">from $3,500 + GST / month</td>
                 <td>Includes Weekly Visibility. Written forecast: hire, draw, hold. Application only.</td>
                 <td>A guaranteed result. Unlimited access.</td>
               </tr>
               <tr id="level-compliance">
                 <td><strong>Compliance</strong></td>
-                <td class="price">$550 / mo<br>$6,600 / yr</td>
+                <td class="price">$550 + GST / month</td>
                 <td>Income tax, FBT, financial statements, BAS and GST from records already in order. We are the registered tax agent.</td>
                 <td>Job-and-cash look. WhatsApp. Catch-up. Unlimited advisory.</td>
               </tr>
@@ -393,13 +407,13 @@ def pricing():
         </div>
         <p class="table-hint">Swipe sideways for every column.</p>
         <div class="scope-cards">
-          <article class="scope-card" id="card-job"><h2>Job Profit</h2><div class="price">$1,650 / month · $19,800 / year</div><p><b>In:</b> billed hours vs quoted hours, cash that is yours, FBT watched, tax and BAS held.</p><p><b>Out:</b> a monthly meeting, a published savings figure, catch-up.</p></article>
-          <article class="scope-card"><h2>Weekly Visibility</h2><div class="price">from $2,650 / month · from $31,800 / year</div><p><b>In:</b> Job Profit, plus a snapshot while the job is still on site.</p><p><b>Out:</b> open-ended project work unless scoped.</p></article>
-          <article class="scope-card"><h2>Ready to Scale</h2><div class="price">from $3,500 / month · from $42,000 / year</div><p><b>In:</b> Weekly Visibility, plus a written forecast: hire, draw, hold. Application only.</p><p><b>Out:</b> a guaranteed result. Unlimited access.</p></article>
-          <article class="scope-card" id="card-compliance"><h2>Compliance</h2><div class="price">$550 / month · $6,600 / year</div><p><b>In:</b> income tax, FBT, financial statements, BAS and GST from a file already in order.</p><p><b>Out:</b> job-and-cash look, WhatsApp, catch-up, unlimited advisory.</p></article>
+          <article class="scope-card" id="card-job"><h2>Job Profit</h2><div class="price">$1,650 + GST / month</div><p><b>In:</b> billed hours vs quoted hours, cash that is yours, FBT watched, tax and BAS held.</p><p><b>Out:</b> a monthly meeting, a published savings figure, catch-up.</p></article>
+          <article class="scope-card"><h2>Weekly Visibility</h2><div class="price">from $2,650 + GST / month</div><p><b>In:</b> Job Profit, plus a snapshot while the job is still on site.</p><p><b>Out:</b> open-ended project work unless scoped.</p></article>
+          <article class="scope-card"><h2>Ready to Scale</h2><div class="price">from $3,500 + GST / month</div><p><b>In:</b> Weekly Visibility, plus a written forecast: hire, draw, hold. Application only.</p><p><b>Out:</b> a guaranteed result. Unlimited access.</p></article>
+          <article class="scope-card" id="card-compliance"><h2>Compliance</h2><div class="price">$550 + GST / month</div><p><b>In:</b> income tax, FBT, financial statements, BAS and GST from a file already in order.</p><p><b>Out:</b> job-and-cash look, WhatsApp, catch-up, unlimited advisory.</p></article>
         </div>
         <div class="addon" id="level-bookkeeping">
-          <h2>Bookkeeping add-on · from $500 + GST / month · from $6,000 + GST a year</h2>
+          <h2>Bookkeeping add-on · from $500 + GST / month</h2>
           <p>Not a plan. Quoted when it is actually needed: tax time, a catch-up, or while Job Profit is more than the business can take yet. It does not include the weekly job-and-cash look.</p>
         </div>
       </div>
@@ -667,7 +681,7 @@ def trade_page(slug, title, h1, lead, blocks, extra_html=""):
         ],
     }[slug]
     cross = " · ".join(f'{label} <a href="{href}">{name}</a>' for label, href, name in others)
-    body = f"""{nav()}
+    body = f"""{nav(slug)}
   <main id="main" class="page">
     <div class="wrap">
       <span class="eyebrow">Service Profit · Queensland</span>
