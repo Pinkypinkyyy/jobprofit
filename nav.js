@@ -205,7 +205,7 @@
         .finally(function () {
           if (btn) {
             btn.disabled = false;
-            btn.textContent = "Send this, then pick a time";
+            btn.textContent = "Send this";
           }
         });
     });

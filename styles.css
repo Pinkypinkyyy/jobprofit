@@ -423,7 +423,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .pricing-more a{text-decoration:underline;text-underline-offset:3px;font-weight:650}
 .trade-next{margin-top:36px;color:var(--soft)}
 .trade-next a{text-decoration:underline;text-underline-offset:3px}
-.enquiry{margin-top:22px;max-width:44em;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.enquiry{margin-top:22px;max-width:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 32px}
 .enquiry .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .enquiry label{display:block;font-weight:650;font-size:.92rem;margin:12px 0 0;color:var(--ink)}
 .enquiry .fields label{margin-top:0}
@@ -431,7 +431,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   display:block;width:100%;margin-top:6px;padding:12px 14px;border:1px solid var(--line);
   border-radius:12px;font:inherit;background:#fff;color:var(--ink)
 }
-.enquiry textarea{resize:vertical;min-height:120px}
+.enquiry textarea{resize:vertical;min-height:180px}
 .enquiry .btn{margin-top:18px}
 .enquiry .form-note{margin-top:12px;font-size:.82rem;color:var(--muted);font-weight:400}
 .enquiry .form-note a{text-decoration:underline;text-underline-offset:3px}
@@ -575,9 +575,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .book-steps{margin:28px 0 32px;padding:0;list-style:none;display:grid;gap:12px;max-width:44em}
 .book-steps li{background:var(--paper-2);border-radius:16px;padding:16px 18px;color:var(--soft)}
 .book-steps b{color:var(--ink)}
-.book-funnel > h2{margin-top:8px;font-size:1.4rem}
-.book-funnel > p{color:var(--soft);max-width:40em;margin:8px 0 16px}
-.pick-time{margin:40px 0 24px;padding:28px;background:var(--paper-2);border-radius:22px;max-width:44em}
+.book-wide > h2,.book-funnel > h2{margin-top:28px;font-size:1.5rem}
+.book-wide > p,.book-funnel > p{color:var(--soft);max-width:48em;margin:8px 0 16px}
+.pick-time{margin:28px 0 32px;padding:32px 36px;background:var(--paper-2);border-radius:22px;max-width:none}
 .pick-time h2{margin:0 0 8px;font-size:1.4rem}
 .pick-time .btn{margin-top:16px}
 .pick-time.is-next{outline:2px solid var(--ink)}
@@ -585,7 +585,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .sell-grid article{background:var(--paper-2);border-radius:18px;padding:20px 18px}
 .sell-grid h2{font-size:1.05rem;margin:0 0 8px}
 .sell-grid p{margin:0;color:var(--soft);font-size:.95rem}
-.hours-check{margin:12px 0 28px;max-width:44em;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.hours-check{margin:12px 0 28px;max-width:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 32px}
 .hours-check .fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .hours-check label{display:block;font-weight:650;font-size:.92rem;color:var(--ink)}
 .hours-check input{
@@ -593,7 +593,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   border-radius:12px;font:inherit;background:#fff
 }
 .hours-check .btn{margin-top:16px}
-.hours-result{margin:0 0 28px;max-width:44em;padding:22px 20px;background:var(--ink);color:#fff;border-radius:var(--radius)}
+.hours-result{margin:0 0 28px;max-width:none;padding:28px 32px;background:var(--ink);color:#fff;border-radius:var(--radius)}
 .hours-result p{margin:0 0 10px;font-size:1.15rem}
 .hours-result .chart-note{color:rgba(255,255,255,.7);font-size:.9rem}
 .hours-result .btn{margin-top:8px;background:#fff;color:var(--ink)}

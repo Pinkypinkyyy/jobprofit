@@ -485,7 +485,7 @@ def check():
     )
     body = f"""{nav()}
   <main id="main" class="page">
-    <div class="wrap book-funnel">
+    <div class="wrap book-wide">
       <span class="eyebrow">Hours check</span>
       <h1>Where did the last job leak?</h1>
       <p class="lead">Hours you quoted. Hours on the tools. The rate you billed. Sixty seconds. Then we will tell you if the call is worth it.</p>
@@ -503,7 +503,7 @@ def check():
 def book():
     h = head(
         "Book a 15-minute call | Service Profit | Pink Accounting",
-        "Tell us how the jobs run, then book 15 minutes. Job Profit is $1,650 + GST a month for most files. The letter is the quote.",
+        "Book a 15-minute call with Pink. Air con, electrical and construction services in Queensland.",
         "/book.html",
         extra=jsonld(
             {
@@ -517,45 +517,18 @@ def book():
     )
     body = f"""{nav("book")}
   <main id="main" class="page">
-    <div class="wrap book-funnel">
+    <div class="wrap book-wide">
       <span class="eyebrow">Book</span>
-      <h1>You already know the jobs ran long. The call is to see if we take the file.</h1>
-      <p class="lead">Fifteen minutes with Pink, or a team member whose notes she reads the same day. You leave knowing if we can take it. You have not signed anything.</p>
-      <div class="sell-grid">
-        <article>
-          <h2>The problem</h2>
-          <p>You quoted 6 hours. You did 9. Then you quoted 6 again. The bank looks full. GST, PAYG, super and wages are sitting in it.</p>
-        </article>
-        <article>
-          <h2>What you get</h2>
-          <p>Billed hours versus quoted hours, each week. Cash that is yours versus tax. Income tax, FBT, financial statements, BAS. You stay on the tools.</p>
-        </article>
-        <article>
-          <h2>What it costs</h2>
-          <p>Job Profit is $1,650 + GST a month for most files. Compliance is $550 if you only need the return. Catch-up is quoted separate. The letter is the quote before work starts.</p>
-        </article>
-      </div>
-      <ol class="book-steps">
-        <li><b>1. The gap.</b> Type the last job. See the hours that never made the next quote.</li>
-        <li><b>2. The file.</b> How the work runs, how many on the tools, what is hurting.</li>
-        <li><b>3. The time.</b> Same email. Confirmation to you and to admin@pinktax.com.au.</li>
-        <li><b>4. The call.</b> If it is a fit, you get a letter. Most files are set up once you agree the start date.</li>
-      </ol>
-      <h2>1. Last job</h2>
-      <p>Sixty seconds. Your numbers. Not a client result.</p>
-{hours_check()}
-      <h2>2. About the business</h2>
-      <p>Air con, electrical and construction services in Queensland. Not hospitality. Not house builders.</p>
-{enquiry_form("book")}
-      <section class="pick-time" id="pick-time">
-        <h2>3. Pick a time</h2>
-        <p>Use the same email you put on the form. Confirmation goes to you and to admin@pinktax.com.au.</p>
-        <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the calendar</a>
+      <h1>Book your 15-minute call</h1>
+      <p class="lead">Direct with Pink. Bring how you quote a job, and last BAS if you have it. If not, bring the questions. Air con, electrical and construction services in Queensland.</p>
+      <section class="pick-time is-open" id="pick-time">
+        <h2>Choose your date and time</h2>
+        <p>Microsoft Bookings opens as a full page so the calendar is not cramped.</p>
+        <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
       </section>
-      <div class="prose">
-        <h2>Have nearby if you can</h2>
-        <p>How you quote a job. Whether jobs run long. Last BAS if you have it. You do not need to share passwords on this call.</p>
-      </div>
+      <h2>Rather write first?</h2>
+      <p>Name, business, phone, email, the work. Room below for anything else. We reply within one business day.</p>
+{enquiry_form("book")}
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>
