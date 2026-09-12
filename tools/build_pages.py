@@ -106,12 +106,12 @@ def index():
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book a 15-minute call</a>
             <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
           </div>
-          <div class="trades" aria-label="Open a trade page">
-            <a class="trade is-on" href="/hvac.html" data-trade="hvac">HVAC</a>
-            <a class="trade" href="/electrical.html" data-trade="electrical">Electrical</a>
-            <a class="trade" href="/construction.html" data-trade="construction">Construction</a>
+          <div class="trades" aria-label="Same work, three kinds of job">
+            <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
+            <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
+            <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
-          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill. Open the HVAC page.</p>
+          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
           <div class="trust">
             <a class="stars" href="{GBP}" rel="noopener">
               <span class="star-value">5.0</span>
@@ -149,10 +149,19 @@ def index():
         </div>
         <figcaption>
           <h2>What a callback really costs</h2>
-          <p>Two technicians. Labour on the clock. A $600 job given away because the callback was never counted. Worked example, not a client result. Same story as the HVAC page.</p>
-          <p class="trade-links"><a href="/hvac.html">HVAC</a> · <a href="/electrical.html">Electrical</a> · <a href="/construction.html">Construction</a></p>
+          <p>Two technicians. Labour on the clock. A $600 job given away because the callback was never counted. Worked example, not a client result. Same story for HVAC, electrical and construction services.</p>
         </figcaption>
       </figure>
+      </div>
+    </section>
+
+    <section class="band" id="who">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Who this is for</span>
+          <h2>One line. HVAC, electrical, construction services.</h2>
+          <p>Same plans. Same file. Quoted hours versus hours on the tools. Cash that is yours versus GST, PAYG, super and wages. Not house builders. Not hospitality.</p>
+        </div>
       </div>
     </section>
 
@@ -655,56 +664,21 @@ def terms():
     return h + body
 
 
-def trade_page(slug, title, h1, lead, blocks, extra_html=""):
-    h = head(
-        f"{title} accounting in Queensland | Service Profit, Brendale",
-        lead,
-        f"/{slug}.html",
-        extra=jsonld(service_node(f"{title} accounting", f"{ORIGIN}/{slug}.html", lead)),
-    )
-    cards = "\n".join(
-        f'        <section class="card"><span class="eyebrow">{k}</span><h2>{t}</h2><p>{p}</p></section>'
-        for k, t, p in blocks
-    )
-    others = {
-        "hvac": [
-            ("Electrician instead?", "/electrical.html", "Electrical accounting"),
-            ("Fit-out or maintenance?", "/construction.html", "Construction services"),
-        ],
-        "electrical": [
-            ("HVAC instead?", "/hvac.html", "HVAC accounting"),
-            ("Fit-out or maintenance?", "/construction.html", "Construction services"),
-        ],
-        "construction": [
-            ("HVAC instead?", "/hvac.html", "HVAC accounting"),
-            ("Electrician instead?", "/electrical.html", "Electrical accounting"),
-        ],
-    }[slug]
-    cross = " · ".join(f'{label} <a href="{href}">{name}</a>' for label, href, name in others)
-    body = f"""{nav(slug)}
-  <main id="main" class="page">
-    <div class="wrap">
-      <span class="eyebrow">Service Profit · Queensland</span>
-      <h1>{h1}</h1>
-      <p class="lead">{lead}</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="/book.html" data-event="trade-book-{slug}">Book a 15-minute call</a>
-        <a class="btn btn-outline" href="/pricing.html">See the plans</a>
-      </div>
-      <div class="grid3">
-{cards}
-      </div>
-{extra_html}
-      <div class="prose" style="margin-top:48px">
-        <h2>What we need from the file</h2>
-        <p>Xero for the books. Labour and materials on the job, or a job report you already keep. If those are missing, we can still keep the books current. We will not dress that up as job profit.</p>
-        <p>This page is for {title.lower()} work from our Brendale office, across Brisbane and Queensland. It does not change the fee table. Builders of houses or commercial buildings are outside this line.</p>
-      </div>
-      <p class="trade-next">{cross}</p>
-    </div>
-  </main>
-{footer()}"""
-    return h + body
+def redirect_home(title):
+    return f"""<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <title>{title} | Service Profit</title>
+  <link rel="canonical" href="{ORIGIN}/">
+  <meta http-equiv="refresh" content="0;url=/index.html">
+  <script>location.replace("/index.html");</script>
+</head>
+<body>
+  <p>Service Profit is one offer for HVAC, electrical and construction service businesses. <a href="/index.html">Continue to Service Profit</a>.</p>
+</body>
+</html>
+"""
 
 
 def not_found():
@@ -734,9 +708,6 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>{ORIGIN}/why.html</loc></url>
   <url><loc>{ORIGIN}/book.html</loc></url>
   <url><loc>{ORIGIN}/contact.html</loc></url>
-  <url><loc>{ORIGIN}/hvac.html</loc></url>
-  <url><loc>{ORIGIN}/electrical.html</loc></url>
-  <url><loc>{ORIGIN}/construction.html</loc></url>
   <url><loc>{ORIGIN}/rights.html</loc></url>
   <url><loc>{ORIGIN}/privacy.html</loc></url>
   <url><loc>{ORIGIN}/terms.html</loc></url>
@@ -754,60 +725,9 @@ def main():
     write("privacy.html", privacy())
     write("rights.html", rights())
     write("terms.html", terms())
-    write(
-        "hvac.html",
-        trade_page(
-            "hvac",
-            "HVAC",
-            "Quoted hours versus hours on the job.",
-            "HVAC accounting from Brendale for air conditioning and refrigeration firms across Brisbane and Queensland. Labour against the quote, materials on the job, tax and BAS held.",
-            [
-                ("Labour", "Call-out versus quoted hours", "A diary full of call-outs can still hide jobs that ran long and were never repriced."),
-                ("Materials", "Parts on the job", "Parts billed at cost, or not billed at all, do not show up in a year-end pack in time to change the next quote."),
-                ("Cash", "The next tax bill", "We keep the books current so a busy week is not mistaken for a funded BAS."),
-            ],
-            extra_html="""      <figure class="watch">
-        <div class="watch-frame">
-          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="1080" height="1920">
-            <source src="/assets/video/callback-cost.mp4" type="video/mp4">
-          </video>
-        </div>
-        <figcaption>
-          <h2>What a callback really costs</h2>
-          <p>Two technicians. Labour on the clock. A $600 job given away because the callback was never counted. Worked example, not a client result.</p>
-        </figcaption>
-      </figure>
-""",
-        ),
-    )
-    write(
-        "electrical.html",
-        trade_page(
-            "electrical",
-            "Electrical",
-            "Quoted jobs versus hours on the tools.",
-            "Electrical contracting accounting from Brendale, for firms across Brisbane and Queensland. Quoted work, subcontractors, unfinished jobs, tax and BAS held.",
-            [
-                ("Jobs", "Quote versus actual", "Hours on the tools against the quote, while the next tender can still change."),
-                ("People", "Subcontractors in plain sight", "Subcontractors left visible, not mixed into a lump that only makes sense in June."),
-                ("Cash", "Unfinished work", "Cash can sit in work not yet billed. The books should show that before you hire the next pair of hands."),
-            ],
-        ),
-    )
-    write(
-        "construction.html",
-        trade_page(
-            "construction",
-            "Construction services",
-            "The job, not the building.",
-            "Construction services accounting from Brendale: fit-out, maintenance and installation across Brisbane and Queensland. Not house builders.",
-            [
-                ("Scope", "What construction services means here", "Fit-out, maintenance, installation and similar contracted job work. Not building houses or commercial buildings as a builder."),
-                ("Jobs", "Labour, subcontractors, materials", "Read while you can still change the next quote, not after 30 June."),
-                ("Boundary", "Who we do not take on this line", "Hospitality sits on pinktax.com.au. Builders of houses or commercial buildings are outside Service Profit."),
-            ],
-        ),
-    )
+    write("hvac.html", redirect_home("HVAC"))
+    write("electrical.html", redirect_home("Electrical"))
+    write("construction.html", redirect_home("Construction"))
     write("404.html", not_found())
     (ROOT / "sitemap.xml").write_text(SITEMAP, encoding="utf-8")
     print("wrote sitemap.xml")

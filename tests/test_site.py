@@ -2,9 +2,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HTML = list(ROOT.glob("*.html"))
+REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.html"}
+PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt30"
+CACHE = "rt31"
 
 
 def test_no_hospitality_booking():
@@ -51,11 +53,8 @@ def test_homepage_does_not_repeat_trade_photos():
     assert home.count('alt="Electrician testing a switchboard"') == 1
     assert home.count('alt="Electrical switchboard"') == 1
     assert home.count('alt="Construction services fit-out"') == 1
-    assert 'href="/hvac.html"' in home
-    nav_home = home
-    assert 'href="/hvac.html">HVAC</a>' in nav_home
-    assert 'href="/electrical.html">Electrical</a>' in nav_home
-    assert 'href="/construction.html">Construction</a>' in nav_home
+    assert 'href="/hvac.html">HVAC</a>' not in home
+    assert "One line. HVAC, electrical, construction services." in home
 
 
 def test_google_reviews_visible():
@@ -88,9 +87,7 @@ def test_analytics_tags():
 
 
 def test_structured_data_on_inner_pages():
-    assert '"@type":"Service"' in (ROOT / "hvac.html").read_text(encoding="utf-8")
-    assert '"@type":"Service"' in (ROOT / "electrical.html").read_text(encoding="utf-8")
-    assert '"@type":"Service"' in (ROOT / "construction.html").read_text(encoding="utf-8")
+    assert "AccountingService" in (ROOT / "index.html").read_text(encoding="utf-8")
     assert "FAQPage" in (ROOT / "system.html").read_text(encoding="utf-8")
     contact = (ROOT / "contact.html").read_text(encoding="utf-8")
     assert "AccountingService" in contact
@@ -111,14 +108,14 @@ def test_lazy_load_and_webp():
 
 
 def test_cache_buster_consistent():
-    for p in HTML:
+    for p in PAGES:
         text = p.read_text(encoding="utf-8")
         assert f"styles.css?v={CACHE}" in text, p.name
         assert "rt15" not in text and "rt20" not in text and "rt23" not in text, p.name
 
 
 def test_privacy_and_terms_on_every_page():
-    for p in HTML:
+    for p in PAGES:
         text = p.read_text(encoding="utf-8")
         assert "privacy.html" in text, p.name
         assert "terms.html" in text, p.name
@@ -154,14 +151,15 @@ def test_why_has_subheadings():
     assert "On the public register" in text
 
 
-def test_hvac_has_callback_video():
-    text = (ROOT / "hvac.html").read_text(encoding="utf-8")
-    assert 'callback-cost.mp4' in text
-    assert "<video" in text
-    assert (ROOT / "assets" / "video" / "callback-cost.mp4").exists()
-    assert (ROOT / "assets" / "video" / "callback-cost-poster.jpg").exists()
+def test_callback_video_on_homepage_not_fake_trade_pages():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert "callback-cost.mp4" in home
+    assert "<video" in home
+    assert (ROOT / "assets" / "video" / "callback-cost.mp4").exists()
+    assert (ROOT / "assets" / "video" / "callback-cost-poster.jpg").exists()
+    hvac = (ROOT / "hvac.html").read_text(encoding="utf-8")
+    assert "callback-cost.mp4" not in hvac
+    assert 'rel="canonical" href="https://www.serviceprofit.com.au/"' in hvac
 
 
 def test_fees_are_monthly_only():
@@ -172,16 +170,12 @@ def test_fees_are_monthly_only():
             assert token not in text, (p.name, token)
 
 
-def test_trade_pages_cross_link():
-    hvac = (ROOT / "hvac.html").read_text(encoding="utf-8")
-    electrical = (ROOT / "electrical.html").read_text(encoding="utf-8")
-    construction = (ROOT / "construction.html").read_text(encoding="utf-8")
-    assert "Electrician instead?" in hvac
-    assert "/electrical.html" in hvac
-    assert "/construction.html" in hvac
-    assert "HVAC instead?" in electrical
-    assert "/hvac.html" in electrical
-    assert "Electrician instead?" in construction
+def test_old_trade_urls_redirect_home():
+    for slug in ("hvac", "electrical", "construction"):
+        text = (ROOT / f"{slug}.html").read_text(encoding="utf-8")
+        assert 'url=/index.html' in text
+        assert "location.replace" in text
+        assert "one offer" in text.lower() or "Continue to Service Profit" in text
 
 
 def test_mobile_pricing_and_a11y_hooks():
@@ -191,9 +185,9 @@ def test_mobile_pricing_and_a11y_hooks():
     assert ".table-scroll" in css
     assert ".scope-cards" in css
     assert "Escape" in js
-    assert 'href="/hvac.html" data-trade="hvac"' in home
+    assert "aria-pressed" in home
     assert 'role="tablist"' not in home
-    assert "hvac.html" in home
+    assert 'href="/pricing.html"' in home
 
 
 def test_pink_brand_not_a_second_identity():
@@ -210,10 +204,13 @@ def test_pink_brand_not_a_second_identity():
     assert og.exists()
 
 
-def test_sitemap_has_trade_pages():
+def test_sitemap_has_real_pages_not_fake_trades():
     sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-    for slug in ("hvac.html", "electrical.html", "construction.html", "terms.html", "pricing.html"):
+    for slug in ("terms.html", "pricing.html", "system.html"):
         assert slug in sm
+    assert "hvac.html" not in sm
+    assert "electrical.html" not in sm
+    assert "construction.html" not in sm
 
 
 if __name__ == "__main__":

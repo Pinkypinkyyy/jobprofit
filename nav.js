@@ -37,6 +37,7 @@
     trades.forEach(function (t) {
       var on = t.getAttribute("data-trade") === key;
       t.classList.toggle("is-on", on);
+      t.setAttribute("aria-pressed", on ? "true" : "false");
     });
     shots.forEach(function (img) {
       var on = img.getAttribute("data-trade") === key;
@@ -56,10 +57,7 @@
   if (trades.length) {
     setTrade("hvac");
     trades.forEach(function (t) {
-      t.addEventListener("mouseenter", function () {
-        setTrade(t.getAttribute("data-trade"));
-      });
-      t.addEventListener("focus", function () {
+      t.addEventListener("click", function () {
         setTrade(t.getAttribute("data-trade"));
       });
     });

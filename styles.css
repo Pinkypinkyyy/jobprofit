@@ -483,7 +483,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
 .btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}
 .hero-bleed .trade{background:transparent;color:#fff;border-color:rgba(255,255,255,.35);box-shadow:none;border-radius:var(--radius-btn)}
-.hero-bleed .trade:hover,.hero-bleed .trade.is-on{
+.hero-bleed .trade:hover,.hero-bleed .trade.is-on,.hero-bleed .trade[aria-pressed="true"]{
   background:#fff;color:var(--ink);border-color:#fff;transform:translateY(-2px)
 }
 .hero-bleed .nav .btn-primary{background:#fff;color:var(--ink)}

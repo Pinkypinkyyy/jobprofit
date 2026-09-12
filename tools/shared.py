@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt30"
+ASSET = "rt31"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -169,11 +169,10 @@ def nav(current=""):
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-{item("/hvac.html", "HVAC", "hvac")}
-{item("/electrical.html", "Electrical", "electrical")}
-{item("/construction.html", "Construction", "construction")}
 {item("/pricing.html", "Pricing", "pricing")}
 {item("/system.html", "The system", "system")}
+{item("/why.html", "Meet Pink", "why")}
+{item("/contact.html", "Contact", "contact")}
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
@@ -196,13 +195,11 @@ def footer():
         <div>
           <h4>Explore</h4>
           <a href="/index.html">Home</a>
-          <a href="/system.html">The system</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="/hvac.html">HVAC</a>
-          <a href="/electrical.html">Electrical</a>
-          <a href="/construction.html">Construction services</a>
+          <a href="/system.html">The system</a>
           <a href="/why.html">Meet Pink</a>
           <a href="/book.html">Book a call</a>
+          <a href="/contact.html">Contact</a>
         </div>
         <div>
           <h4>Contact and legal</h4>
