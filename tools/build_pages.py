@@ -450,25 +450,25 @@ def why():
             <img src="/assets/pink-meet.jpg?v=real1" width="1080" height="1350" alt="Huong Bui in a client meeting">
           </picture>
         </div>
-        <div>
+        <div class="meet-copy">
           <span class="eyebrow">Meet Pink</span>
-          <h1 style="margin-top:12px">Hello, I am Pink.</h1>
-          <p class="lead">Huong Bui. I am a registered tax agent. I have spent more than ten years in the books. Service Profit is this accounting work with HVAC, electrical and construction services in Queensland.</p>
+          <h1>Hello, I am Pink.</h1>
+          <p class="lead">Huong Bui. Registered tax agent. More than ten years in the books. Air con, electrical and construction services in Queensland.</p>
           <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
-          <a class="btn btn-primary" href="/book.html" data-event="why-book" style="margin-top:22px">Book a 15-minute call</a>
+          <a class="btn btn-primary" href="/book.html" data-event="why-book">Book 15 minutes</a>
         </div>
       </div>
     </section>
     <section class="band">
-      <div class="wrap">
+      <div class="wrap prose">
         <h2>Qualification</h2>
-        <p class="lead" style="margin-top:12px">Master of Professional Accounting, Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
+        <p>Master of Professional Accounting, Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
         <h2>Years in the books</h2>
-        <p class="lead" style="margin-top:12px">More than ten years. I founded the firm in 2020. The work is in the file, not in a once-a-year pack. You stay on the jobs. I stay in the numbers.</p>
+        <p>More than ten years. I started the firm in 2020. The work is in the file, not in a once-a-year pack.</p>
         <h2>What we hold</h2>
-        <p class="lead" style="margin-top:12px">The return. FBT on utes, phones and other benefits. Financial statements. BAS and GST. Payroll, super and PAYG where you have staff. Tax compliance so you are not paying on missing invoices.</p>
+        <p>The return. FBT on utes, phones and other benefits. Financial statements. BAS and GST. Payroll, super and PAYG where you have staff. Tax so you are not paying on missing invoices.</p>
         <h2>On the public register</h2>
-        <p class="lead" style="margin-top:12px">Search 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. Our obligations are written on <a href="/rights.html">Your rights</a>. ABN 51 682 301 891.</p>
+        <p>Search 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. Our obligations are written on <a href="/rights.html">Your rights</a>. ABN 51 682 301 891.</p>
       </div>
     </section>
   </main>
@@ -479,7 +479,7 @@ def why():
 def book():
     h = head(
         "Book a 15-minute call | Service Profit | Pink Accounting",
-        "Book a 15-minute Service Profit call for Queensland HVAC, electrical and construction services. Calendar confirmation to you and to admin@pinktax.com.au.",
+        "Tell us how the jobs run, then book 15 minutes. Job Profit is $1,650 + GST a month for most files. The letter is the quote.",
         "/book.html",
         extra=jsonld(
             {
@@ -493,24 +493,27 @@ def book():
     )
     body = f"""{nav("book")}
   <main id="main" class="page">
-    <div class="wrap">
-      <span class="eyebrow">Service Profit</span>
-      <h1>Book a 15-minute call</h1>
-      <p class="lead">This call is for HVAC, electrical and construction service businesses in Queensland. It is not a hospitality or venue call. Bring how the business runs, the software you use, and what you want from the file. You do not need a street address for a discovery call.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the Service Profit calendar</a>
-        <a class="btn btn-outline" href="mailto:admin@pinktax.com.au?subject=Service%20Profit%20enquiry" data-event="book-email">Email admin@pinktax.com.au</a>
-        <a class="btn btn-outline" href="tel:+61735446386" data-event="book-call">Call 07 3544 6386</a>
-      </div>
-      <div class="prose">
-        <h2>Who you will speak with</h2>
-        <p>The booking is with Service Profit. Huong (Pink) takes the call when she is free. If a team member takes it, Pink reads the notes the same working day.</p>
-        <h2>What happens after you book</h2>
-        <p>Microsoft Bookings sends a confirmation to you. A copy goes to admin@pinktax.com.au. A click is not a completed enquiry until the appointment is booked.</p>
-      </div>
-      <h2>Or send this</h2>
-      <p class="lead" style="margin-top:10px">If none of the times suit, use the form. We reply within one business day.</p>
+    <div class="wrap book-funnel">
+      <span class="eyebrow">Book</span>
+      <h1>Tell us about the jobs. Then pick a time.</h1>
+      <p class="lead">Fifteen minutes. You leave knowing if we can take the file. Job Profit is $1,650 + GST a month for most files. The letter is the quote. You have not signed anything by booking.</p>
+      <ol class="book-steps">
+        <li><b>1. This form.</b> How the work runs, how many on the tools, what is hurting.</li>
+        <li><b>2. A time.</b> Same email so the notes and the calendar match.</li>
+        <li><b>3. The call.</b> Pink takes it when she is free. If a team member takes it, she reads the notes the same working day. If it is a fit, you get a letter.</li>
+      </ol>
+      <h2>1. About the business</h2>
+      <p>Air con, electrical and construction services in Queensland. Not hospitality. Not house builders.</p>
 {enquiry_form("book")}
+      <section class="pick-time" id="pick-time">
+        <h2>2. Pick a time</h2>
+        <p>Use the same email you put on the form. Confirmation goes to you and to admin@pinktax.com.au.</p>
+        <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open the calendar</a>
+      </section>
+      <div class="prose">
+        <h2>Have nearby if you can</h2>
+        <p>How you quote a job. Whether jobs run long. Last BAS if you have it. You do not need to share passwords or a street address on this call.</p>
+      </div>
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>

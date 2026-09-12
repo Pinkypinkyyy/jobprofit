@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt32"
+ASSET = "rt33"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -297,14 +297,17 @@ def sticky():
 
 def enquiry_form(prefix="book"):
     return f"""      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="{prefix}-form">
-        <input type="hidden" name="_subject" value="Service Profit enquiry">
+        <input type="hidden" name="_subject" value="Service Profit intake">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="{ORIGIN}/book.html?sent=1">
         <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="fields">
-          <label>Name
+          <label>Your name
             <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Business name
+            <input type="text" name="business" required autocomplete="organization">
           </label>
           <label>Email
             <input type="email" name="email" required autocomplete="email">
@@ -312,20 +315,50 @@ def enquiry_form(prefix="book"):
           <label>Phone
             <input type="tel" name="phone" required autocomplete="tel">
           </label>
-          <label>Trade
+          <label>What work
             <select name="trade" required>
               <option value="">Choose one</option>
-              <option>HVAC</option>
+              <option>Air con / refrigeration</option>
               <option>Electrical</option>
               <option>Construction services</option>
+              <option>Mix of those</option>
+            </select>
+          </label>
+          <label>People on the tools
+            <select name="crew" required>
+              <option value="">Choose one</option>
+              <option>Just me</option>
+              <option>2 to 5</option>
+              <option>6 to 15</option>
+              <option>16 or more</option>
+            </select>
+          </label>
+          <label>Books now
+            <select name="software" required>
+              <option value="">Choose one</option>
+              <option>Xero</option>
+              <option>MYOB</option>
+              <option>Excel or paper</option>
+              <option>Something else</option>
+              <option>Nothing yet</option>
+            </select>
+          </label>
+          <label>What is hurting
+            <select name="hurt" required>
+              <option value="">Choose one</option>
+              <option>Quoted hours vs hours on the job</option>
+              <option>Bank looks full but tax is due</option>
+              <option>BAS / ATO</option>
+              <option>Hiring and not sure we can afford it</option>
+              <option>Not sure. That is why I am calling</option>
             </select>
           </label>
         </div>
-        <label>What do you want from the file?
-          <textarea name="message" rows="4" required maxlength="2000" placeholder="How the business runs, the software you use, and what you want looked at."></textarea>
+        <label>Anything else we should know
+          <textarea name="message" rows="4" maxlength="2000" placeholder="How you quote. Whether jobs run long. What you want from the file."></textarea>
         </label>
-        <button class="btn btn-primary" type="submit">Send the enquiry</button>
-        <p class="form-note">Goes to admin@pinktax.com.au. We reply within one business day. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+        <button class="btn btn-primary" type="submit">Send this, then pick a time</button>
+        <p class="form-note">Goes to admin@pinktax.com.au. We read it before the call. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
-      <p class="enquiry-ok" id="enquiryOk" hidden>Sent. We will reply from admin@pinktax.com.au within one business day.</p>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. Pick a time below with the same email so we are not chasing you.</p>
 """

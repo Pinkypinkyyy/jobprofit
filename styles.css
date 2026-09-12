@@ -175,7 +175,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .scope-fold{margin-top:28px;background:#fff;border:1px solid var(--line);padding:16px 18px;border-radius:var(--radius)}
 .scope-fold summary{cursor:pointer;font-weight:650}
 .final-photo{position:relative;background:var(--ink)}
-.meet .shot img{width:100%;height:var(--media-h);display:block;object-fit:cover;object-position:center top;border-radius:var(--radius);box-shadow:0 18px 36px -24px rgba(18,22,28,.4)}
+.meet .shot img{width:100%;height:auto;aspect-ratio:4/5;display:block;object-fit:cover;object-position:50% 18%;border-radius:0}
 
 .band{padding:var(--section) 0}
 .band-bone{background:var(--paper-2)}
@@ -287,8 +287,10 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 
 .funnel{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
 .funnel a.card:hover{border-color:var(--ink)}
-.meet{display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter);align-items:center}
-.meet .shot{max-width:none}
+.meet{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px;align-items:start}
+.meet .shot{max-width:none;min-width:0}
+.meet-copy{min-width:0}
+.meet-copy h1{margin-top:10px}
 .shot .frame{
   aspect-ratio:4/5;background:#ddd center/cover no-repeat;background-image:url("assets/pink-portrait.jpg");
   outline:1px solid rgba(0,0,0,.08);outline-offset:-1px;
@@ -370,7 +372,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .split img,.split picture img{height:min(52vw, 300px);min-height:200px}
   .split-copy{padding:22px 20px 24px}
   .meet .shot{max-width:none}
-  .meet .shot img{height:auto;aspect-ratio:4/5;max-height:420px}
+  .meet .shot img{height:auto;aspect-ratio:4/5;max-height:480px;object-position:50% 18%}
   .sticky-book{display:none !important}
   .feat{padding:22px 20px;gap:16px}
   .docket{position:static;width:auto;margin-top:14px}
@@ -561,11 +563,24 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .hour-board .cell:hover,.hire article:hover,.card:hover,.scope-card:hover,.faq details:hover{
   transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent;
 }
-.meet .shot{border-radius:var(--radius-photo);overflow:hidden;box-shadow:var(--shadow-deep)}
-.meet .shot img{border-radius:0;transition:transform .55s ease}
-.meet .shot:hover img{transform:scale(1.04)}
+.meet .shot{border-radius:20px;overflow:hidden;box-shadow:var(--shadow-deep)}
+.meet .shot img{border-radius:0}
+.meet .shot:hover img{transform:none}
 .meet h2{margin-top:12px;font-size:clamp(1.8rem,3vw,2.6rem)}
 .meet .btn{margin-top:22px}
+.page .prose h2,.band .prose h2{font-size:1.35rem;margin:36px 0 10px}
+.page .prose h2:first-child,.band .prose h2:first-child{margin-top:0}
+.page .prose p{margin:0 0 8px}
+
+.book-steps{margin:28px 0 32px;padding:0;list-style:none;display:grid;gap:12px;max-width:44em}
+.book-steps li{background:var(--paper-2);border-radius:16px;padding:16px 18px;color:var(--soft)}
+.book-steps b{color:var(--ink)}
+.book-funnel > h2{margin-top:8px;font-size:1.4rem}
+.book-funnel > p{color:var(--soft);max-width:40em;margin:8px 0 16px}
+.pick-time{margin:40px 0 24px;padding:28px;background:var(--paper-2);border-radius:22px;max-width:44em}
+.pick-time h2{margin:0 0 8px;font-size:1.4rem}
+.pick-time .btn{margin-top:16px}
+.pick-time.is-next{outline:2px solid var(--ink)}
 
 @media(max-width:940px){
   .hero-bleed{min-height:0}

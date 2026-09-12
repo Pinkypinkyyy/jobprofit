@@ -6,7 +6,7 @@ REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt32"
+CACHE = "rt33"
 
 
 def test_no_hospitality_booking():
@@ -19,9 +19,15 @@ def test_book_uses_service_profit_calendar():
     text = (ROOT / "book.html").read_text(encoding="utf-8")
     assert FIELD in text
     assert HOSP not in text
-    assert "Open the Service Profit calendar" in text
+    assert "Open the calendar" in text
     assert "not taking new times" not in text
     assert 'id="enquiryForm"' in text
+    assert 'name="business"' in text
+    assert 'name="crew"' in text
+    assert 'name="software"' in text
+    assert 'name="hurt"' in text
+    assert "Tell us about the jobs" in text
+    assert "book-steps" in text
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert 'href="/book.html"' in home
 

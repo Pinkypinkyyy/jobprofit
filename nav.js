@@ -116,6 +116,11 @@
     if (params.get("sent") === "1" && ok) {
       form.hidden = true;
       ok.hidden = false;
+      var pick0 = document.getElementById("pick-time");
+      if (pick0) {
+        pick0.classList.add("is-next");
+        pick0.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -125,16 +130,13 @@
         btn.disabled = true;
         btn.textContent = "Sending…";
       }
-      var data = {
-        name: form.name.value,
-        email: form.email.value,
-        phone: form.phone.value,
-        trade: form.trade.value,
-        message: form.message.value,
-        _subject: "Service Profit enquiry",
-        _template: "table",
-        _captcha: "false"
-      };
+      var data = {};
+      new FormData(form).forEach(function (value, key) {
+        data[key] = value;
+      });
+      data._subject = "Service Profit intake";
+      data._template = "table";
+      data._captcha = "false";
       fetch("https://formsubmit.co/ajax/admin@pinktax.com.au", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -147,25 +149,34 @@
         .then(function () {
           form.hidden = true;
           if (ok) ok.hidden = false;
+          var pick = document.getElementById("pick-time");
+          if (pick) {
+            pick.classList.add("is-next");
+            pick.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
           if (typeof window.spLead === "function") window.spLead("form");
         })
         .catch(function () {
           var body =
-            "Name: " + data.name +
-            "\nEmail: " + data.email +
-            "\nPhone: " + data.phone +
-            "\nTrade: " + data.trade +
-            "\n\n" + data.message;
+            "Name: " + (data.name || "") +
+            "\nBusiness: " + (data.business || "") +
+            "\nEmail: " + (data.email || "") +
+            "\nPhone: " + (data.phone || "") +
+            "\nWork: " + (data.trade || "") +
+            "\nCrew: " + (data.crew || "") +
+            "\nBooks: " + (data.software || "") +
+            "\nHurting: " + (data.hurt || "") +
+            "\n\n" + (data.message || "");
           window.location.href =
             "mailto:admin@pinktax.com.au?subject=" +
-            encodeURIComponent("Service Profit enquiry") +
+            encodeURIComponent("Service Profit intake") +
             "&body=" +
             encodeURIComponent(body);
         })
         .finally(function () {
           if (btn) {
             btn.disabled = false;
-            btn.textContent = "Send the enquiry";
+            btn.textContent = "Send this, then pick a time";
           }
         });
     });
