@@ -6,7 +6,7 @@ REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt31"
+CACHE = "rt32"
 
 
 def test_no_hospitality_booking():
@@ -54,7 +54,9 @@ def test_homepage_does_not_repeat_trade_photos():
     assert home.count('alt="Electrical switchboard"') == 1
     assert home.count('alt="Construction services fit-out"') == 1
     assert 'href="/hvac.html">HVAC</a>' not in home
-    assert "One line. HVAC, electrical, construction services." in home
+    assert "You quoted 6 hours. You did 9." in home
+    assert "The call is to see if we can take the file." in home
+    assert "One line." not in home
 
 
 def test_google_reviews_visible():

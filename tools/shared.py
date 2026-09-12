@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt31"
+ASSET = "rt32"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -248,8 +248,8 @@ def hours_chart():
 def cash_chart():
     return """      <figure class="chart-cash">
         <p class="chart-kicker">Cash</p>
-        <h3>The bank is not drawings.</h3>
-        <p class="chart-note">GST, PAYG, super and wages sit in that account. They are not yours to spend. Illustration of the split, not a client file.</p>
+        <h3>The bank is not all yours.</h3>
+        <p class="chart-note">GST, PAYG, super and wages sit in there. You cannot spend that. This bar is an illustration, not a client file.</p>
         <div class="cash-bar" role="img" aria-label="Illustration. GST, PAYG, super, wages and what is yours sit in the same bank balance.">
           <span class="seg">GST</span>
           <span class="seg">PAYG</span>
@@ -289,7 +289,7 @@ def hour_waterfall():
 
 def sticky():
     return """  <div class="sticky-book" id="bookBar">
-    <span>Fifteen minutes with the firm.</span>
+    <span>Book 15 minutes. See if we can take the file.</span>
     <a class="btn btn-primary" href="/book.html" data-event="sticky-book">Book a call</a>
   </div>
 """

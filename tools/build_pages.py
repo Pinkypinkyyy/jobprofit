@@ -83,7 +83,7 @@ def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55v
 def index():
     h = head(
         "Service Profit | HVAC, electrical and construction accounting in Brendale, Brisbane and Queensland",
-        "Pink Accounting in Brendale for HVAC, electrical and construction service businesses across Brisbane and Queensland. Job Profit $1,650 + GST a month. Book a 15-minute call.",
+        "Quoted hours versus hours on the tools. Cash that is yours versus GST, PAYG, super and wages. Tax and BAS held. Book 15 minutes. Brendale, Queensland.",
         "/",
         extra=jsonld(business_node()),
     )
@@ -99,19 +99,20 @@ def index():
       </div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="kicker">Pink Accounting · HVAC, electrical, construction · Queensland</p>
-          <h1>See job profit while you can still change the next quote.</h1>
-          <p class="lead">You stay on the jobs. We hold billed hours, cash, income tax, FBT, financial statements and BAS, from Brendale.</p>
+          <p class="kicker">Pink Accounting. Brendale.</p>
+          <h1>You quoted 6 hours. You did 9.</h1>
+          <p class="lead">Then you quoted 6 again. We keep billed hours, cash and tax in the file so you can stay on the tools. Air con, electrical, construction services. Queensland.</p>
           <div class="cta">
-            <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book a 15-minute call</a>
-            <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
+            <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book 15 minutes</a>
+            <a class="btn btn-ghost" href="/pricing.html">See the fees</a>
           </div>
-          <div class="trades" aria-label="Same work, three kinds of job">
-            <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">HVAC</button>
+          <p class="why-call">The call is to see if we can take the file. You have not signed anything.</p>
+          <div class="trades" aria-label="The same work on three kinds of job">
+            <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">Air con</button>
             <button class="trade" type="button" data-trade="electrical" aria-pressed="false">Electrical</button>
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
-          <p class="live" id="liveLine">HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.</p>
+          <p class="live" id="liveLine">Air con and refrigeration. Quoted hours versus hours on the job.</p>
           <div class="trust">
             <a class="stars" href="{GBP}" rel="noopener">
               <span class="star-value">5.0</span>
@@ -131,8 +132,8 @@ def index():
           <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
         </div>
         <div class="split-copy">
-          <h2>You stay on the jobs. We hold the file.</h2>
-          <p>Income tax, FBT, financial statements, BAS and GST. Billed hours versus quoted hours, each week. Cash that is yours versus GST, PAYG, super and wages. Registered Tax Agent 26284368.</p>
+          <h2>The bank looks full. It is not all yours.</h2>
+          <p>GST, PAYG, super and wages sit in there. We pull that apart each week. We also hold tax and BAS. You stay on the tools.</p>
 {cash_chart()}
           <a class="btn btn-primary" href="/book.html" data-event="split-book">Book a 15-minute call</a>
         </div>
@@ -149,38 +150,28 @@ def index():
         </div>
         <figcaption>
           <h2>What a callback really costs</h2>
-          <p>Two technicians. Labour on the clock. A $600 job given away because the callback was never counted. Worked example, not a client result. Same story for HVAC, electrical and construction services.</p>
+          <p>Two technicians. Labour on the clock. A $600 job given away because nobody counted the callback. Worked example, not a client result.</p>
         </figcaption>
       </figure>
-      </div>
-    </section>
-
-    <section class="band" id="who">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">Who this is for</span>
-          <h2>One line. HVAC, electrical, construction services.</h2>
-          <p>Same plans. Same file. Quoted hours versus hours on the tools. Cash that is yours versus GST, PAYG, super and wages. Not house builders. Not hospitality.</p>
-        </div>
       </div>
     </section>
 
     <section class="band" id="pricing">
       <div class="wrap">
         <div class="sec-head">
-          <span class="eyebrow">Our fees</span>
-          <h2>Job Profit $1,650 + GST a month.</h2>
-          <p>Monthly. Books, billed hours and cash in the file, tax and BAS held. Not unlimited work. The letter is the quote.</p>
+          <span class="eyebrow">Fees</span>
+          <h2>$1,650 + GST a month for most files.</h2>
+          <p>That is Job Profit. Billed hours, cash, tax and BAS. Not unlimited work. The letter is the quote.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
-            <span class="badge">Typical ongoing plan</span>
+            <span class="badge">Most files</span>
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
 
-            <p class="fdesc">The number you care about is billed hours versus quoted hours, and how much of the bank balance is actually yours. GST, PAYG, super and wages sit in that account. They are not drawings.</p>
+            <p class="fdesc">Billed hours versus quoted hours. How much of the bank is actually yours. Tax and BAS held. If you only need the return, that is Compliance at $550 + GST a month.</p>
             <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-book">Book a 15-minute call</a></div>
-            <div class="fnote">If you only need the return, that is Compliance. Bookkeeping is an add-on when you need it, not a plan.</div>
+            <div class="fnote">Bookkeeping is extra, quoted when you need it. Not a plan.</div>
           </div>
           <ul>
             <li><b>Billed time</b> quoted hours versus hours on the tools, each week. If a job ran long, the next quote should not repeat it</li>
@@ -243,10 +234,10 @@ def index():
           </picture>
         </div>
         <div>
-          <span class="eyebrow">Meet Pink</span>
-          <h2>Hello, I am Pink.</h2>
-          <p>Huong Bui. Master of Professional Accounting (Griffith). MIPA AFA. Registered Tax Agent 26284368. More than ten years in the books. I founded the firm in 2020.</p>
-          <p>We hold income tax, FBT, financial statements, BAS, GST and payroll. You stay on the jobs.</p>
+          <span class="eyebrow">Pink</span>
+          <h2>I am the accountant.</h2>
+          <p>Huong Bui. Registered Tax Agent 26284368. More than ten years in the books. I started the firm in 2020.</p>
+          <p>You call because the quotes and the bank no longer match, and you do not have time to sit in Xero. We take the file. You stay on the jobs.</p>
           <div class="creds"><a href="/why.html">Read more about Pink</a></div>
           <a class="btn btn-primary" href="/book.html" data-event="meet-book">Book a 15-minute call</a>
         </div>
@@ -255,9 +246,9 @@ def index():
 
     <section class="final">
       <div class="wrap">
-        <h2>Fifteen minutes. Then we look at the file.</h2>
-        <p>You stay on the jobs. We hold billed hours, cash, tax and BAS. Brendale, Brisbane and Queensland.</p>
-        <a class="btn btn-white" href="/book.html" data-event="final-book">Book a 15-minute call</a>
+        <h2>Book 15 minutes if this is your week.</h2>
+        <p>If it is a fit, you get a letter and a monthly fee. If it is not, you have not signed anything. Brendale, Queensland.</p>
+        <a class="btn btn-white" href="/book.html" data-event="final-book">Book 15 minutes</a>
         <div class="micro">Registered Tax Agent 26284368 · Business clients only · Queensland · <a href="/rights.html">Your rights</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
       </div>
     </section>
@@ -369,7 +360,7 @@ def pricing():
       <div class="wrap">
         <div class="feat" id="job-profit">
           <div>
-            <span class="badge">Typical ongoing plan</span>
+            <span class="badge">Most files</span>
             <h2>Job Profit</h2>
             <div class="fprice">$1,650<small> + GST / month</small></div>
 

@@ -23,9 +23,9 @@
   }
 
   var copy = {
-    hvac: "HVAC: labour against quoted hours, materials on the job, and whether the call-out covered the next tax bill.",
-    electrical: "Electrical: quoted jobs versus hours on the tools, subcontractors, and cash in unfinished work.",
-    construction: "Construction services: the job, not the building. Labour, subcontractors and materials while you can still change the next quote."
+    hvac: "Air con and refrigeration. Quoted hours versus hours on the job.",
+    electrical: "Electrical. Hours on the tools versus the quote.",
+    construction: "Fit-out and maintenance. Not house builders."
   };
   var labels = { hvac: "HVAC", electrical: "Electrical", construction: "Construction services" };
   var trades = document.querySelectorAll(".trade");
