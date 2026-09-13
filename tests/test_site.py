@@ -514,6 +514,37 @@ def test_the_section_45_wording_cannot_drift_between_pages():
         assert statement in disclosure, statement[:50]
 
 
+def test_homepage_lets_a_visitor_rule_themselves_out():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "Is this you?" in html
+    # Willingness to exclude is the trust signal. It must survive edits.
+    assert "You are a builder" in html
+    assert "pinktax.com.au" in html
+    assert "Compliance at $550" in html
+
+
+def test_homepage_says_what_happens_after_the_call():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    for step in ("A 15-minute call", "A letter, then you decide", "The first month"):
+        assert step in html, step
+    assert "Nothing starts until you sign it." in html
+
+
+def test_homepage_explains_the_name_ladder_once():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    # Six names in one visit. The relationship has to be stated somewhere
+    # other than the footer.
+    assert "The names, once:" in html
+    for name in ("Pink Accounting", "Service Profit", "Job Profit"):
+        assert name in html
+
+
+def test_homepage_carries_the_no_conditions_statement():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "no conditions limiting" in html
+    assert "/disclosure" in html
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and callable(fn):

@@ -196,6 +196,14 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .band-bone{background:var(--paper-2)}
 .sec-head{max-width:40em}
 .sec-head .sec-note{max-width:60ch}
+.ticks{list-style:none;margin:14px 0 0;padding:0}
+.ticks li{position:relative;padding:8px 0 8px 30px;color:var(--soft);font-size:.96rem;line-height:1.5;border-bottom:1px solid var(--line)}
+.ticks li:last-child{border-bottom:0}
+.ticks li::before{content:"";position:absolute;left:2px;top:15px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.ticks.is-no li::before{background:transparent;border:1.5px solid var(--muted);top:14px}
+.grid3 .card .eyebrow{display:block;margin-bottom:10px}
+.grid3 .card h3{font-size:1.15rem}
+.grid3 .card p{color:var(--soft);margin-top:10px;font-size:.96rem;line-height:1.55}
 .opt{font-weight:400;color:var(--muted);font-size:.82em;text-transform:none;letter-spacing:0}
 .sec-head h2{font-size:clamp(1.9rem,3.4vw,2.8rem);margin:12px 0 0}
 .sec-head p{color:var(--soft);margin-top:16px}

@@ -264,6 +264,38 @@ def index():
       </div>
     </section>
 
+    <section class="band band-bone">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Before you read on</span>
+          <h2>Is this you?</h2>
+          <p class="sec-note">We would rather you worked that out now than on a call.</p>
+        </div>
+        <div class="hire">
+          <article>
+            <span class="eyebrow">A fit</span>
+            <h3>Yes, if</h3>
+            <ul class="ticks">
+              <li>Air con and refrigeration, electrical, or construction services meaning fit-out, maintenance and installation</li>
+              <li>Queensland, and one trading entity</li>
+              <li>You have people on the tools, staff or subcontractors, or you are about to put someone on</li>
+              <li>You quote work and you could not say, today, which of last month's jobs actually made money</li>
+            </ul>
+          </article>
+          <article>
+            <span class="eyebrow">Not a fit</span>
+            <h3>No, if</h3>
+            <ul class="ticks is-no">
+              <li>You are a builder. We do construction services, not head contracting</li>
+              <li>You are hospitality or retail. Same firm, different site: <a href="https://www.pinktax.com.au" rel="noopener">pinktax.com.au</a></li>
+              <li>You only want the annual return lodged. That is Compliance at $550 + GST a month and we will say so on the call</li>
+              <li>You want unlimited access and a monthly meeting. That is not what this is</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="band band-photo">
       <div class="wrap split-visual">
         <div class="photo-frame">
@@ -300,6 +332,7 @@ def index():
           <span class="eyebrow">Fees</span>
           <h2>$1,650 + GST a month for most files.</h2>
           <p>That is Job Profit. Billed hours, cash, tax and BAS. Not unlimited work. The letter is the quote.</p>
+          <p class="sec-note">The names, once: <b>Pink Accounting</b> is the firm and the registered tax agent. <b>Service Profit</b> is what we do for trade and service businesses. <b>Job Profit</b> is the plan most files sit on. The three above it add to it, they do not replace it.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
@@ -340,6 +373,34 @@ def index():
       </div>
     </section>
 
+    <section class="band">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What happens</span>
+          <h2>From the call to the first Monday.</h2>
+          <p class="sec-note">Three steps. No black box in the middle.</p>
+        </div>
+        <div class="grid3">
+          <section class="card">
+            <span class="eyebrow">Step one</span>
+            <h3>A 15-minute call</h3>
+            <p>We look at whether we can take the file, and whether it is worth your money. If it is not, we say so and tell you what would be. You have not signed anything.</p>
+          </section>
+          <section class="card">
+            <span class="eyebrow">Step two</span>
+            <h3>A letter, then you decide</h3>
+            <p>If it is a fit you get a letter of engagement setting out the scope, what is not included, and the monthly fee. The letter is the quote. Nothing starts until you sign it.</p>
+          </section>
+          <section class="card">
+            <span class="eyebrow">Step three</span>
+            <h3>The first month</h3>
+            <p>You give Xero, bank and payroll access, or send the source documents. The start date is in the letter. Catch-up of earlier periods is a separate fee, quoted before we touch it.</p>
+          </section>
+        </div>
+        <p class="note-ex">You stay on the tools throughout. We do not need a standing meeting in your diary.</p>
+      </div>
+    </section>
+
     <section class="band" id="reviews">
       <div class="wrap">
         <div class="sec-head">
@@ -362,6 +423,7 @@ def index():
           <h2>I am the accountant.</h2>
           <p>Huong Bui. Registered Tax Agent 26284368. More than ten years in the books. I started the firm in 2020.</p>
           <p>You call because the quotes and the bank no longer match, and you do not have time to sit in Xero. We take the file. You stay on the jobs.</p>
+          <p>Master of Professional Accounting, Griffith. Member of the Institute of Public Accountants. Our registration carries no conditions limiting what we can do for you, and you can check that yourself on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a> against 26284368. What else we must tell you is on <a href="/disclosure">our disclosures page</a>.</p>
           <div class="creds"><a href="/why.html">Read more about Pink</a></div>
           <a class="btn btn-primary" href="/book.html" data-event="meet-book">Book a 15-minute call</a>
         </div>
