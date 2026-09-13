@@ -477,9 +477,41 @@ def test_no_internal_link_or_asset_404s():
                 if not url or url.startswith(("http", "mailto:", "tel:", "#", "data:")):
                     continue
                 rel = url.split("?")[0].split("#")[0].lstrip("/") or "index.html"
-                if not os.path.exists(ROOT / rel):
+                target = ROOT / rel
+                # An extensionless URL only serves if there is a real file
+                # behind it: dir/index.html, or name.html alongside it.
+                served = (
+                    target.is_file()
+                    or (target / "index.html").is_file()
+                    or target.with_name(target.name + ".html").is_file()
+                )
+                if not served:
                     broken.append(f"{page.name} -> {url}")
     assert not broken, "internal references that would 404: " + ", ".join(sorted(set(broken)))
+
+
+def test_the_disclosure_url_resolves_three_ways():
+    """Clients are given serviceprofit.com.au/disclosure. It must not depend
+    on one host's pretty-URL behaviour, so all three spellings ship."""
+    for path in ("disclosure.html", "disclosure/index.html"):
+        assert (ROOT / path).is_file(), path
+    both = {(ROOT / p).read_text(encoding="utf-8") for p in ("disclosure.html", "disclosure/index.html")}
+    assert len(both) == 1, "the two disclosure files have drifted apart"
+    html = (ROOT / "disclosure.html").read_text(encoding="utf-8")
+    assert 'rel="canonical" href="https://www.serviceprofit.com.au/disclosure"' in html
+    assert "tpb.gov.au/public-register" in html
+    assert "tpb.gov.au/complaints" in html
+    assert "/disclosure" in (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+
+
+def test_the_section_45_wording_cannot_drift_between_pages():
+    from build_pages import DISCLOSURE_STATEMENTS
+
+    rights = (ROOT / "rights.html").read_text(encoding="utf-8")
+    disclosure = (ROOT / "disclosure.html").read_text(encoding="utf-8")
+    for statement in DISCLOSURE_STATEMENTS:
+        assert statement in rights, statement[:50]
+        assert statement in disclosure, statement[:50]
 
 
 if __name__ == "__main__":

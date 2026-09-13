@@ -186,6 +186,27 @@ def review_quotes():
     return "\n".join(out)
 
 
+# Section 45 of the Tax Agent Services (Code of Professional Conduct)
+# Determination 2024. Both rights.html and /disclosure render these, so the
+# two pages cannot drift apart. Owner and review date travel with each
+# statement because the Code expects them to be maintained, not just posted.
+DISCLOSURE_OWNER = "Huong Bui"
+DISCLOSURE_REVIEWED = "11 September 2026"
+DISCLOSURE_STATEMENTS = (
+    "No prescribed events under section 45 of the Tax Agent Services (Code of "
+    "Professional Conduct) Determination 2024 have occurred in the last 5 years.",
+    "Our registration is not subject to any conditions limiting the scope of "
+    "services we can provide.",
+)
+
+
+def disclosure_paragraphs(indent="        "):
+    return "\n".join(
+        f"{indent}<p>{text} Owner: {DISCLOSURE_OWNER}. Review date: {DISCLOSURE_REVIEWED}.</p>"
+        for text in DISCLOSURE_STATEMENTS
+    )
+
+
 def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55vw"):
     loading = ' loading="lazy"' if lazy else ""
     w, h = STEM_SIZE[stem]
@@ -749,9 +770,37 @@ def rights():
         <p>If anything on this page disagrees with those registers, the register wins. Tell us: admin@pinktax.com.au.</p>
         <h2>Smart technology, real expertise</h2>
         <p>Pink pairs experienced people with business-grade tools for research, data and drafting. We do the thinking, the judgment and the advice. Every output is reviewed and signed off by a qualified member of the team. No automated tool makes decisions about your tax affairs. We do not allow confidential information to train public models. Personal information is handled under the Privacy Act 1988. If you would prefer we did not use those tools on your file, tell us.</p>
-        <h2>Disclosure statements</h2>
-        <p>No prescribed events under section 45 of the Tax Agent Services (Code of Professional Conduct) Determination 2024 have occurred in the last 5 years. Owner: Huong Bui. Review date: 11 September 2026.</p>
-        <p>Our registration is not subject to any conditions limiting the scope of services we can provide. Owner: Huong Bui. Review date: 11 September 2026.</p>
+        <h2 id="disclosure">Disclosure statements</h2>
+{disclosure_paragraphs()}
+        <p>These also sit on their own page at <a href="/disclosure">serviceprofit.com.au/disclosure</a>, which is the address to give a client who asks for them.</p>
+      </div>
+    </div>
+  </main>
+{footer()}"""
+    return h + body
+
+
+def disclosure():
+    h = head(
+        "Disclosures | Service Profit | Pink Accounting",
+        "Section 45 Code Determination disclosures for Pink Accounting & Tax Solutions Pty Ltd, Registered Tax Agent 26284368, with the TPB register and the complaints process.",
+        "/disclosure",
+    )
+    body = f"""{nav()}
+  <main id="main" class="page">
+    <div class="wrap">
+      <span class="eyebrow">Pink Accounting</span>
+      <h1>Disclosures</h1>
+      <div class="prose">
+        <p>Pink Accounting &amp; Tax Solutions Pty Ltd, ABN 51 682 301 891, Registered Tax Agent 26284368. Service Profit is a service of this firm, not a separate practice. These are the disclosures required of a registered tax practitioner. Owner: {DISCLOSURE_OWNER}. Last reviewed {DISCLOSURE_REVIEWED}.</p>
+        <h2>Matters we must disclose</h2>
+{disclosure_paragraphs()}
+        <h2>Check the register yourself</h2>
+        <p>The Tax Practitioners Board keeps a public register of every registered tax and BAS agent, including any conditions or sanctions. Search <b>26284368</b> at <a href="https://www.tpb.gov.au/public-register" rel="noopener">tpb.gov.au/public-register</a>. If anything here disagrees with the register, the register is correct and we want to know: <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>.</p>
+        <h2>If you need to complain</h2>
+        <p>Tell us first. Email <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a> or call 07 3544 6386. The principal reviews every complaint. If we have not resolved it, you can take it to the TPB at <a href="https://www.tpb.gov.au/complaints" rel="noopener">tpb.gov.au/complaints</a>. Complaining to the TPB does not cost you anything and does not affect your file with us.</p>
+        <h2>The rest of your rights</h2>
+        <p>Our full obligations to you, your obligations to us, how we use technology on your file and how to verify the firm are on <a href="/rights.html">Your rights and our obligations</a>. How we handle personal information is on <a href="/privacy.html">Privacy</a>.</p>
       </div>
     </div>
   </main>
@@ -838,6 +887,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>{ORIGIN}/check.html</loc></url>
   <url><loc>{ORIGIN}/contact.html</loc></url>
   <url><loc>{ORIGIN}/rights.html</loc></url>
+  <url><loc>{ORIGIN}/disclosure</loc></url>
   <url><loc>{ORIGIN}/privacy.html</loc></url>
   <url><loc>{ORIGIN}/terms.html</loc></url>
 </urlset>
@@ -858,6 +908,9 @@ def main():
     write("hvac.html", redirect_home("HVAC"))
     write("electrical.html", redirect_home("Electrical"))
     write("construction.html", redirect_home("Construction"))
+    write("disclosure.html", disclosure())
+    (ROOT / "disclosure").mkdir(exist_ok=True)
+    write("disclosure/index.html", disclosure())
     write("404.html", not_found())
     (ROOT / "sitemap.xml").write_text(SITEMAP, encoding="utf-8")
     print("wrote sitemap.xml")
