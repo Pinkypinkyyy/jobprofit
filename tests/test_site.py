@@ -1,12 +1,16 @@
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from build_pages import REVIEWS_AS_AT, REVIEWS_COUNT  # noqa: E402
+from shared import ASSET, GBP  # noqa: E402
 HTML = list(ROOT.glob("*.html"))
 REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.html"}
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt36"
+CACHE = ASSET  # read from tools/shared.py so a bump cannot desync the test
 
 
 def test_no_hospitality_booking():
@@ -81,7 +85,10 @@ def test_homepage_does_not_repeat_trade_photos():
 def test_google_reviews_visible():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert "5.0" in home
-    assert "25 Google reviews" in home
+    # Count and date come from build_pages so the page and the test cannot drift.
+    assert f"{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}" in home
+    assert f"Read all {REVIEWS_COUNT} Google reviews" in home
+    assert "Reviews of Pink Accounting, the firm behind Service Profit" in home
     assert "T D · Google" in home
     assert "N T · Google" in home
     assert "N M · Google" in home
@@ -123,7 +130,9 @@ def test_lazy_load_and_webp():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert home.count("loading=\"lazy\"") >= 3
     assert "tech-hvac-480.webp" in home
-    assert (ROOT / "assets" / "pink-home.webp").exists()
+    # pink-home now ships responsive variants rather than one full-size webp.
+    for w in (480, 864, 1200):
+        assert (ROOT / "assets" / f"pink-home-{w}.webp").exists()
     assert (ROOT / "assets" / "tech-hvac-480.webp").exists()
     assert (ROOT / "favicon.ico").exists()
 
@@ -232,6 +241,219 @@ def test_sitemap_has_real_pages_not_fake_trades():
     assert "hvac.html" not in sm
     assert "electrical.html" not in sm
     assert "construction.html" not in sm
+
+
+
+def test_forms_have_captcha_and_honeypot():
+    for page in ("book.html", "contact.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert 'name="_captcha" value="true"' in html, page
+        assert 'name="_captcha" value="false"' not in html, page
+        assert 'name="_gotcha"' in html, page
+
+
+def test_contact_has_a_form_not_just_phone_and_email():
+    html = (ROOT / "contact.html").read_text(encoding="utf-8")
+    assert 'action="https://formsubmit.co/admin@pinktax.com.au"' in html
+    assert 'name="message"' in html
+    # The short form, not the full book.html intake.
+    assert 'name="revenue"' not in html
+    assert "contact.html?sent=1" in html
+
+
+def test_hero_keeps_its_side_gutter_on_mobile():
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    # A padding shorthand here zeroes the inline padding .wrap sets, which put
+    # the hero CTAs at x=0 on a phone. Only the block axis may be set.
+    assert ".hero-grid{display:block;min-height:0;padding-block:28px 40px}" in css
+    for bad in ("padding:28px 0 40px", "padding:calc(var(--nav-h) + 28px) 0 36px"):
+        assert bad not in css, bad
+
+
+def test_hero_primary_cta_is_readable_on_the_dark_photo():
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    assert ".hero-copy .btn-primary{background:#fff" in css
+
+
+def test_rights_lists_the_trading_business_name():
+    html = (ROOT / "rights.html").read_text(encoding="utf-8")
+    assert "Service Profit Accounting" in html
+
+
+def test_callback_video_is_phone_sized():
+    mp4 = ROOT / "assets" / "video" / "callback-cost.mp4"
+    assert mp4.exists()
+    mb = mp4.stat().st_size / 1_000_000
+    # It was 20.7 MB. Anyone tapping play on a phone plan pays for this.
+    assert mb < 5, f"callback-cost.mp4 is {mb:.1f} MB"
+
+
+def test_titles_fit_a_search_result():
+    import re
+    for page in ROOT.glob("*.html"):
+        html = page.read_text(encoding="utf-8")
+        m = re.search(r"<title>(.*?)</title>", html, re.S)
+        if not m:
+            continue
+        assert len(m.group(1)) <= 62, f"{page.name} title is {len(m.group(1))} chars"
+
+
+def test_schema_points_at_the_google_business_profile():
+    # The strongest entity signal a local firm has. It was missing from sameAs.
+    for page in ("index.html", "contact.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert GBP in html, page
+
+
+def test_no_em_dashes_in_our_own_copy():
+    # House style. The one Google review quote is verbatim and is exempt.
+    quote = "Pink is amazing"
+    for page in ROOT.glob("*.html"):
+        for line in page.read_text(encoding="utf-8").splitlines():
+            if "\u2014" in line:
+                assert quote in line, f"{page.name}: {line.strip()[:90]}"
+
+
+def test_booking_form_does_not_demand_three_essays():
+    import re
+    html = (ROOT / "book.html").read_text(encoding="utf-8")
+    required = re.findall(r"<(?:input|select|textarea)[^>]*\brequired\b", html)
+    assert len(required) <= 8, f"{len(required)} required fields on the booking form"
+    req_textareas = re.findall(r"<textarea[^>]*\brequired\b", html)
+    assert len(req_textareas) <= 1, f"{len(req_textareas)} required essay boxes"
+
+
+def test_live_reviews_are_parsed_filtered_and_escaped():
+    from build_pages import load_reviews
+
+    fixture = ROOT / "tests" / "fixtures" / "google_reviews_sample.json"
+    rating, count, as_at, quotes, url = load_reviews(fixture)
+    assert rating == "4.9"
+    assert count == 34
+    assert as_at == "November 2026"
+    # The 2-star review must not reach the page.
+    assert all("Too slow" not in q[0] for q in quotes)
+    assert len(quotes) == 3
+    # Every quote carries an author and a link back, as Places terms require.
+    assert all(q[1] and q[2] for q in quotes)
+
+
+def test_review_text_from_google_is_escaped():
+    import html as _html
+    from build_pages import load_reviews
+
+    fixture = ROOT / "tests" / "fixtures" / "google_reviews_sample.json"
+    _, _, _, quotes, _ = load_reviews(fixture)
+    injected = [q for q in quotes if "script" in q[0]]
+    assert injected, "fixture should carry the injection case"
+    assert "&lt;script&gt;" in _html.escape(injected[0][0])
+
+
+def test_site_falls_back_when_there_is_no_live_review_file():
+    from build_pages import load_reviews
+
+    rating, count, as_at, quotes, url = load_reviews(ROOT / "tests" / "fixtures" / "nope.json")
+    assert rating == "5.0"
+    assert count == 30
+    assert len(quotes) == 3
+
+
+def test_no_api_key_is_shipped_to_the_browser():
+    # The Places fetch is build-time only. A key in a page would be public.
+    for page in ROOT.glob("*.html"):
+        html = page.read_text(encoding="utf-8")
+        assert "GOOGLE_PLACES_API_KEY" not in html, page.name
+        assert "places.googleapis.com" not in html, page.name
+        assert "AIza" not in html, page.name
+
+
+def test_js_does_not_override_the_forms_captcha_setting():
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    # The ajax path is the one visitors use. It used to hardcode _captcha
+    # back to "false", so the hidden field in the HTML did nothing.
+    assert '_captcha = "false"' not in js
+    assert '_captcha="false"' not in js
+    assert "formShownAt" in js, "time trap missing"
+
+
+def test_mailto_fallback_carries_every_field_the_visitor_filled():
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    # Built from the submitted data, not a hand-listed set that silently
+    # dropped contact.html's message field.
+    assert "Object.keys(data)" in js
+    assert "message:" in js
+
+
+def test_every_shipped_asset_is_actually_referenced():
+    import re
+    referenced = set()
+    for page in list(ROOT.glob("*.html")) + [ROOT / "styles.css"]:
+        for m in re.findall(r"/assets/([A-Za-z0-9._-]+)", page.read_text(encoding="utf-8")):
+            referenced.add(m)
+    orphans = []
+    for f in (ROOT / "assets").glob("*"):
+        if f.is_file() and f.name not in referenced:
+            orphans.append(f.name)
+    assert not orphans, f"unreferenced assets still deploying: {sorted(orphans)}"
+
+
+def test_the_weekly_output_sample_is_on_the_system_page():
+    html = (ROOT / "system.html").read_text(encoding="utf-8")
+    assert 'id="weekly"' in html
+    assert "wsample" in html
+    # It is invented data and must say so.
+    assert "not a client file" in html.lower()
+    # And the homepage must point at it.
+    assert "/system.html#weekly" in (ROOT / "index.html").read_text(encoding="utf-8")
+
+
+def test_pricing_answers_the_cheap_bookkeeper_objection():
+    html = (ROOT / "pricing.html").read_text(encoding="utf-8")
+    assert "bookkeeper charges" in html
+    assert "does not pay for itself" in html
+
+
+def test_form_endpoint_is_defined_in_one_place():
+    from shared import FORM_AJAX_ENDPOINT, FORM_ENDPOINT, FORM_ORIGIN
+
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    # nav.js must not carry its own copy of the endpoint.
+    assert "formsubmit.co" not in js
+    assert "data-ajax" in js
+    for page in ("book.html", "contact.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert f'action="{FORM_ENDPOINT}"' in html
+        assert f'data-ajax="{FORM_AJAX_ENDPOINT}"' in html
+        # CSP must allow wherever the form actually posts.
+        csp = [l for l in html.splitlines() if "Content-Security-Policy" in l][0]
+        assert FORM_ORIGIN in csp
+
+
+def test_colours_on_dark_panels_meet_aa():
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+
+    def lin(c):
+        c = c / 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+    def lum(h):
+        h = h.lstrip("#")
+        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+
+    def ratio(a, b):
+        la, lb = lum(a), lum(b)
+        return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+
+    import re
+    tokens = dict(re.findall(r"--(accent-on-dark|gold-on-dark):(#[0-9A-Fa-f]{6})", css))
+    assert set(tokens) == {"accent-on-dark", "gold-on-dark"}, tokens
+    for name, hex_ in tokens.items():
+        # Darkest panel the tokens are used on.
+        assert ratio(hex_, "#121A1C") >= 4.5, f"{name} {hex_} fails AA on dark"
+    # The raw brand colours must not be used for text on those panels.
+    assert ".docket-row.is-miss b{color:var(--gold-on-dark)}" in css
+    assert ".wsample-list li.is-you b{color:var(--accent-on-dark)}" in css
 
 
 if __name__ == "__main__":

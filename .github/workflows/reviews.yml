@@ -1,0 +1,59 @@
+name: Refresh Google reviews
+
+on:
+  schedule:
+    # 15:10 UTC Sunday is Monday morning Brisbane.
+    - cron: "10 15 * * 0"
+  workflow_dispatch:
+
+# Opens a pull request rather than pushing to main, because merging to
+# main publishes the live site and that stays a human decision.
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: reviews
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the live rating, count and reviews
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          GOOGLE_PLACE_ID: ${{ vars.GOOGLE_PLACE_ID }}
+        run: python3 tools/fetch_reviews.py
+
+      - name: Rebuild the pages
+        run: python3 tools/build_pages.py
+
+      - name: Check the site still passes
+        run: python3 tests/test_site.py
+
+      - name: Open a pull request if the reviews changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet; then
+            echo "Google reviews unchanged. Nothing to do."
+            exit 0
+          fi
+          BRANCH="bot/google-reviews"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add -A
+          git commit -m "Refresh Google reviews from the live Business Profile"
+          git push -f -u origin "$BRANCH"
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create --head "$BRANCH" --base main \
+              --title "Refresh Google reviews" \
+              --body "Automated weekly pull of the live rating, review count and reviews from the Google Business Profile. Merging this publishes the site."
+          fi

@@ -6,11 +6,20 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt36"
+ASSET = "rt39"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
 META_PIXEL = ""
+
+# Where the enquiry forms post. Changing these three lines is the whole job of
+# moving off the third-party US relay onto a first-party endpoint (a Power
+# Automate "when an HTTP request is received" flow inside the Pink tenant, for
+# example). The CSP, both form actions and the ajax path in nav.js all derive
+# from here, so nothing is left pointing at the old host.
+FORM_ORIGIN = "https://formsubmit.co"
+FORM_ENDPOINT = f"{FORM_ORIGIN}/admin@pinktax.com.au"
+FORM_AJAX_ENDPOINT = f"{FORM_ORIGIN}/ajax/admin@pinktax.com.au"
 
 CSP = (
     "default-src 'self'; "
@@ -20,8 +29,8 @@ CSP = (
     "font-src https://fonts.gstatic.com; "
     "script-src 'self' https://www.googletagmanager.com https://connect.facebook.net; "
     "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com "
-    "https://region1.google-analytics.com https://www.facebook.com https://formsubmit.co; "
-    "form-action 'self' mailto: https://formsubmit.co; "
+    "https://region1.google-analytics.com https://www.facebook.com " + FORM_ORIGIN + "; "
+    "form-action 'self' mailto: " + FORM_ORIGIN + "; "
     "media-src 'self'; "
     "base-uri 'self'"
 )
@@ -45,6 +54,7 @@ def head(title, description, canonical, og_image="/assets/og.png", extra=""):
   <meta http-equiv="Content-Security-Policy" content="{CSP}">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
+  <meta property="og:site_name" content="Service Profit">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{canonical}">
   <meta property="og:image" content="{og}">
@@ -60,7 +70,7 @@ def head(title, description, canonical, og_image="/assets/og.png", extra=""):
   <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v={ASSET}">
 {extra_block}</head>
 """
@@ -116,7 +126,7 @@ def business_node():
         "founder": {"@type": "Person", "name": "Huong Bui"},
         "taxID": "51682301891",
         "identifier": "26284368",
-        "sameAs": [FB, LI],
+        "sameAs": [GBP, FB, LI],
     }
 
 
@@ -319,12 +329,54 @@ def hours_check():
 """
 
 
-def enquiry_form(prefix="book"):
-    return f"""      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="{prefix}-form">
+def short_enquiry_form(prefix="contact", next_page="/contact.html"):
+    return f"""      <form class="enquiry" id="enquiryForm" action="{FORM_ENDPOINT}" method="POST" data-ajax="{FORM_AJAX_ENDPOINT}" data-event="{prefix}-form">
+        <input type="hidden" name="_subject" value="Service Profit enquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="{ORIGIN}{next_page}?sent=1">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fields">
+          <label>Your name
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Business name
+            <input type="text" name="business" required autocomplete="organization">
+          </label>
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" required autocomplete="tel">
+          </label>
+        </div>
+        <label>What work
+          <select name="trade" required>
+            <option value="">Choose one</option>
+            <option>Air con / refrigeration</option>
+            <option>Electrical</option>
+            <option>Construction services</option>
+            <option>Mix of those</option>
+          </select>
+        </label>
+        <label>What do you need
+          <textarea class="short" name="message" rows="4" maxlength="1000" required placeholder="What is going on with the books, the BAS or the job costs. A sentence or two is enough."></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send this</button>
+        <p class="form-note">Goes to admin@pinktax.com.au. A person reads it. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+      </form>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We will come back to you the same working day.</p>
+"""
+
+
+def enquiry_form(prefix="book", short=False, next_page="/book.html"):
+    if short:
+        return short_enquiry_form(prefix, next_page)
+    return f"""      <form class="enquiry" id="enquiryForm" action="{FORM_ENDPOINT}" method="POST" data-ajax="{FORM_AJAX_ENDPOINT}" data-event="{prefix}-form">
         <input type="hidden" name="_subject" value="Service Profit intake">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="{ORIGIN}/book.html?sent=1">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="{ORIGIN}{next_page}?sent=1">
         <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="fields">
           <label>Your name
@@ -370,11 +422,11 @@ def enquiry_form(prefix="book"):
         <label>What is hurting
           <textarea class="short" name="hurt" rows="4" maxlength="1000" required placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
         </label>
-        <label>Where is the business now
-          <textarea class="short" name="position" rows="4" maxlength="1000" required placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
+        <label>Where is the business now <span class="opt">optional</span>
+          <textarea class="short" name="position" rows="3" maxlength="1000" placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
         </label>
-        <label>Where do you want it in 12 months
-          <textarea class="short" name="vision" rows="4" maxlength="1000" required placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
+        <label>Where do you want it in 12 months <span class="opt">optional</span>
+          <textarea class="short" name="vision" rows="3" maxlength="1000" placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
         </label>
         <button class="btn btn-primary" type="submit">Send this, then pick a time</button>
         <p class="form-note">Goes to admin@pinktax.com.au. We read it before the call. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>

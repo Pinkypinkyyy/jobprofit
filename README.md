@@ -18,3 +18,31 @@ python tools/build_assets.py
 python tools/build_pages.py
 python tests/test_site.py
 ```
+
+## Live Google reviews
+
+The rating, review count and the three quotes on the homepage come from the
+Google Business Profile, pulled at build time by `tools/fetch_reviews.py` into
+`data/google_reviews.json`. The page renders from that file. If the file is
+missing or malformed the site falls back to the figures committed in
+`tools/build_pages.py`, so a Places API outage can never blank the homepage.
+
+The fetch is build-time on purpose. This site is static GitHub Pages, so an API
+key sent to the browser would be readable by anyone who opened devtools. The key
+never leaves GitHub Actions.
+
+To turn it on, two settings on the repository:
+
+| Where | Name | Value |
+|---|---|---|
+| Settings, Secrets, Actions | `GOOGLE_PLACES_API_KEY` | A Google Cloud key with the Places API (New) enabled, restricted to that API |
+| Settings, Variables, Actions | `GOOGLE_PLACE_ID` | The Place ID. Leave unset for the first run and the workflow log prints it |
+
+Then run the "Refresh Google reviews" workflow by hand once. After that it runs
+Monday mornings Brisbane time. It opens a pull request rather than pushing to
+`main`, because merging to `main` publishes the live site.
+
+Reviews are shown with the author name and a link back to the review, which the
+Places API terms require. There is deliberately no `aggregateRating` structured
+data: the reviews are Google's, not ours, and marking up third-party reviews as
+your own rating breaches Google's structured data policy.

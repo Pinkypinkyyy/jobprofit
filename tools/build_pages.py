@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from shared import (
     GBP,
@@ -20,6 +21,51 @@ from shared import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# Fallback figures, used only when data/google_reviews.json is absent, which is
+# the case before the first scheduled fetch runs or if the Places API is down.
+# tools/fetch_reviews.py is what normally supplies these.
+FALLBACK_RATING = "5.0"
+FALLBACK_COUNT = 30
+FALLBACK_AS_AT = "September 2026"
+FALLBACK_QUOTES = [
+    ("I\u2019ve had a fantastic experience working with Pinky. She is professional, knowledgeable, "
+     "and always takes the time to explain things clearly. As a small business owner, I really "
+     "appreciate her patience, attention to detail, and prompt responses.", "T D", ""),
+    ("Huong is super knowledgeable and keeps your books tidy and taxes up to date. She explains "
+     "things clearly so you actually understand your tax, not just the numbers.", "N T", ""),
+    ("Pink is amazing \u2014 super quick, really knows her stuff, and an absolute gem for any "
+     "business. She makes everything easy.", "N M", ""),
+]
+
+MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December")
+
+
+def load_reviews(path=None):
+    """Live Google data if the scheduled fetch has written it, else the
+    committed fallback. Never let a bad file take the site down."""
+    path = path or ROOT / "data" / "google_reviews.json"
+    try:
+        d = json.loads(path.read_text(encoding="utf-8"))
+        rating = d["rating"]
+        count = int(d["count"])
+        y, m, _ = (d.get("fetched") or "").split("-")
+        as_at = f"{MONTHS[int(m) - 1]} {y}"
+        quotes = [
+            (r["text"], r.get("author") or "Google reviewer", r.get("uri") or d.get("maps_uri", ""))
+            for r in d.get("reviews", [])
+            if r.get("text") and (r.get("rating") or 0) >= 4
+        ][:3]
+        if not quotes:
+            quotes = FALLBACK_QUOTES
+        rating = f"{float(rating):.1f}"
+        return rating, count, as_at, quotes, d.get("maps_uri") or GBP
+    except (OSError, ValueError, KeyError, IndexError, TypeError):
+        return FALLBACK_RATING, FALLBACK_COUNT, FALLBACK_AS_AT, FALLBACK_QUOTES, GBP
+
+
+REVIEWS_RATING, REVIEWS_COUNT, REVIEWS_AS_AT, REVIEWS_QUOTES, REVIEWS_URL = load_reviews()
 
 
 def write(name, html):
@@ -61,6 +107,14 @@ PRICING_FAQ = [
         "No. It is an add-on from $500 + GST a month, quoted when it is actually needed. It does not include the weekly job-and-cash look.",
     ),
     (
+        "My bookkeeper charges $300 a month. Why is this five times that?",
+        "Because it is not the same job. A bookkeeper records what already happened. This tells you, each week, whether the hours you quoted matched the hours you paid for, and how much of the bank is actually yours once GST, PAYG, super and wages come out. It also carries the tax agent work: income tax, FBT, financial statements, BAS and GST. If what you need is the recording, keep your bookkeeper. Bookkeeping is an add-on here from $500 + GST a month and we will say so.",
+    ),
+    (
+        "What happens if it does not pay for itself?",
+        "Then it is the wrong plan and you should not be on it. The fee is worth it if a job that ran long gets caught before the next quote repeats it. If your jobs already land on quote and you know what is yours in the bank, you do not need Job Profit. Compliance at $550 + GST a month does the returns and the BAS, and that is an honest answer on the call.",
+    ),
+    (
         "Are the fees plus GST?",
         "Yes. Published fees are monthly, exclusive of GST, for one trading entity unless the letter says otherwise.",
     ),
@@ -71,19 +125,81 @@ PRICING_FAQ = [
 ]
 
 
+# Real pixel sizes of assets/<stem>.jpg. A wrong height here reserves the wrong
+# box and the page shifts when the image lands.
+STEM_SIZE = {
+    "hvac": (838, 1059),
+    "electrical": (838, 1059),
+    "construction": (838, 1036),
+    "tech-hvac": (838, 1059),
+    "tech-electrical": (838, 1059),
+    "pink-home": (1200, 1800),
+    "pink-meet": (1080, 1350),
+}
+
+
+def weekly_sample():
+    """What actually lands in the inbox. The site sold the idea of the weekly
+    look without ever showing the thing, which is the one artefact a buyer at
+    this fee wants to see. Figures are invented and labelled as invented."""
+    return """        <div class="wsample">
+          <div class="wsample-head">
+            <span class="label">Monday 9:00 &middot; week ending 5 September</span>
+            <span class="label">Job Profit &middot; weekly</span>
+          </div>
+          <div class="wsample-body">
+            <h3>Quoted 96 hours. On the tools 112.</h3>
+            <p class="wsample-sub">Fourteen jobs closed. Sixteen hours over. Two jobs did most of it.</p>
+            <ul class="wsample-list">
+              <li><span>Rooftop changeover</span><b>quoted 8, took 15</b></li>
+              <li><span>Switchboard upgrade</span><b>quoted 6, took 9</b></li>
+              <li><span>Everything else</span><b>within an hour of quote</b></li>
+            </ul>
+            <h3>In the bank $84,200. Yours $44,640.</h3>
+            <ul class="wsample-list">
+              <li><span>GST held</span><b>$11,400</b></li>
+              <li><span>PAYG and super</span><b>$9,860</b></li>
+              <li><span>Wages to Thursday</span><b>$18,300</b></li>
+              <li class="is-you"><span>Yours to spend</span><b>$44,640</b></li>
+            </ul>
+            <h3>One thing needs you</h3>
+            <p class="wsample-sub">Third rooftop changeover this quarter to run over. The quote template does not carry crane time. Worth a ten-minute fix before the next one goes out.</p>
+          </div>
+        </div>
+        <p class="note-ex">Illustration of the weekly output. Invented figures, not a client file. Your first one uses your jobs and your bank.</p>"""
+
+
+def review_quotes():
+    """Google requires the author and a link back to the review. Both are
+    carried here whenever the live fetch supplied them."""
+    import html as _html
+    out = ['        <div class="quotes">']
+    for text, author, uri in REVIEWS_QUOTES:
+        cite = _html.escape(author)
+        if uri:
+            cite = f'<a href="{_html.escape(uri)}" rel="noopener nofollow">{cite}</a>'
+        out.append("          <blockquote>")
+        out.append(f"            <p>{_html.escape(text)}</p>")
+        out.append(f"            <footer>{cite} \u00b7 Google</footer>")
+        out.append("          </blockquote>")
+    out.append("        </div>")
+    return "\n".join(out)
+
+
 def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55vw"):
     loading = ' loading="lazy"' if lazy else ""
+    w, h = STEM_SIZE[stem]
     return (
         f'          <picture>\n'
         f'            <source type="image/webp" srcset="/assets/{stem}-480.webp?v=real1 480w, /assets/{stem}-864.webp?v=real1 864w, /assets/{stem}-1200.webp?v=real1 1200w" sizes="{sizes}">\n'
-        f'            <img{extra} src="/assets/{stem}.jpg?v=real1" width="838" height="1059" alt="{alt}"{loading}>\n'
+        f'            <img{extra} src="/assets/{stem}.jpg?v=real1" width="{w}" height="{h}" alt="{alt}"{loading}>\n'
         f'          </picture>'
     )
 
 
 def index():
     h = head(
-        "Service Profit | HVAC, electrical and construction accounting in Brendale, Brisbane and Queensland",
+        "Air con, electrical and construction accountant | Brisbane",
         "Quoted hours versus hours on the tools. Cash that is yours versus GST, PAYG, super and wages. Tax and BAS held. Book 15 minutes. Brendale, Queensland.",
         "/",
         extra=jsonld(business_node()),
@@ -92,7 +208,7 @@ def index():
   <main id="main">
     <section class="hero-bleed">
       <div class="hero-media" id="stage">
-{picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac"', False, "100vw")}
+{picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac" fetchpriority="high"', False, "100vw")}
 {picture("electrical", "Electrical switchboard", ' data-trade="electrical" aria-hidden="true" inert', True, "100vw")}
 {picture("construction", "Construction services fit-out", ' data-trade="construction" aria-hidden="true" inert', True, "100vw")}
         <div class="hero-scrim"></div>
@@ -115,10 +231,10 @@ def index():
           </div>
           <p class="live" id="liveLine">Air con and refrigeration. Quoted hours versus hours on the job.</p>
           <div class="trust">
-            <a class="stars" href="{GBP}" rel="noopener">
-              <span class="star-value">5.0</span>
+            <a class="stars" href="{REVIEWS_URL}" rel="noopener">
+              <span class="star-value">{REVIEWS_RATING}</span>
               <span class="star-icons" aria-hidden="true">★★★★★</span>
-              <span>25 Google reviews</span>
+              <span>{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}</span>
             </a>
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
@@ -130,7 +246,7 @@ def index():
     <section class="band band-photo">
       <div class="wrap split-visual">
         <div class="photo-frame">
-          <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
+{picture("tech-electrical", "Electrician testing a switchboard", "", True, "(max-width:940px) 100vw, 45vw")}
         </div>
         <div class="split-copy">
           <h2>The bank looks full. It is not all yours.</h2>
@@ -145,7 +261,7 @@ def index():
       <div class="wrap">
       <figure class="watch">
         <div class="watch-frame">
-          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="1080" height="1920">
+          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="720" height="1280">
             <source src="/assets/video/callback-cost.mp4" type="video/mp4">
           </video>
         </div>
@@ -199,6 +315,7 @@ def index():
           </a>
         </div>
         <p class="pricing-more"><a href="/pricing.html">Full plans, what is in, what is out, and the FAQ</a></p>
+        <p class="pricing-more"><a href="/system.html#weekly">See what lands in your inbox on Monday</a></p>
       </div>
     </section>
 
@@ -206,33 +323,18 @@ def index():
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">Google reviews</span>
-          <h2>5.0 on Google.</h2>
+          <h2>{REVIEWS_RATING} on Google.</h2>
+          <p class="sec-note">Reviews of Pink Accounting, the firm behind Service Profit. {REVIEWS_COUNT} reviews as at {REVIEWS_AS_AT}. They are not job-costing results.</p>
         </div>
-        <div class="quotes">
-          <blockquote>
-            <p>I’ve had a fantastic experience working with Pinky. She is professional, knowledgeable, and always takes the time to explain things clearly. As a small business owner, I really appreciate her patience, attention to detail, and prompt responses.</p>
-            <footer>T D · Google</footer>
-          </blockquote>
-          <blockquote>
-            <p>Huong is super knowledgeable and keeps your books tidy and taxes up to date. She explains things clearly so you actually understand your tax, not just the numbers.</p>
-            <footer>N T · Google</footer>
-          </blockquote>
-          <blockquote>
-            <p>Pink is amazing — super quick, really knows her stuff, and an absolute gem for any business. She makes everything easy.</p>
-            <footer>N M · Google</footer>
-          </blockquote>
-        </div>
-        <p class="creds"><a href="{GBP}" rel="noopener">Read all 25 Google reviews</a></p>
+{review_quotes()}
+        <p class="creds"><a href="{REVIEWS_URL}" rel="noopener">Read all {REVIEWS_COUNT} Google reviews</a></p>
       </div>
     </section>
 
     <section class="band">
       <div class="wrap meet">
         <div class="shot photo-frame">
-          <picture>
-            <source type="image/webp" srcset="/assets/pink-home.webp?v=real1">
-            <img src="/assets/pink-home.jpg?v=real1" width="1200" height="1800" alt="Huong Bui, principal of Service Profit" loading="lazy">
-          </picture>
+{picture("pink-home", "Huong Bui, principal of Service Profit", "", True, "(max-width:940px) 100vw, 40vw")}
         </div>
         <div>
           <span class="eyebrow">Pink</span>
@@ -261,7 +363,7 @@ def index():
 
 def system():
     h = head(
-        "The system | Service Profit",
+        "Job costing for trades | Service Profit",
         "Billed hours, staff versus contractors, cash that is yours, tax and BAS held. Service Profit for HVAC, electrical and construction services in Queensland.",
         "/system.html",
         extra=jsonld(faq_node(SYSTEM_FAQ)),
@@ -275,7 +377,7 @@ def system():
       <div class="wrap">
         <span class="eyebrow">The system</span>
         <h1>Is $150 + GST an hour enough to relax?</h1>
-        <p class="lead">That is a billed hour. It is not profit. GST comes off. Then the person on the tools — staff or contractor — then parts, then the business. We hold that picture, and we hold tax and BAS, so you can stay on the jobs.</p>
+        <p class="lead">That is a billed hour. It is not profit. GST comes off. Then the person on the tools, staff or contractor. Then parts. Then the business. We hold that picture, and we hold tax and BAS, so you can stay on the jobs.</p>
         <div class="cta">
           <a class="btn btn-primary" href="/book.html" data-event="system-book">Book a 15-minute call</a>
           <a class="btn btn-outline" href="/pricing.html">See the plans</a>
@@ -323,6 +425,19 @@ def system():
         </article>
       </div>
     </section>
+    <section class="band band-bone" id="weekly">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What you actually get</span>
+          <h2>This lands Monday morning.</h2>
+          <p class="sec-note">Not a pack in October. Not a meeting you have to attend. One read on the phone between jobs.</p>
+        </div>
+{weekly_sample()}
+        <div class="cta" style="margin-top:28px">
+          <a class="btn btn-primary" href="/book.html" data-event="system-sample">Book a 15-minute call</a>
+        </div>
+      </div>
+    </section>
     <section class="band">
       <div class="wrap">
         <div class="faq">
@@ -337,7 +452,7 @@ def system():
 
 def pricing():
     h = head(
-        "Pricing | Service Profit HVAC, electrical and construction accounting",
+        "Pricing | Trade accounting plans and fees | Service Profit",
         "Job Profit $1,650 + GST a month. Weekly Visibility from $2,650. Ready to Scale from $3,500. Compliance $550. What is in, what is out, and the FAQ. Queensland.",
         "/pricing.html",
         extra=jsonld(faq_node(PRICING_FAQ)),
@@ -437,7 +552,7 @@ def pricing():
 
 def why():
     h = head(
-        "Meet Pink | Service Profit",
+        "Meet Huong Bui, registered tax agent | Service Profit",
         "Huong Bui, Master of Professional Accounting (Griffith), Registered Tax Agent 26284368. More than ten years in the books. Income tax, FBT, financial statements, BAS.",
         "/why.html",
     )
@@ -446,10 +561,7 @@ def why():
     <section class="page" style="padding-bottom:0">
       <div class="wrap meet">
         <div class="shot">
-          <picture>
-            <source type="image/webp" srcset="/assets/pink-meet.webp?v=real1">
-            <img src="/assets/pink-meet.jpg?v=real1" width="1080" height="1350" alt="Huong Bui in a client meeting">
-          </picture>
+{picture("pink-meet", "Huong Bui in a client meeting", "", False, "(max-width:940px) 100vw, 40vw")}
         </div>
         <div class="meet-copy">
           <span class="eyebrow">Meet Pink</span>
@@ -479,7 +591,7 @@ def why():
 
 def check():
     h = head(
-        "Hours check | Service Profit",
+        "Free hours check for trade jobs | Service Profit",
         "Type the last job. Hours quoted versus hours on the tools. Then book 15 minutes if you want the file held.",
         "/check.html",
     )
@@ -558,6 +670,12 @@ def contact():
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
         <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
+      <div class="sec-head">
+        <span class="eyebrow">Or write to us</span>
+        <h2>Send a short message instead.</h2>
+        <p class="sec-note">Not everyone wants to ring. Six fields. It goes to the same mailbox.</p>
+      </div>
+{enquiry_form("contact", short=True, next_page="/contact.html")}
     </div>
   </main>
 {footer()}"""
@@ -602,7 +720,7 @@ def privacy():
 
 def rights():
     h = head(
-        "Your rights and our obligations | Service Profit | Pink Accounting",
+        "Your rights and our obligations | Service Profit",
         "Pink Accounting is a registered tax practitioner. TPB register, complaints, ABN, AI disclosure and professional obligations.",
         "/rights.html",
     )
@@ -623,10 +741,10 @@ def rights():
         <h2>Verify us</h2>
         <p>Practising as Pink since 2020; incorporated as Pink Accounting &amp; Tax Solutions Pty Ltd in November 2024, which is why our current ABN shows a 2024 start date.</p>
         <ul>
-          <li><b>Tax agent registration 26284368</b> — <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a></li>
-          <li><b>ABN 51 682 301 891</b> — <a href="https://abr.business.gov.au/ABN/View?abn=51682301891" rel="noopener">ABN Lookup</a></li>
-          <li><b>Company and business names</b> — ASIC, including Pink Accounting and Pink Strategic Accounting</li>
-          <li><b>Professional membership</b> — Member, Institute of Public Accountants (MIPA AFA)</li>
+          <li><b>Tax agent registration 26284368</b>. <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a></li>
+          <li><b>ABN 51 682 301 891</b>. <a href="https://abr.business.gov.au/ABN/View?abn=51682301891" rel="noopener">ABN Lookup</a></li>
+          <li><b>Company and business names</b>. ASIC, including Pink Accounting, Pink Strategic Accounting and Service Profit Accounting, the name this site trades under, registered 24 August 2026</li>
+          <li><b>Professional membership</b>. Member, Institute of Public Accountants (MIPA AFA)</li>
         </ul>
         <p>If anything on this page disagrees with those registers, the register wins. Tell us: admin@pinktax.com.au.</p>
         <h2>Smart technology, real expertise</h2>
@@ -678,6 +796,7 @@ def redirect_home(title):
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} | Service Profit</title>
   <link rel="canonical" href="{ORIGIN}/">
   <meta http-equiv="refresh" content="0;url=/index.html">
