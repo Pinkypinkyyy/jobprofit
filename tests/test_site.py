@@ -1,6 +1,9 @@
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from build_pages import REVIEWS_AS_AT, REVIEWS_COUNT  # noqa: E402
 HTML = list(ROOT.glob("*.html"))
 REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.html"}
 PAGES = [p for p in HTML if p not in REDIRECTS]
@@ -81,7 +84,10 @@ def test_homepage_does_not_repeat_trade_photos():
 def test_google_reviews_visible():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert "5.0" in home
-    assert "25 Google reviews" in home
+    # Count and date come from build_pages so the page and the test cannot drift.
+    assert f"{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}" in home
+    assert f"Read all {REVIEWS_COUNT} Google reviews" in home
+    assert "Reviews of Pink Accounting, the firm behind Service Profit" in home
     assert "T D · Google" in home
     assert "N T · Google" in home
     assert "N M · Google" in home
@@ -232,6 +238,51 @@ def test_sitemap_has_real_pages_not_fake_trades():
     assert "hvac.html" not in sm
     assert "electrical.html" not in sm
     assert "construction.html" not in sm
+
+
+
+def test_forms_have_captcha_and_honeypot():
+    for page in ("book.html", "contact.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert 'name="_captcha" value="true"' in html, page
+        assert 'name="_captcha" value="false"' not in html, page
+        assert 'name="_gotcha"' in html, page
+
+
+def test_contact_has_a_form_not_just_phone_and_email():
+    html = (ROOT / "contact.html").read_text(encoding="utf-8")
+    assert 'action="https://formsubmit.co/admin@pinktax.com.au"' in html
+    assert 'name="message"' in html
+    # The short form, not the full book.html intake.
+    assert 'name="revenue"' not in html
+    assert "contact.html?sent=1" in html
+
+
+def test_hero_keeps_its_side_gutter_on_mobile():
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    # A padding shorthand here zeroes the inline padding .wrap sets, which put
+    # the hero CTAs at x=0 on a phone. Only the block axis may be set.
+    assert ".hero-grid{display:block;min-height:0;padding-block:28px 40px}" in css
+    for bad in ("padding:28px 0 40px", "padding:calc(var(--nav-h) + 28px) 0 36px"):
+        assert bad not in css, bad
+
+
+def test_hero_primary_cta_is_readable_on_the_dark_photo():
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    assert ".hero-copy .btn-primary{background:#fff" in css
+
+
+def test_rights_lists_the_trading_business_name():
+    html = (ROOT / "rights.html").read_text(encoding="utf-8")
+    assert "Service Profit Accounting" in html
+
+
+def test_callback_video_is_phone_sized():
+    mp4 = ROOT / "assets" / "video" / "callback-cost.mp4"
+    assert mp4.exists()
+    mb = mp4.stat().st_size / 1_000_000
+    # It was 20.7 MB. Anyone tapping play on a phone plan pays for this.
+    assert mb < 5, f"callback-cost.mp4 is {mb:.1f} MB"
 
 
 if __name__ == "__main__":

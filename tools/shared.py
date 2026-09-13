@@ -319,12 +319,54 @@ def hours_check():
 """
 
 
-def enquiry_form(prefix="book"):
+def short_enquiry_form(prefix="contact", next_page="/contact.html"):
+    return f"""      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="{prefix}-form">
+        <input type="hidden" name="_subject" value="Service Profit enquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="{ORIGIN}{next_page}?sent=1">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fields">
+          <label>Your name
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Business name
+            <input type="text" name="business" required autocomplete="organization">
+          </label>
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" required autocomplete="tel">
+          </label>
+        </div>
+        <label>What work
+          <select name="trade" required>
+            <option value="">Choose one</option>
+            <option>Air con / refrigeration</option>
+            <option>Electrical</option>
+            <option>Construction services</option>
+            <option>Mix of those</option>
+          </select>
+        </label>
+        <label>What do you need
+          <textarea class="short" name="message" rows="4" maxlength="1000" required placeholder="What is going on with the books, the BAS or the job costs. A sentence or two is enough."></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send this</button>
+        <p class="form-note">Goes to admin@pinktax.com.au. A person reads it. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+      </form>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We will come back to you the same working day.</p>
+"""
+
+
+def enquiry_form(prefix="book", short=False, next_page="/book.html"):
+    if short:
+        return short_enquiry_form(prefix, next_page)
     return f"""      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="{prefix}-form">
         <input type="hidden" name="_subject" value="Service Profit intake">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="{ORIGIN}/book.html?sent=1">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="{ORIGIN}{next_page}?sent=1">
         <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="fields">
           <label>Your name

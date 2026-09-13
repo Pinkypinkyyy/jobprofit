@@ -180,6 +180,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .band{padding:var(--section) 0}
 .band-bone{background:var(--paper-2)}
 .sec-head{max-width:40em}
+.sec-head .sec-note{max-width:60ch}
 .sec-head h2{font-size:clamp(1.9rem,3.4vw,2.8rem);margin:12px 0 0}
 .sec-head p{color:var(--soft);margin-top:16px}
 
@@ -473,7 +474,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   position:relative;z-index:4;
   display:grid;grid-template-columns:1.15fr .85fr;gap:40px;
   min-height:min(78vh,820px);align-items:stretch;
-  padding:calc(var(--nav-h) + 28px) 0 36px;
+  padding-block:calc(var(--nav-h) + 28px) 36px;
 }
 .hero-copy{display:flex;flex-direction:column;justify-content:center;padding-bottom:12px}
 .chart-hours{align-self:end}
@@ -492,6 +493,8 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   background:#fff;color:var(--ink);border-color:#fff;transform:translateY(-2px)
 }
 .hero-bleed .nav .btn-primary{background:#fff;color:var(--ink)}
+.hero-copy .btn-primary{background:#fff;color:var(--ink);border-color:#fff;box-shadow:0 10px 24px -14px rgba(0,0,0,.55)}
+.hero-copy .btn-primary:hover{background:var(--paper-2);color:var(--ink);border-color:#fff}
 
 .chart-hours,.chart-cash,.chart-fall{margin:0}
 .chart-hours{
@@ -605,7 +608,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 @media(max-width:940px){
   .hero-bleed{min-height:0}
   .hero-media{position:relative;height:min(58vw,420px);min-height:240px}
-  .hero-grid{display:block;min-height:0;padding:28px 0 40px}
+  .hero-grid{display:block;min-height:0;padding-block:28px 40px}
   .hero-copy h1{font-size:1.7rem}
   .hero-copy .cta .btn{width:auto}
   .chart-hours{margin-top:22px}

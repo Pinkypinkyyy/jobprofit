@@ -68,6 +68,48 @@
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
         <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
+      <div class="sec-head">
+        <span class="eyebrow">Or write to us</span>
+        <h2>Send a short message instead.</h2>
+        <p class="sec-note">Not everyone wants to ring. Six fields. It goes to the same mailbox.</p>
+      </div>
+      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="contact-form">
+        <input type="hidden" name="_subject" value="Service Profit enquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://www.serviceprofit.com.au/contact.html?sent=1">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fields">
+          <label>Your name
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Business name
+            <input type="text" name="business" required autocomplete="organization">
+          </label>
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" required autocomplete="tel">
+          </label>
+        </div>
+        <label>What work
+          <select name="trade" required>
+            <option value="">Choose one</option>
+            <option>Air con / refrigeration</option>
+            <option>Electrical</option>
+            <option>Construction services</option>
+            <option>Mix of those</option>
+          </select>
+        </label>
+        <label>What do you need
+          <textarea class="short" name="message" rows="4" maxlength="1000" required placeholder="What is going on with the books, the BAS or the job costs. A sentence or two is enough."></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send this</button>
+        <p class="form-note">Goes to admin@pinktax.com.au. A person reads it. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+      </form>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We will come back to you the same working day.</p>
+
     </div>
   </main>
   <footer class="foot">

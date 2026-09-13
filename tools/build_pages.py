@@ -19,6 +19,11 @@ from shared import (
     sticky,
 )
 
+# Google review count, read off the live Business Profile. Update both the
+# number and the date together; every page renders from these two names.
+REVIEWS_COUNT = 30
+REVIEWS_AS_AT = "September 2026"
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -118,7 +123,7 @@ def index():
             <a class="stars" href="{GBP}" rel="noopener">
               <span class="star-value">5.0</span>
               <span class="star-icons" aria-hidden="true">★★★★★</span>
-              <span>25 Google reviews</span>
+              <span>{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}</span>
             </a>
             <span class="sep"></span><span>Registered Tax Agent 26284368</span>
           </div>
@@ -145,7 +150,7 @@ def index():
       <div class="wrap">
       <figure class="watch">
         <div class="watch-frame">
-          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="1080" height="1920">
+          <video controls playsinline preload="metadata" poster="/assets/video/callback-cost-poster.jpg" width="720" height="1280">
             <source src="/assets/video/callback-cost.mp4" type="video/mp4">
           </video>
         </div>
@@ -207,6 +212,7 @@ def index():
         <div class="sec-head">
           <span class="eyebrow">Google reviews</span>
           <h2>5.0 on Google.</h2>
+          <p class="sec-note">Reviews of Pink Accounting, the firm behind Service Profit. {REVIEWS_COUNT} reviews as at {REVIEWS_AS_AT}. They are not job-costing results.</p>
         </div>
         <div class="quotes">
           <blockquote>
@@ -222,7 +228,7 @@ def index():
             <footer>N M · Google</footer>
           </blockquote>
         </div>
-        <p class="creds"><a href="{GBP}" rel="noopener">Read all 25 Google reviews</a></p>
+        <p class="creds"><a href="{GBP}" rel="noopener">Read all {REVIEWS_COUNT} Google reviews</a></p>
       </div>
     </section>
 
@@ -558,6 +564,12 @@ def contact():
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
         <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
+      <div class="sec-head">
+        <span class="eyebrow">Or write to us</span>
+        <h2>Send a short message instead.</h2>
+        <p class="sec-note">Not everyone wants to ring. Six fields. It goes to the same mailbox.</p>
+      </div>
+{enquiry_form("contact", short=True, next_page="/contact.html")}
     </div>
   </main>
 {footer()}"""
@@ -625,7 +637,7 @@ def rights():
         <ul>
           <li><b>Tax agent registration 26284368</b> — <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a></li>
           <li><b>ABN 51 682 301 891</b> — <a href="https://abr.business.gov.au/ABN/View?abn=51682301891" rel="noopener">ABN Lookup</a></li>
-          <li><b>Company and business names</b> — ASIC, including Pink Accounting and Pink Strategic Accounting</li>
+          <li><b>Company and business names</b> — ASIC, including Pink Accounting, Pink Strategic Accounting and Service Profit Accounting, the name this site trades under, registered 24 August 2026</li>
           <li><b>Professional membership</b> — Member, Institute of Public Accountants (MIPA AFA)</li>
         </ul>
         <p>If anything on this page disagrees with those registers, the register wins. Tell us: admin@pinktax.com.au.</p>
@@ -678,6 +690,7 @@ def redirect_home(title):
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} | Service Profit</title>
   <link rel="canonical" href="{ORIGIN}/">
   <meta http-equiv="refresh" content="0;url=/index.html">
