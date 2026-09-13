@@ -551,6 +551,9 @@ def test_trading_hours_match_the_bookings_calendar():
     html = (ROOT / "contact.html").read_text(encoding="utf-8")
     assert "Mon-Thu" in html
     assert "Mon-Fri" not in html
+    # Friday is by appointment, so it may appear in the copy but must never
+    # be advertised as a regular open day.
+    assert "Friday and Saturday by appointment" in html
     assert '"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"]' in html
     assert "Friday" not in html.split('"openingHoursSpecification"')[1][:200]
 
