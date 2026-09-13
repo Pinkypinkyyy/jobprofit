@@ -107,6 +107,14 @@ PRICING_FAQ = [
         "No. It is an add-on from $500 + GST a month, quoted when it is actually needed. It does not include the weekly job-and-cash look.",
     ),
     (
+        "My bookkeeper charges $300 a month. Why is this five times that?",
+        "Because it is not the same job. A bookkeeper records what already happened. This tells you, each week, whether the hours you quoted matched the hours you paid for, and how much of the bank is actually yours once GST, PAYG, super and wages come out. It also carries the tax agent work: income tax, FBT, financial statements, BAS and GST. If what you need is the recording, keep your bookkeeper. Bookkeeping is an add-on here from $500 + GST a month and we will say so.",
+    ),
+    (
+        "What happens if it does not pay for itself?",
+        "Then it is the wrong plan and you should not be on it. The fee is worth it if a job that ran long gets caught before the next quote repeats it. If your jobs already land on quote and you know what is yours in the bank, you do not need Job Profit. Compliance at $550 + GST a month does the returns and the BAS, and that is an honest answer on the call.",
+    ),
+    (
         "Are the fees plus GST?",
         "Yes. Published fees are monthly, exclusive of GST, for one trading entity unless the letter says otherwise.",
     ),
@@ -128,6 +136,37 @@ STEM_SIZE = {
     "pink-home": (1200, 1800),
     "pink-meet": (1080, 1350),
 }
+
+
+def weekly_sample():
+    """What actually lands in the inbox. The site sold the idea of the weekly
+    look without ever showing the thing, which is the one artefact a buyer at
+    this fee wants to see. Figures are invented and labelled as invented."""
+    return """        <div class="wsample">
+          <div class="wsample-head">
+            <span class="label">Monday 9:00 &middot; week ending 5 September</span>
+            <span class="label">Job Profit &middot; weekly</span>
+          </div>
+          <div class="wsample-body">
+            <h3>Quoted 96 hours. On the tools 112.</h3>
+            <p class="wsample-sub">Fourteen jobs closed. Sixteen hours over. Two jobs did most of it.</p>
+            <ul class="wsample-list">
+              <li><span>Rooftop changeover</span><b>quoted 8, took 15</b></li>
+              <li><span>Switchboard upgrade</span><b>quoted 6, took 9</b></li>
+              <li><span>Everything else</span><b>within an hour of quote</b></li>
+            </ul>
+            <h3>In the bank $84,200. Yours $44,640.</h3>
+            <ul class="wsample-list">
+              <li><span>GST held</span><b>$11,400</b></li>
+              <li><span>PAYG and super</span><b>$9,860</b></li>
+              <li><span>Wages to Thursday</span><b>$18,300</b></li>
+              <li class="is-you"><span>Yours to spend</span><b>$44,640</b></li>
+            </ul>
+            <h3>One thing needs you</h3>
+            <p class="wsample-sub">Third rooftop changeover this quarter to run over. The quote template does not carry crane time. Worth a ten-minute fix before the next one goes out.</p>
+          </div>
+        </div>
+        <p class="note-ex">Illustration of the weekly output. Invented figures, not a client file. Your first one uses your jobs and your bank.</p>"""
 
 
 def review_quotes():
@@ -276,6 +315,7 @@ def index():
           </a>
         </div>
         <p class="pricing-more"><a href="/pricing.html">Full plans, what is in, what is out, and the FAQ</a></p>
+        <p class="pricing-more"><a href="/system.html#weekly">See what lands in your inbox on Monday</a></p>
       </div>
     </section>
 
@@ -383,6 +423,19 @@ def system():
           <p>We are the tax agent. The return, FBT, BAS, GST, super and PAYG sit in the file so you are not paying tax on a mess. You stay on the jobs.</p>
           <a class="btn btn-primary" href="/book.html" data-event="system-comp" style="margin-top:18px">Book a 15-minute call</a>
         </article>
+      </div>
+    </section>
+    <section class="band band-bone" id="weekly">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What you actually get</span>
+          <h2>This lands Monday morning.</h2>
+          <p class="sec-note">Not a pack in October. Not a meeting you have to attend. One read on the phone between jobs.</p>
+        </div>
+{weekly_sample()}
+        <div class="cta" style="margin-top:28px">
+          <a class="btn btn-primary" href="/book.html" data-event="system-sample">Book a 15-minute call</a>
+        </div>
       </div>
     </section>
     <section class="band">

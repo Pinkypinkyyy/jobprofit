@@ -130,7 +130,9 @@ def test_lazy_load_and_webp():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert home.count("loading=\"lazy\"") >= 3
     assert "tech-hvac-480.webp" in home
-    assert (ROOT / "assets" / "pink-home.webp").exists()
+    # pink-home now ships responsive variants rather than one full-size webp.
+    for w in (480, 864, 1200):
+        assert (ROOT / "assets" / f"pink-home-{w}.webp").exists()
     assert (ROOT / "assets" / "tech-hvac-480.webp").exists()
     assert (ROOT / "favicon.ico").exists()
 
@@ -380,6 +382,78 @@ def test_mailto_fallback_carries_every_field_the_visitor_filled():
     # dropped contact.html's message field.
     assert "Object.keys(data)" in js
     assert "message:" in js
+
+
+def test_every_shipped_asset_is_actually_referenced():
+    import re
+    referenced = set()
+    for page in list(ROOT.glob("*.html")) + [ROOT / "styles.css"]:
+        for m in re.findall(r"/assets/([A-Za-z0-9._-]+)", page.read_text(encoding="utf-8")):
+            referenced.add(m)
+    orphans = []
+    for f in (ROOT / "assets").glob("*"):
+        if f.is_file() and f.name not in referenced:
+            orphans.append(f.name)
+    assert not orphans, f"unreferenced assets still deploying: {sorted(orphans)}"
+
+
+def test_the_weekly_output_sample_is_on_the_system_page():
+    html = (ROOT / "system.html").read_text(encoding="utf-8")
+    assert 'id="weekly"' in html
+    assert "wsample" in html
+    # It is invented data and must say so.
+    assert "not a client file" in html.lower()
+    # And the homepage must point at it.
+    assert "/system.html#weekly" in (ROOT / "index.html").read_text(encoding="utf-8")
+
+
+def test_pricing_answers_the_cheap_bookkeeper_objection():
+    html = (ROOT / "pricing.html").read_text(encoding="utf-8")
+    assert "bookkeeper charges" in html
+    assert "does not pay for itself" in html
+
+
+def test_form_endpoint_is_defined_in_one_place():
+    from shared import FORM_AJAX_ENDPOINT, FORM_ENDPOINT, FORM_ORIGIN
+
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    # nav.js must not carry its own copy of the endpoint.
+    assert "formsubmit.co" not in js
+    assert "data-ajax" in js
+    for page in ("book.html", "contact.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert f'action="{FORM_ENDPOINT}"' in html
+        assert f'data-ajax="{FORM_AJAX_ENDPOINT}"' in html
+        # CSP must allow wherever the form actually posts.
+        csp = [l for l in html.splitlines() if "Content-Security-Policy" in l][0]
+        assert FORM_ORIGIN in csp
+
+
+def test_colours_on_dark_panels_meet_aa():
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+
+    def lin(c):
+        c = c / 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+    def lum(h):
+        h = h.lstrip("#")
+        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+
+    def ratio(a, b):
+        la, lb = lum(a), lum(b)
+        return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+
+    import re
+    tokens = dict(re.findall(r"--(accent-on-dark|gold-on-dark):(#[0-9A-Fa-f]{6})", css))
+    assert set(tokens) == {"accent-on-dark", "gold-on-dark"}, tokens
+    for name, hex_ in tokens.items():
+        # Darkest panel the tokens are used on.
+        assert ratio(hex_, "#121A1C") >= 4.5, f"{name} {hex_} fails AA on dark"
+    # The raw brand colours must not be used for text on those panels.
+    assert ".docket-row.is-miss b{color:var(--gold-on-dark)}" in css
+    assert ".wsample-list li.is-you b{color:var(--accent-on-dark)}" in css
 
 
 if __name__ == "__main__":

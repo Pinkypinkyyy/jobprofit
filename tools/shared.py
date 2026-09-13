@@ -6,11 +6,20 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt38"
+ASSET = "rt39"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
 META_PIXEL = ""
+
+# Where the enquiry forms post. Changing these three lines is the whole job of
+# moving off the third-party US relay onto a first-party endpoint (a Power
+# Automate "when an HTTP request is received" flow inside the Pink tenant, for
+# example). The CSP, both form actions and the ajax path in nav.js all derive
+# from here, so nothing is left pointing at the old host.
+FORM_ORIGIN = "https://formsubmit.co"
+FORM_ENDPOINT = f"{FORM_ORIGIN}/admin@pinktax.com.au"
+FORM_AJAX_ENDPOINT = f"{FORM_ORIGIN}/ajax/admin@pinktax.com.au"
 
 CSP = (
     "default-src 'self'; "
@@ -20,8 +29,8 @@ CSP = (
     "font-src https://fonts.gstatic.com; "
     "script-src 'self' https://www.googletagmanager.com https://connect.facebook.net; "
     "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com "
-    "https://region1.google-analytics.com https://www.facebook.com https://formsubmit.co; "
-    "form-action 'self' mailto: https://formsubmit.co; "
+    "https://region1.google-analytics.com https://www.facebook.com " + FORM_ORIGIN + "; "
+    "form-action 'self' mailto: " + FORM_ORIGIN + "; "
     "media-src 'self'; "
     "base-uri 'self'"
 )
@@ -321,7 +330,7 @@ def hours_check():
 
 
 def short_enquiry_form(prefix="contact", next_page="/contact.html"):
-    return f"""      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="{prefix}-form">
+    return f"""      <form class="enquiry" id="enquiryForm" action="{FORM_ENDPOINT}" method="POST" data-ajax="{FORM_AJAX_ENDPOINT}" data-event="{prefix}-form">
         <input type="hidden" name="_subject" value="Service Profit enquiry">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="true">
@@ -363,7 +372,7 @@ def short_enquiry_form(prefix="contact", next_page="/contact.html"):
 def enquiry_form(prefix="book", short=False, next_page="/book.html"):
     if short:
         return short_enquiry_form(prefix, next_page)
-    return f"""      <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-event="{prefix}-form">
+    return f"""      <form class="enquiry" id="enquiryForm" action="{FORM_ENDPOINT}" method="POST" data-ajax="{FORM_AJAX_ENDPOINT}" data-event="{prefix}-form">
         <input type="hidden" name="_subject" value="Service Profit intake">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="true">

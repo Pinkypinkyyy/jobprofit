@@ -9,6 +9,10 @@
   --accent-deep:#D8124B;
   --pink:#ED1651;
   --gold:#B45309;
+  /* The brand pink and gold fail AA on dark panels. These are their
+     on-dark equivalents: 6.03:1 and 8.38:1. */
+  --accent-on-dark:#FF6E92;
+  --gold-on-dark:#F0A24B;
   --display:'Montserrat',-apple-system,'Segoe UI',system-ui,sans-serif;
   --body:'Montserrat',-apple-system,'Segoe UI',system-ui,sans-serif;
   --mono:'Montserrat',-apple-system,'Segoe UI',system-ui,sans-serif;
@@ -134,7 +138,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .docket .label{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
 .docket-row{display:flex;justify-content:space-between;align-items:baseline;padding:3px 0;font-size:.9rem;color:rgba(255,255,255,.86)}
 .docket-row b{font-size:1.35rem;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
-.docket-row.is-miss b{color:var(--gold)}
+.docket-row.is-miss b{color:var(--gold-on-dark)}
 .docket p{margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.78);line-height:1.4}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
 .stat{background:#fff;border-top:3px solid var(--accent);padding:24px 22px;box-shadow:0 12px 28px -22px rgba(18,22,28,.4);border-radius:var(--radius)}
@@ -152,6 +156,17 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .hire h3{font-size:1.3rem;margin:8px 0 10px}
 .hire p{color:var(--soft)}
 .note-ex{margin-top:14px;font-size:.82rem;color:var(--muted)}
+.wsample{margin-top:28px;background:#1A222C;color:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-deep)}
+.wsample-head{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:14px 24px;background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.12)}
+.wsample-head .label{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.wsample-body{padding:24px 24px 28px}
+.wsample-body h3{font-size:clamp(1.15rem,2.2vw,1.5rem);color:#fff;margin-top:24px;letter-spacing:-.02em}
+.wsample-body h3:first-child{margin-top:0}
+.wsample-sub{color:rgba(255,255,255,.76);font-size:.94rem;margin-top:8px;max-width:60ch}
+.wsample-list{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.12)}
+.wsample-list li{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.94rem;color:rgba(255,255,255,.82)}
+.wsample-list li b{color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.wsample-list li.is-you b{color:var(--accent-on-dark)}
 .mosaic{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gutter);margin-top:var(--gutter)}
 .tile{position:relative;display:block;overflow:hidden;color:#fff;border-radius:var(--radius);box-shadow:0 18px 36px -24px rgba(18,22,28,.4)}
 .tile img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5;transition:transform .35s ease}
@@ -484,6 +499,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .hero-copy .lead{color:rgba(255,255,255,.86);font-size:1.12rem;max-width:34em}
 .hero-copy .trust{color:rgba(255,255,255,.78)}
 .hero-copy .stars{color:#fff}
+.hero-copy .stars .star-icons{color:var(--gold-on-dark)}
 .hero-copy .sep{background:rgba(255,255,255,.28)}
 .hero-copy .trade-links{color:rgba(255,255,255,.7)}
 .hero-copy .live{color:rgba(255,255,255,.82)}

@@ -5,18 +5,12 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 
 JPEG_STEMS = (
-    "hvac",
     "electrical",
     "construction",
     "tech-hvac",
     "tech-electrical",
-    "desk",
-    "yard",
     "pink-home",
     "pink-meet",
-    "pink-office",
-    "pink-portrait",
-    "pink-studio",
 )
 
 

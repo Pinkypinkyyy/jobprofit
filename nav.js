@@ -167,7 +167,7 @@
         data[key] = value;
       });
       delete data._gotcha;
-      fetch("https://formsubmit.co/ajax/admin@pinktax.com.au", {
+      fetch(form.getAttribute("data-ajax") || form.action, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(data)
