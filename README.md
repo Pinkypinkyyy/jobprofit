@@ -31,7 +31,8 @@ The fetch is build-time on purpose. This site is static GitHub Pages, so an API
 key sent to the browser would be readable by anyone who opened devtools. The key
 never leaves GitHub Actions.
 
-To turn it on, two settings on the repository:
+Step-by-step setup, including what it costs and what to do when it fails, is
+in `docs/GOOGLE_REVIEWS_SETUP.md`. In short, two settings on the repository:
 
 | Where | Name | Value |
 |---|---|---|

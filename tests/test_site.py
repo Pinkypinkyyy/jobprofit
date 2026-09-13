@@ -558,6 +558,40 @@ def test_trading_hours_match_the_bookings_calendar():
     assert "Friday" not in html.split('"openingHoursSpecification"')[1][:200]
 
 
+def test_the_weekly_sample_figures_actually_add_up():
+    """An accountant's site showing numbers that do not reconcile is worse
+    than showing none. Guards a real anonymised week being dropped in later."""
+    from build_pages import WEEKLY_SAMPLE, weekly_yours
+
+    w = WEEKLY_SAMPLE
+    held = sum(amount for _, amount in w["holdbacks"])
+    assert weekly_yours() == w["bank"] - held
+    assert weekly_yours() > 0, "holdbacks exceed the bank balance"
+
+    over = w["hours_actual"] - w["hours_quoted"]
+    assert over > 0, "the sample only makes its point if the job ran over"
+    named_overrun = sum(a - q for _, q, a in w["jobs"])
+    assert named_overrun <= over, (
+        "the named jobs overrun by more than the week's total, which cannot happen"
+    )
+
+    html = (ROOT / "system.html").read_text(encoding="utf-8")
+    assert f"${w['bank']:,}" in html
+    assert f"${weekly_yours():,}" in html
+    assert str(over) in html
+
+
+def test_the_weekly_sample_carries_no_client_identifiers():
+    from build_pages import WEEKLY_SAMPLE
+
+    blob = repr(WEEKLY_SAMPLE).lower()
+    # Invented figures only. No ABN, no TFN, no trading name, no job number.
+    import re
+    assert not re.search(r"\b\d{11}\b", blob), "an 11-digit number looks like an ABN"
+    assert not re.search(r"\b\d{8,9}\b", blob), "an 8-9 digit number looks like a TFN"
+    assert "pty" not in blob and "ltd" not in blob
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and callable(fn):

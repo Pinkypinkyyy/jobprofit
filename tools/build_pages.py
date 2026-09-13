@@ -138,32 +138,70 @@ STEM_SIZE = {
 }
 
 
+# The weekly output sample. Invented, and labelled as invented on the page.
+# To swap in a real anonymised week, change these numbers only: the page and
+# the arithmetic test both read from here. Never put a real client, job number
+# or trading name in this block.
+WEEKLY_SAMPLE = {
+    "week_ending": "5 September",
+    "jobs_closed": 14,
+    "hours_quoted": 96,
+    "hours_actual": 112,
+    "jobs": [
+        ("Rooftop changeover", 8, 15),
+        ("Switchboard upgrade", 6, 9),
+    ],
+    "bank": 84200,
+    "holdbacks": [
+        ("GST held", 11400),
+        ("PAYG and super", 9860),
+        ("Wages to Thursday", 18300),
+    ],
+    "decision": (
+        "Third rooftop changeover this quarter to run over. The quote template "
+        "does not carry crane time. Worth a ten-minute fix before the next one "
+        "goes out."
+    ),
+}
+
+
+def weekly_yours():
+    return WEEKLY_SAMPLE["bank"] - sum(v for _, v in WEEKLY_SAMPLE["holdbacks"])
+
+
 def weekly_sample():
     """What actually lands in the inbox. The site sold the idea of the weekly
     look without ever showing the thing, which is the one artefact a buyer at
-    this fee wants to see. Figures are invented and labelled as invented."""
-    return """        <div class="wsample">
+    this fee wants to see. Every figure comes from WEEKLY_SAMPLE."""
+    w = WEEKLY_SAMPLE
+    over = w["hours_actual"] - w["hours_quoted"]
+    jobs = "\n".join(
+        f'              <li><span>{name}</span><b>quoted {q}, took {a}</b></li>'
+        for name, q, a in w["jobs"]
+    )
+    holds = "\n".join(
+        f'              <li><span>{name}</span><b>${amount:,}</b></li>'
+        for name, amount in w["holdbacks"]
+    )
+    return f"""        <div class="wsample">
           <div class="wsample-head">
-            <span class="label">Monday 9:00 &middot; week ending 5 September</span>
+            <span class="label">Monday 9:00 &middot; week ending {w["week_ending"]}</span>
             <span class="label">Job Profit &middot; weekly</span>
           </div>
           <div class="wsample-body">
-            <h3>Quoted 96 hours. On the tools 112.</h3>
-            <p class="wsample-sub">Fourteen jobs closed. Sixteen hours over. Two jobs did most of it.</p>
+            <h3>Quoted {w["hours_quoted"]} hours. On the tools {w["hours_actual"]}.</h3>
+            <p class="wsample-sub">{w["jobs_closed"]} jobs closed. {over} hours over. Two jobs did most of it.</p>
             <ul class="wsample-list">
-              <li><span>Rooftop changeover</span><b>quoted 8, took 15</b></li>
-              <li><span>Switchboard upgrade</span><b>quoted 6, took 9</b></li>
+{jobs}
               <li><span>Everything else</span><b>within an hour of quote</b></li>
             </ul>
-            <h3>In the bank $84,200. Yours $44,640.</h3>
+            <h3>In the bank ${w["bank"]:,}. Yours ${weekly_yours():,}.</h3>
             <ul class="wsample-list">
-              <li><span>GST held</span><b>$11,400</b></li>
-              <li><span>PAYG and super</span><b>$9,860</b></li>
-              <li><span>Wages to Thursday</span><b>$18,300</b></li>
-              <li class="is-you"><span>Yours to spend</span><b>$44,640</b></li>
+{holds}
+              <li class="is-you"><span>Yours to spend</span><b>${weekly_yours():,}</b></li>
             </ul>
             <h3>One thing needs you</h3>
-            <p class="wsample-sub">Third rooftop changeover this quarter to run over. The quote template does not carry crane time. Worth a ten-minute fix before the next one goes out.</p>
+            <p class="wsample-sub">{w["decision"]}</p>
           </div>
         </div>
         <p class="note-ex">Illustration of the weekly output. Invented figures, not a client file. Your first one uses your jobs and your bank.</p>"""

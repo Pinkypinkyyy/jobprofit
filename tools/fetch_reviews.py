@@ -61,7 +61,10 @@ def resolve_place_id(key):
         raise SystemExit("No place matched. Check BUSINESS and ADDRESS.")
     p = places[0]
     print(f"Resolved place: {p.get('displayName', {}).get('text')} | {p.get('formattedAddress')}")
+    print("=" * 60)
     print(f"GOOGLE_PLACE_ID={p['id']}")
+    print("Save that as a repository variable so the lookup is not repeated.")
+    print("=" * 60)
     return p["id"]
 
 
@@ -98,8 +101,13 @@ def normalise(detail):
 def main():
     key = os.environ.get("GOOGLE_PLACES_API_KEY", "").strip()
     if not key:
-        print("GOOGLE_PLACES_API_KEY is not set. Nothing fetched.", file=sys.stderr)
-        return 1
+        # Not an error. Until the secret exists the site renders the committed
+        # figures, and the weekly workflow should stay green and quiet rather
+        # than mailing a red build every Monday.
+        print("GOOGLE_PLACES_API_KEY is not set, so there is nothing to fetch.")
+        print("The site keeps using the figures committed in tools/build_pages.py.")
+        print("See docs/GOOGLE_REVIEWS_SETUP.md to turn this on.")
+        return 0
     place_id = os.environ.get("GOOGLE_PLACE_ID", "").strip() or resolve_place_id(key)
     url = f"https://places.googleapis.com/v1/places/{urllib.parse.quote(place_id)}"
     try:
