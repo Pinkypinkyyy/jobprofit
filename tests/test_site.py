@@ -456,6 +456,32 @@ def test_colours_on_dark_panels_meet_aa():
     assert ".wsample-list li.is-you b{color:var(--accent-on-dark)}" in css
 
 
+def test_no_internal_link_or_asset_404s():
+    """Every internal href, src and srcset must resolve to a file that ships.
+    A broken one sends a visitor to the 404 page, which is exactly what a
+    deleted asset or a renamed page looks like from the outside."""
+    import os
+    import re
+
+    broken = []
+    for page in sorted(ROOT.glob("*.html")):
+        html = page.read_text(encoding="utf-8")
+        refs = (
+            re.findall(r'href="([^"]+)"', html)
+            + re.findall(r'src="([^"]+)"', html)
+            + re.findall(r'srcset="([^"]+)"', html)
+        )
+        for ref in refs:
+            for part in ref.split(","):
+                url = part.strip().split()[0] if part.strip() else ""
+                if not url or url.startswith(("http", "mailto:", "tel:", "#", "data:")):
+                    continue
+                rel = url.split("?")[0].split("#")[0].lstrip("/") or "index.html"
+                if not os.path.exists(ROOT / rel):
+                    broken.append(f"{page.name} -> {url}")
+    assert not broken, "internal references that would 404: " + ", ".join(sorted(set(broken)))
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and callable(fn):
