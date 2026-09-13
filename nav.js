@@ -140,6 +140,7 @@
 
   var form = document.getElementById("enquiryForm");
   var ok = document.getElementById("enquiryOk");
+  var formShownAt = Date.now();
   if (form) {
     var params = new URLSearchParams(window.location.search);
     if (params.get("sent") === "1" && ok) {
@@ -154,7 +155,9 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (form.querySelector("[name=_gotcha]").value) return;
+      if (Date.now() - formShownAt < 4000) return;
       var btn = form.querySelector("button[type=submit]");
+      var btnLabel = btn ? btn.textContent : "";
       if (btn) {
         btn.disabled = true;
         btn.textContent = "Sending…";
@@ -163,9 +166,7 @@
       new FormData(form).forEach(function (value, key) {
         data[key] = value;
       });
-      data._subject = "Service Profit intake";
-      data._template = "table";
-      data._captcha = "false";
+      delete data._gotcha;
       fetch("https://formsubmit.co/ajax/admin@pinktax.com.au", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -186,17 +187,16 @@
           if (typeof window.spLead === "function") window.spLead("form");
         })
         .catch(function () {
-          var body =
-            "Name: " + (data.name || "") +
-            "\nBusiness: " + (data.business || "") +
-            "\nEmail: " + (data.email || "") +
-            "\nPhone: " + (data.phone || "") +
-            "\nWork: " + (data.trade || "") +
-            "\nRevenue: " + (data.revenue || "") +
-            "\nStaff: " + (data.staff || "") +
-            "\nHurting: " + (data.hurt || "") +
-            "\nCurrent position: " + (data.position || "") +
-            "\n12-month vision: " + (data.vision || "");
+          var labels = {
+            name: "Name", business: "Business", email: "Email", phone: "Phone",
+            trade: "Work", revenue: "Revenue", staff: "Staff", hurt: "Hurting",
+            position: "Current position", vision: "12-month vision",
+            message: "Message"
+          };
+          var body = Object.keys(data)
+            .filter(function (k) { return k.charAt(0) !== "_" && data[k]; })
+            .map(function (k) { return (labels[k] || k) + ": " + data[k]; })
+            .join("\n");
           window.location.href =
             "mailto:admin@pinktax.com.au?subject=" +
             encodeURIComponent("Service Profit intake") +
@@ -206,7 +206,7 @@
         .finally(function () {
           if (btn) {
             btn.disabled = false;
-            btn.textContent = "Send this";
+            btn.textContent = btnLabel;
           }
         });
     });

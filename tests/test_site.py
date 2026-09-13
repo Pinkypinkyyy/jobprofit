@@ -365,6 +365,23 @@ def test_no_api_key_is_shipped_to_the_browser():
         assert "AIza" not in html, page.name
 
 
+def test_js_does_not_override_the_forms_captcha_setting():
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    # The ajax path is the one visitors use. It used to hardcode _captcha
+    # back to "false", so the hidden field in the HTML did nothing.
+    assert '_captcha = "false"' not in js
+    assert '_captcha="false"' not in js
+    assert "formShownAt" in js, "time trap missing"
+
+
+def test_mailto_fallback_carries_every_field_the_visitor_filled():
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    # Built from the submitted data, not a hand-listed set that silently
+    # dropped contact.html's message field.
+    assert "Object.keys(data)" in js
+    assert "message:" in js
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and callable(fn):
