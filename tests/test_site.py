@@ -545,6 +545,19 @@ def test_homepage_carries_the_no_conditions_statement():
     assert "/disclosure" in html
 
 
+def test_trading_hours_match_the_bookings_calendar():
+    """Bookings has Friday closed. The page copy and the schema must not
+    advertise a day nobody can book."""
+    html = (ROOT / "contact.html").read_text(encoding="utf-8")
+    assert "Mon-Thu" in html
+    assert "Mon-Fri" not in html
+    # Friday is by appointment, so it may appear in the copy but must never
+    # be advertised as a regular open day.
+    assert "Friday and Saturday by appointment" in html
+    assert '"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"]' in html
+    assert "Friday" not in html.split('"openingHoursSpecification"')[1][:200]
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and callable(fn):
