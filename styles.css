@@ -181,6 +181,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .band-bone{background:var(--paper-2)}
 .sec-head{max-width:40em}
 .sec-head .sec-note{max-width:60ch}
+.opt{font-weight:400;color:var(--muted);font-size:.82em;text-transform:none;letter-spacing:0}
 .sec-head h2{font-size:clamp(1.9rem,3.4vw,2.8rem);margin:12px 0 0}
 .sec-head p{color:var(--soft);margin-top:16px}
 

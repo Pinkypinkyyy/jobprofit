@@ -88,7 +88,7 @@ def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55v
 
 def index():
     h = head(
-        "Service Profit | HVAC, electrical and construction accounting in Brendale, Brisbane and Queensland",
+        "Air con, electrical and construction accountant | Brisbane",
         "Quoted hours versus hours on the tools. Cash that is yours versus GST, PAYG, super and wages. Tax and BAS held. Book 15 minutes. Brendale, Queensland.",
         "/",
         extra=jsonld(business_node()),
@@ -267,7 +267,7 @@ def index():
 
 def system():
     h = head(
-        "The system | Service Profit",
+        "Job costing for trades | Service Profit",
         "Billed hours, staff versus contractors, cash that is yours, tax and BAS held. Service Profit for HVAC, electrical and construction services in Queensland.",
         "/system.html",
         extra=jsonld(faq_node(SYSTEM_FAQ)),
@@ -281,7 +281,7 @@ def system():
       <div class="wrap">
         <span class="eyebrow">The system</span>
         <h1>Is $150 + GST an hour enough to relax?</h1>
-        <p class="lead">That is a billed hour. It is not profit. GST comes off. Then the person on the tools — staff or contractor — then parts, then the business. We hold that picture, and we hold tax and BAS, so you can stay on the jobs.</p>
+        <p class="lead">That is a billed hour. It is not profit. GST comes off. Then the person on the tools, staff or contractor. Then parts. Then the business. We hold that picture, and we hold tax and BAS, so you can stay on the jobs.</p>
         <div class="cta">
           <a class="btn btn-primary" href="/book.html" data-event="system-book">Book a 15-minute call</a>
           <a class="btn btn-outline" href="/pricing.html">See the plans</a>
@@ -343,7 +343,7 @@ def system():
 
 def pricing():
     h = head(
-        "Pricing | Service Profit HVAC, electrical and construction accounting",
+        "Pricing | Trade accounting plans and fees | Service Profit",
         "Job Profit $1,650 + GST a month. Weekly Visibility from $2,650. Ready to Scale from $3,500. Compliance $550. What is in, what is out, and the FAQ. Queensland.",
         "/pricing.html",
         extra=jsonld(faq_node(PRICING_FAQ)),
@@ -443,7 +443,7 @@ def pricing():
 
 def why():
     h = head(
-        "Meet Pink | Service Profit",
+        "Meet Huong Bui, registered tax agent | Service Profit",
         "Huong Bui, Master of Professional Accounting (Griffith), Registered Tax Agent 26284368. More than ten years in the books. Income tax, FBT, financial statements, BAS.",
         "/why.html",
     )
@@ -485,7 +485,7 @@ def why():
 
 def check():
     h = head(
-        "Hours check | Service Profit",
+        "Free hours check for trade jobs | Service Profit",
         "Type the last job. Hours quoted versus hours on the tools. Then book 15 minutes if you want the file held.",
         "/check.html",
     )
@@ -614,7 +614,7 @@ def privacy():
 
 def rights():
     h = head(
-        "Your rights and our obligations | Service Profit | Pink Accounting",
+        "Your rights and our obligations | Service Profit",
         "Pink Accounting is a registered tax practitioner. TPB register, complaints, ABN, AI disclosure and professional obligations.",
         "/rights.html",
     )
@@ -635,10 +635,10 @@ def rights():
         <h2>Verify us</h2>
         <p>Practising as Pink since 2020; incorporated as Pink Accounting &amp; Tax Solutions Pty Ltd in November 2024, which is why our current ABN shows a 2024 start date.</p>
         <ul>
-          <li><b>Tax agent registration 26284368</b> — <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a></li>
-          <li><b>ABN 51 682 301 891</b> — <a href="https://abr.business.gov.au/ABN/View?abn=51682301891" rel="noopener">ABN Lookup</a></li>
-          <li><b>Company and business names</b> — ASIC, including Pink Accounting, Pink Strategic Accounting and Service Profit Accounting, the name this site trades under, registered 24 August 2026</li>
-          <li><b>Professional membership</b> — Member, Institute of Public Accountants (MIPA AFA)</li>
+          <li><b>Tax agent registration 26284368</b>. <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a></li>
+          <li><b>ABN 51 682 301 891</b>. <a href="https://abr.business.gov.au/ABN/View?abn=51682301891" rel="noopener">ABN Lookup</a></li>
+          <li><b>Company and business names</b>. ASIC, including Pink Accounting, Pink Strategic Accounting and Service Profit Accounting, the name this site trades under, registered 24 August 2026</li>
+          <li><b>Professional membership</b>. Member, Institute of Public Accountants (MIPA AFA)</li>
         </ul>
         <p>If anything on this page disagrees with those registers, the register wins. Tell us: admin@pinktax.com.au.</p>
         <h2>Smart technology, real expertise</h2>

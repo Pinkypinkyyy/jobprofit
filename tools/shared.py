@@ -45,6 +45,7 @@ def head(title, description, canonical, og_image="/assets/og.png", extra=""):
   <meta http-equiv="Content-Security-Policy" content="{CSP}">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
+  <meta property="og:site_name" content="Service Profit">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{canonical}">
   <meta property="og:image" content="{og}">
@@ -116,7 +117,7 @@ def business_node():
         "founder": {"@type": "Person", "name": "Huong Bui"},
         "taxID": "51682301891",
         "identifier": "26284368",
-        "sameAs": [FB, LI],
+        "sameAs": [GBP, FB, LI],
     }
 
 
@@ -412,11 +413,11 @@ def enquiry_form(prefix="book", short=False, next_page="/book.html"):
         <label>What is hurting
           <textarea class="short" name="hurt" rows="4" maxlength="1000" required placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
         </label>
-        <label>Where is the business now
-          <textarea class="short" name="position" rows="4" maxlength="1000" required placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
+        <label>Where is the business now <span class="opt">optional</span>
+          <textarea class="short" name="position" rows="3" maxlength="1000" placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
         </label>
-        <label>Where do you want it in 12 months
-          <textarea class="short" name="vision" rows="4" maxlength="1000" required placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
+        <label>Where do you want it in 12 months <span class="opt">optional</span>
+          <textarea class="short" name="vision" rows="3" maxlength="1000" placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
         </label>
         <button class="btn btn-primary" type="submit">Send this, then pick a time</button>
         <p class="form-note">Goes to admin@pinktax.com.au. We read it before the call. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>

@@ -4,6 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from build_pages import REVIEWS_AS_AT, REVIEWS_COUNT  # noqa: E402
+from shared import GBP  # noqa: E402
 HTML = list(ROOT.glob("*.html"))
 REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.html"}
 PAGES = [p for p in HTML if p not in REDIRECTS]
@@ -283,6 +284,41 @@ def test_callback_video_is_phone_sized():
     mb = mp4.stat().st_size / 1_000_000
     # It was 20.7 MB. Anyone tapping play on a phone plan pays for this.
     assert mb < 5, f"callback-cost.mp4 is {mb:.1f} MB"
+
+
+def test_titles_fit_a_search_result():
+    import re
+    for page in ROOT.glob("*.html"):
+        html = page.read_text(encoding="utf-8")
+        m = re.search(r"<title>(.*?)</title>", html, re.S)
+        if not m:
+            continue
+        assert len(m.group(1)) <= 62, f"{page.name} title is {len(m.group(1))} chars"
+
+
+def test_schema_points_at_the_google_business_profile():
+    # The strongest entity signal a local firm has. It was missing from sameAs.
+    for page in ("index.html", "contact.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert GBP in html, page
+
+
+def test_no_em_dashes_in_our_own_copy():
+    # House style. The one Google review quote is verbatim and is exempt.
+    quote = "Pink is amazing"
+    for page in ROOT.glob("*.html"):
+        for line in page.read_text(encoding="utf-8").splitlines():
+            if "\u2014" in line:
+                assert quote in line, f"{page.name}: {line.strip()[:90]}"
+
+
+def test_booking_form_does_not_demand_three_essays():
+    import re
+    html = (ROOT / "book.html").read_text(encoding="utf-8")
+    required = re.findall(r"<(?:input|select|textarea)[^>]*\brequired\b", html)
+    assert len(required) <= 8, f"{len(required)} required fields on the booking form"
+    req_textareas = re.findall(r"<textarea[^>]*\brequired\b", html)
+    assert len(req_textareas) <= 1, f"{len(req_textareas)} required essay boxes"
 
 
 if __name__ == "__main__":
