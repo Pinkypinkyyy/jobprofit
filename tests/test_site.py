@@ -4,13 +4,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from build_pages import REVIEWS_AS_AT, REVIEWS_COUNT  # noqa: E402
-from shared import GBP  # noqa: E402
+from shared import ASSET, GBP  # noqa: E402
 HTML = list(ROOT.glob("*.html"))
 REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.html"}
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
-CACHE = "rt36"
+CACHE = ASSET  # read from tools/shared.py so a bump cannot desync the test
 
 
 def test_no_hospitality_booking():
@@ -319,6 +319,50 @@ def test_booking_form_does_not_demand_three_essays():
     assert len(required) <= 8, f"{len(required)} required fields on the booking form"
     req_textareas = re.findall(r"<textarea[^>]*\brequired\b", html)
     assert len(req_textareas) <= 1, f"{len(req_textareas)} required essay boxes"
+
+
+def test_live_reviews_are_parsed_filtered_and_escaped():
+    from build_pages import load_reviews
+
+    fixture = ROOT / "tests" / "fixtures" / "google_reviews_sample.json"
+    rating, count, as_at, quotes, url = load_reviews(fixture)
+    assert rating == "4.9"
+    assert count == 34
+    assert as_at == "November 2026"
+    # The 2-star review must not reach the page.
+    assert all("Too slow" not in q[0] for q in quotes)
+    assert len(quotes) == 3
+    # Every quote carries an author and a link back, as Places terms require.
+    assert all(q[1] and q[2] for q in quotes)
+
+
+def test_review_text_from_google_is_escaped():
+    import html as _html
+    from build_pages import load_reviews
+
+    fixture = ROOT / "tests" / "fixtures" / "google_reviews_sample.json"
+    _, _, _, quotes, _ = load_reviews(fixture)
+    injected = [q for q in quotes if "script" in q[0]]
+    assert injected, "fixture should carry the injection case"
+    assert "&lt;script&gt;" in _html.escape(injected[0][0])
+
+
+def test_site_falls_back_when_there_is_no_live_review_file():
+    from build_pages import load_reviews
+
+    rating, count, as_at, quotes, url = load_reviews(ROOT / "tests" / "fixtures" / "nope.json")
+    assert rating == "5.0"
+    assert count == 30
+    assert len(quotes) == 3
+
+
+def test_no_api_key_is_shipped_to_the_browser():
+    # The Places fetch is build-time only. A key in a page would be public.
+    for page in ROOT.glob("*.html"):
+        html = page.read_text(encoding="utf-8")
+        assert "GOOGLE_PLACES_API_KEY" not in html, page.name
+        assert "places.googleapis.com" not in html, page.name
+        assert "AIza" not in html, page.name
 
 
 if __name__ == "__main__":

@@ -1,0 +1,27 @@
+name: Site tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pages must be reproducible from the generators
+        run: |
+          python3 tools/build_pages.py
+          if ! git diff --quiet; then
+            echo "Committed HTML does not match tools/build_pages.py. Rebuild and commit."
+            git --no-pager diff --stat
+            exit 1
+          fi
+
+      - name: Site tests
+        run: python3 tests/test_site.py

@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from shared import (
     GBP,
@@ -19,12 +20,52 @@ from shared import (
     sticky,
 )
 
-# Google review count, read off the live Business Profile. Update both the
-# number and the date together; every page renders from these two names.
-REVIEWS_COUNT = 30
-REVIEWS_AS_AT = "September 2026"
-
 ROOT = Path(__file__).resolve().parents[1]
+
+# Fallback figures, used only when data/google_reviews.json is absent, which is
+# the case before the first scheduled fetch runs or if the Places API is down.
+# tools/fetch_reviews.py is what normally supplies these.
+FALLBACK_RATING = "5.0"
+FALLBACK_COUNT = 30
+FALLBACK_AS_AT = "September 2026"
+FALLBACK_QUOTES = [
+    ("I\u2019ve had a fantastic experience working with Pinky. She is professional, knowledgeable, "
+     "and always takes the time to explain things clearly. As a small business owner, I really "
+     "appreciate her patience, attention to detail, and prompt responses.", "T D", ""),
+    ("Huong is super knowledgeable and keeps your books tidy and taxes up to date. She explains "
+     "things clearly so you actually understand your tax, not just the numbers.", "N T", ""),
+    ("Pink is amazing \u2014 super quick, really knows her stuff, and an absolute gem for any "
+     "business. She makes everything easy.", "N M", ""),
+]
+
+MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December")
+
+
+def load_reviews(path=None):
+    """Live Google data if the scheduled fetch has written it, else the
+    committed fallback. Never let a bad file take the site down."""
+    path = path or ROOT / "data" / "google_reviews.json"
+    try:
+        d = json.loads(path.read_text(encoding="utf-8"))
+        rating = d["rating"]
+        count = int(d["count"])
+        y, m, _ = (d.get("fetched") or "").split("-")
+        as_at = f"{MONTHS[int(m) - 1]} {y}"
+        quotes = [
+            (r["text"], r.get("author") or "Google reviewer", r.get("uri") or d.get("maps_uri", ""))
+            for r in d.get("reviews", [])
+            if r.get("text") and (r.get("rating") or 0) >= 4
+        ][:3]
+        if not quotes:
+            quotes = FALLBACK_QUOTES
+        rating = f"{float(rating):.1f}"
+        return rating, count, as_at, quotes, d.get("maps_uri") or GBP
+    except (OSError, ValueError, KeyError, IndexError, TypeError):
+        return FALLBACK_RATING, FALLBACK_COUNT, FALLBACK_AS_AT, FALLBACK_QUOTES, GBP
+
+
+REVIEWS_RATING, REVIEWS_COUNT, REVIEWS_AS_AT, REVIEWS_QUOTES, REVIEWS_URL = load_reviews()
 
 
 def write(name, html):
@@ -76,12 +117,43 @@ PRICING_FAQ = [
 ]
 
 
+# Real pixel sizes of assets/<stem>.jpg. A wrong height here reserves the wrong
+# box and the page shifts when the image lands.
+STEM_SIZE = {
+    "hvac": (838, 1059),
+    "electrical": (838, 1059),
+    "construction": (838, 1036),
+    "tech-hvac": (838, 1059),
+    "tech-electrical": (838, 1059),
+    "pink-home": (1200, 1800),
+    "pink-meet": (1080, 1350),
+}
+
+
+def review_quotes():
+    """Google requires the author and a link back to the review. Both are
+    carried here whenever the live fetch supplied them."""
+    import html as _html
+    out = ['        <div class="quotes">']
+    for text, author, uri in REVIEWS_QUOTES:
+        cite = _html.escape(author)
+        if uri:
+            cite = f'<a href="{_html.escape(uri)}" rel="noopener nofollow">{cite}</a>'
+        out.append("          <blockquote>")
+        out.append(f"            <p>{_html.escape(text)}</p>")
+        out.append(f"            <footer>{cite} \u00b7 Google</footer>")
+        out.append("          </blockquote>")
+    out.append("        </div>")
+    return "\n".join(out)
+
+
 def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55vw"):
     loading = ' loading="lazy"' if lazy else ""
+    w, h = STEM_SIZE[stem]
     return (
         f'          <picture>\n'
         f'            <source type="image/webp" srcset="/assets/{stem}-480.webp?v=real1 480w, /assets/{stem}-864.webp?v=real1 864w, /assets/{stem}-1200.webp?v=real1 1200w" sizes="{sizes}">\n'
-        f'            <img{extra} src="/assets/{stem}.jpg?v=real1" width="838" height="1059" alt="{alt}"{loading}>\n'
+        f'            <img{extra} src="/assets/{stem}.jpg?v=real1" width="{w}" height="{h}" alt="{alt}"{loading}>\n'
         f'          </picture>'
     )
 
@@ -97,7 +169,7 @@ def index():
   <main id="main">
     <section class="hero-bleed">
       <div class="hero-media" id="stage">
-{picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac"', False, "100vw")}
+{picture("tech-hvac", "HVAC technician on a rooftop unit", ' class="is-on" data-trade="hvac" fetchpriority="high"', False, "100vw")}
 {picture("electrical", "Electrical switchboard", ' data-trade="electrical" aria-hidden="true" inert', True, "100vw")}
 {picture("construction", "Construction services fit-out", ' data-trade="construction" aria-hidden="true" inert', True, "100vw")}
         <div class="hero-scrim"></div>
@@ -120,8 +192,8 @@ def index():
           </div>
           <p class="live" id="liveLine">Air con and refrigeration. Quoted hours versus hours on the job.</p>
           <div class="trust">
-            <a class="stars" href="{GBP}" rel="noopener">
-              <span class="star-value">5.0</span>
+            <a class="stars" href="{REVIEWS_URL}" rel="noopener">
+              <span class="star-value">{REVIEWS_RATING}</span>
               <span class="star-icons" aria-hidden="true">★★★★★</span>
               <span>{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}</span>
             </a>
@@ -135,7 +207,7 @@ def index():
     <section class="band band-photo">
       <div class="wrap split-visual">
         <div class="photo-frame">
-          <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
+{picture("tech-electrical", "Electrician testing a switchboard", "", True, "(max-width:940px) 100vw, 45vw")}
         </div>
         <div class="split-copy">
           <h2>The bank looks full. It is not all yours.</h2>
@@ -211,34 +283,18 @@ def index():
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">Google reviews</span>
-          <h2>5.0 on Google.</h2>
+          <h2>{REVIEWS_RATING} on Google.</h2>
           <p class="sec-note">Reviews of Pink Accounting, the firm behind Service Profit. {REVIEWS_COUNT} reviews as at {REVIEWS_AS_AT}. They are not job-costing results.</p>
         </div>
-        <div class="quotes">
-          <blockquote>
-            <p>I’ve had a fantastic experience working with Pinky. She is professional, knowledgeable, and always takes the time to explain things clearly. As a small business owner, I really appreciate her patience, attention to detail, and prompt responses.</p>
-            <footer>T D · Google</footer>
-          </blockquote>
-          <blockquote>
-            <p>Huong is super knowledgeable and keeps your books tidy and taxes up to date. She explains things clearly so you actually understand your tax, not just the numbers.</p>
-            <footer>N T · Google</footer>
-          </blockquote>
-          <blockquote>
-            <p>Pink is amazing — super quick, really knows her stuff, and an absolute gem for any business. She makes everything easy.</p>
-            <footer>N M · Google</footer>
-          </blockquote>
-        </div>
-        <p class="creds"><a href="{GBP}" rel="noopener">Read all {REVIEWS_COUNT} Google reviews</a></p>
+{review_quotes()}
+        <p class="creds"><a href="{REVIEWS_URL}" rel="noopener">Read all {REVIEWS_COUNT} Google reviews</a></p>
       </div>
     </section>
 
     <section class="band">
       <div class="wrap meet">
         <div class="shot photo-frame">
-          <picture>
-            <source type="image/webp" srcset="/assets/pink-home.webp?v=real1">
-            <img src="/assets/pink-home.jpg?v=real1" width="1200" height="1800" alt="Huong Bui, principal of Service Profit" loading="lazy">
-          </picture>
+{picture("pink-home", "Huong Bui, principal of Service Profit", "", True, "(max-width:940px) 100vw, 40vw")}
         </div>
         <div>
           <span class="eyebrow">Pink</span>
@@ -452,10 +508,7 @@ def why():
     <section class="page" style="padding-bottom:0">
       <div class="wrap meet">
         <div class="shot">
-          <picture>
-            <source type="image/webp" srcset="/assets/pink-meet.webp?v=real1">
-            <img src="/assets/pink-meet.jpg?v=real1" width="1080" height="1350" alt="Huong Bui in a client meeting">
-          </picture>
+{picture("pink-meet", "Huong Bui in a client meeting", "", False, "(max-width:940px) 100vw, 40vw")}
         </div>
         <div class="meet-copy">
           <span class="eyebrow">Meet Pink</span>

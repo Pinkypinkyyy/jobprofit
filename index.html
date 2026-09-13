@@ -27,8 +27,8 @@
   <link rel="apple-touch-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt36">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=rt37">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#business","name":"Service Profit","alternateName":"Pink Accounting","url":"https://www.serviceprofit.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","image":"https://www.serviceprofit.com.au/assets/og.png","logo":"https://www.serviceprofit.com.au/assets/logo.png","priceRange":"$$","knowsAbout":["HVAC accounting","electrical contractors","construction services","job costing","BAS","GST"],"address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368","sameAs":["https://www.google.com/maps?cid=17544456102082616748","https://www.facebook.com/profile.php?id=61594432044788","https://www.linkedin.com/company/143802027/"]}
   </script>
@@ -60,7 +60,7 @@
       <div class="hero-media" id="stage">
           <picture>
             <source type="image/webp" srcset="/assets/tech-hvac-480.webp?v=real1 480w, /assets/tech-hvac-864.webp?v=real1 864w, /assets/tech-hvac-1200.webp?v=real1 1200w" sizes="100vw">
-            <img class="is-on" data-trade="hvac" src="/assets/tech-hvac.jpg?v=real1" width="838" height="1059" alt="HVAC technician on a rooftop unit">
+            <img class="is-on" data-trade="hvac" fetchpriority="high" src="/assets/tech-hvac.jpg?v=real1" width="838" height="1059" alt="HVAC technician on a rooftop unit">
           </picture>
           <picture>
             <source type="image/webp" srcset="/assets/electrical-480.webp?v=real1 480w, /assets/electrical-864.webp?v=real1 864w, /assets/electrical-1200.webp?v=real1 1200w" sizes="100vw">
@@ -68,7 +68,7 @@
           </picture>
           <picture>
             <source type="image/webp" srcset="/assets/construction-480.webp?v=real1 480w, /assets/construction-864.webp?v=real1 864w, /assets/construction-1200.webp?v=real1 1200w" sizes="100vw">
-            <img data-trade="construction" aria-hidden="true" inert src="/assets/construction.jpg?v=real1" width="838" height="1059" alt="Construction services fit-out" loading="lazy">
+            <img data-trade="construction" aria-hidden="true" inert src="/assets/construction.jpg?v=real1" width="838" height="1036" alt="Construction services fit-out" loading="lazy">
           </picture>
         <div class="hero-scrim"></div>
         <div class="cap" id="stageCap">HVAC</div>
@@ -124,7 +124,10 @@
     <section class="band band-photo">
       <div class="wrap split-visual">
         <div class="photo-frame">
-          <img src="/assets/tech-electrical-864.webp?v=real1" width="864" height="1092" alt="Electrician testing a switchboard" loading="lazy">
+          <picture>
+            <source type="image/webp" srcset="/assets/tech-electrical-480.webp?v=real1 480w, /assets/tech-electrical-864.webp?v=real1 864w, /assets/tech-electrical-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 45vw">
+            <img src="/assets/tech-electrical.jpg?v=real1" width="838" height="1059" alt="Electrician testing a switchboard" loading="lazy">
+          </picture>
         </div>
         <div class="split-copy">
           <h2>The bank looks full. It is not all yours.</h2>
@@ -237,7 +240,7 @@
       <div class="wrap meet">
         <div class="shot photo-frame">
           <picture>
-            <source type="image/webp" srcset="/assets/pink-home.webp?v=real1">
+            <source type="image/webp" srcset="/assets/pink-home-480.webp?v=real1 480w, /assets/pink-home-864.webp?v=real1 864w, /assets/pink-home-1200.webp?v=real1 1200w" sizes="(max-width:940px) 100vw, 40vw">
             <img src="/assets/pink-home.jpg?v=real1" width="1200" height="1800" alt="Huong Bui, principal of Service Profit" loading="lazy">
           </picture>
         </div>
@@ -297,7 +300,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 12 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt36"></script>
-  <script src="/nav.js?v=rt36"></script>
+  <script src="/track.js?v=rt37"></script>
+  <script src="/nav.js?v=rt37"></script>
 </body>
 </html>

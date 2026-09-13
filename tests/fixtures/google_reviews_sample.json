@@ -1,0 +1,16 @@
+{
+  "fetched": "2026-11-02",
+  "rating": 4.9,
+  "count": 34,
+  "maps_uri": "https://maps.google.com/?cid=17544456102082616748",
+  "reviews": [
+    {"text": "Quotes and the bank finally line up. Pinky found two jobs we had underquoted.", "rating": 5,
+     "author": "Dave R", "author_uri": "", "photo_uri": "", "relative_time": "a week ago",
+     "publish_time": "2026-10-26T00:00:00Z", "uri": "https://maps.google.com/review1"},
+    {"text": "Sorted our BAS and the ute FBT before June. No surprises <script>alert(1)</script>", "rating": 5,
+     "author": "M & K Electrical", "author_uri": "", "photo_uri": "", "relative_time": "a month ago",
+     "publish_time": "2026-10-01T00:00:00Z", "uri": ""},
+    {"text": "Too slow for us.", "rating": 2, "author": "Angry Person", "uri": ""},
+    {"text": "Great with job costing.", "rating": 5, "author": "Sam T", "uri": "https://maps.google.com/review3"}
+  ]
+}
