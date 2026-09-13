@@ -456,6 +456,95 @@ def test_colours_on_dark_panels_meet_aa():
     assert ".wsample-list li.is-you b{color:var(--accent-on-dark)}" in css
 
 
+def test_no_internal_link_or_asset_404s():
+    """Every internal href, src and srcset must resolve to a file that ships.
+    A broken one sends a visitor to the 404 page, which is exactly what a
+    deleted asset or a renamed page looks like from the outside."""
+    import os
+    import re
+
+    broken = []
+    for page in sorted(ROOT.glob("*.html")):
+        html = page.read_text(encoding="utf-8")
+        refs = (
+            re.findall(r'href="([^"]+)"', html)
+            + re.findall(r'src="([^"]+)"', html)
+            + re.findall(r'srcset="([^"]+)"', html)
+        )
+        for ref in refs:
+            for part in ref.split(","):
+                url = part.strip().split()[0] if part.strip() else ""
+                if not url or url.startswith(("http", "mailto:", "tel:", "#", "data:")):
+                    continue
+                rel = url.split("?")[0].split("#")[0].lstrip("/") or "index.html"
+                target = ROOT / rel
+                # An extensionless URL only serves if there is a real file
+                # behind it: dir/index.html, or name.html alongside it.
+                served = (
+                    target.is_file()
+                    or (target / "index.html").is_file()
+                    or target.with_name(target.name + ".html").is_file()
+                )
+                if not served:
+                    broken.append(f"{page.name} -> {url}")
+    assert not broken, "internal references that would 404: " + ", ".join(sorted(set(broken)))
+
+
+def test_the_disclosure_url_resolves_three_ways():
+    """Clients are given serviceprofit.com.au/disclosure. It must not depend
+    on one host's pretty-URL behaviour, so all three spellings ship."""
+    for path in ("disclosure.html", "disclosure/index.html"):
+        assert (ROOT / path).is_file(), path
+    both = {(ROOT / p).read_text(encoding="utf-8") for p in ("disclosure.html", "disclosure/index.html")}
+    assert len(both) == 1, "the two disclosure files have drifted apart"
+    html = (ROOT / "disclosure.html").read_text(encoding="utf-8")
+    assert 'rel="canonical" href="https://www.serviceprofit.com.au/disclosure"' in html
+    assert "tpb.gov.au/public-register" in html
+    assert "tpb.gov.au/complaints" in html
+    assert "/disclosure" in (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+
+
+def test_the_section_45_wording_cannot_drift_between_pages():
+    from build_pages import DISCLOSURE_STATEMENTS
+
+    rights = (ROOT / "rights.html").read_text(encoding="utf-8")
+    disclosure = (ROOT / "disclosure.html").read_text(encoding="utf-8")
+    for statement in DISCLOSURE_STATEMENTS:
+        assert statement in rights, statement[:50]
+        assert statement in disclosure, statement[:50]
+
+
+def test_homepage_lets_a_visitor_rule_themselves_out():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "Is this you?" in html
+    # Willingness to exclude is the trust signal. It must survive edits.
+    assert "You are a builder" in html
+    assert "pinktax.com.au" in html
+    assert "Compliance at $550" in html
+
+
+def test_homepage_says_what_happens_after_the_call():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    for step in ("A 15-minute call", "A letter, then you decide", "The first month"):
+        assert step in html, step
+    assert "Nothing starts until you sign it." in html
+
+
+def test_homepage_explains_the_name_ladder_once():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    # Six names in one visit. The relationship has to be stated somewhere
+    # other than the footer.
+    assert "The names, once:" in html
+    for name in ("Pink Accounting", "Service Profit", "Job Profit"):
+        assert name in html
+
+
+def test_homepage_carries_the_no_conditions_statement():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "no conditions limiting" in html
+    assert "/disclosure" in html
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and callable(fn):

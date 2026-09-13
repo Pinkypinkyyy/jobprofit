@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt39"
+ASSET = "rt40"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.

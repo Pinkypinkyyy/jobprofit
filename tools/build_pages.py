@@ -186,6 +186,27 @@ def review_quotes():
     return "\n".join(out)
 
 
+# Section 45 of the Tax Agent Services (Code of Professional Conduct)
+# Determination 2024. Both rights.html and /disclosure render these, so the
+# two pages cannot drift apart. Owner and review date travel with each
+# statement because the Code expects them to be maintained, not just posted.
+DISCLOSURE_OWNER = "Huong Bui"
+DISCLOSURE_REVIEWED = "11 September 2026"
+DISCLOSURE_STATEMENTS = (
+    "No prescribed events under section 45 of the Tax Agent Services (Code of "
+    "Professional Conduct) Determination 2024 have occurred in the last 5 years.",
+    "Our registration is not subject to any conditions limiting the scope of "
+    "services we can provide.",
+)
+
+
+def disclosure_paragraphs(indent="        "):
+    return "\n".join(
+        f"{indent}<p>{text} Owner: {DISCLOSURE_OWNER}. Review date: {DISCLOSURE_REVIEWED}.</p>"
+        for text in DISCLOSURE_STATEMENTS
+    )
+
+
 def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55vw"):
     loading = ' loading="lazy"' if lazy else ""
     w, h = STEM_SIZE[stem]
@@ -243,6 +264,38 @@ def index():
       </div>
     </section>
 
+    <section class="band band-bone">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Before you read on</span>
+          <h2>Is this you?</h2>
+          <p class="sec-note">We would rather you worked that out now than on a call.</p>
+        </div>
+        <div class="hire">
+          <article>
+            <span class="eyebrow">A fit</span>
+            <h3>Yes, if</h3>
+            <ul class="ticks">
+              <li>Air con and refrigeration, electrical, or construction services meaning fit-out, maintenance and installation</li>
+              <li>Queensland, and one trading entity</li>
+              <li>You have people on the tools, staff or subcontractors, or you are about to put someone on</li>
+              <li>You quote work and you could not say, today, which of last month's jobs actually made money</li>
+            </ul>
+          </article>
+          <article>
+            <span class="eyebrow">Not a fit</span>
+            <h3>No, if</h3>
+            <ul class="ticks is-no">
+              <li>You are a builder. We do construction services, not head contracting</li>
+              <li>You are hospitality or retail. Same firm, different site: <a href="https://www.pinktax.com.au" rel="noopener">pinktax.com.au</a></li>
+              <li>You only want the annual return lodged. That is Compliance at $550 + GST a month and we will say so on the call</li>
+              <li>You want unlimited access and a monthly meeting. That is not what this is</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="band band-photo">
       <div class="wrap split-visual">
         <div class="photo-frame">
@@ -279,6 +332,7 @@ def index():
           <span class="eyebrow">Fees</span>
           <h2>$1,650 + GST a month for most files.</h2>
           <p>That is Job Profit. Billed hours, cash, tax and BAS. Not unlimited work. The letter is the quote.</p>
+          <p class="sec-note">The names, once: <b>Pink Accounting</b> is the firm and the registered tax agent. <b>Service Profit</b> is what we do for trade and service businesses. <b>Job Profit</b> is the plan most files sit on. The three above it add to it, they do not replace it.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
@@ -319,6 +373,34 @@ def index():
       </div>
     </section>
 
+    <section class="band">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">What happens</span>
+          <h2>From the call to the first Monday.</h2>
+          <p class="sec-note">Three steps. No black box in the middle.</p>
+        </div>
+        <div class="grid3">
+          <section class="card">
+            <span class="eyebrow">Step one</span>
+            <h3>A 15-minute call</h3>
+            <p>We look at whether we can take the file, and whether it is worth your money. If it is not, we say so and tell you what would be. You have not signed anything.</p>
+          </section>
+          <section class="card">
+            <span class="eyebrow">Step two</span>
+            <h3>A letter, then you decide</h3>
+            <p>If it is a fit you get a letter of engagement setting out the scope, what is not included, and the monthly fee. The letter is the quote. Nothing starts until you sign it.</p>
+          </section>
+          <section class="card">
+            <span class="eyebrow">Step three</span>
+            <h3>The first month</h3>
+            <p>You give Xero, bank and payroll access, or send the source documents. The start date is in the letter. Catch-up of earlier periods is a separate fee, quoted before we touch it.</p>
+          </section>
+        </div>
+        <p class="note-ex">You stay on the tools throughout. We do not need a standing meeting in your diary.</p>
+      </div>
+    </section>
+
     <section class="band" id="reviews">
       <div class="wrap">
         <div class="sec-head">
@@ -341,6 +423,7 @@ def index():
           <h2>I am the accountant.</h2>
           <p>Huong Bui. Registered Tax Agent 26284368. More than ten years in the books. I started the firm in 2020.</p>
           <p>You call because the quotes and the bank no longer match, and you do not have time to sit in Xero. We take the file. You stay on the jobs.</p>
+          <p>Master of Professional Accounting, Griffith. Member of the Institute of Public Accountants. Our registration carries no conditions limiting what we can do for you, and you can check that yourself on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a> against 26284368. What else we must tell you is on <a href="/disclosure">our disclosures page</a>.</p>
           <div class="creds"><a href="/why.html">Read more about Pink</a></div>
           <a class="btn btn-primary" href="/book.html" data-event="meet-book">Book a 15-minute call</a>
         </div>
@@ -749,9 +832,37 @@ def rights():
         <p>If anything on this page disagrees with those registers, the register wins. Tell us: admin@pinktax.com.au.</p>
         <h2>Smart technology, real expertise</h2>
         <p>Pink pairs experienced people with business-grade tools for research, data and drafting. We do the thinking, the judgment and the advice. Every output is reviewed and signed off by a qualified member of the team. No automated tool makes decisions about your tax affairs. We do not allow confidential information to train public models. Personal information is handled under the Privacy Act 1988. If you would prefer we did not use those tools on your file, tell us.</p>
-        <h2>Disclosure statements</h2>
-        <p>No prescribed events under section 45 of the Tax Agent Services (Code of Professional Conduct) Determination 2024 have occurred in the last 5 years. Owner: Huong Bui. Review date: 11 September 2026.</p>
-        <p>Our registration is not subject to any conditions limiting the scope of services we can provide. Owner: Huong Bui. Review date: 11 September 2026.</p>
+        <h2 id="disclosure">Disclosure statements</h2>
+{disclosure_paragraphs()}
+        <p>These also sit on their own page at <a href="/disclosure">serviceprofit.com.au/disclosure</a>, which is the address to give a client who asks for them.</p>
+      </div>
+    </div>
+  </main>
+{footer()}"""
+    return h + body
+
+
+def disclosure():
+    h = head(
+        "Disclosures | Service Profit | Pink Accounting",
+        "Section 45 Code Determination disclosures for Pink Accounting & Tax Solutions Pty Ltd, Registered Tax Agent 26284368, with the TPB register and the complaints process.",
+        "/disclosure",
+    )
+    body = f"""{nav()}
+  <main id="main" class="page">
+    <div class="wrap">
+      <span class="eyebrow">Pink Accounting</span>
+      <h1>Disclosures</h1>
+      <div class="prose">
+        <p>Pink Accounting &amp; Tax Solutions Pty Ltd, ABN 51 682 301 891, Registered Tax Agent 26284368. Service Profit is a service of this firm, not a separate practice. These are the disclosures required of a registered tax practitioner. Owner: {DISCLOSURE_OWNER}. Last reviewed {DISCLOSURE_REVIEWED}.</p>
+        <h2>Matters we must disclose</h2>
+{disclosure_paragraphs()}
+        <h2>Check the register yourself</h2>
+        <p>The Tax Practitioners Board keeps a public register of every registered tax and BAS agent, including any conditions or sanctions. Search <b>26284368</b> at <a href="https://www.tpb.gov.au/public-register" rel="noopener">tpb.gov.au/public-register</a>. If anything here disagrees with the register, the register is correct and we want to know: <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>.</p>
+        <h2>If you need to complain</h2>
+        <p>Tell us first. Email <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a> or call 07 3544 6386. The principal reviews every complaint. If we have not resolved it, you can take it to the TPB at <a href="https://www.tpb.gov.au/complaints" rel="noopener">tpb.gov.au/complaints</a>. Complaining to the TPB does not cost you anything and does not affect your file with us.</p>
+        <h2>The rest of your rights</h2>
+        <p>Our full obligations to you, your obligations to us, how we use technology on your file and how to verify the firm are on <a href="/rights.html">Your rights and our obligations</a>. How we handle personal information is on <a href="/privacy.html">Privacy</a>.</p>
       </div>
     </div>
   </main>
@@ -838,6 +949,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>{ORIGIN}/check.html</loc></url>
   <url><loc>{ORIGIN}/contact.html</loc></url>
   <url><loc>{ORIGIN}/rights.html</loc></url>
+  <url><loc>{ORIGIN}/disclosure</loc></url>
   <url><loc>{ORIGIN}/privacy.html</loc></url>
   <url><loc>{ORIGIN}/terms.html</loc></url>
 </urlset>
@@ -858,6 +970,9 @@ def main():
     write("hvac.html", redirect_home("HVAC"))
     write("electrical.html", redirect_home("Electrical"))
     write("construction.html", redirect_home("Construction"))
+    write("disclosure.html", disclosure())
+    (ROOT / "disclosure").mkdir(exist_ok=True)
+    write("disclosure/index.html", disclosure())
     write("404.html", not_found())
     (ROOT / "sitemap.xml").write_text(SITEMAP, encoding="utf-8")
     print("wrote sitemap.xml")
