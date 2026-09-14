@@ -560,7 +560,8 @@ def test_trading_hours_match_the_bookings_calendar():
 
 def test_the_weekly_sample_figures_actually_add_up():
     """An accountant's site showing numbers that do not reconcile is worse
-    than showing none. Guards a real anonymised week being dropped in later."""
+    than showing none. The sample is a permanent worked example, so this
+    guards whoever edits the figures next."""
     from build_pages import WEEKLY_SAMPLE, weekly_yours
 
     w = WEEKLY_SAMPLE
@@ -585,11 +586,41 @@ def test_the_weekly_sample_carries_no_client_identifiers():
     from build_pages import WEEKLY_SAMPLE
 
     blob = repr(WEEKLY_SAMPLE).lower()
-    # Invented figures only. No ABN, no TFN, no trading name, no job number.
+    # The sample is deliberately invented and stays that way. No ABN, no TFN,
+    # no trading name, no job number, not even an anonymised real one.
     import re
     assert not re.search(r"\b\d{11}\b", blob), "an 11-digit number looks like an ABN"
     assert not re.search(r"\b\d{8,9}\b", blob), "an 8-9 digit number looks like a TFN"
     assert "pty" not in blob and "ltd" not in blob
+
+
+def test_no_claim_implies_existing_service_profit_clients():
+    """There is no Service Profit client with real figures yet. Nothing on the
+    site may imply otherwise, and every number shown must be labelled as an
+    example. This is the ACCC exposure, not a style preference."""
+    import re
+
+    banned = (
+        r"our clients",
+        r"clients see",
+        r"clients save",
+        r"we have helped",
+        r"typical client",
+        r"results speak",
+        r"on average,? (?:our|clients)",
+    )
+    for page in sorted(ROOT.glob("*.html")):
+        text = page.read_text(encoding="utf-8").lower()
+        for pattern in banned:
+            assert not re.search(pattern, text), f"{page.name} matches {pattern!r}"
+
+    # Every figure-bearing illustration keeps its label.
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert home.count("Worked example, not a client result.") >= 2
+    assert "illustration, not a client file" in home
+    system = (ROOT / "system.html").read_text(encoding="utf-8")
+    assert "Invented figures, not a client file" in system
+    assert system.count("Worked example, not your rate.") >= 2
 
 
 if __name__ == "__main__":

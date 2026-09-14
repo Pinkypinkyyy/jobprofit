@@ -138,10 +138,12 @@ STEM_SIZE = {
 }
 
 
-# The weekly output sample. Invented, and labelled as invented on the page.
-# To swap in a real anonymised week, change these numbers only: the page and
-# the arithmetic test both read from here. Never put a real client, job number
-# or trading name in this block.
+# The weekly output sample. A permanent worked example, not a placeholder
+# waiting on real data: it stays invented even once there are clients, and the
+# page says so. Do not put a real client's figures, job numbers or trading name
+# in here, anonymised or otherwise. The figures must still reconcile, because
+# an accountant showing numbers that do not add up is worse than showing none,
+# and the arithmetic test reads from this block to enforce that.
 WEEKLY_SAMPLE = {
     "week_ending": "5 September",
     "jobs_closed": 14,
