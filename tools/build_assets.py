@@ -15,17 +15,52 @@ JPEG_STEMS = (
 
 
 def to_webp(src: Path, stem: str, widths=(480, 864, 1200)) -> None:
+    """Write the WebP ladder for one photo.
+
+    Two rules, both learned the hard way:
+
+    1. Never resize above the source. The trade photos are 838px wide. Emitting
+       a 1200px variant from them does not add detail, it invents it, and the
+       result looks soft on exactly the retina phones the audience uses.
+    2. Downscaling softens edges. A light unsharp mask after the resize puts the
+       perceived sharpness back without the halos you get from a heavy one.
+    """
+    from PIL import ImageFilter
+
     im = Image.open(src).convert("RGB")
-    for w in widths:
-        ratio = w / im.width
-        h = max(1, int(im.height * ratio))
-        resized = im.resize((w, h), Image.Resampling.LANCZOS)
+    targets = sorted({w for w in widths if w < im.width} | {im.width})
+    for w in targets:
+        if w == im.width:
+            resized = im
+        else:
+            h = max(1, round(im.height * w / im.width))
+            resized = im.resize((w, h), Image.Resampling.LANCZOS)
+            resized = resized.filter(
+                ImageFilter.UnsharpMask(radius=0.8, percent=70, threshold=3)
+            )
         out = ASSETS / f"{stem}-{w}.webp"
-        resized.save(out, "WEBP", quality=78, method=6)
-        print(out.name, out.stat().st_size)
-    full = ASSETS / f"{stem}.webp"
-    im.save(full, "WEBP", quality=78, method=6)
-    print(full.name, full.stat().st_size)
+        resized.save(out, "WEBP", quality=84, method=6)
+        print(f"{out.name:<34} {resized.width}x{resized.height}  {out.stat().st_size/1024:6.1f}KB")
+
+
+def rebuild_photos() -> None:
+    """Regenerate every photo ladder from the JPEG that ships beside it."""
+    stale = []
+    for stem in JPEG_STEMS:
+        src = ASSETS / f"{stem}.jpg"
+        if not src.exists():
+            print("missing source:", src.name)
+            continue
+        with Image.open(src) as probe:
+            source_width = probe.width
+        for old in ASSETS.glob(f"{stem}-*.webp"):
+            width = int(old.stem.rsplit("-", 1)[1])
+            if width > source_width:
+                stale.append(old)
+        to_webp(src, stem)
+    for f in stale:
+        f.unlink()
+        print("removed upscaled variant:", f.name)
 
 
 INK = "#0E0E12"

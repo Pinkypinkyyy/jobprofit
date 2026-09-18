@@ -830,3 +830,29 @@ def test_audience_pages_carry_breadcrumbs():
         assert [i["position"] for i in items] == [1, 2]
         assert items[1]["item"].endswith(f"/{slug}/")
         assert items[1]["name"]
+
+
+def test_no_photo_variant_is_wider_than_its_source():
+    # The trade photos are 838px wide. The build used to emit 864 and 1200
+    # variants from them, so a phone downloaded a third more bytes for pixels
+    # the resampler had guessed. It looked soft on exactly the retina screens
+    # this audience reads the site on. Never ship a variant above its source.
+    from PIL import Image
+    assets = ROOT / "assets"
+    for src in assets.glob("*.jpg"):
+        with Image.open(src) as im:
+            source_width = im.width
+        for variant in assets.glob(f"{src.stem}-*.webp"):
+            width = int(variant.stem.rsplit("-", 1)[1])
+            assert width <= source_width, (
+                f"{variant.name} is {width}px from a {source_width}px source"
+            )
+
+
+def test_every_srcset_width_matches_a_file_that_exists():
+    import re
+    for p in PAGES:
+        for entry in re.findall(r"/assets/([A-Za-z0-9._-]+\.webp)\?[^ ]* (\d+)w", p.read_text(encoding="utf-8")):
+            name, width = entry
+            assert (ROOT / "assets" / name).exists(), f"{p.name}: {name} missing"
+            assert name.endswith(f"-{width}.webp"), f"{p.name}: {name} declared as {width}w"

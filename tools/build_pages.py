@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from shared import (
     GBP,
+    IMG_VERSION,
     MSBOOK,
     ORIGIN,
     cash_chart,
@@ -19,6 +20,7 @@ from shared import (
     person_node,
     service_node,
     sticky,
+    webp_srcset,
     website_node,
 )
 import seo_pages
@@ -255,8 +257,8 @@ def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55v
     w, h = STEM_SIZE[stem]
     return (
         f'          <picture>\n'
-        f'            <source type="image/webp" srcset="/assets/{stem}-480.webp?v=real1 480w, /assets/{stem}-864.webp?v=real1 864w, /assets/{stem}-1200.webp?v=real1 1200w" sizes="{sizes}">\n'
-        f'            <img{extra} src="/assets/{stem}.jpg?v=real1" width="{w}" height="{h}" alt="{alt}"{loading}>\n'
+        f'            <source type="image/webp" srcset="{webp_srcset(stem)}" sizes="{sizes}">\n'
+        f'            <img{extra} src="/assets/{stem}.jpg?v={IMG_VERSION}" width="{w}" height="{h}" alt="{alt}"{loading}>\n'
         f'          </picture>'
     )
 

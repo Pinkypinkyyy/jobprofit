@@ -7,6 +7,32 @@ GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
 ASSET = "rt43"
+IMG_VERSION = "real2"
+
+
+def image_widths(stem):
+    """Widths we actually hold for this photo, smallest first.
+
+    The source photos top out at 838px wide. The build used to emit 864 and
+    1200 variants from them, so the browser downloaded a third more bytes for
+    pixels that had been invented by the resampler. Read what is on disk
+    instead of asserting a ladder that may not exist.
+    """
+    import pathlib as _p
+    import re as _re
+    assets = _p.Path(__file__).resolve().parents[1] / "assets"
+    found = []
+    for f in assets.glob(f"{stem}-*.webp"):
+        m = _re.fullmatch(rf"{_re.escape(stem)}-(\d+)\.webp", f.name)
+        if m:
+            found.append(int(m.group(1)))
+    return sorted(found)
+
+
+def webp_srcset(stem):
+    return ", ".join(
+        f"/assets/{stem}-{w}.webp?v={IMG_VERSION} {w}w" for w in image_widths(stem)
+    )
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
