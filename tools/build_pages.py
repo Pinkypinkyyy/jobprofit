@@ -284,7 +284,7 @@ def index():
         <div class="hero-copy">
           <p class="kicker">Pink Accounting. Brendale.</p>
           <h1>You quoted 6 hours. You did 9.</h1>
-          <p class="lead">Then you quoted 6 again. We keep billed hours, cash and tax in the file so you can stay on the tools. Air con, electrical, construction services. Queensland.</p>
+          <p class="lead">Then you quoted 6 again. Every Monday you see the hours you quoted against the hours you worked, and how much of the bank is actually yours. Tax and BAS held. You stay on the tools. Air con, electrical, construction services. Queensland.</p>
           <div class="cta">
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book 15 minutes</a>
             <a class="btn btn-ghost" href="/check.html" data-event="hero-check">Free 60-second hours check</a>
@@ -378,7 +378,7 @@ def index():
           <span class="eyebrow">Fees</span>
           <h2>$1,650 + GST a month for most files.</h2>
           <p>That is Job Profit. Billed hours, cash, tax and BAS. Not unlimited work. The letter is the quote.</p>
-          <p class="sec-note">The names, once: <b>Pink Accounting</b> is the firm and the registered tax agent. <b>Service Profit</b> is what we do for trade and service businesses. <b>Job Profit</b> is the plan most files sit on. The three above it add to it, they do not replace it.</p>
+          <p class="sec-note">The names, once: <b>Pink Accounting</b> is the firm and the registered tax agent. <b>Service Profit</b> is what we do for trade and service businesses. <b>Job Profit</b> is the plan most files sit on.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
