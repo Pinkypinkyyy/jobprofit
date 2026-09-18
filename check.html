@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt42">
+  <link rel="stylesheet" href="/styles.css?v=rt43">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -76,6 +76,26 @@
         <p class="chart-note">Sketch from the numbers you typed. Not your file. Not a promise.</p>
         <a class="btn btn-primary" href="/book.html" data-event="check-book">Book 15 minutes</a>
       </div>
+      <form class="hours-check" id="crewCheck">
+        <p class="crew-kicker">Or the whole crew, for a week</p>
+        <div class="fields">
+          <label>People on the tools
+            <input type="number" name="techs" min="1" step="1" value="4" required inputmode="numeric">
+          </label>
+          <label>Unbilled hours each, a week
+            <input type="number" name="leak" min="0" step="0.5" value="3" required inputmode="decimal">
+          </label>
+          <label>Rate billed, ex GST
+            <input type="number" name="rate" min="1" step="1" value="145" required inputmode="decimal">
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Show the year</button>
+      </form>
+      <div class="hours-result" id="crewResult" hidden>
+        <p id="crewResultLine"></p>
+        <p class="chart-note">Sketch from the numbers you typed. Not your file. Not a promise. Fifty-two weeks is the year. Real weeks are not all billable.</p>
+        <a class="btn btn-primary" href="/book.html" data-event="crew-book">Book 15 minutes</a>
+      </div>
 
       <div class="prose">
         <p>This is a sketch from the numbers you type. Not your file. Not tax advice. On the call we look at the real jobs, the bank, and tax.</p>
@@ -97,6 +117,12 @@
           <a href="/system.html">The system</a>
           <a href="/why.html">Meet Pink</a>
           <a href="/check.html">Hours check</a>
+          <a href="/air-conditioning-accountant-brisbane/">Air con accountant</a>
+          <a href="/electrician-accountant-brisbane/">Electrician accountant</a>
+          <a href="/construction-services-accountant-brisbane/">Construction services</a>
+          <a href="/quoted-hours-vs-actual-hours/">Quoted vs actual hours</a>
+          <a href="/cash-that-is-yours/">Cash that is yours</a>
+          <a href="/can-i-afford-another-technician/">Another technician</a>
           <a href="/book.html">Book a call</a>
           <a href="/contact.html">Contact</a>
         </div>
@@ -114,7 +140,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 13 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt42"></script>
-  <script src="/nav.js?v=rt42"></script>
+  <script src="/track.js?v=rt43"></script>
+  <script src="/nav.js?v=rt43"></script>
 </body>
 </html>

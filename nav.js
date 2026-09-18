@@ -138,6 +138,45 @@
     });
   }
 
+  var crewForm = document.getElementById("crewCheck");
+  var crewOut = document.getElementById("crewResult");
+  var crewLine = document.getElementById("crewResultLine");
+  if (crewForm && crewOut && crewLine) {
+    crewForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var techs = parseFloat(crewForm.techs.value);
+      var leak = parseFloat(crewForm.leak.value);
+      var rate = parseFloat(crewForm.rate.value);
+      if (!(techs > 0) || !(leak >= 0) || !(rate > 0)) return;
+      var week = Math.round(techs * leak * rate);
+      var year = week * 52;
+      var money = function (n) {
+        return "$" + n.toLocaleString("en-AU");
+      };
+      if (leak === 0) {
+        crewLine.textContent =
+          "No unbilled hours in that week. The leak is often the next job, or the bank after GST, PAYG, super and wages. Book 15 minutes if those still do not match.";
+      } else {
+        crewLine.textContent =
+          techs +
+          " people, " +
+          leak +
+          " unbilled hours each, at $" +
+          rate +
+          " an hour. That is " +
+          money(week) +
+          " a week, about " +
+          money(year) +
+          " a year, that never made a quote.";
+      }
+      crewOut.hidden = false;
+      crewOut.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      try {
+        if (typeof gtag === "function") gtag("event", "generate_lead", { method: "hours-check-crew" });
+      } catch (err) {}
+    });
+  }
+
   var form = document.getElementById("enquiryForm");
   var ok = document.getElementById("enquiryOk");
   var formShownAt = Date.now();

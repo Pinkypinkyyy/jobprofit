@@ -626,6 +626,13 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .hours-result p{margin:0 0 10px;font-size:1.15rem}
 .hours-result .chart-note{color:rgba(255,255,255,.7);font-size:.9rem}
 .hours-result .btn{margin-top:8px;background:#fff;color:var(--ink)}
+.crew-kicker{margin:0 0 14px;font-weight:650}
+.trade-links{margin:14px 0 0;font-size:.95rem;color:rgba(255,255,255,.85)}
+.trade-links a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.same-offer{margin:28px 0;padding:22px 24px;background:var(--paper-2);border-radius:18px}
+.same-offer p{margin:0 0 10px}
+.same-offer p:last-child{margin:0}
+.trade-more{display:flex;flex-wrap:wrap;gap:12px 18px;margin:18px 0 0}
 @media(max-width:940px){
   .sell-grid,.hours-check .fields{grid-template-columns:1fr}
 }

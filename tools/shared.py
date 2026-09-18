@@ -6,7 +6,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = "https://www.google.com/maps?cid=17544456102082616748"
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt42"
+ASSET = "rt43"
 GA4 = "G-8T6SXPNSCW"
 GTAG = "GT-WVXQ29L2"
 # Firm Meta pixel is not in any live source. Leave blank until Events Manager issues an ID.
@@ -97,12 +97,49 @@ def business_node():
         "priceRange": "$$",
         "knowsAbout": [
             "HVAC accounting",
+            "air conditioning accountant",
             "electrical contractors",
+            "electrician accountant",
             "construction services",
             "job costing",
+            "quoted hours versus actual hours",
             "BAS",
             "GST",
         ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Service Profit plans",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "name": "Job Profit",
+                    "price": "1650.00",
+                    "priceCurrency": "AUD",
+                    "url": f"{ORIGIN}/pricing.html#level-job",
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Weekly Visibility",
+                    "price": "2650.00",
+                    "priceCurrency": "AUD",
+                    "url": f"{ORIGIN}/pricing.html#level-weekly",
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Ready to Scale",
+                    "price": "3500.00",
+                    "priceCurrency": "AUD",
+                    "url": f"{ORIGIN}/pricing.html#level-scale",
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Compliance",
+                    "price": "550.00",
+                    "priceCurrency": "AUD",
+                    "url": f"{ORIGIN}/pricing.html#level-compliance",
+                },
+            ],
+        },
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Shop 15A, 18-22 Kremzow Rd",
@@ -166,6 +203,31 @@ def local_business_node():
     return node
 
 
+def website_node():
+    return {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Service Profit",
+        "url": f"{ORIGIN}/",
+        "publisher": {"@id": f"{ORIGIN}/#business"},
+        "inLanguage": "en-AU",
+    }
+
+
+def person_node():
+    return {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Huong Bui",
+        "alternateName": "Pink",
+        "jobTitle": "Registered Tax Agent",
+        "worksFor": {"@id": f"{ORIGIN}/#business"},
+        "alumniOf": "Griffith University",
+        "identifier": "26284368",
+        "url": f"{ORIGIN}/why.html",
+    }
+
+
 def nav(current=""):
     def item(href, label, key):
         cur = ' aria-current="page"' if current == key else ""
@@ -210,6 +272,12 @@ def footer():
           <a href="/system.html">The system</a>
           <a href="/why.html">Meet Pink</a>
           <a href="/check.html">Hours check</a>
+          <a href="/air-conditioning-accountant-brisbane/">Air con accountant</a>
+          <a href="/electrician-accountant-brisbane/">Electrician accountant</a>
+          <a href="/construction-services-accountant-brisbane/">Construction services</a>
+          <a href="/quoted-hours-vs-actual-hours/">Quoted vs actual hours</a>
+          <a href="/cash-that-is-yours/">Cash that is yours</a>
+          <a href="/can-i-afford-another-technician/">Another technician</a>
           <a href="/book.html">Book a call</a>
           <a href="/contact.html">Contact</a>
         </div>
@@ -326,6 +394,26 @@ def hours_check():
         <p id="hoursResultLine"></p>
         <p class="chart-note">Sketch from the numbers you typed. Not your file. Not a promise.</p>
         <a class="btn btn-primary" href="/book.html" data-event="check-book">Book 15 minutes</a>
+      </div>
+      <form class="hours-check" id="crewCheck">
+        <p class="crew-kicker">Or the whole crew, for a week</p>
+        <div class="fields">
+          <label>People on the tools
+            <input type="number" name="techs" min="1" step="1" value="4" required inputmode="numeric">
+          </label>
+          <label>Unbilled hours each, a week
+            <input type="number" name="leak" min="0" step="0.5" value="3" required inputmode="decimal">
+          </label>
+          <label>Rate billed, ex GST
+            <input type="number" name="rate" min="1" step="1" value="145" required inputmode="decimal">
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Show the year</button>
+      </form>
+      <div class="hours-result" id="crewResult" hidden>
+        <p id="crewResultLine"></p>
+        <p class="chart-note">Sketch from the numbers you typed. Not your file. Not a promise. Fifty-two weeks is the year. Real weeks are not all billable.</p>
+        <a class="btn btn-primary" href="/book.html" data-event="crew-book">Book 15 minutes</a>
       </div>
 """
 

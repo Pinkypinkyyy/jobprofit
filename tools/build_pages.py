@@ -16,9 +16,12 @@ from shared import (
     business_node,
     local_business_node,
     nav,
+    person_node,
     service_node,
     sticky,
+    website_node,
 )
+import seo_pages
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -263,7 +266,7 @@ def index():
         "Air con, electrical and construction accountant | Brisbane",
         "Quoted hours versus hours on the tools. Cash that is yours versus GST, PAYG, super and wages. Tax and BAS held. Book 15 minutes. Brendale, Queensland.",
         "/",
-        extra=jsonld(business_node()),
+        extra=jsonld(business_node()) + jsonld(website_node()),
     )
     body = f"""{nav("home")}
   <main id="main">
@@ -291,6 +294,7 @@ def index():
             <button class="trade" type="button" data-trade="construction" aria-pressed="false">Construction services</button>
           </div>
           <p class="live" id="liveLine">Air con and refrigeration. Quoted hours versus hours on the job.</p>
+          <p class="trade-links">Same offer. Different jobs. <a href="/air-conditioning-accountant-brisbane/">Air con</a> · <a href="/electrician-accountant-brisbane/">Electrical</a> · <a href="/construction-services-accountant-brisbane/">Construction services</a></p>
           <div class="trust">
             <a class="stars" href="{REVIEWS_URL}" rel="noopener">
               <span class="star-value">{REVIEWS_RATING}</span>
@@ -316,7 +320,7 @@ def index():
             <span class="eyebrow">A fit</span>
             <h3>Yes, if</h3>
             <ul class="ticks">
-              <li>Air con and refrigeration, electrical, or construction services meaning fit-out, maintenance and installation</li>
+              <li><a href="/air-conditioning-accountant-brisbane/">Air con and refrigeration</a>, <a href="/electrician-accountant-brisbane/">electrical</a>, or <a href="/construction-services-accountant-brisbane/">construction services</a> meaning fit-out, maintenance and installation</li>
               <li>Queensland, and one trading entity</li>
               <li>You have people on the tools, staff or subcontractors, or you are about to put someone on</li>
               <li>You quote work and you could not say, today, which of last month's jobs actually made money</li>
@@ -678,6 +682,7 @@ def why():
         "Meet Huong Bui, registered tax agent | Service Profit",
         "Huong Bui, Master of Professional Accounting (Griffith), Registered Tax Agent 26284368. More than ten years in the books. Income tax, FBT, financial statements, BAS.",
         "/why.html",
+        extra=jsonld(person_node()),
     )
     body = f"""{nav("why")}
   <main id="main">
@@ -690,7 +695,7 @@ def why():
           <span class="eyebrow">Meet Pink</span>
           <h1>Hello, I am Pink.</h1>
           <p class="lead">Huong Bui. Registered tax agent. More than ten years in the books. Air con, electrical and construction services in Queensland.</p>
-          <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day.</p>
+          <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day. The file is held by the firm, not by one diary.</p>
           <a class="btn btn-primary" href="/book.html" data-event="why-book">Book 15 minutes</a>
         </div>
       </div>
@@ -942,19 +947,23 @@ def terms():
     return h + body
 
 
-def redirect_home(title):
+def redirect_to(title, dest, label):
+    """GitHub Pages cannot send a 301. Canonical plus refresh plus JS is the
+    strongest consolidation this host allows. Old trade stubs now point at the
+    matching audience page, not the homepage, so the HVAC URL does not keep
+    telling Google the homepage is the HVAC document."""
     return f"""<!DOCTYPE html>
 <html lang="en-AU">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} | Service Profit</title>
-  <link rel="canonical" href="{ORIGIN}/">
-  <meta http-equiv="refresh" content="0;url=/index.html">
-  <script>location.replace("/index.html");</script>
+  <link rel="canonical" href="{ORIGIN}{dest}">
+  <meta http-equiv="refresh" content="0;url={dest}">
+  <script>location.replace("{dest}");</script>
 </head>
 <body>
-  <p>Service Profit is one offer for HVAC, electrical and construction service businesses. <a href="/index.html">Continue to Service Profit</a>.</p>
+  <p>Service Profit is one offer. The {label} page is <a href="{dest}">{label}</a>.</p>
 </body>
 </html>
 """
@@ -981,17 +990,23 @@ def not_found():
 
 SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>{ORIGIN}/</loc></url>
-  <url><loc>{ORIGIN}/system.html</loc></url>
-  <url><loc>{ORIGIN}/pricing.html</loc></url>
-  <url><loc>{ORIGIN}/why.html</loc></url>
-  <url><loc>{ORIGIN}/book.html</loc></url>
-  <url><loc>{ORIGIN}/check.html</loc></url>
-  <url><loc>{ORIGIN}/contact.html</loc></url>
-  <url><loc>{ORIGIN}/rights.html</loc></url>
-  <url><loc>{ORIGIN}/disclosure</loc></url>
-  <url><loc>{ORIGIN}/privacy.html</loc></url>
-  <url><loc>{ORIGIN}/terms.html</loc></url>
+  <url><loc>{ORIGIN}/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/system.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/pricing.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/why.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/book.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/check.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/contact.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/rights.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/disclosure</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/privacy.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/terms.html</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/air-conditioning-accountant-brisbane/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/electrician-accountant-brisbane/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/construction-services-accountant-brisbane/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/quoted-hours-vs-actual-hours/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/cash-that-is-yours/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/can-i-afford-another-technician/</loc><lastmod>2026-09-18</lastmod></url>
 </urlset>
 """
 
@@ -1007,9 +1022,12 @@ def main():
     write("privacy.html", privacy())
     write("rights.html", rights())
     write("terms.html", terms())
-    write("hvac.html", redirect_home("HVAC"))
-    write("electrical.html", redirect_home("Electrical"))
-    write("construction.html", redirect_home("Construction"))
+    write("hvac.html", redirect_to("HVAC", "/air-conditioning-accountant-brisbane/", "air con accountant"))
+    write("electrical.html", redirect_to("Electrical", "/electrician-accountant-brisbane/", "electrician accountant"))
+    write("construction.html", redirect_to("Construction", "/construction-services-accountant-brisbane/", "construction services accountant"))
+    for builder in seo_pages.PAGES:
+        slug, html = builder()
+        seo_pages.write_pretty(ROOT, slug, html)
     write("disclosure.html", disclosure())
     (ROOT / "disclosure").mkdir(exist_ok=True)
     write("disclosure/index.html", disclosure())

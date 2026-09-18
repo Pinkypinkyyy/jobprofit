@@ -189,7 +189,7 @@ def test_callback_video_on_homepage_not_fake_trade_pages():
     assert (ROOT / "assets" / "video" / "callback-cost-poster.jpg").exists()
     hvac = (ROOT / "hvac.html").read_text(encoding="utf-8")
     assert "callback-cost.mp4" not in hvac
-    assert 'rel="canonical" href="https://www.serviceprofit.com.au/"' in hvac
+    assert 'rel="canonical" href="https://www.serviceprofit.com.au/air-conditioning-accountant-brisbane/"' in hvac
 
 
 def test_fees_are_monthly_only():
@@ -200,12 +200,18 @@ def test_fees_are_monthly_only():
             assert token not in text, (p.name, token)
 
 
-def test_old_trade_urls_redirect_home():
-    for slug in ("hvac", "electrical", "construction"):
+def test_old_trade_urls_redirect_to_audience_pages():
+    mapping = {
+        "hvac": "/air-conditioning-accountant-brisbane/",
+        "electrical": "/electrician-accountant-brisbane/",
+        "construction": "/construction-services-accountant-brisbane/",
+    }
+    for slug, dest in mapping.items():
         text = (ROOT / f"{slug}.html").read_text(encoding="utf-8")
-        assert 'url=/index.html' in text
-        assert "location.replace" in text
-        assert "one offer" in text.lower() or "Continue to Service Profit" in text
+        assert f"url={dest}" in text
+        assert f'location.replace("{dest}")' in text
+        assert "one offer" in text.lower()
+        assert dest in (ROOT / "sitemap.xml").read_text(encoding="utf-8")
 
 
 def test_mobile_pricing_and_a11y_hooks():
@@ -238,6 +244,16 @@ def test_sitemap_has_real_pages_not_fake_trades():
     sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     for slug in ("terms.html", "pricing.html", "system.html", "check.html"):
         assert slug in sm
+    for slug in (
+        "air-conditioning-accountant-brisbane/",
+        "electrician-accountant-brisbane/",
+        "construction-services-accountant-brisbane/",
+        "quoted-hours-vs-actual-hours/",
+        "cash-that-is-yours/",
+        "can-i-afford-another-technician/",
+    ):
+        assert slug in sm
+        assert "<lastmod>" in sm
     assert "hvac.html" not in sm
     assert "electrical.html" not in sm
     assert "construction.html" not in sm
@@ -621,6 +637,75 @@ def test_no_claim_implies_existing_service_profit_clients():
     system = (ROOT / "system.html").read_text(encoding="utf-8")
     assert "Invented figures, not a client file" in system
     assert system.count("Worked example, not your rate.") >= 2
+
+
+def test_industry_pages_are_audience_not_products():
+    """Same offer. Unique job language. Not three products in the nav."""
+    pages = {
+        "air-conditioning-accountant-brisbane": (
+            "Quoted six hours on the roof. Nine on the tools.",
+            "rooftop changeover",
+        ),
+        "electrician-accountant-brisbane": (
+            "The switchboard ran long. The quote did not.",
+            "board upgrade",
+        ),
+        "construction-services-accountant-brisbane": (
+            "Fit-out, maintenance, installation. Not a builder.",
+            "head contracting",
+        ),
+    }
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    nav = home.split("<nav class=\"links\"")[1].split("</nav>")[0]
+    for slug, (h1, unique) in pages.items():
+        html = (ROOT / slug / "index.html").read_text(encoding="utf-8")
+        assert f"<h1>{h1}</h1>" in html, slug
+        assert unique in html.lower(), slug
+        assert "Job Profit is $1,650 + GST a month" in html
+        assert "Same plans as the rest of Service Profit" in html
+        assert f'href="/{slug}/"' not in nav
+        assert (ROOT / f"{slug}.html").read_text(encoding="utf-8") == html
+    assert "Pricing" in nav and "The system" in nav
+    assert "HVAC</a>" not in nav
+
+
+def test_hours_check_has_a_crew_calculator():
+    check = (ROOT / "check.html").read_text(encoding="utf-8")
+    assert 'id="hoursCheck"' in check
+    assert 'id="crewCheck"' in check
+    assert 'name="techs"' in check
+    assert 'name="leak"' in check
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    assert "hours-check-crew" in js
+    assert "52" in js
+
+
+def test_cornerstone_pages_exist():
+    pages = {
+        "quoted-hours-vs-actual-hours": "Quoted hours versus hours on the tools",
+        "cash-that-is-yours": "The bank looks full. It is not all yours.",
+        "can-i-afford-another-technician": "Can I afford another technician?",
+    }
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    for slug, h1 in pages.items():
+        html = (ROOT / slug / "index.html").read_text(encoding="utf-8")
+        assert f"<h1>{h1}</h1>" in html, slug
+        assert "Job Profit is $1,650 + GST a month" in html
+        assert f'href="/{slug}/"' in home
+
+
+def test_why_has_person_schema_and_firm_continuity():
+    html = (ROOT / "why.html").read_text(encoding="utf-8")
+    assert '"@type":"Person"' in html
+    assert "Huong Bui" in html
+    assert "The file is held by the firm, not by one diary." in html
+
+
+def test_homepage_has_website_schema_and_offer_catalog():
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert '"@type":"WebSite"' in html
+    assert "hasOfferCatalog" in html
+    assert "1650.00" in html
 
 
 if __name__ == "__main__":
