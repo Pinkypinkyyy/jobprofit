@@ -342,6 +342,16 @@ def index():
       </div>
     </section>
 
+    <section class="band">
+      <div class="wrap">
+        <span class="eyebrow">The first question</span>
+        <h2>You already have job software.</h2>
+        <p class="sec-lead">Then you already know what a job should have cost, based on the hours that got entered. We answer the other half: what actually landed in the bank, how much of it is yours once GST, PAYG, super and wages come out, and what that says about the next quote.</p>
+        <p class="sec-lead">simPRO, ServiceM8, AroFlo and the rest all feed Xero. Xero is where we work. We are not your software people and we will not pretend to be.</p>
+        <p><a href="/job-software-and-your-accountant/">Why an accountant as well as the job system</a></p>
+      </div>
+    </section>
+
     <section class="band band-photo">
       <div class="wrap split-visual">
         <div class="photo-frame">
@@ -1009,6 +1019,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
   <url><loc>{ORIGIN}/quoted-hours-vs-actual-hours/</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>{ORIGIN}/cash-that-is-yours/</loc><lastmod>2026-09-18</lastmod></url>
   <url><loc>{ORIGIN}/can-i-afford-another-technician/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/job-software-and-your-accountant/</loc><lastmod>2026-09-18</lastmod></url>
 </urlset>
 """
 

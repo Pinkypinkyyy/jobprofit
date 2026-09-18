@@ -856,3 +856,54 @@ def test_every_srcset_width_matches_a_file_that_exists():
             name, width = entry
             assert (ROOT / "assets" / name).exists(), f"{p.name}: {name} missing"
             assert name.endswith(f"-{width}.webp"), f"{p.name}: {name} declared as {width}w"
+
+
+def test_the_job_software_objection_is_answered():
+    # The buyer runs simPRO, ServiceM8, AroFlo or similar and thinks the job
+    # costing screen already answers this. If the site does not meet that on
+    # the homepage, the rest of the page is arguing with someone who has left.
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "You already have job software." in home
+    assert "/job-software-and-your-accountant/" in home
+    page = (ROOT / "job-software-and-your-accountant.html").read_text(encoding="utf-8")
+    assert "So why an accountant?" in page
+    for name in ("simPRO", "ServiceM8", "AroFlo"):
+        assert name in page, name
+
+
+def test_we_never_claim_to_work_inside_the_job_software():
+    # HB, 18 Sep 2026: Pink has not used these platforms. The page positions
+    # from the accountant's side on purpose. A future edit must not quietly
+    # turn that into a capability claim that falls over on the first call.
+    banned = (
+        "we work in simpro",
+        "we work in servicem8",
+        "we work in aroflo",
+        "simpro specialist",
+        "servicem8 specialist",
+        "certified partner",
+        "we set up simpro",
+        "we implement simpro",
+    )
+    for p in PAGES:
+        text = p.read_text(encoding="utf-8").lower()
+        for phrase in banned:
+            assert phrase not in text, f"{p.name}: {phrase}"
+    page = (ROOT / "job-software-and-your-accountant.html").read_text(encoding="utf-8")
+    assert "We are not your software people" in page
+
+
+def test_the_crew_check_puts_the_fee_next_to_the_leak():
+    # The comparison is the persuasion. His numbers, our fee, he does the
+    # arithmetic himself, so nothing here is a savings claim.
+    import re
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    m = re.search(r"Job Profit is \$([0-9,]+) \+ GST a year", js)
+    assert m, "crew result must state the annual fee"
+    annual = int(m.group(1).replace(",", ""))
+    pricing = (ROOT / "pricing.html").read_text(encoding="utf-8")
+    monthly = re.search(r"\$([0-9,]+) \+ GST", pricing)
+    assert monthly, "pricing page must state the monthly fee"
+    assert annual == int(monthly.group(1).replace(",", "")) * 12, (
+        f"nav.js says {annual} a year, pricing says {monthly.group(1)} a month"
+    )

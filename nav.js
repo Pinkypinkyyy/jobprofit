@@ -167,7 +167,7 @@
           money(week) +
           " a week, about " +
           money(year) +
-          " a year, that never made a quote.";
+          " a year, that never made a quote. Job Profit is $19,800 + GST a year.";
       }
       crewOut.hidden = false;
       crewOut.scrollIntoView({ behavior: "smooth", block: "nearest" });

@@ -37,6 +37,7 @@ def trade_more(current):
         ("/quoted-hours-vs-actual-hours/", "Quoted vs actual hours"),
         ("/cash-that-is-yours/", "Cash that is yours"),
         ("/can-i-afford-another-technician/", "Another technician"),
+        ("/job-software-and-your-accountant/", "You already have job software"),
     ]
     items = "\n".join(
         f'          <a href="{href}">{label}</a>'
@@ -412,4 +413,68 @@ def another_tech():
     return slug, h + body
 
 
-PAGES = (air_con, electrical, construction, quoted_hours, cash_yours, another_tech)
+
+def job_software():
+    slug = "job-software-and-your-accountant"
+    faqs = [
+        (
+            "Do you work inside my job management software?",
+            "No. We work in Xero. Your job software already sends its invoices there, so we do not need a seat in it to read what happened. If you want someone to set up or run that system, you want an implementer, and we will tell you so.",
+        ),
+        (
+            "So what do you do that it does not?",
+            "We reconcile to the bank. Your job software knows the hours somebody entered. We see the money that actually arrived and the money that actually left, and we tell you how much of it is yours once GST, PAYG, super and wages come out.",
+        ),
+        (
+            "What if my job software says the job made money?",
+            "Then that is a good start. It is working from the hours that got entered. If an hour never got entered, the job looks better on the screen than it was in the week. That gap is what we read.",
+        ),
+    ]
+    extra = jsonld(service_node(
+        "Accounting for trade businesses running job management software",
+        f"{ORIGIN}/{slug}/",
+        "Your job software prices the job. We reconcile the bank, split out what is actually yours after GST, PAYG, super and wages, and hold tax and BAS.",
+    )) + jsonld(faq_node(faqs))
+    h = head(
+        "You already have job software | Service Profit",
+        "Your job software prices the job from the hours entered. We reconcile the bank and tell you what is actually yours after GST, PAYG, super and wages. Queensland.",
+        f"/{slug}",
+        extra=extra,
+    )
+    faq_html = "\n".join(
+        f"          <details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs
+    )
+    body = f"""{nav()}
+  <main id="main" class="page">
+    <div class="wrap">
+      <span class="eyebrow">Before you ask</span>
+      <h1>You already have job software. So why an accountant?</h1>
+      <p class="lead">Fair question, and it is usually the first one. The short answer is that your job software and your accountant are answering two different questions, and only one of them is the bank.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="/book.html" data-event="software-book">Book 15 minutes</a>
+        <a class="btn btn-outline" href="/check.html" data-event="software-check">Free hours check</a>
+      </div>
+      <div class="prose">
+        <h2>Two different questions</h2>
+        <p>Your job software answers this one: what should this job have cost, based on what was entered against it? That is a useful question and a good system answers it well.</p>
+        <p>We answer a different one: what actually landed in the bank, how much of it is yours, and what does that say about the next quote? Those are not the same number, and the gap between them is the whole point of this page.</p>
+        <h2>It only knows what somebody typed</h2>
+        <p>A job costing screen is built from entered hours. If a second tech went back on the Friday and nobody logged it, the job reads as profitable. Nothing is wrong with the software. It simply was not told.</p>
+        <p>We work from the bank and the file, so the hours that never got entered still show up as a gap between what you invoiced and what the week actually cost you.</p>
+        <h2>We are not your software people</h2>
+        <p>simPRO, ServiceM8, AroFlo and the rest all feed Xero. Xero is where we work. We are not your software people and we will not pretend to be. If you need that system set up, tuned or migrated, that is an implementer's job, not ours, and we will say so on the call rather than take the work.</p>
+        <p>What we hold is the accounting: the bank reconciled, GST, PAYG, super and wages separated out so you know what you can actually spend, FBT watched in the file, and income tax and BAS held for one trading entity as written in the letter.</p>
+        <h2>Who this page is for</h2>
+        <p>Air con and refrigeration, electrical, or construction services businesses in Queensland who already run a job system and still could not say, today, which of last month's jobs made money once the bank had its say.</p>
+        <p>Not a fit if what you actually want is someone to run the job software itself. That is a different trade to ours.</p>
+      </div>
+{same_offer()}
+      <div class="faq">{faq_html}</div>
+{trade_more(slug)}
+    </div>
+  </main>
+{footer()}"""
+    return slug, h + body
+
+
+PAGES = (air_con, electrical, construction, quoted_hours, cash_yours, another_tech, job_software)
