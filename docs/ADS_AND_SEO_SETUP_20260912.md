@@ -40,10 +40,11 @@ No dollars go out until Pinky names a weekly cap. Suggested first cap, same as t
 Campaigns stay **Service Profit / Queensland trades**. Never the hospitality Margin Check.
 
 Landing pages
-- Google Search HVAC → `/hvac.html` then book
-- Electrical → `/electrical.html`
-- Construction services → `/construction.html`
+- Google Search HVAC → `/air-conditioning-accountant-brisbane/` then book
+- Electrical → `/electrician-accountant-brisbane/`
+- Construction services → `/construction-services-accountant-brisbane/`
 - Brand / generic → `/` or `/book.html`
+- Hours leak (cold) → `/check.html`
 - UTM: `utm_source=google|meta` `utm_medium=cpc` `utm_campaign=sp-qld-trades` `utm_content=<ad>`
 
 Final URL for all ads: `https://www.serviceprofit.com.au/book.html`
@@ -71,8 +72,8 @@ Ad-group:
 
 - Book a call | 15 minutes with the firm | HVAC, electrical, construction | /book.html
 - Pricing | Job Profit from $1,650 + GST | Letter is the quote | /pricing.html
-- HVAC | Quoted hours vs hours on the job | From Brendale | /hvac.html
-- Electrical | Quote vs hours on the tools | Queensland | /electrical.html
+- HVAC | Quoted hours vs hours on the job | From Brendale | /air-conditioning-accountant-brisbane/
+- Electrical | Quote vs hours on the tools | Queensland | /electrician-accountant-brisbane/
 
 ### Callouts (≤25)
 
