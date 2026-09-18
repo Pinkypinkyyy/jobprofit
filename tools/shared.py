@@ -240,7 +240,7 @@ def nav(current=""):
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
-      <a class="brand" href="/index.html" aria-label="Service Profit, Pink Accounting">
+      <a class="brand" href="/index.html" aria-label="Service Profit Pink Accounting">
         <img src="/assets/logo-white.png" alt="pink">
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>

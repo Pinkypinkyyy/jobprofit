@@ -797,7 +797,7 @@ def test_brand_link_accessible_name_leads_with_visible_text():
     # WCAG 2.5.3. The link reads "Service Profit" then "Pink Accounting" on screen,
     # so the accessible name has to start the same way or voice control misses it.
     home = (ROOT / "index.html").read_text(encoding="utf-8")
-    assert 'aria-label="Service Profit, Pink Accounting"' in home
+    assert 'aria-label="Service Profit Pink Accounting"' in home
     assert "Pink Accounting" in home
 
 
