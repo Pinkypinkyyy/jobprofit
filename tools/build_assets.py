@@ -14,6 +14,40 @@ JPEG_STEMS = (
 )
 
 
+SOURCE = ASSETS / "_source"
+
+# The job photos are graded; the photos of Huong are not. The work reads as a
+# system, the person reads as a person. That difference is deliberate.
+TRADE_STEMS = ("electrical", "construction", "tech-hvac", "tech-electrical")
+
+# Hi-vis sits in this hue band. Everything outside it loses almost all colour.
+HIVIS_HUE = (30, 100)
+
+
+def hivis_grade(im):
+    """Cool grey frame, hi-vis the only colour left in it.
+
+    Does three jobs at once: it makes four photos shot in four different styles
+    read as one deliberate set, it sends the eye to the person working instead
+    of to whatever happened to be bright, and heavy grading is forgiving of a
+    source that is only 838px wide.
+    """
+    from PIL import ImageEnhance, ImageFilter
+
+    hue = im.convert("HSV").split()[0]
+    lo, hi = HIVIS_HUE
+    mask = hue.point(lambda h: 255 if lo <= h <= hi else 0)
+    mask = mask.filter(ImageFilter.GaussianBlur(0.6))  # soften the cut-out edge
+    kept = ImageEnhance.Color(im).enhance(1.25)
+    drained = ImageEnhance.Color(im).enhance(0.10)
+    out = Image.composite(kept, drained, mask)
+    out = ImageEnhance.Contrast(out).enhance(1.24)
+    r, g, b = out.split()
+    b = b.point(lambda t: min(255, t + 6))
+    r = r.point(lambda t: max(0, t - 3))
+    return Image.merge("RGB", (r, g, b))
+
+
 def to_webp(src: Path, stem: str, widths=(480, 864, 1200)) -> None:
     """Write the WebP ladder for one photo.
 
@@ -47,6 +81,15 @@ def rebuild_photos() -> None:
     """Regenerate every photo ladder from the JPEG that ships beside it."""
     stale = []
     for stem in JPEG_STEMS:
+        # A graded stem is regenerated from its untouched original every time, so
+        # rebuilding never grades an already-graded file.
+        original = SOURCE / f"{stem}.jpg"
+        if stem in TRADE_STEMS and original.exists():
+            with Image.open(original) as raw:
+                hivis_grade(raw.convert("RGB")).save(
+                    ASSETS / f"{stem}.jpg", "JPEG", quality=92, subsampling=0
+                )
+            print("graded", stem)
         src = ASSETS / f"{stem}.jpg"
         if not src.exists():
             print("missing source:", src.name)

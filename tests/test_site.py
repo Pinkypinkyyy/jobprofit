@@ -907,3 +907,15 @@ def test_the_crew_check_puts_the_fee_next_to_the_leak():
     assert annual == int(monthly.group(1).replace(",", "")) * 12, (
         f"nav.js says {annual} a year, pricing says {monthly.group(1)} a month"
     )
+
+
+def test_the_trade_photos_keep_an_ungraded_original():
+    # The grade is applied on build from assets/_source. If the originals go
+    # missing, a rebuild would grade an already-graded file and the set would
+    # drift darker every time anyone ran it.
+    import sys
+    sys.path.insert(0, str(ROOT / "tools"))
+    from build_assets import TRADE_STEMS
+    for stem in TRADE_STEMS:
+        assert (ROOT / "assets" / "_source" / f"{stem}.jpg").exists(), stem
+        assert (ROOT / "assets" / f"{stem}.jpg").exists(), stem
