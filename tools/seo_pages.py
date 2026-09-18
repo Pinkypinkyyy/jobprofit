@@ -1,5 +1,7 @@
 """Audience and resource pages. Same offer. Different jobs. Not three products."""
 
+import re
+
 from shared import ORIGIN, faq_node, footer, head, jsonld, nav, service_node
 
 STEM_SIZE = {
@@ -44,7 +46,23 @@ def trade_more(current):
     return f'        <p class="trade-more">Also on this site\n{items}\n        </p>'
 
 
+def breadcrumbs(slug, name):
+    """Home > this page. Google needs it to show the path instead of the raw URL."""
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{ORIGIN}/"},
+            {"@type": "ListItem", "position": 2, "name": name, "item": f"{ORIGIN}/{slug}/"},
+        ],
+    }
+
+
 def write_pretty(root, slug, html):
+    # Added here rather than in each builder so every page on PAGES gets one.
+    h1 = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
+    name = re.sub(r"<[^>]+>", "", h1.group(1)).strip() if h1 else slug
+    html = html.replace("</head>", jsonld(breadcrumbs(slug, name)) + "</head>", 1)
     (root / slug).mkdir(exist_ok=True)
     (root / f"{slug}.html").write_text(html, encoding="utf-8")
     (root / slug / "index.html").write_text(html, encoding="utf-8")

@@ -13,6 +13,21 @@ FIELD = "ServiceProfit@pinktax.com.au"
 CACHE = ASSET  # read from tools/shared.py so a bump cannot desync the test
 
 
+def _contrast(a, b):
+    """WCAG relative-contrast ratio between two #rrggbb colours."""
+    def lin(c):
+        c = c / 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+    def lum(h):
+        h = h.lstrip("#")
+        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+
+    la, lb = lum(a), lum(b)
+    return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+
+
 def test_no_hospitality_booking():
     for p in HTML:
         text = p.read_text(encoding="utf-8")
@@ -447,19 +462,7 @@ def test_form_endpoint_is_defined_in_one_place():
 
 def test_colours_on_dark_panels_meet_aa():
     css = (ROOT / "styles.css").read_text(encoding="utf-8")
-
-    def lin(c):
-        c = c / 255
-        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
-
-    def lum(h):
-        h = h.lstrip("#")
-        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
-        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
-
-    def ratio(a, b):
-        la, lb = lum(a), lum(b)
-        return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+    ratio = _contrast
 
     import re
     tokens = dict(re.findall(r"--(accent-on-dark|gold-on-dark):(#[0-9A-Fa-f]{6})", css))
@@ -730,3 +733,100 @@ if __name__ == "__main__":
             fn()
             print("PASS", name)
     print("all site tests passed")
+
+
+def test_no_competitor_attack_copy():
+    # HB, 18 Sep 2026, firm-wide and absolute, every surface: never attack
+    # another firm or another accountant. An owner who chose their last
+    # accountant hears it as an insult to their own judgement.
+    #
+    # The sell here is structural and needs no comparison: a job quoted at six
+    # hours that took nine trains the next quote. That point stands alone.
+    #
+    # Same list as Pinkypinkyyy/pinktax so the two sites cannot drift apart.
+    banned = (
+        "autopsy",
+        "old accountant",
+        "files and forgets",
+        "most accountants",
+        "other accountants",
+        "typical accountant",
+        "traditional accounting",
+        "traditional accountant",
+        "unlike other",
+        "unlike most",
+        "your accountant never",
+        "cheap accountant",
+        "bad accountant",
+        "wrong accountant",
+    )
+    for p in PAGES:
+        text = p.read_text(encoding="utf-8").lower()
+        for word in banned:
+            assert word not in text, f"{p}: {word}"
+
+
+def test_our_own_csp_does_not_block_analytics():
+    # GA4 does not post to www.google-analytics.com. It picks analytics.google.com,
+    # stats.g.doubleclick.net and www.google.com/g/collect at runtime. Leaving those
+    # out of connect-src silently dropped every page_view and every generate_lead
+    # conversion while the tag itself looked installed. Ads bidding starves on that.
+    from shared import CSP
+    connect = [d for d in CSP.split(";") if d.strip().startswith("connect-src")][0]
+    for host in (
+        "https://*.google-analytics.com",
+        "https://analytics.google.com",
+        "https://stats.g.doubleclick.net",
+        "https://www.google.com",
+    ):
+        assert host in connect, f"{host} missing from connect-src"
+    for p in PAGES:
+        assert "https://stats.g.doubleclick.net" in p.read_text(encoding="utf-8"), p.name
+
+
+def test_headings_do_not_skip_a_level():
+    import re
+    for p in PAGES:
+        levels = [int(m) for m in re.findall(r"<h([1-6])[ >]", p.read_text(encoding="utf-8"))]
+        assert levels and levels[0] == 1, f"{p.name}: first heading is h{levels[0] if levels else None}"
+        for before, after in zip(levels, levels[1:]):
+            assert after <= before + 1, f"{p.name}: h{before} jumps to h{after}"
+
+
+def test_brand_link_accessible_name_leads_with_visible_text():
+    # WCAG 2.5.3. The link reads "Service Profit" then "Pink Accounting" on screen,
+    # so the accessible name has to start the same way or voice control misses it.
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert 'aria-label="Service Profit, Pink Accounting"' in home
+    assert "Pink Accounting" in home
+
+
+def test_cash_bar_pink_meets_aa():
+    # White on raw --accent (#ED1651) is 4.34:1 at .68rem, under the 4.5 floor.
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    assert ".cash-bar .yours{background:var(--accent-deep);color:#fff}" in css
+    assert ".cash-bar .yours{background:#ED1651" not in css
+    assert _contrast("#D8124B", "#FFFFFF") >= 4.5
+    assert _contrast("#B50E3E", "#FFFFFF") >= 4.5
+
+
+def test_audience_pages_carry_breadcrumbs():
+    import json, re
+    slugs = [
+        "air-conditioning-accountant-brisbane",
+        "electrician-accountant-brisbane",
+        "construction-services-accountant-brisbane",
+        "quoted-hours-vs-actual-hours",
+        "cash-that-is-yours",
+        "can-i-afford-another-technician",
+    ]
+    for slug in slugs:
+        text = (ROOT / f"{slug}.html").read_text(encoding="utf-8")
+        blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+        crumbs = [json.loads(b) for b in blocks]
+        crumbs = [c for c in crumbs if c.get("@type") == "BreadcrumbList"]
+        assert len(crumbs) == 1, f"{slug}: {len(crumbs)} BreadcrumbList blocks"
+        items = crumbs[0]["itemListElement"]
+        assert [i["position"] for i in items] == [1, 2]
+        assert items[1]["item"].endswith(f"/{slug}/")
+        assert items[1]["name"]

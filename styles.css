@@ -335,7 +335,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .foot .grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:36px}
 .foot img{height:30px;margin-bottom:14px;filter:none}
 .foot .blurb{max-width:28em;line-height:1.7;color:rgba(255,255,255,.78)}
-.foot h4{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:12px}
+.foot h2{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:12px}
 .foot a{display:block;padding:4px 0;color:rgba(255,255,255,.78)}
 .foot a:hover{color:#fff}
 .foot .legal{margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,.18);font-size:.85rem;color:rgba(255,255,255,.62);line-height:1.7}
@@ -530,7 +530,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 }
 .chart-hours:hover{transform:translateY(-4px);box-shadow:0 28px 56px -24px rgba(0,0,0,.55)}
 .chart-kicker{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62);margin:0 0 8px}
-.chart-hours h3,.chart-cash h3,.chart-fall h3{font-size:1.35rem;margin:0 0 8px;letter-spacing:-.03em}
+.chart-hours h2,.chart-cash h2,.chart-fall h2{font-size:1.35rem;margin:0 0 8px;letter-spacing:-.03em}
 .chart-note,.chart-foot{font-size:.88rem;color:rgba(255,255,255,.72);margin:0 0 16px}
 .chart-foot{margin:14px 0 0}
 .chart-svg{display:block;width:100%;height:auto;font-family:var(--display)}
@@ -539,7 +539,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .chart-fall .chart-note,.chart-fall .chart-foot{color:var(--soft)}
 .chart-cash{margin-top:22px}
 .chart-cash .chart-kicker{color:var(--muted)}
-.chart-cash h3{color:var(--ink)}
+.chart-cash h2{color:var(--ink)}
 .chart-cash .chart-note{color:var(--soft)}
 .cash-bar{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1.15fr;min-height:64px;margin-top:8px;border:0;overflow:hidden;border-radius:var(--radius-btn)}
 .cash-bar .seg{
@@ -549,9 +549,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   transition:background-color .18s ease, transform .18s ease;
 }
 .cash-bar .seg:last-child{border-right:0}
-.cash-bar .yours{background:#ED1651;color:#fff}
+.cash-bar .yours{background:var(--accent-deep);color:#fff}
 .cash-bar .seg:hover{background:#2a2a2e}
-.cash-bar .yours:hover{background:var(--accent-deep)}
+.cash-bar .yours:hover{background:#B50E3E}
 
 .photo-frame{
   position:relative;overflow:hidden;background:#111;border-radius:var(--radius-photo);

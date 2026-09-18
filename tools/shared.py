@@ -23,13 +23,16 @@ FORM_AJAX_ENDPOINT = f"{FORM_ORIGIN}/ajax/admin@pinktax.com.au"
 
 CSP = (
     "default-src 'self'; "
-    "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com "
+    "img-src 'self' data: https://*.google-analytics.com https://analytics.google.com "
+    "https://www.googletagmanager.com https://stats.g.doubleclick.net "
     "https://www.google.com https://www.google.com.au https://www.facebook.com https://www.facebook.com.au; "
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
     "font-src https://fonts.gstatic.com; "
     "script-src 'self' https://www.googletagmanager.com https://connect.facebook.net; "
-    "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com "
-    "https://region1.google-analytics.com https://www.facebook.com " + FORM_ORIGIN + "; "
+    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com "
+    "https://analytics.google.com https://www.googletagmanager.com "
+    "https://stats.g.doubleclick.net https://www.google.com https://www.google.com.au "
+    "https://www.facebook.com " + FORM_ORIGIN + "; "
     "form-action 'self' mailto: " + FORM_ORIGIN + "; "
     "media-src 'self'; "
     "base-uri 'self'"
@@ -237,7 +240,7 @@ def nav(current=""):
   <a class="skip" href="#main">Skip to content</a>
   <header class="nav" id="pinkNav">
     <div class="wrap">
-      <a class="brand" href="/index.html" aria-label="Pink Accounting, Service Profit">
+      <a class="brand" href="/index.html" aria-label="Service Profit, Pink Accounting">
         <img src="/assets/logo-white.png" alt="pink">
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
@@ -266,7 +269,7 @@ def footer():
           <p class="blurb">Service Profit is Pink Accounting’s line for HVAC, electrical and construction service businesses. Brendale. Brisbane. Queensland. Registered Tax Agent 26284368.</p>
         </div>
         <div>
-          <h4>Explore</h4>
+          <h2>Explore</h2>
           <a href="/index.html">Home</a>
           <a href="/pricing.html">Pricing</a>
           <a href="/system.html">The system</a>
@@ -282,7 +285,7 @@ def footer():
           <a href="/contact.html">Contact</a>
         </div>
         <div>
-          <h4>Contact and legal</h4>
+          <h2>Contact and legal</h2>
           <a href="tel:+61735446386">(07) 3544 6386</a>
           <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>
           <a href="/contact.html">Contact</a>
@@ -305,7 +308,7 @@ def footer():
 def hours_chart():
     return """      <figure class="chart-hours">
         <p class="chart-kicker">One job</p>
-        <h3>Quoted 6 hours. Nine on the tools.</h3>
+        <h2>Quoted 6 hours. Nine on the tools.</h2>
         <p class="chart-note">Worked example, not a client result.</p>
         <svg class="chart-svg" viewBox="0 0 560 176" role="img" aria-label="Quoted 6 hours. Nine hours on the tools. Three hours unbilled.">
           <text x="0" y="18" fill="currentColor" font-size="12">Quoted</text>
@@ -328,7 +331,7 @@ def hours_chart():
 def cash_chart():
     return """      <figure class="chart-cash">
         <p class="chart-kicker">Cash</p>
-        <h3>The bank is not all yours.</h3>
+        <h2>The bank is not all yours.</h2>
         <p class="chart-note">GST, PAYG, super and wages sit in there. You cannot spend that. This bar is an illustration, not a client file.</p>
         <div class="cash-bar" role="img" aria-label="Illustration. GST, PAYG, super, wages and what is yours sit in the same bank balance.">
           <span class="seg">GST</span>
