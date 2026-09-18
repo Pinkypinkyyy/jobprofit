@@ -1010,6 +1010,85 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
 </urlset>
 """
 
+LLMS_TXT = """# Service Profit
+
+> Accounting for air con, electrical and construction services in Queensland. A line of Pink Accounting. Registered Tax Agent 26284368.
+
+Pink Accounting & Tax Solutions Pty Ltd is the firm. Service Profit is what we do for those trades. Not a separate company. Not hospitality. Hospitality sits on https://pinktax.com.au/.
+
+Job Profit is $1,650 + GST a month for most files. The letter is the quote. Book 15 minutes: https://www.serviceprofit.com.au/book.html
+
+## Offer
+
+- [Home](https://www.serviceprofit.com.au/): quoted hours versus hours on the tools
+- [Pricing](https://www.serviceprofit.com.au/pricing.html): four plans, in and out
+- [The system](https://www.serviceprofit.com.au/system.html): billed hours, cash that is yours, tax and BAS
+- [Hours check](https://www.serviceprofit.com.au/check.html): last job, or the crew for a year
+- [Book](https://www.serviceprofit.com.au/book.html): 15 minutes
+- [Contact](https://www.serviceprofit.com.au/contact.html): Brendale QLD 4500, 07 3544 6386
+
+## Who it is for
+
+- [Air con accountant, Brisbane](https://www.serviceprofit.com.au/air-conditioning-accountant-brisbane/)
+- [Electrician accountant, Brisbane](https://www.serviceprofit.com.au/electrician-accountant-brisbane/)
+- [Construction services accountant, Brisbane](https://www.serviceprofit.com.au/construction-services-accountant-brisbane/)
+
+Construction services means fit-out, maintenance and installation. Not head contracting. Not house builders.
+
+## Job numbers
+
+- [Quoted hours vs hours on the tools](https://www.serviceprofit.com.au/quoted-hours-vs-actual-hours/)
+- [Cash that is yours](https://www.serviceprofit.com.au/cash-that-is-yours/)
+- [Can I afford another technician?](https://www.serviceprofit.com.au/can-i-afford-another-technician/)
+
+## Firm
+
+- [Meet Pink](https://www.serviceprofit.com.au/why.html): Huong Bui, Registered Tax Agent 26284368
+- [Disclosures](https://www.serviceprofit.com.au/disclosure)
+- [Your rights](https://www.serviceprofit.com.au/rights.html)
+- [Privacy](https://www.serviceprofit.com.au/privacy.html)
+- [Terms](https://www.serviceprofit.com.au/terms.html)
+- [Machine-readable fees](https://www.serviceprofit.com.au/pricing.md)
+
+ABN 51 682 301 891. Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Business clients only. Queensland.
+"""
+
+PRICING_MD = """# Service Profit fees
+
+Monthly, exclusive of GST, for one trading entity unless the letter says otherwise. Same plans for air con, electrical and construction services. The letter is the quote.
+
+Human page: https://www.serviceprofit.com.au/pricing.html
+
+## Job Profit
+
+- Fee: $1,650 + GST / month
+- Most files
+- In: billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity
+- Out: a monthly meeting, unlimited access, catch-up, a published savings figure
+
+## Weekly Visibility
+
+- Fee: from $2,650 + GST / month
+- In: Job Profit, plus a snapshot while the job is still on site
+- Out: open-ended project work unless scoped
+
+## Ready to Scale
+
+- Fee: from $3,500 + GST / month
+- In: Weekly Visibility, plus a written forecast: hire, draw, hold. Application only
+- Out: a guaranteed result. Unlimited access
+
+## Compliance
+
+- Fee: $550 + GST / month
+- In: income tax, FBT, financial statements, BAS and GST from a file already in order
+- Out: job-and-cash look, WhatsApp, catch-up, unlimited advisory
+
+Bookkeeping is an add-on from $500 + GST a month, quoted when it is actually needed. It is not a plan.
+
+A booked call is not an engagement. https://www.serviceprofit.com.au/book.html
+"""
+
 
 def main():
     write("index.html", index())
@@ -1034,6 +1113,10 @@ def main():
     write("404.html", not_found())
     (ROOT / "sitemap.xml").write_text(SITEMAP, encoding="utf-8")
     print("wrote sitemap.xml")
+    (ROOT / "llms.txt").write_text(LLMS_TXT, encoding="utf-8")
+    print("wrote llms.txt")
+    (ROOT / "pricing.md").write_text(PRICING_MD, encoding="utf-8")
+    print("wrote pricing.md")
 
 
 if __name__ == "__main__":

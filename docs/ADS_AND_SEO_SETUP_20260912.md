@@ -111,7 +111,7 @@ Need to recount...
 4. Air conditioning and refrigeration books from Brendale, for firms across Queensland. (84)
 
 Path1: HVAC  Path2: Queensland
-Final URL: https://www.serviceprofit.com.au/hvac.html
+Final URL: https://www.serviceprofit.com.au/air-conditioning-accountant-brisbane/
 Pinning: none
 
 ### RSA2 — Electrical
@@ -139,7 +139,7 @@ Descriptions
 3. Pink Accounting. Registered Tax Agent 26284368. You stay on the jobs. (69)
 4. Job Profit from $1,650 + GST a month. The letter is the quote. (62)
 
-Final URL: https://www.serviceprofit.com.au/electrical.html
+Final URL: https://www.serviceprofit.com.au/electrician-accountant-brisbane/
 
 ### RSA3 — Construction services
 
@@ -166,7 +166,7 @@ Descriptions
 3. Pink Accounting. Registered Tax Agent 26284368. Queensland construction services. (80)
 4. Job Profit from $1,650 + GST a month. Book a 15-minute call. (61)
 
-Final URL: https://www.serviceprofit.com.au/construction.html
+Final URL: https://www.serviceprofit.com.au/construction-services-accountant-brisbane/
 
 ## Meta (Facebook / Instagram)
 

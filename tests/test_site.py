@@ -701,6 +701,22 @@ def test_why_has_person_schema_and_firm_continuity():
     assert "The file is held by the firm, not by one diary." in html
 
 
+def test_llms_and_pricing_md_are_on_the_origin():
+    llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
+    fees = (ROOT / "pricing.md").read_text(encoding="utf-8")
+    assert "Registered Tax Agent 26284368" in llms
+    assert "air-conditioning-accountant-brisbane" in llms
+    assert "pinktax.com.au" in llms
+    assert "Australia-wide" not in llms
+    assert "hospitality" in llms.lower()  # the split sentence, not a hospitality offer
+    assert "Job Profit" in fees
+    assert "$1,650" in fees
+    assert "$550" in fees
+    robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
+    assert "Disallow: /" not in robots or "Allow: /" in robots
+    assert "GPTBot" not in robots  # do not block AI citation crawlers
+
+
 def test_homepage_has_website_schema_and_offer_catalog():
     html = (ROOT / "index.html").read_text(encoding="utf-8")
     assert '"@type":"WebSite"' in html
