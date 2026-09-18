@@ -303,7 +303,7 @@ def index():
               <span class="star-icons" aria-hidden="true">★★★★★</span>
               <span>{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}</span>
             </a>
-            <span class="sep"></span><span>Registered Tax Agent 26284368</span>
+            <span class="trust-reg">Registered Tax Agent 26284368</span>
           </div>
         </div>
 {hours_chart()}
