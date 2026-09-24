@@ -16,6 +16,7 @@ from shared import (
     jsonld,
     business_node,
     ID,
+    trust_line,
     local_business_node,
     nav,
     person_node,
@@ -102,7 +103,7 @@ PRICING_FAQ = [
     ),
     (
         "What is not included?",
-        "A monthly meeting, unlimited access, catch-up of earlier periods, a published savings figure, and extra entities unless the letter says so. Xero subscription is yours.",
+        "A monthly meeting, unlimited work (ask us anything; bigger jobs are quoted first), catch-up of earlier periods, a published savings figure, and extra entities unless the letter says so. Xero subscription is yours.",
     ),
     (
         "Do the higher plans include Job Profit?",
@@ -283,14 +284,15 @@ def index():
       </div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="kicker">Pink Accounting. Air con, electrical and construction businesses.</p>
-          <h1>Accountants and tax agents in Brendale</h1>
-          <p class="hook">You quoted 6 hours. You did 9.</p>
-          <p class="lead">Then you quoted 6 again. Every Monday you see the hours you quoted against the hours you worked, and how much of the bank is actually yours. Tax and BAS held. You stay on the tools. Air con, electrical, construction services. Queensland.</p>
+          <p class="kicker">Pink Accounting. Brendale.</p>
+          <h1>Accountants, bookkeepers and tax agents in Brendale</h1>
+          <p class="hook">For air con, electrical and construction businesses.</p>
+          <p class="lead">You quoted 6 hours. You did 9. Every Monday we show you the hours quoted against the hours worked, and how much of the bank is really yours. Then we do the tax, BAS, books and payroll.</p>
           <div class="cta">
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book 15 minutes</a>
             <a class="btn btn-ghost" href="/check.html" data-event="hero-check">Free 60-second hours check</a>
           </div>
+    {trust_line()}
           <p class="why-call">The call is to see if we can take the file. You have not signed anything.</p>
           <div class="trades" aria-label="The same work on three kinds of job">
             <button class="trade is-on" type="button" data-trade="hvac" aria-pressed="true">Air con</button>
@@ -337,7 +339,7 @@ def index():
               <li>You are a builder. We do construction services, not head contracting</li>
               <li>You are hospitality or retail. Same firm, different site: <a href="https://www.pinktax.com.au" rel="noopener">pinktax.com.au</a></li>
               <li>You only want the annual return lodged. That is Compliance at $550 + GST a month and we will say so on the call</li>
-              <li>You want unlimited access and a monthly meeting. That is not what this is</li>
+              <li>You want a monthly meeting and unlimited work for one fee. That is not what this is</li>
             </ul>
           </article>
         </div>
@@ -606,8 +608,8 @@ def pricing():
     <section class="page" style="padding-bottom:0">
       <div class="wrap">
         <span class="eyebrow">Pricing</span>
-        <h1>Four plans. The letter is the quote.</h1>
-        <p class="lead">Monthly, exclusive of GST, for one trading entity unless the letter says otherwise. Same plans for HVAC, electrical and construction services. Not unlimited work.</p>
+        <h1>Plans from $550 + GST a month</h1>
+        <p class="lead">Most trade files are $1,650 + GST a month. A fixed monthly fee, set out in writing before anything starts.</p>
         <div class="cta">
           <a class="btn btn-primary" href="/book.html" data-event="pricing-page-book">Book a 15-minute call</a>
         </div>
@@ -626,7 +628,7 @@ def pricing():
           </div>
           <ul>
             <li><b>In:</b> billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity</li>
-            <li><b>Out:</b> a monthly meeting, unlimited access, catch-up, a published savings figure</li>
+            <li><b>Out:</b> a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure</li>
           </ul>
         </div>
         <div class="table-scroll" tabindex="0" aria-label="Plan comparison. Scroll sideways on a small screen to read every column.">
@@ -639,7 +641,7 @@ def pricing():
                 <td><strong>Job Profit</strong></td>
                 <td class="price">$1,650 + GST / month</td>
                 <td>Billed hours vs quoted hours. Cash that is yours vs GST, PAYG, super, wages. FBT watched in the file. Books and BAS sit under that.</td>
-                <td>A monthly meeting. Unlimited access. Catch-up. A published savings figure.</td>
+                <td>A monthly meeting. Unlimited work: ask anything, bigger jobs are quoted first. Catch-up. A published savings figure.</td>
               </tr>
               <tr id="level-weekly">
                 <td><strong>Weekly Visibility</strong></td>
@@ -651,7 +653,7 @@ def pricing():
                 <td><strong>Ready to Scale</strong></td>
                 <td class="price">from $3,500 + GST / month</td>
                 <td>Includes Weekly Visibility. Written forecast: hire, draw, hold. Application only.</td>
-                <td>A guaranteed result. Unlimited access.</td>
+                <td>A guaranteed result. Unlimited work.</td>
               </tr>
               <tr id="level-compliance">
                 <td><strong>Compliance</strong></td>
@@ -666,7 +668,7 @@ def pricing():
         <div class="scope-cards">
           <article class="scope-card" id="card-job"><h2>Job Profit</h2><div class="price">$1,650 + GST / month</div><p><b>In:</b> billed hours vs quoted hours, cash that is yours, FBT watched, tax and BAS held.</p><p><b>Out:</b> a monthly meeting, a published savings figure, catch-up.</p></article>
           <article class="scope-card"><h2>Weekly Visibility</h2><div class="price">from $2,650 + GST / month</div><p><b>In:</b> Job Profit, plus a snapshot while the job is still on site.</p><p><b>Out:</b> open-ended project work unless scoped.</p></article>
-          <article class="scope-card"><h2>Ready to Scale</h2><div class="price">from $3,500 + GST / month</div><p><b>In:</b> Weekly Visibility, plus a written forecast: hire, draw, hold. Application only.</p><p><b>Out:</b> a guaranteed result. Unlimited access.</p></article>
+          <article class="scope-card"><h2>Ready to Scale</h2><div class="price">from $3,500 + GST / month</div><p><b>In:</b> Weekly Visibility, plus a written forecast: hire, draw, hold. Application only.</p><p><b>Out:</b> a guaranteed result. Unlimited work.</p></article>
           <article class="scope-card" id="card-compliance"><h2>Compliance</h2><div class="price">$550 + GST / month</div><p><b>In:</b> income tax, FBT, financial statements, BAS and GST from a file already in order.</p><p><b>Out:</b> job-and-cash look, WhatsApp, catch-up, unlimited advisory.</p></article>
         </div>
         <div class="addon" id="level-bookkeeping">
@@ -773,16 +775,18 @@ def book():
   <main id="main" class="page">
     <div class="wrap book-wide">
       <span class="eyebrow">Book</span>
-      <h1>Book your 15-minute call</h1>
-      <p class="lead">A few questions first so the call is not wasted. Then pick a time. Direct with Pink. Air con, electrical and construction services in Queensland.</p>
-      <h2>Before you pick a time</h2>
-      <p>Revenue, staff, what is hurting, where the business sits now, and where you want it in 12 months. We read this before the call.</p>
-{enquiry_form("book")}
+      <h1>Book a 15‑minute call</h1>
+      <p class="lead">Talk to an accountant and registered tax agent. Pick a time first; the questions can wait.</p>
       <section class="pick-time" id="pick-time">
-        <h2>Then pick a time</h2>
-        <p>Microsoft Bookings opens as a full page so the calendar is not cramped. Use the same email you put on the form.</p>
-        <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
+        <div class="cta">
+          <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
+          <a class="btn btn-outline btn-call" href="tel:{ID["office"]["phone_e164"]}" data-event="book-call">Or call {ID["office"]["phone_display"]}</a>
+        </div>
+{trust_line()}
       </section>
+      <h2>After you book: tell us a bit more</h2>
+      <p>Optional. Revenue, staff, what is hurting, where you want the business in 12 months. Use the same email as your booking and we read it before the call.</p>
+{enquiry_form("book")}
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>
@@ -805,10 +809,10 @@ def contact():
       <p class="lead">Brendale office. HVAC, electrical and construction service businesses across Brisbane and Queensland.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="contact-book">Book a 15-minute call</a>
-        <a class="btn btn-outline" href="tel:+61735446386">Call 07 3544 6386</a>
+        <a class="btn btn-outline btn-call" href="tel:+61735446386">Call 07 3544 6386</a>
       </div>
       <div class="grid3">
-        <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours {ID["office"]["hours"]["display"]}. Calls book Monday to Thursday.</p></section>
+        <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours {ID["office"]["hours"]["display"]}. 15-minute calls run Monday to Thursday.</p></section>
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
         <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
@@ -1095,7 +1099,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 - Fee: $1,650 + GST / month
 - Most files
 - In: billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity
-- Out: a monthly meeting, unlimited access, catch-up, a published savings figure
+- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure
 
 ## Weekly Visibility
 
@@ -1107,7 +1111,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 
 - Fee: from $3,500 + GST / month
 - In: Weekly Visibility, plus a written forecast: hire, draw, hold. Application only
-- Out: a guaranteed result. Unlimited access
+- Out: a guaranteed result. Unlimited work
 
 ## Compliance
 

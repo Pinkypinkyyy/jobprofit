@@ -51,7 +51,8 @@ def test_book_uses_service_profit_calendar():
     assert "Annual revenue" in text
     assert "Where is the business now" in text
     assert "Where do you want it in 12 months" in text
-    assert text.find('id="enquiryForm"') < text.find('id="pick-time"')
+    # HB 24 Sep 2026: pick a time first; the questions come after and are optional.
+    assert text.find('id="pick-time"') < text.find('id="enquiryForm"')
     assert "sell-grid" not in text
     assert "book-steps" not in text
     assert "You quoted 6 hours. You did 9." not in text
@@ -571,7 +572,7 @@ def test_office_hours_come_from_identity_and_bookings_stay_mon_thu():
     ident = json.loads((ROOT / "identity.json").read_text(encoding="utf-8"))
     html = (ROOT / "contact.html").read_text(encoding="utf-8")
     assert ident["office"]["hours"]["display"] in html
-    assert "Calls book Monday to Thursday" in html
+    assert "15-minute calls run Monday to Thursday" in html
     days = json.dumps(ident["office"]["hours"]["days"], separators=(",", ":"))
     assert f'"dayOfWeek":{days}' in html
 
@@ -653,7 +654,7 @@ def test_industry_pages_are_audience_not_products():
             "board upgrade",
         ),
         "construction-services-accountant-brisbane": (
-            "Fit-out, maintenance, installation. Not a builder.",
+            "For fit-out, maintenance and installation businesses.",
             "head contracting",
         ),
     }
@@ -946,8 +947,13 @@ def test_home_h1_says_accountant_and_brendale():
     import re
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     heading = re.search(r"<h1>(.*?)</h1>", home, re.S).group(1).lower()
-    assert "accountant" in heading and "brendale" in heading
-    assert '<p class="hook">You quoted 6 hours. You did 9.</p>' in home
+    # HB 24 Sep 2026: who we are first (accountants, bookkeepers, tax agents),
+    # then who it is for, then the hook.
+    for word in ("accountants", "bookkeepers", "tax agents", "brendale"):
+        assert word in heading, word
+    assert '<p class="hook">For air con, electrical and construction businesses.</p>' in home
+    assert "You quoted 6 hours. You did 9." in home
+    assert 'class="trust-line"' in home and 'class="call-icon"' in home
 
 
 def test_pretty_page_canonicals_match_the_sitemap():

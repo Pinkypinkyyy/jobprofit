@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt44">
+  <link rel="stylesheet" href="/styles.css?v=rt45">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"ContactPage","name":"Book a 15-minute call","url":"https://www.serviceprofit.com.au/book.html","about":{"@id":"https://www.serviceprofit.com.au/#business"}}
   </script>
@@ -61,6 +61,7 @@
       </nav>
       <div class="navr">
         <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
+        <a class="call-icon" href="tel:+61735446386" aria-label="Call (07) 3544 6386" data-event="nav-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></a>
         <a class="btn btn-primary" href="/book.html" data-event="nav-book"><span class="full">Book a call</span><span class="short">Book</span></a>
         <button class="burger" id="pinkBurger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="pinkNav"><span></span><span></span><span></span></button>
       </div>
@@ -70,10 +71,17 @@
   <main id="main" class="page">
     <div class="wrap book-wide">
       <span class="eyebrow">Book</span>
-      <h1>Book your 15-minute call</h1>
-      <p class="lead">A few questions first so the call is not wasted. Then pick a time. Direct with Pink. Air con, electrical and construction services in Queensland.</p>
-      <h2>Before you pick a time</h2>
-      <p>Revenue, staff, what is hurting, where the business sits now, and where you want it in 12 months. We read this before the call.</p>
+      <h1>Book a 15‑minute call</h1>
+      <p class="lead">Talk to an accountant and registered tax agent. Pick a time first; the questions can wait.</p>
+      <section class="pick-time" id="pick-time">
+        <div class="cta">
+          <a class="btn btn-primary" href="https://outlook.office.com/book/ServiceProfit@pinktax.com.au/" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
+          <a class="btn btn-outline btn-call" href="tel:+61735446386" data-event="book-call">Or call (07) 3544 6386</a>
+        </div>
+      <p class="trust-line">Accountants, bookkeepers and tax agents. From $550 + GST a month; most trade files $1,650. Registered tax agent 26284368, Brendale.</p>
+      </section>
+      <h2>After you book: tell us a bit more</h2>
+      <p>Optional. Revenue, staff, what is hurting, where you want the business in 12 months. Use the same email as your booking and we read it before the call.</p>
       <form class="enquiry" id="enquiryForm" action="https://formsubmit.co/admin@pinktax.com.au" method="POST" data-ajax="https://formsubmit.co/ajax/admin@pinktax.com.au" data-event="book-form">
         <input type="hidden" name="_subject" value="Service Profit intake">
         <input type="hidden" name="_template" value="table">
@@ -84,17 +92,17 @@
           <label>Your name
             <input type="text" name="name" required autocomplete="name">
           </label>
-          <label>Business name
-            <input type="text" name="business" required autocomplete="organization">
+          <label>Business name <span class="opt">optional</span>
+            <input type="text" name="business" autocomplete="organization">
           </label>
           <label>Email
             <input type="email" name="email" required autocomplete="email">
           </label>
-          <label>Phone
-            <input type="tel" name="phone" required autocomplete="tel">
+          <label>Phone <span class="opt">optional</span>
+            <input type="tel" name="phone" autocomplete="tel">
           </label>
-          <label>What work
-            <select name="trade" required>
+          <label>What work <span class="opt">optional</span>
+            <select name="trade">
               <option value="">Choose one</option>
               <option>Air con / refrigeration</option>
               <option>Electrical</option>
@@ -102,8 +110,8 @@
               <option>Mix of those</option>
             </select>
           </label>
-          <label>Annual revenue
-            <select name="revenue" required>
+          <label>Annual revenue <span class="opt">optional</span>
+            <select name="revenue">
               <option value="">Choose one</option>
               <option>Under $1M</option>
               <option>$1M-$3M</option>
@@ -111,8 +119,8 @@
               <option>$5M+</option>
             </select>
           </label>
-          <label>Staff
-            <select name="staff" required>
+          <label>Staff <span class="opt">optional</span>
+            <select name="staff">
               <option value="">Choose one</option>
               <option>Just me</option>
               <option>2 to 5</option>
@@ -121,8 +129,8 @@
             </select>
           </label>
         </div>
-        <label>What is hurting
-          <textarea class="short" name="hurt" rows="4" maxlength="1000" required placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
+        <label>What is hurting <span class="opt">optional</span>
+          <textarea class="short" name="hurt" rows="4" maxlength="1000" placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
         </label>
         <label>Where is the business now <span class="opt">optional</span>
           <textarea class="short" name="position" rows="3" maxlength="1000" placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
@@ -130,16 +138,11 @@
         <label>Where do you want it in 12 months <span class="opt">optional</span>
           <textarea class="short" name="vision" rows="3" maxlength="1000" placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
         </label>
-        <button class="btn btn-primary" type="submit">Send this, then pick a time</button>
+        <button class="btn btn-primary" type="submit">Send this before the call</button>
         <p class="form-note">Goes to admin@pinktax.com.au. We read it before the call. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
-      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. Pick a time below with the same email so we are not chasing you.</p>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We read this before your call.</p>
 
-      <section class="pick-time" id="pick-time">
-        <h2>Then pick a time</h2>
-        <p>Microsoft Bookings opens as a full page so the calendar is not cramped. Use the same email you put on the form.</p>
-        <a class="btn btn-primary" href="https://outlook.office.com/book/ServiceProfit@pinktax.com.au/" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
-      </section>
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>
@@ -183,7 +186,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 13 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt44"></script>
-  <script src="/nav.js?v=rt44"></script>
+  <script src="/track.js?v=rt45"></script>
+  <script src="/nav.js?v=rt45"></script>
 </body>
 </html>

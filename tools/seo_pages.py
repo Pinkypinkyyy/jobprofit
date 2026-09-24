@@ -2,7 +2,7 @@
 
 import re
 
-from shared import ID, IMG_VERSION, ORIGIN, faq_node, footer, head, jsonld, nav, service_node, webp_srcset
+from shared import ID, IMG_VERSION, trust_line, ORIGIN, faq_node, footer, head, jsonld, nav, service_node, webp_srcset
 
 STEM_SIZE = {
     "tech-hvac": (838, 1059),
@@ -107,7 +107,7 @@ def air_con():
       <span class="eyebrow">Air con and refrigeration</span>
       <h1>Air conditioning accountant in Brisbane</h1>
       <p class="hook">Quoted six hours on the roof. Nine on the tools.</p>
-      <p class="lead">Call-outs, changeovers, maintenance rounds. The quote is one number. The day is another. We keep billed hours, cash and tax in the file so you can stay on the roof. Queensland.</p>
+      <p class="lead">Call-outs, changeovers, maintenance rounds: the quote is one number, the day is another. We show you which jobs paid, and do the tax, BAS, books and payroll.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="hvac-book">Book 15 minutes</a>
         <a class="btn btn-outline" href="/check.html" data-event="hvac-check">Free hours check</a>
@@ -173,7 +173,7 @@ def electrical():
       <span class="eyebrow">Electrical</span>
       <h1>Accountant for electricians in Brisbane</h1>
       <p class="hook">The switchboard ran long. The quote did not.</p>
-      <p class="lead">Quoted jobs versus hours on the tools. Variations that never made an invoice. Cash that looks like yours until GST, PAYG, super and wages come out. Queensland.</p>
+      <p class="lead">Quoted jobs against hours on the tools, and variations that never made an invoice. We show you which jobs paid, and do the tax, BAS, books and payroll.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="elec-book">Book 15 minutes</a>
         <a class="btn btn-outline" href="/check.html" data-event="elec-check">Free hours check</a>
@@ -237,8 +237,8 @@ def construction():
     <div class="wrap">
       <span class="eyebrow">Construction services</span>
       <h1>Construction services accountant in Brisbane</h1>
-      <p class="hook">Fit-out, maintenance, installation. Not a builder.</p>
-      <p class="lead">Quoted hours versus hours on site. Materials and subcontractors in the same picture as the bank. Tax and BAS held. Queensland.</p>
+      <p class="hook">For fit-out, maintenance and installation businesses.</p>
+      <p class="lead">Quoted hours against hours on site, with materials and subcontractors in the same picture as the bank. We do the tax, BAS, books and payroll.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="con-book">Book 15 minutes</a>
         <a class="btn btn-outline" href="/check.html" data-event="con-check">Free hours check</a>
@@ -481,6 +481,16 @@ def job_software():
     return slug, h + body
 
 
+HOOKS = {
+    "services": "For air con, electrical and construction businesses.",
+    "tax-agent-for-trades": "For air con, electrical and construction owners. Tax planned before 30 June.",
+    "bas-and-gst-for-trades": "The GST is still in the bank when the BAS is due.",
+    "payroll-for-trades": "Super now goes out with every pay. We run it.",
+    "bookkeeping-and-xero-for-trades": "Xero that shows which jobs paid.",
+    "accountant-brendale": "For air con, electrical and construction businesses across Queensland.",
+}
+
+
 def service_page(slug, title, desc, eyebrow, h1, lead, prose, faqs, service_name):
     """One service, same offer. Leanne's keyword list, said in trade language."""
     extra = jsonld(service_node(service_name, f"{ORIGIN}/{slug}/", desc)) + jsonld(faq_node(faqs))
@@ -493,11 +503,13 @@ def service_page(slug, title, desc, eyebrow, h1, lead, prose, faqs, service_name
     <div class="wrap">
       <span class="eyebrow">{eyebrow}</span>
       <h1>{h1}</h1>
+      <p class="hook">{HOOKS[slug]}</p>
       <p class="lead">{lead}</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="{slug}-book">Book 15 minutes</a>
         <a class="btn btn-outline" href="/pricing.html" data-event="{slug}-pricing">See the plans</a>
       </div>
+{trust_line()}
       <div class="prose">
 {prose}
       </div>
@@ -527,7 +539,7 @@ def services():
         "Accountant, tax agent, BAS, bookkeeping, payroll and Xero setup for air con, electrical and construction businesses. Pink Accounting, Brendale, Queensland.",
         "Services",
         "Accounting, tax and bookkeeping services for trades",
-        "Tax, BAS, bookkeeping, payroll and the numbers that show which jobs paid, held in one file by one firm. Pink Accounting, Brendale. Registered Tax Agent 26284368. Queensland.",
+        "Tax, BAS, bookkeeping, payroll and the numbers that show which jobs paid. One firm, one file, a registered tax agent.",
         """        <h2>Business accounting and job profit</h2>
         <p>The core of Service Profit. Every Monday: hours quoted against hours on the tools, and how much of the bank is yours once GST, PAYG, super and wages come out. <a href="/system.html">See what lands on Monday</a>.</p>
         <h2>Tax agent and income tax returns</h2>
@@ -564,7 +576,7 @@ def tax_agent():
         "Registered tax agent for air con, electrical and construction businesses in Queensland. Income tax, tax planning, FBT, TPAR and financial statements.",
         "Tax agent",
         "Tax agent in Brendale for tax returns and tax planning",
-        "Pink Accounting is a registered tax agent, number 26284368 on the TPB register. We prepare and lodge the business return, the financial statements behind it and the FBT return, and we plan the tax before 30 June, not after. Queensland.",
+        "We prepare and lodge the business return, the financial statements and the FBT return. Registered tax agent 26284368, on the TPB register.",
         """        <h2>Income tax returns for the business</h2>
         <p>Whatever structure the business trades through, the return is built from a reconciled file, not a box of receipts in July. One trading entity is included unless the letter says otherwise.</p>
         <h2 id="planning">Tax planning before 30 June</h2>
@@ -594,7 +606,7 @@ def bas_gst():
         "BAS, GST and PAYG for air con, electrical and construction businesses in Queensland, lodged by a registered tax agent. GST held before the due date.",
         "BAS and GST",
         "BAS and GST services in Brendale",
-        "The BAS is not the hard part. The hard part is having the GST still in the bank when it is due. We prepare and lodge the BAS, and keep GST, PAYG and super apart from the cash that is yours all quarter. Queensland.",
+        "We prepare and lodge the BAS. GST, PAYG and super stay apart from the cash that is yours, all quarter.",
         """        <h2>BAS services come with the tax agent registration</h2>
         <p>Pink Accounting is a registered tax agent. Under the Tax Practitioners Board rules that registration covers BAS services, so we prepare and lodge activity statements ourselves. You will not find us listed as a separate BAS agent because we do not need to be.</p>
         <h2>GST on deposits, progress claims and materials</h2>
@@ -625,7 +637,7 @@ def payroll():
         "Payroll, Single Touch Payroll and Payday Super for air con, electrical and construction businesses in Queensland. Apprentices and contractors costed properly.",
         "Payroll",
         "Payroll services in Brendale: pay runs, STP and super",
-        "Pay runs, Single Touch Payroll and super, done in Xero by a registered tax agent. Since 1 July 2026 super goes with every pay, so payroll and cash have to be watched together. Queensland.",
+        "Pay runs, Single Touch Payroll and super, done in Xero by a registered tax agent. Since 1 July 2026 super is paid with every pay.",
         """        <h2>Payday Super changed the rhythm</h2>
         <p>From 1 July 2026 employers pay super guarantee with each pay, at 12% of qualifying earnings, and the fund has to receive it within seven business days. Quarterly super payments are gone, and so is the Small Business Superannuation Clearing House, which closed on 1 July 2026. We run super on the pay cycle so it lands on time.</p>
         <h2>Single Touch Payroll</h2>
@@ -656,7 +668,7 @@ def bookkeeping_xero():
         "Bookkeeping and Xero setup for air con, electrical and construction businesses in Queensland. Bank reconciled, job software feeding Xero. Brendale.",
         "Bookkeeping and Xero",
         "Bookkeeper in Brendale: bookkeeping and Xero setup",
-        "The bank reconciled in Xero, supplier bills matched and your job software feeding in cleanly, so the file can say which jobs paid. Brendale, Queensland.",
+        "The bank reconciled in Xero, supplier bills matched and your job software feeding in cleanly. So you can see which jobs paid.",
         """        <h2>Bookkeeping that ends in a reconciled bank</h2>
         <p>Every bank line matched to an invoice, a bill or a pay run. Supplier statements checked against the bills. Card receipts attached. The test is simple: the bank in Xero agrees with the bank.</p>
         <h2 id="xero">Xero setup for a trade business</h2>
@@ -687,9 +699,9 @@ def brendale():
         "Accountant and registered tax agent at Shop 15A, 18-22 Kremzow Rd, Brendale, for air con, electrical and construction businesses across Queensland.",
         "Brendale",
         "Accountant in Brendale",
-        "Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. A registered tax agent in Moreton Bay, for trade businesses across Queensland.",
+        'Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Call <a href="tel:+61735446386">(07) 3544 6386</a> or book 15 minutes.',
         f"""        <h2>Come in, or stay on the job</h2>
-        <p>Office hours are {ID["office"]["hours"]["display"]}. Calls book Monday to Thursday. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
+        <p>Office hours are {ID["office"]["hours"]["display"]}. 15-minute calls run Monday to Thursday. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
         <h2>Moreton Bay, north Brisbane and the rest of Queensland</h2>
         <p>Strathpine, Lawnton, Bray Park, Albany Creek, Warner, Petrie, Kallangur and North Lakes are close enough to meet at the office. Further out, the work runs the same way by phone and Xero. Service Profit takes trade businesses anywhere in Queensland.</p>
         <h2>What we do from Brendale</h2>

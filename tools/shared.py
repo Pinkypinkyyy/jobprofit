@@ -13,7 +13,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt44"
+ASSET = "rt45"
 IMG_VERSION = "real2"
 
 
@@ -279,6 +279,14 @@ SERVICE_MENU = (
 )
 
 
+def trust_line():
+    """HB 24 Sep 2026: who we are, the price and the registration, under every hero button."""
+    return (
+        '      <p class="trust-line">Accountants, bookkeepers and tax agents. From $550 + GST a month; '
+        f'most trade files $1,650. Registered tax agent {ID["legal"]["tax_agent_number"]}, Brendale.</p>'
+    )
+
+
 def services_dropdown(current=""):
     cur = ' aria-current="page"' if current == "services" else ""
     items = "\n".join(
@@ -314,7 +322,8 @@ def nav(current=""):
 {item("/contact.html", "Contact", "contact")}
       </nav>
       <div class="navr">
-        <a class="phone" href="tel:+61735446386">(07) 3544 6386</a>
+        <a class="phone" href="tel:{ID["office"]["phone_e164"]}">{ID["office"]["phone_display"]}</a>
+        <a class="call-icon" href="tel:{ID["office"]["phone_e164"]}" aria-label="Call {ID["office"]["phone_display"]}" data-event="nav-call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg></a>
         <a class="btn btn-primary" href="/book.html" data-event="nav-book"><span class="full">Book a call</span><span class="short">Book</span></a>
         <button class="burger" id="pinkBurger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="pinkNav"><span></span><span></span><span></span></button>
       </div>
@@ -411,25 +420,30 @@ def cash_chart():
 
 
 def hour_waterfall():
-    return """      <figure class="chart-fall">
+    # 360 wide so the labels stay readable on a phone (the old 640 wide chart
+    # shrank its text to about 6px). Labels sit above each bar.
+    rows = (
+        ("Billed", "$165", 330, "#0E0E12", True),
+        ("GST", "−$15", 30, "#ED1651", False),
+        ("After GST", "$150", 300, "#0E0E12", True),
+        ("Labour, if $50 all-in", "−$50", 100, "#5A5A60", False),
+        ("Left before parts and overhead", "$100", 200, "#0E0E12", True),
+    )
+    parts = []
+    for i, (label, value, width, colour, inside) in enumerate(rows):
+        y = i * 48
+        parts.append(f'          <text x="0" y="{y + 14}" fill="#0E0E12" font-size="14">{label}</text>')
+        parts.append(f'          <rect x="0" y="{y + 20}" width="{width}" height="22" rx="6" fill="{colour}"/>')
+        if inside:
+            parts.append(f'          <text x="{width - 8}" y="{y + 36}" text-anchor="end" fill="#fff" font-size="15" font-weight="700">{value}</text>')
+        else:
+            parts.append(f'          <text x="{width + 8}" y="{y + 36}" fill="#0E0E12" font-size="15" font-weight="700">{value}</text>')
+    bars = "\n".join(parts)
+    return f"""      <figure class="chart-fall">
         <p class="chart-kicker">One billed hour</p>
         <p class="chart-note">Worked example, not your rate.</p>
-        <svg class="chart-svg light" viewBox="0 0 640 220" role="img" aria-label="Billed 165 dollars including GST. GST 15 dollars. 150 left. Labour 50 dollars. 100 left before parts and overhead.">
-          <rect x="0" y="16" width="560" height="28" rx="8" fill="#0E0E12"/>
-          <text x="12" y="35" fill="#fff" font-size="13">Billed</text>
-          <text x="548" y="35" text-anchor="end" fill="#fff" font-size="16" font-weight="700">$165</text>
-          <rect x="0" y="56" width="51" height="28" rx="8" fill="#ED1651"/>
-          <text x="12" y="75" fill="#fff" font-size="13">GST</text>
-          <text x="200" y="75" fill="#0E0E12" font-size="16" font-weight="700">−$15</text>
-          <rect x="0" y="96" width="509" height="28" rx="8" fill="#0E0E12"/>
-          <text x="12" y="115" fill="#fff" font-size="13">After GST</text>
-          <text x="497" y="115" text-anchor="end" fill="#fff" font-size="16" font-weight="700">$150</text>
-          <rect x="0" y="136" width="170" height="28" rx="8" fill="#B45309"/>
-          <text x="12" y="155" fill="#fff" font-size="13">Labour, if $50 all-in</text>
-          <text x="280" y="155" fill="#0E0E12" font-size="16" font-weight="700">−$50</text>
-          <rect x="0" y="176" width="339" height="28" rx="8" fill="#0E0E12"/>
-          <text x="12" y="195" fill="#fff" font-size="13">Left before parts and overhead</text>
-          <text x="327" y="195" text-anchor="end" fill="#fff" font-size="16" font-weight="700">$100</text>
+        <svg class="chart-svg light" viewBox="0 0 360 240" role="img" aria-label="Billed 165 dollars including GST. GST 15 dollars. 150 left. Labour 50 dollars. 100 left before parts and overhead.">
+{bars}
         </svg>
         <p class="chart-foot">Then parts. Then overhead. Then profit, if the billed hours actually landed.</p>
       </figure>
@@ -540,17 +554,17 @@ def enquiry_form(prefix="book", short=False, next_page="/book.html"):
           <label>Your name
             <input type="text" name="name" required autocomplete="name">
           </label>
-          <label>Business name
-            <input type="text" name="business" required autocomplete="organization">
+          <label>Business name <span class="opt">optional</span>
+            <input type="text" name="business" autocomplete="organization">
           </label>
           <label>Email
             <input type="email" name="email" required autocomplete="email">
           </label>
-          <label>Phone
-            <input type="tel" name="phone" required autocomplete="tel">
+          <label>Phone <span class="opt">optional</span>
+            <input type="tel" name="phone" autocomplete="tel">
           </label>
-          <label>What work
-            <select name="trade" required>
+          <label>What work <span class="opt">optional</span>
+            <select name="trade">
               <option value="">Choose one</option>
               <option>Air con / refrigeration</option>
               <option>Electrical</option>
@@ -558,8 +572,8 @@ def enquiry_form(prefix="book", short=False, next_page="/book.html"):
               <option>Mix of those</option>
             </select>
           </label>
-          <label>Annual revenue
-            <select name="revenue" required>
+          <label>Annual revenue <span class="opt">optional</span>
+            <select name="revenue">
               <option value="">Choose one</option>
               <option>Under $1M</option>
               <option>$1M-$3M</option>
@@ -567,8 +581,8 @@ def enquiry_form(prefix="book", short=False, next_page="/book.html"):
               <option>$5M+</option>
             </select>
           </label>
-          <label>Staff
-            <select name="staff" required>
+          <label>Staff <span class="opt">optional</span>
+            <select name="staff">
               <option value="">Choose one</option>
               <option>Just me</option>
               <option>2 to 5</option>
@@ -577,8 +591,8 @@ def enquiry_form(prefix="book", short=False, next_page="/book.html"):
             </select>
           </label>
         </div>
-        <label>What is hurting
-          <textarea class="short" name="hurt" rows="4" maxlength="1000" required placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
+        <label>What is hurting <span class="opt">optional</span>
+          <textarea class="short" name="hurt" rows="4" maxlength="1000" placeholder="Jobs running long. Bank looks full but tax is due. BAS. Hiring and not sure you can afford it."></textarea>
         </label>
         <label>Where is the business now <span class="opt">optional</span>
           <textarea class="short" name="position" rows="3" maxlength="1000" placeholder="Quoted hours vs real hours. Bank. BAS. Who does the books. What the file looks like today."></textarea>
@@ -586,8 +600,8 @@ def enquiry_form(prefix="book", short=False, next_page="/book.html"):
         <label>Where do you want it in 12 months <span class="opt">optional</span>
           <textarea class="short" name="vision" rows="3" maxlength="1000" placeholder="More billed hours. A crew you can afford. Cash that is yours after tax. Off the tools, or still on them."></textarea>
         </label>
-        <button class="btn btn-primary" type="submit">Send this, then pick a time</button>
+        <button class="btn btn-primary" type="submit">Send this before the call</button>
         <p class="form-note">Goes to admin@pinktax.com.au. We read it before the call. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
-      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. Pick a time below with the same email so we are not chasing you.</p>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We read this before your call.</p>
 """

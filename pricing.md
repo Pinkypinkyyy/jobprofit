@@ -9,7 +9,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 - Fee: $1,650 + GST / month
 - Most files
 - In: billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity
-- Out: a monthly meeting, unlimited access, catch-up, a published savings figure
+- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure
 
 ## Weekly Visibility
 
@@ -21,7 +21,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 
 - Fee: from $3,500 + GST / month
 - In: Weekly Visibility, plus a written forecast: hire, draw, hold. Application only
-- Out: a guaranteed result. Unlimited access
+- Out: a guaranteed result. Unlimited work
 
 ## Compliance
 

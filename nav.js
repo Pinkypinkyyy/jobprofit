@@ -206,11 +206,7 @@
     if (params.get("sent") === "1" && ok) {
       form.hidden = true;
       ok.hidden = false;
-      var pick0 = document.getElementById("pick-time");
-      if (pick0) {
-        pick0.classList.add("is-next");
-        pick0.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      ok.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -239,11 +235,7 @@
         .then(function () {
           form.hidden = true;
           if (ok) ok.hidden = false;
-          var pick = document.getElementById("pick-time");
-          if (pick) {
-            pick.classList.add("is-next");
-            pick.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
+          if (ok) ok.scrollIntoView({ behavior: "smooth", block: "center" });
           if (typeof window.spLead === "function") window.spLead("form");
         })
         .catch(function () {
