@@ -1068,6 +1068,14 @@ def test_identity_watch_passes_our_pages_and_catches_drift():
     assert w.check_page(html.replace('data-identity="cross-link"', 'data-x="y"'), "x")
 
 
+def test_no_template_code_leaks_onto_a_page():
+    # 24 Sep 2026: the Brendale page shipped a raw {ID[...]} placeholder.
+    import re
+    for p in PAGES:
+        text = p.read_text(encoding="utf-8")
+        assert not re.search(r"\{ID\[|\{[A-Za-z_]+\(\)\}", text), p.name
+
+
 # Must stay at the very bottom: CI runs this file as a script, and any test
 # defined below this block would silently never run.
 if __name__ == "__main__":

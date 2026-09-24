@@ -688,7 +688,7 @@ def brendale():
         "Brendale",
         "Accountant in Brendale",
         "Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. A registered tax agent in Moreton Bay, for trade businesses across Queensland.",
-        """        <h2>Come in, or stay on the job</h2>
+        f"""        <h2>Come in, or stay on the job</h2>
         <p>Office hours are {ID["office"]["hours"]["display"]}. Calls book Monday to Thursday. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
         <h2>Moreton Bay, north Brisbane and the rest of Queensland</h2>
         <p>Strathpine, Lawnton, Bray Park, Albany Creek, Warner, Petrie, Kallangur and North Lakes are close enough to meet at the office. Further out, the work runs the same way by phone and Xero. Service Profit takes trade businesses anywhere in Queensland.</p>
