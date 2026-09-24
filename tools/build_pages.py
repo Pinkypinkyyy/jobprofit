@@ -287,7 +287,7 @@ def index():
           <p class="kicker">Pink Accounting. Brendale.</p>
           <h1>Accountants, bookkeepers and tax agents in Brendale</h1>
           <p class="hook">For air con, electrical and construction businesses.</p>
-          <p class="lead">You quoted 6 hours. You did 9. Every Monday we show you the hours quoted against the hours worked, and how much of the bank is really yours. Then we do the tax, BAS, books and payroll.</p>
+          <p class="lead">You quoted 6 hours. You did 9. Every Monday we show you which jobs paid, then do the tax, BAS, books and payroll.</p>
           <div class="cta">
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book 15 minutes</a>
             <a class="btn btn-ghost" href="/check.html" data-event="hero-check">Free 60-second hours check</a>
@@ -518,13 +518,14 @@ def system():
   <main id="main">
     <section class="page" style="padding-bottom:0">
       <div class="wrap">
-        <span class="eyebrow">The system</span>
+        <span class="eyebrow">Accountants, bookkeepers and tax agents for trades</span>
         <h1>Is $150 + GST an hour enough to relax?</h1>
         <p class="lead">That is a billed hour. It is not profit. GST comes off. Then the person on the tools, staff or contractor. Then parts. Then the business. We hold that picture, and we hold tax and BAS, so you can stay on the jobs.</p>
         <div class="cta">
           <a class="btn btn-primary" href="/book.html" data-event="system-book">Book a 15-minute call</a>
           <a class="btn btn-outline" href="/pricing.html">See the plans</a>
         </div>
+{trust_line()}
 {hour_waterfall()}
         <div class="hour-board">
           <div class="cell"><b>$150 + GST</b><span>Billed. Worked example, not your rate.</span></div>
@@ -713,6 +714,7 @@ def why():
           <p class="lead">Huong Bui. Registered tax agent. More than ten years in the books. Air con, electrical and construction services in Queensland.</p>
           <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day. The file is held by the firm, not by one diary.</p>
           <a class="btn btn-primary" href="/book.html" data-event="why-book">Book 15 minutes</a>
+{trust_line()}
         </div>
       </div>
     </section>
@@ -742,9 +744,10 @@ def check():
     body = f"""{nav()}
   <main id="main" class="page">
     <div class="wrap book-wide">
-      <span class="eyebrow">Hours check</span>
+      <span class="eyebrow">Free hours check · Pink Accounting, accountants for trades</span>
       <h1>Where did the last job leak?</h1>
       <p class="lead">Hours you quoted. Hours on the tools. The rate you billed. Sixty seconds. Then we will tell you if the call is worth it.</p>
+{trust_line()}
 {hours_check()}
       <div class="prose">
         <p>This is a sketch from the numbers you type. Not your file. Not tax advice. On the call we look at the real jobs, the bank, and tax.</p>
@@ -805,12 +808,13 @@ def contact():
   <main id="main" class="page">
     <div class="wrap">
       <span class="eyebrow">Contact Pink Accounting</span>
-      <h1>Talk to the accountant. Not a ticket queue.</h1>
+      <h1>Talk to the accountant.</h1>
       <p class="lead">Brendale office. HVAC, electrical and construction service businesses across Brisbane and Queensland.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="contact-book">Book a 15-minute call</a>
         <a class="btn btn-outline btn-call" href="tel:+61735446386">Call 07 3544 6386</a>
       </div>
+{trust_line()}
       <div class="grid3">
         <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours {ID["office"]["hours"]["display"]}. 15-minute calls run Monday to Thursday.</p></section>
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>

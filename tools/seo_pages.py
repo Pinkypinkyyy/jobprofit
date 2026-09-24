@@ -112,6 +112,7 @@ def air_con():
         <a class="btn btn-primary" href="/book.html" data-event="hvac-book">Book 15 minutes</a>
         <a class="btn btn-outline" href="/check.html" data-event="hvac-check">Free hours check</a>
       </div>
+{trust_line()}
       <div class="photo-frame" style="margin:28px 0">
 {picture("tech-hvac", "HVAC technician on a rooftop unit")}
       </div>
@@ -178,6 +179,7 @@ def electrical():
         <a class="btn btn-primary" href="/book.html" data-event="elec-book">Book 15 minutes</a>
         <a class="btn btn-outline" href="/check.html" data-event="elec-check">Free hours check</a>
       </div>
+{trust_line()}
       <div class="photo-frame" style="margin:28px 0">
 {picture("tech-electrical", "Electrician testing a switchboard")}
       </div>
@@ -243,6 +245,7 @@ def construction():
         <a class="btn btn-primary" href="/book.html" data-event="con-book">Book 15 minutes</a>
         <a class="btn btn-outline" href="/check.html" data-event="con-check">Free hours check</a>
       </div>
+{trust_line()}
       <div class="photo-frame" style="margin:28px 0">
 {picture("construction", "Construction services fit-out")}
       </div>
