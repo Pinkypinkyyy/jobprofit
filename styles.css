@@ -693,3 +693,5 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .meet .shot img{aspect-ratio:4/3;max-height:300px;object-position:30% 22%}
 }
 .page .trust-line{margin-bottom:40px}
+/* Lighthouse 24 Sep 2026: registration line readable on the dark hero */
+.hero-copy .trust-reg{color:rgba(255,255,255,.8)}

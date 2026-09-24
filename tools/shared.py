@@ -13,7 +13,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt45"
+ASSET = "rt46"
 IMG_VERSION = "real2"
 
 
@@ -311,7 +311,7 @@ def nav(current=""):
   <header class="nav" id="pinkNav">
     <div class="wrap">
       <a class="brand" href="/index.html" aria-label="Service Profit Pink Accounting">
-        <img src="/assets/logo-white.png" alt="pink">
+        <img src="/assets/logo-white.png" alt="">
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
