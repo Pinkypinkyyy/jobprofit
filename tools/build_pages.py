@@ -282,8 +282,7 @@ def index():
       </div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="kicker">Pink Accounting. Brendale.</p>
-          <h1>You quoted 6 hours. You did 9.</h1>
+          <h1><span class="kicker">Pink Accounting. Trade accountants in Brendale.</span> You quoted 6 hours. You did 9.</h1>
           <p class="lead">Then you quoted 6 again. Every Monday you see the hours you quoted against the hours you worked, and how much of the bank is actually yours. Tax and BAS held. You stay on the tools. Air con, electrical, construction services. Queensland.</p>
           <div class="cta">
             <a class="btn btn-primary" href="/book.html" data-event="hero-book">Book 15 minutes</a>
@@ -997,29 +996,36 @@ def not_found():
     </div>
   </main>
 {footer()}"""
-    return h + body
+    # A direct hit on /404.html returns 200. Keep it out of the index.
+    return (h + body).replace('content="index,follow"', 'content="noindex,follow"', 1)
 
 
 SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>{ORIGIN}/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/system.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/pricing.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/why.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/book.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/check.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/contact.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/rights.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/disclosure</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/privacy.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/terms.html</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/air-conditioning-accountant-brisbane/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/electrician-accountant-brisbane/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/construction-services-accountant-brisbane/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/quoted-hours-vs-actual-hours/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/cash-that-is-yours/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/can-i-afford-another-technician/</loc><lastmod>2026-09-18</lastmod></url>
-  <url><loc>{ORIGIN}/job-software-and-your-accountant/</loc><lastmod>2026-09-18</lastmod></url>
+  <url><loc>{ORIGIN}/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/system.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/pricing.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/why.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/book.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/check.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/contact.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/rights.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/disclosure</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/privacy.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/terms.html</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/air-conditioning-accountant-brisbane/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/electrician-accountant-brisbane/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/construction-services-accountant-brisbane/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/quoted-hours-vs-actual-hours/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/cash-that-is-yours/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/can-i-afford-another-technician/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/job-software-and-your-accountant/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/services/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/tax-agent-for-trades/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/bas-and-gst-for-trades/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/payroll-for-trades/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/bookkeeping-and-xero-for-trades/</loc><lastmod>2026-09-24</lastmod></url>
+  <url><loc>{ORIGIN}/accountant-brendale/</loc><lastmod>2026-09-24</lastmod></url>
 </urlset>
 """
 
@@ -1047,6 +1053,15 @@ Job Profit is $1,650 + GST a month for most files. The letter is the quote. Book
 - [Construction services accountant, Brisbane](https://www.serviceprofit.com.au/construction-services-accountant-brisbane/)
 
 Construction services means fit-out, maintenance and installation. Not head contracting. Not house builders.
+
+## Services
+
+- [All services](https://www.serviceprofit.com.au/services/): accountant, tax agent, BAS, bookkeeping, payroll, Xero setup, advisory
+- [Tax agent for trades](https://www.serviceprofit.com.au/tax-agent-for-trades/): income tax, tax planning, FBT, TPAR
+- [BAS and GST for trades](https://www.serviceprofit.com.au/bas-and-gst-for-trades/): BAS services under the tax agent registration
+- [Bookkeeping and Xero setup](https://www.serviceprofit.com.au/bookkeeping-and-xero-for-trades/)
+- [Payroll and super](https://www.serviceprofit.com.au/payroll-for-trades/): Single Touch Payroll, Payday Super
+- [Accountant in Brendale](https://www.serviceprofit.com.au/accountant-brendale/)
 
 ## Job numbers
 

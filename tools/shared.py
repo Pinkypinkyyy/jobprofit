@@ -134,6 +134,13 @@ def business_node():
             "quoted hours versus actual hours",
             "BAS",
             "GST",
+            "tax agent services",
+            "tax planning",
+            "bookkeeping",
+            "Xero setup",
+            "payroll",
+            "Single Touch Payroll",
+            "business advisory",
         ],
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -271,6 +278,7 @@ def nav(current=""):
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
+{item("/services/", "Services", "services")}
 {item("/pricing.html", "Pricing", "pricing")}
 {item("/system.html", "The system", "system")}
 {item("/why.html", "Meet Pink", "why")}
@@ -297,10 +305,12 @@ def footer():
         <div>
           <h2>Explore</h2>
           <a href="/index.html">Home</a>
+          <a href="/services/">Services</a>
           <a href="/pricing.html">Pricing</a>
           <a href="/system.html">The system</a>
           <a href="/why.html">Meet Pink</a>
           <a href="/check.html">Hours check</a>
+          <a href="/accountant-brendale/">Accountant in Brendale</a>
           <a href="/air-conditioning-accountant-brisbane/">Air con accountant</a>
           <a href="/electrician-accountant-brisbane/">Electrician accountant</a>
           <a href="/construction-services-accountant-brisbane/">Construction services</a>

@@ -660,9 +660,13 @@ def test_industry_pages_are_audience_not_products():
     }
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     nav = home.split("<nav class=\"links\"")[1].split("</nav>")[0]
+    import re
     for slug, (h1, unique) in pages.items():
         html = (ROOT / slug / "index.html").read_text(encoding="utf-8")
-        assert f"<h1>{h1}</h1>" in html, slug
+        heading = re.search(r"<h1>(.*?)</h1>", html, re.S).group(1)
+        # The hook stays. The keyword line inside the H1 is what search reads first.
+        assert heading.endswith(h1), slug
+        assert "accountant" in heading.lower(), slug
         assert unique in html.lower(), slug
         assert "Job Profit is $1,650 + GST a month" in html
         assert "Same plans as the rest of Service Profit" in html
@@ -727,12 +731,6 @@ def test_homepage_has_website_schema_and_offer_catalog():
     assert "1650.00" in html
 
 
-if __name__ == "__main__":
-    for name, fn in list(globals().items()):
-        if name.startswith("test_") and callable(fn):
-            fn()
-            print("PASS", name)
-    print("all site tests passed")
 
 
 def test_no_competitor_attack_copy():
@@ -919,3 +917,72 @@ def test_the_trade_photos_keep_an_ungraded_original():
     for stem in TRADE_STEMS:
         assert (ROOT / "assets" / "_source" / f"{stem}.jpg").exists(), stem
         assert (ROOT / "assets" / f"{stem}.jpg").exists(), stem
+
+
+def test_service_pages_carry_the_keyword_in_the_h1():
+    import re
+    pages = {
+        "services": "accountants",
+        "tax-agent-for-trades": "tax agent",
+        "bas-and-gst-for-trades": "bas and gst",
+        "payroll-for-trades": "payroll",
+        "bookkeeping-and-xero-for-trades": "xero setup",
+        "accountant-brendale": "accountant in brendale",
+    }
+    sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    nav = (ROOT / "index.html").read_text(encoding="utf-8").split('<nav class="links"')[1].split("</nav>")[0]
+    assert 'href="/services/"' in nav
+    for slug, keyword in pages.items():
+        html = (ROOT / slug / "index.html").read_text(encoding="utf-8")
+        assert (ROOT / f"{slug}.html").read_text(encoding="utf-8") == html
+        heading = re.search(r"<h1>(.*?)</h1>", html, re.S).group(1)
+        assert keyword in heading.lower(), slug
+        assert f'rel="canonical" href="https://www.serviceprofit.com.au/{slug}/"' in html, slug
+        assert f"/{slug}/</loc>" in sm, slug
+        assert '"@type":"Service"' in html and "BreadcrumbList" in html, slug
+        assert "Same plans as the rest of Service Profit" in html, slug
+
+
+def test_home_h1_says_accountant_and_brendale():
+    import re
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    heading = re.search(r"<h1>(.*?)</h1>", home, re.S).group(1).lower()
+    assert "accountant" in heading and "brendale" in heading
+
+
+def test_pretty_page_canonicals_match_the_sitemap():
+    # Canonical, sitemap, breadcrumbs and links must name one URL, not two.
+    import re
+    sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    for loc in re.findall(r"<loc>(.*?)</loc>", sm):
+        if not loc.endswith("/") or loc.count("/") < 4:
+            continue
+        slug = loc.rstrip("/").rsplit("/", 1)[1]
+        html = (ROOT / slug / "index.html").read_text(encoding="utf-8")
+        assert f'rel="canonical" href="{loc}"' in html, slug
+
+
+def test_we_never_call_ourselves_a_bas_agent():
+    # Tax agent registration covers BAS services (TPB). "BAS agent" is a
+    # separate registration we do not hold, so we never claim the title.
+    import re
+    for p in PAGES:
+        text = re.sub(r"<[^>]+>", " ", p.read_text(encoding="utf-8")).lower()
+        assert "registered bas agent" not in text, p.name
+        for m in re.finditer(r"bas agent", text):
+            before = text[max(0, m.start() - 40):m.start()]
+            assert before.endswith(("separate ", "are you a ", "tax and ")), f"{p.name}: {before}"
+
+
+def test_404_is_not_indexed():
+    assert 'content="noindex,follow"' in (ROOT / "404.html").read_text(encoding="utf-8")
+
+
+# Must stay at the very bottom: CI runs this file as a script, and any test
+# defined below this block would silently never run.
+if __name__ == "__main__":
+    for name, fn in list(globals().items()):
+        if name.startswith("test_") and callable(fn):
+            fn()
+            print("PASS", name)
+    print("all site tests passed")

@@ -38,6 +38,7 @@ def trade_more(current):
         ("/cash-that-is-yours/", "Cash that is yours"),
         ("/can-i-afford-another-technician/", "Another technician"),
         ("/job-software-and-your-accountant/", "You already have job software"),
+        ("/services/", "All services"),
     ]
     items = "\n".join(
         f'          <a href="{href}">{label}</a>'
@@ -61,8 +62,8 @@ def breadcrumbs(slug, name):
 
 def write_pretty(root, slug, html):
     # Added here rather than in each builder so every page on PAGES gets one.
-    h1 = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
-    name = re.sub(r"<[^>]+>", "", h1.group(1)).strip() if h1 else slug
+    title = re.search(r"<title>(.*?)</title>", html, re.S)
+    name = title.group(1).split(" | ")[0].strip() if title else slug
     html = html.replace("</head>", jsonld(breadcrumbs(slug, name)) + "</head>", 1)
     (root / slug).mkdir(exist_ok=True)
     (root / f"{slug}.html").write_text(html, encoding="utf-8")
@@ -94,7 +95,7 @@ def air_con():
     h = head(
         "Air con accountant Brisbane | Service Profit",
         "Accounting for air con and refrigeration in Queensland. Quoted hours versus hours on the roof. Cash, tax and BAS held. Book 15 minutes.",
-        f"/{slug}",
+        f"/{slug}/",
         extra=extra,
     )
     faq_html = "\n".join(
@@ -103,8 +104,7 @@ def air_con():
     body = f"""{nav()}
   <main id="main" class="page">
     <div class="wrap">
-      <span class="eyebrow">Air con and refrigeration</span>
-      <h1>Quoted six hours on the roof. Nine on the tools.</h1>
+      <h1><span class="eyebrow">Air con and refrigeration accountant, Brisbane</span> Quoted six hours on the roof. Nine on the tools.</h1>
       <p class="lead">Call-outs, changeovers, maintenance rounds. The quote is one number. The day is another. We keep billed hours, cash and tax in the file so you can stay on the roof. Queensland.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="hvac-book">Book 15 minutes</a>
@@ -159,7 +159,7 @@ def electrical():
     h = head(
         "Electrician accountant Brisbane | Service Profit",
         "Accounting for electrical contractors in Queensland. Quoted hours versus hours on the tools. Cash, tax and BAS held. Book 15 minutes.",
-        f"/{slug}",
+        f"/{slug}/",
         extra=extra,
     )
     faq_html = "\n".join(
@@ -168,8 +168,7 @@ def electrical():
     body = f"""{nav()}
   <main id="main" class="page">
     <div class="wrap">
-      <span class="eyebrow">Electrical</span>
-      <h1>The switchboard ran long. The quote did not.</h1>
+      <h1><span class="eyebrow">Electrician accountant, Brisbane</span> The switchboard ran long. The quote did not.</h1>
       <p class="lead">Quoted jobs versus hours on the tools. Variations that never made an invoice. Cash that looks like yours until GST, PAYG, super and wages come out. Queensland.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="elec-book">Book 15 minutes</a>
@@ -223,7 +222,7 @@ def construction():
     h = head(
         "Construction services accountant | Brisbane",
         "Fit-out, maintenance and installation in Queensland. Not head contracting. Quoted hours, cash, tax and BAS held. Book 15 minutes.",
-        f"/{slug}",
+        f"/{slug}/",
         extra=extra,
     )
     faq_html = "\n".join(
@@ -232,8 +231,7 @@ def construction():
     body = f"""{nav()}
   <main id="main" class="page">
     <div class="wrap">
-      <span class="eyebrow">Construction services</span>
-      <h1>Fit-out, maintenance, installation. Not a builder.</h1>
+      <h1><span class="eyebrow">Construction services accountant, Brisbane</span> Fit-out, maintenance, installation. Not a builder.</h1>
       <p class="lead">Quoted hours versus hours on site. Materials and subcontractors in the same picture as the bank. Tax and BAS held. Queensland.</p>
       <div class="cta">
         <a class="btn btn-primary" href="/book.html" data-event="con-book">Book 15 minutes</a>
@@ -279,7 +277,7 @@ def quoted_hours():
     h = head(
         "Quoted hours vs hours on the tools",
         "How a job quoted at six hours and done in nine trains the next quote. Sketch the last job. Queensland.",
-        f"/{slug}",
+        f"/{slug}/",
         extra=extra,
     )
     faq_html = "\n".join(
@@ -329,7 +327,7 @@ def cash_yours():
     h = head(
         "Cash that is yours | Service Profit",
         "The bank looks full. GST, PAYG, super and wages sit in there. What is actually yours to spend. Queensland.",
-        f"/{slug}",
+        f"/{slug}/",
         extra=extra,
     )
     faq_html = "\n".join(
@@ -379,7 +377,7 @@ def another_tech():
     h = head(
         "Can I afford another technician?",
         "Wage is not the full cost. Super, leave, workers compensation, PAYG and a ute sit on top. Count billed hours before you hire.",
-        f"/{slug}",
+        f"/{slug}/",
         extra=extra,
     )
     faq_html = "\n".join(
@@ -438,7 +436,7 @@ def job_software():
     h = head(
         "You already have job software | Service Profit",
         "Your job software prices the job from the hours entered. We reconcile the bank and tell you what is actually yours after GST, PAYG, super and wages. Queensland.",
-        f"/{slug}",
+        f"/{slug}/",
         extra=extra,
     )
     faq_html = "\n".join(
@@ -477,4 +475,236 @@ def job_software():
     return slug, h + body
 
 
-PAGES = (air_con, electrical, construction, quoted_hours, cash_yours, another_tech, job_software)
+def service_page(slug, title, desc, eyebrow, h1, lead, prose, faqs, service_name):
+    """One service, same offer. Leanne's keyword list, said in trade language."""
+    extra = jsonld(service_node(service_name, f"{ORIGIN}/{slug}/", desc)) + jsonld(faq_node(faqs))
+    h = head(title, desc, f"/{slug}/", extra=extra)
+    faq_html = "\n".join(
+        f"          <details><summary>{q}</summary><p>{a}</p></details>" for q, a in faqs
+    )
+    body = f"""{nav("services" if slug == "services" else "")}
+  <main id="main" class="page">
+    <div class="wrap">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1>{h1}</h1>
+      <p class="lead">{lead}</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="/book.html" data-event="{slug}-book">Book 15 minutes</a>
+        <a class="btn btn-outline" href="/pricing.html" data-event="{slug}-pricing">See the plans</a>
+      </div>
+      <div class="prose">
+{prose}
+      </div>
+{same_offer()}
+      <div class="faq">{faq_html}</div>
+{trade_more(slug)}
+    </div>
+  </main>
+{footer()}"""
+    return slug, h + body
+
+
+NOT_PERSONAL = (
+    "Do you do personal tax returns?",
+    "Service Profit is for businesses. If all you need is a personal return, we are not the right fit and we will say so on the call.",
+)
+CATCH_UP = (
+    "What if I am behind?",
+    "Catch-up work is quoted on its own, after we have seen the file. It is not inside the monthly plans.",
+)
+
+
+def services():
+    return service_page(
+        "services",
+        "Accounting services for trades | Brendale, Brisbane",
+        "Accountant, tax agent, BAS, bookkeeping, payroll and Xero setup for air con, electrical and construction businesses. Pink Accounting, Brendale, Queensland.",
+        "Services",
+        "Accountants for air con, electrical and construction businesses",
+        "Tax, BAS, bookkeeping, payroll and the numbers that show which jobs paid, held in one file by one firm. Pink Accounting, Brendale. Registered Tax Agent 26284368. Queensland.",
+        """        <h2>Business accounting and job profit</h2>
+        <p>The core of Service Profit. Every Monday: hours quoted against hours on the tools, and how much of the bank is yours once GST, PAYG, super and wages come out. <a href="/system.html">See what lands on Monday</a>.</p>
+        <h2>Tax agent and income tax returns</h2>
+        <p>The business return, the financial statements behind it and the FBT return, prepared and lodged by a registered tax agent. <a href="/tax-agent-for-trades/">Tax agent for trades</a>.</p>
+        <h2>Tax planning</h2>
+        <p>We look at the year in May, while there is still time to act, not in August when the bill is already set. <a href="/tax-agent-for-trades/#planning">How tax planning works here</a>.</p>
+        <h2>BAS and GST</h2>
+        <p>Activity statements prepared and lodged, with GST and PAYG kept apart from your cash all quarter. <a href="/bas-and-gst-for-trades/">BAS and GST for trades</a>.</p>
+        <h2>Bookkeeping</h2>
+        <p>The bank reconciled in Xero, supplier bills matched, receipts attached. <a href="/bookkeeping-and-xero-for-trades/">Bookkeeping for trades</a>.</p>
+        <h2>Xero setup</h2>
+        <p>Accounts that split labour, materials and subcontractors, bank feeds on, job software feeding in once. <a href="/bookkeeping-and-xero-for-trades/#xero">Xero setup for trades</a>.</p>
+        <h2>Payroll and super</h2>
+        <p>Pay runs, Single Touch Payroll and Payday Super, with apprentices and subcontractors counted at their true cost. <a href="/payroll-for-trades/">Payroll for trades</a>.</p>
+        <h2>Business advisory</h2>
+        <p>Advice here means the numbers behind a real decision: can you afford another technician, can you draw more, should you hold cash for the tax. <a href="/can-i-afford-another-technician/">Can I afford another technician?</a> A written forecast sits in the Ready to Scale plan.</p>
+        <h2>Where we are</h2>
+        <p>Shop 15A, 18-22 Kremzow Rd, Brendale. Working with trade businesses across Queensland. <a href="/accountant-brendale/">Accountant in Brendale</a>.</p>""",
+        [
+            (
+                "Do I have to take all of these?",
+                "No. Compliance at $550 + GST a month covers income tax, FBT, financial statements, BAS and GST from a file already in order. Job Profit adds the job and cash look. Bookkeeping is an add-on from $500 + GST a month.",
+            ),
+            NOT_PERSONAL,
+        ],
+        "Accounting, tax, BAS, bookkeeping and payroll for trade businesses",
+    )
+
+
+def tax_agent():
+    return service_page(
+        "tax-agent-for-trades",
+        "Tax agent for trade businesses | Brendale, Brisbane",
+        "Registered tax agent for air con, electrical and construction businesses in Queensland. Income tax, tax planning, FBT, TPAR and financial statements.",
+        "Tax agent",
+        "Tax agent for air con, electrical and construction businesses",
+        "Pink Accounting is a registered tax agent, number 26284368 on the TPB register. We prepare and lodge the business return, the financial statements behind it and the FBT return, and we plan the tax before 30 June, not after. Queensland.",
+        """        <h2>Income tax returns for the business</h2>
+        <p>Whatever structure the business trades through, the return is built from a reconciled file, not a box of receipts in July. One trading entity is included unless the letter says otherwise.</p>
+        <h2 id="planning">Tax planning before 30 June</h2>
+        <p>A good year on the tools can turn into a hard August. We look at the year to date in May, while there is still time to act: what the tax is likely to be, what has already been set aside, and what a purchase would or would not change. A ute bought in June to save tax is still a ute you have to pay for.</p>
+        <h2>Utes, vans and FBT</h2>
+        <p>Work vehicles, phones and tools sit across income tax and FBT. Some utes are exempt from FBT when private use is minor and irregular. Some are not. We read the log and the use, not the badge.</p>
+        <h2>TPAR, if you pay subcontractors</h2>
+        <p>If the business is mainly building and construction and pays contractors for that work, the ATO expects a taxable payments annual report by 28 August. Electrical, air con and fit-out businesses often fall in. We check whether yours does and lodge it with the rest.</p>
+        <h2>Who this page is for</h2>
+        <p>Trade businesses in Queensland that want the return lodged by the same people who hold the books. If you only need the annual return, that is Compliance at $550 + GST a month, and we will say so on the call.</p>""",
+        [
+            (
+                "Are you a registered tax agent?",
+                "Yes. Pink Accounting &amp; Tax Solutions Pty Ltd, Registered Tax Agent 26284368. You can check the TPB public register yourself.",
+            ),
+            CATCH_UP,
+            NOT_PERSONAL,
+        ],
+        "Tax agent for trade businesses, Queensland",
+    )
+
+
+def bas_gst():
+    return service_page(
+        "bas-and-gst-for-trades",
+        "BAS and GST for trades | Brendale, Brisbane",
+        "BAS, GST and PAYG for air con, electrical and construction businesses in Queensland, lodged by a registered tax agent. GST held before the due date.",
+        "BAS and GST",
+        "BAS and GST for trade businesses, lodged by a registered tax agent",
+        "The BAS is not the hard part. The hard part is having the GST still in the bank when it is due. We prepare and lodge the BAS, and keep GST, PAYG and super apart from the cash that is yours all quarter. Queensland.",
+        """        <h2>BAS services come with the tax agent registration</h2>
+        <p>Pink Accounting is a registered tax agent. Under the Tax Practitioners Board rules that registration covers BAS services, so we prepare and lodge activity statements ourselves. You will not find us listed as a separate BAS agent because we do not need to be.</p>
+        <h2>GST on deposits, progress claims and materials</h2>
+        <p>Trade work bills in pieces: a deposit, a progress claim, a variation, the final invoice. Materials go on the card before the customer pays. If the business reports GST on an accruals basis, GST can be owed before the money arrives. We check which basis you report on and match the BAS to it.</p>
+        <h2>PAYG withholding and instalments</h2>
+        <p>If you have staff, the PAYG withheld from their pay goes on the BAS. If the business pays PAYG instalments, those sit there too. None of it is yours, even while it sits in your account. <a href="/cash-that-is-yours/">Cash that is yours</a>.</p>
+        <h2>Who this page is for</h2>
+        <p>Air con, electrical and construction services businesses in Queensland that lodge a BAS and want the cash for it held, not found. BAS and GST are inside every plan, from Compliance at $550 + GST a month.</p>""",
+        [
+            (
+                "Are you a BAS agent?",
+                "We are a registered tax agent, number 26284368. That registration covers BAS services, so we prepare and lodge your BAS without a separate BAS agent listing.",
+            ),
+            (
+                "Can you do a monthly BAS?",
+                "Yes, if the business reports monthly. Most small businesses report quarterly. We lodge on the cycle the ATO has you on.",
+            ),
+            CATCH_UP,
+        ],
+        "BAS and GST for trade businesses, Queensland",
+    )
+
+
+def payroll():
+    return service_page(
+        "payroll-for-trades",
+        "Payroll and super for trades | Brendale, Brisbane",
+        "Payroll, Single Touch Payroll and Payday Super for air con, electrical and construction businesses in Queensland. Apprentices and contractors costed properly.",
+        "Payroll",
+        "Payroll and super for trade businesses with people on the tools",
+        "Pay runs, Single Touch Payroll and super, done in Xero by a registered tax agent. Since 1 July 2026 super goes with every pay, so payroll and cash have to be watched together. Queensland.",
+        """        <h2>Payday Super changed the rhythm</h2>
+        <p>From 1 July 2026 employers pay super guarantee with each pay, at 12% of qualifying earnings, and the fund has to receive it within seven business days. The quarterly catch-up is gone, and so is the Small Business Superannuation Clearing House, which closed on 1 July 2026. We run super on the pay cycle so it lands on time.</p>
+        <h2>Single Touch Payroll</h2>
+        <p>Every pay run is reported to the ATO through Single Touch Payroll from Xero. End of year finalisation is part of the job, so your people's income statements are ready when they need them.</p>
+        <h2>Apprentices, staff and subcontractors</h2>
+        <p>An apprentice costs more than the hourly rate, and a subcontractor who works like staff can bring super and payroll obligations with them. We show the true cost in the file. Award rates and contracts come from Fair Work, not from us. The Fair Work Ombudsman's pay calculator is the place to check a rate. <a href="/can-i-afford-another-technician/">Can I afford another technician?</a></p>
+        <h2>How payroll is priced</h2>
+        <p>Payroll is not inside the monthly plans. Like bookkeeping, it is quoted in the letter when you actually need it.</p>""",
+        [
+            (
+                "Do you use Xero Payroll?",
+                "Yes. We work in Xero, so pay runs, Single Touch Payroll and super all sit in the same file as the bank and the BAS.",
+            ),
+            (
+                "What about WorkCover?",
+                "In Queensland, workers compensation is through WorkCover Queensland. We keep the wages figures it asks for in the file. The policy stays yours.",
+            ),
+            CATCH_UP,
+        ],
+        "Payroll and super for trade businesses, Queensland",
+    )
+
+
+def bookkeeping_xero():
+    return service_page(
+        "bookkeeping-and-xero-for-trades",
+        "Bookkeeper and Xero setup for trades | Brisbane",
+        "Bookkeeping and Xero setup for air con, electrical and construction businesses in Queensland. Bank reconciled, job software feeding Xero. Brendale.",
+        "Bookkeeping and Xero",
+        "Bookkeeping and Xero setup for trade businesses",
+        "Bookkeeping by people who know what the numbers are for. The bank reconciled in Xero, supplier bills matched and your job software feeding in cleanly, so the file can say which jobs paid. Brendale, Queensland.",
+        """        <h2>Bookkeeping that ends in a reconciled bank</h2>
+        <p>Every bank line matched to an invoice, a bill or a pay run. Supplier statements checked against the bills. Card receipts attached. The test is simple: the bank in Xero agrees with the bank.</p>
+        <h2 id="xero">Xero setup for a trade business</h2>
+        <p>A chart of accounts that splits labour, materials and subcontractors. Bank feeds on. Tracking by trade or crew where it helps. Your job software connected so invoices land once, not twice. If you are moving from another accounting system, the opening balances are mapped before anything is switched off.</p>
+        <h2>Your job software feeds Xero. We work in Xero.</h2>
+        <p>We set up Xero. We do not set up or run your job software; that is an implementer's job, and we will say so. <a href="/job-software-and-your-accountant/">You already have job software</a>.</p>
+        <h2>How bookkeeping is priced</h2>
+        <p>Bookkeeping is an add-on from $500 + GST a month, quoted in the letter when it is actually needed. Xero setup is quoted once, after we have seen what you have.</p>""",
+        [
+            (
+                "Are you a bookkeeper or an accountant?",
+                "Both, under one roof. Pink Accounting is a registered tax agent, and the bookkeeping and the tax sit in the same file with the same firm.",
+            ),
+            (
+                "Can I keep doing my own bookkeeping?",
+                "Yes. If the file is in order each month, Compliance or Job Profit runs without the bookkeeping add-on. We will tell you on the call which it is.",
+            ),
+            CATCH_UP,
+        ],
+        "Bookkeeping and Xero setup for trade businesses, Queensland",
+    )
+
+
+def brendale():
+    return service_page(
+        "accountant-brendale",
+        "Accountant in Brendale for trades | Service Profit",
+        "Accountant and registered tax agent at Shop 15A, 18-22 Kremzow Rd, Brendale, for air con, electrical and construction businesses across Queensland.",
+        "Brendale",
+        "Accountant in Brendale for air con, electrical and construction businesses",
+        "Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. A registered tax agent in Moreton Bay, working with trade businesses across Queensland.",
+        """        <h2>Come in, or stay on the job</h2>
+        <p>Phone and office hours are Monday to Thursday, 9:00am to 4:30pm. Friday and Saturday by appointment. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
+        <h2>Moreton Bay, north Brisbane and the rest of Queensland</h2>
+        <p>Strathpine, Lawnton, Bray Park, Albany Creek, Warner, Petrie, Kallangur and North Lakes are close enough to drop in. Further out, the work runs the same way by phone and Xero. Service Profit takes trade businesses anywhere in Queensland.</p>
+        <h2>What we do from Brendale</h2>
+        <p><a href="/tax-agent-for-trades/">Tax returns and tax planning</a> · <a href="/bas-and-gst-for-trades/">BAS and GST</a> · <a href="/bookkeeping-and-xero-for-trades/">Bookkeeping and Xero setup</a> · <a href="/payroll-for-trades/">Payroll and super</a> · <a href="/system.html">Job profit every Monday</a> · <a href="/services/">All services</a></p>
+        <h2>Who this page is for</h2>
+        <p>Air con and refrigeration, electrical, and construction services businesses with people on the tools, who want their accountant close by and their numbers weekly.</p>""",
+        [
+            (
+                "Do I have to be in Brendale?",
+                "No. Service Profit is for air con, electrical and construction services businesses anywhere in Queensland. Brendale is where the office is.",
+            ),
+            (
+                "Can I meet you at the office?",
+                "Yes. Book the 15-minute call first. If it makes sense to meet, we set a time at Kremzow Rd.",
+            ),
+        ],
+        "Accountant in Brendale for trade businesses",
+    )
+
+
+PAGES = (
+    air_con, electrical, construction, quoted_hours, cash_yours, another_tech, job_software,
+    services, tax_agent, bas_gst, payroll, bookkeeping_xero, brendale,
+)
