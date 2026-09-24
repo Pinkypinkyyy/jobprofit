@@ -757,6 +757,12 @@ def test_no_competitor_attack_copy():
         "cheap accountant",
         "bad accountant",
         "wrong accountant",
+        # 24 Sep 2026: kept in step with pinktax after its review.
+        "plenty of",
+        "fewer can",
+        "most bookkeeping",
+        "should be doing",
+        "stay somewhere",
     )
     for p in PAGES:
         text = p.read_text(encoding="utf-8").lower()
