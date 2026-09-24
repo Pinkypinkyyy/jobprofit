@@ -13,7 +13,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt46"
+ASSET = "rt47"
 IMG_VERSION = "real2"
 
 

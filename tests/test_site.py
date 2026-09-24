@@ -1101,6 +1101,14 @@ def test_services_dropdown_on_every_page():
     assert "navdrop-toggle" in js and "aria-expanded" in js
 
 
+def test_only_real_enquiries_count_as_leads():
+    # 24 Sep 2026 funnel check: a calculator run is not a lead, and a relay
+    # rejection (200 with success "false") must not thank the visitor.
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    assert '"generate_lead", { method: "hours-check' not in js
+    assert 'String(json.success) === "false"' in js
+
+
 # Must stay at the very bottom: CI runs this file as a script, and any test
 # defined below this block would silently never run.
 if __name__ == "__main__":

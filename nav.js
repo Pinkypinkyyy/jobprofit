@@ -154,7 +154,7 @@
       hoursOut.hidden = false;
       hoursOut.scrollIntoView({ behavior: "smooth", block: "nearest" });
       try {
-        if (typeof gtag === "function") gtag("event", "generate_lead", { method: "hours-check" });
+        if (typeof gtag === "function") gtag("event", "hours_check", { method: "hours-check" });
       } catch (err) {}
     });
   }
@@ -193,7 +193,7 @@
       crewOut.hidden = false;
       crewOut.scrollIntoView({ behavior: "smooth", block: "nearest" });
       try {
-        if (typeof gtag === "function") gtag("event", "generate_lead", { method: "hours-check-crew" });
+        if (typeof gtag === "function") gtag("event", "hours_check", { method: "hours-check-crew" });
       } catch (err) {}
     });
   }
@@ -232,7 +232,10 @@
           if (!res.ok) throw new Error("send-failed");
           return res.json();
         })
-        .then(function () {
+        .then(function (json) {
+          // The relay answers 200 with success:"false" when it rejects a post.
+          // Only a real delivery may thank the visitor or count as a lead.
+          if (!json || String(json.success) === "false") throw new Error("not-sent");
           form.hidden = true;
           if (ok) ok.hidden = false;
           if (ok) ok.scrollIntoView({ behavior: "smooth", block: "center" });
