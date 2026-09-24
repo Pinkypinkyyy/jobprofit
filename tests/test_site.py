@@ -664,9 +664,9 @@ def test_industry_pages_are_audience_not_products():
     for slug, (h1, unique) in pages.items():
         html = (ROOT / slug / "index.html").read_text(encoding="utf-8")
         heading = re.search(r"<h1>(.*?)</h1>", html, re.S).group(1)
-        # The hook stays. The keyword line inside the H1 is what search reads first.
-        assert heading.endswith(h1), slug
-        assert "accountant" in heading.lower(), slug
+        # HB 24 Sep 2026: the H1 is the search words, big. The hook stays, right under it.
+        assert "accountant" in heading.lower() and "brisbane" in heading.lower(), slug
+        assert f'<p class="hook">{h1}</p>' in html, slug
         assert unique in html.lower(), slug
         assert "Job Profit is $1,650 + GST a month" in html
         assert "Same plans as the rest of Service Profit" in html
@@ -948,6 +948,7 @@ def test_home_h1_says_accountant_and_brendale():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     heading = re.search(r"<h1>(.*?)</h1>", home, re.S).group(1).lower()
     assert "accountant" in heading and "brendale" in heading
+    assert '<p class="hook">You quoted 6 hours. You did 9.</p>' in home
 
 
 def test_pretty_page_canonicals_match_the_sitemap():

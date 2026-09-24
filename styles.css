@@ -103,9 +103,11 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter);align-items:stretch;padding-bottom:var(--section)}
 .kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
 .kicker-sub{margin-top:28px}
-/* Keyword line inside the H1: reads as the old eyebrow, counts as the heading */
-h1 .kicker,h1 .eyebrow{display:block;font-weight:500;line-height:1.5;max-width:none;text-wrap:wrap}
-.page h1 .eyebrow{margin-bottom:12px}
+/* The H1 carries the search words. The hook sits right under it, bold, in pink. */
+.hook{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,2.4vw,1.85rem);line-height:1.2;letter-spacing:-.02em;color:var(--accent-deep);margin:0 0 6px;text-wrap:balance}
+.hero-copy .hook{color:var(--accent);margin-top:14px}
+.hero-copy h1{max-width:16ch}
+.page .cta + .prose{margin-top:40px}
 .hero h1{font-size:clamp(2rem,4.4vw,3.3rem);max-width:18ch}
 .lead{color:var(--soft);font-size:1.08rem;max-width:36em;margin:20px 0 0;text-wrap:pretty}
 .lead b{color:var(--ink)}
@@ -644,7 +646,7 @@ h1 .kicker,h1 .eyebrow{display:block;font-weight:500;line-height:1.5;max-width:n
   .hero-bleed{min-height:0}
   .hero-media{position:relative;height:min(58vw,420px);min-height:240px}
   .hero-grid{display:block;min-height:0;padding-block:28px 40px}
-  .hero-copy h1{font-size:1.7rem}
+  .hero-copy h1{font-size:2.15rem}
   .hero-copy .cta .btn{width:auto}
   .chart-hours{margin-top:22px}
   .split-visual{grid-template-columns:1fr;gap:24px}
