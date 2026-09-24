@@ -168,6 +168,15 @@ def test_privacy_and_terms_on_every_page():
         assert "og.png" in text, p.name
         assert "Service Profit" in text, p.name
         assert 'href="/favicon.ico"' in text, p.name
+        assert 'rel="icon" type="image/png" href="/assets/logo.png"' not in text, p.name
+
+
+def test_tab_icon_is_square():
+    from PIL import Image
+
+    ico = Image.open(ROOT / "favicon.ico")
+    assert {(16, 16), (32, 32), (48, 48)} <= ico.ico.sizes()
+    assert Image.open(ROOT / "apple-touch-icon.png").size == (180, 180)
 
 
 def test_queensland_not_australia_wide_claim():

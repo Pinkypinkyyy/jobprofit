@@ -200,10 +200,13 @@ def build_social() -> None:
 
 
 def build_favicon() -> None:
-    src = ASSETS / "logo.png"
-    im = Image.open(src).convert("RGBA")
+    # Square source only: the wide wordmark in an ICO comes out 16x7 and the
+    # browser tab shows a smear. icon.png is the "pi" mark on a black tile.
+    im = Image.open(SOURCE / "icon.png").convert("RGBA")
+    assert im.width == im.height, "tab icon source must be square"
     ico = ROOT / "favicon.ico"
     im.save(ico, format="ICO", sizes=[(16, 16), (32, 32), (48, 48)])
+    im.resize((180, 180), Image.LANCZOS).save(ROOT / "apple-touch-icon.png")
     print("favicon.ico", ico.stat().st_size)
 
 

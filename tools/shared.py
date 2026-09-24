@@ -102,8 +102,7 @@ def head(title, description, canonical, og_image="/assets/og.png", extra=""):
   <meta name="twitter:description" content="{description}">
   <meta name="twitter:image" content="{og}">
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="/assets/logo.png">
-  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
