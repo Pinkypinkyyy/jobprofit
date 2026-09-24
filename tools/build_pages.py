@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # the case before the first scheduled fetch runs or if the Places API is down.
 # tools/fetch_reviews.py is what normally supplies these.
 FALLBACK_RATING = "5.0"
-FALLBACK_COUNT = 30
+FALLBACK_COUNT = 32
 FALLBACK_AS_AT = "September 2026"
 FALLBACK_QUOTES = [
     ("I\u2019ve had a fantastic experience working with Pinky. She is professional, knowledgeable, "

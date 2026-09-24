@@ -13,7 +13,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt43"
+ASSET = "rt44"
 IMG_VERSION = "real2"
 
 
@@ -268,6 +268,31 @@ def person_node():
     }
 
 
+# HB 24 Sep 2026: every service one click away from any page.
+SERVICE_MENU = (
+    ("/services/", "All services", "Everything we do for trade businesses"),
+    ("/tax-agent-for-trades/", "Tax agent and tax planning", "Returns, planning before 30 June, FBT, TPAR"),
+    ("/bas-and-gst-for-trades/", "BAS and GST", "Lodged by a registered tax agent"),
+    ("/bookkeeping-and-xero-for-trades/", "Bookkeeping and Xero setup", "Bank reconciled, job software feeding Xero"),
+    ("/payroll-for-trades/", "Payroll and super", "Pay runs, Single Touch Payroll, Payday Super"),
+    ("/system.html", "Job profit and advisory", "Quoted hours against hours on the tools, every Monday"),
+)
+
+
+def services_dropdown(current=""):
+    cur = ' aria-current="page"' if current == "services" else ""
+    items = "\n".join(
+        f'            <a href="{href}"><b>{label}</b><span>{note}</span></a>' for href, label, note in SERVICE_MENU
+    )
+    return f"""        <div class="navdrop">
+          <a class="navdrop-top" href="/services/"{cur}>Services</a>
+          <button class="navdrop-toggle" type="button" aria-expanded="false" aria-controls="svcMenu" aria-label="Show all services"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          <div class="navdrop-menu" id="svcMenu">
+{items}
+          </div>
+        </div>"""
+
+
 def nav(current=""):
     def item(href, label, key):
         cur = ' aria-current="page"' if current == key else ""
@@ -282,7 +307,7 @@ def nav(current=""):
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-{item("/services/", "Services", "services")}
+{services_dropdown(current)}
 {item("/pricing.html", "Pricing", "pricing")}
 {item("/system.html", "The system", "system")}
 {item("/why.html", "Meet Pink", "why")}

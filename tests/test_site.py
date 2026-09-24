@@ -385,7 +385,7 @@ def test_site_falls_back_when_there_is_no_live_review_file():
 
     rating, count, as_at, quotes, url = load_reviews(ROOT / "tests" / "fixtures" / "nope.json")
     assert rating == "5.0"
-    assert count == 30
+    assert count == 32
     assert len(quotes) == 3
 
 
@@ -1074,6 +1074,19 @@ def test_no_template_code_leaks_onto_a_page():
     for p in PAGES:
         text = p.read_text(encoding="utf-8")
         assert not re.search(r"\{ID\[|\{[A-Za-z_]+\(\)\}", text), p.name
+
+
+def test_services_dropdown_on_every_page():
+    # HB 24 Sep 2026: every service one click away from any page.
+    from shared import SERVICE_MENU
+    for p in PAGES:
+        html = p.read_text(encoding="utf-8")
+        nav = html.split('<nav class="links"')[1].split("</nav>")[0]
+        assert 'class="navdrop"' in nav and 'aria-controls="svcMenu"' in nav, p.name
+        for href, label, _ in SERVICE_MENU:
+            assert f'href="{href}"' in nav, f"{p.name}: {href}"
+    js = (ROOT / "nav.js").read_text(encoding="utf-8")
+    assert "navdrop-toggle" in js and "aria-expanded" in js
 
 
 # Must stay at the very bottom: CI runs this file as a script, and any test

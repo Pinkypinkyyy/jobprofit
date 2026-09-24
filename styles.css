@@ -657,3 +657,25 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 /* One quiet line to the firm's other service line (identity.json cross_links). */
 .foot .sister-line{margin:18px 0 0;font-size:.82rem;color:rgba(255,255,255,.72)}
 .foot .sister-line a{color:#fff;text-decoration:underline}
+
+/* Services dropdown in the top menu (HB 24 Sep 2026) */
+.navdrop{position:relative;display:flex;align-items:center;gap:2px}
+.navdrop-toggle{background:none;border:0;color:rgba(255,255,255,.82);cursor:pointer;padding:6px 4px;display:inline-flex;align-items:center}
+.navdrop-toggle svg{width:12px;height:12px;transition:transform .15s}
+.navdrop.is-open .navdrop-toggle svg,.navdrop:hover .navdrop-toggle svg{transform:rotate(180deg)}
+.navdrop-menu{display:none;position:absolute;top:calc(100% + 12px);left:-14px;min-width:320px;background:#fff;border-radius:14px;box-shadow:0 18px 40px -14px rgba(0,0,0,.4);padding:8px;z-index:60}
+.navdrop-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.navdrop:hover .navdrop-menu,.navdrop.is-open .navdrop-menu{display:block}
+.links .navdrop-menu a{display:block;padding:10px 12px;border-radius:10px;color:var(--ink);font-size:.92rem}
+.links .navdrop-menu a:hover,.links .navdrop-menu a:focus-visible{background:var(--paper-2);color:var(--ink)}
+.navdrop-menu a b{display:block;font-weight:650}
+.navdrop-menu a span{display:block;font-size:.8rem;color:var(--muted);margin-top:2px;line-height:1.35}
+@media(max-width:940px){
+  .navdrop{flex-direction:column;align-items:center}
+  .navdrop-toggle,.navdrop-menu::before{display:none}
+  .navdrop-menu,.navdrop:hover .navdrop-menu{display:block;position:static;min-width:0;background:none;box-shadow:none;padding:2px 0 8px;margin:0 0 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.14)}
+  .nav.open .links .navdrop-menu a{color:rgba(255,255,255,.7);padding:7px 4px;font-size:.95rem;border-radius:0}
+  .nav.open .links .navdrop-menu a:hover{background:none;color:#fff}
+  .navdrop-menu a span{display:none}
+  .navdrop-menu a b{font-weight:500}
+}

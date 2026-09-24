@@ -28,9 +28,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=rt43">
+  <link rel="stylesheet" href="/styles.css?v=rt44">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"AccountingService","@id":"https://pinktax.com.au/#organization","name":"Pink Accounting","legalName":"Pink Accounting & Tax Solutions Pty Ltd","url":"https://pinktax.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","logo":"https://www.serviceprofit.com.au/assets/logo.png","image":"https://www.serviceprofit.com.au/assets/og.png","address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"16:30"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368","sameAs":["https://www.google.com/maps?cid=17544456102082616748"],"department":[{"@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#service-profit","name":"Service Profit","url":"https://www.serviceprofit.com.au/","parentOrganization":{"@id":"https://pinktax.com.au/#organization"},"priceRange":"$$","sameAs":["https://www.facebook.com/profile.php?id=61594432044788","https://www.linkedin.com/company/143802027/"],"knowsAbout":["HVAC accounting","air conditioning accountant","electrical contractors","electrician accountant","construction services","job costing","quoted hours versus actual hours","BAS","GST","tax agent services","tax planning","bookkeeping","Xero setup","payroll","Single Touch Payroll","business advisory"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Service Profit plans","itemListElement":[{"@type":"Offer","name":"Job Profit","price":"1650.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-job"},{"@type":"Offer","name":"Weekly Visibility","price":"2650.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-weekly"},{"@type":"Offer","name":"Ready to Scale","price":"3500.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-scale"},{"@type":"Offer","name":"Compliance","price":"550.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-compliance"}]},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}]}]}
+  {"@context":"https://schema.org","@type":"AccountingService","@id":"https://pinktax.com.au/#organization","name":"Pink Accounting","legalName":"Pink Accounting & Tax Solutions Pty Ltd","url":"https://pinktax.com.au/","telephone":"+61735446386","email":"admin@pinktax.com.au","logo":"https://www.serviceprofit.com.au/assets/logo.png","image":"https://www.serviceprofit.com.au/assets/og.png","address":{"@type":"PostalAddress","streetAddress":"Shop 15A, 18-22 Kremzow Rd","addressLocality":"Brendale","addressRegion":"QLD","postalCode":"4500","addressCountry":"AU"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"17:00"},"founder":{"@type":"Person","name":"Huong Bui"},"taxID":"51682301891","identifier":"26284368","sameAs":["https://www.google.com/maps?cid=17544456102082616748"],"department":[{"@type":"AccountingService","@id":"https://www.serviceprofit.com.au/#service-profit","name":"Service Profit","url":"https://www.serviceprofit.com.au/","parentOrganization":{"@id":"https://pinktax.com.au/#organization"},"priceRange":"$$","sameAs":["https://www.facebook.com/profile.php?id=61594432044788","https://www.linkedin.com/company/143802027/"],"knowsAbout":["HVAC accounting","air conditioning accountant","electrical contractors","electrician accountant","construction services","job costing","quoted hours versus actual hours","BAS","GST","tax agent services","tax planning","bookkeeping","Xero setup","payroll","Single Touch Payroll","business advisory"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Service Profit plans","itemListElement":[{"@type":"Offer","name":"Job Profit","price":"1650.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-job"},{"@type":"Offer","name":"Weekly Visibility","price":"2650.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-weekly"},{"@type":"Offer","name":"Ready to Scale","price":"3500.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-scale"},{"@type":"Offer","name":"Compliance","price":"550.00","priceCurrency":"AUD","url":"https://www.serviceprofit.com.au/pricing.html#level-compliance"}]},"areaServed":[{"@type":"Place","name":"Brendale"},{"@type":"AdministrativeArea","name":"Moreton Bay"},{"@type":"City","name":"Brisbane"},{"@type":"State","name":"Queensland"}]}]}
   </script>
 </head>
 <body>
@@ -42,7 +42,18 @@
         <span class="mark"><span class="offer">Service Profit</span><span class="firm">Pink Accounting</span></span>
       </a>
       <nav class="links" aria-label="Primary">
-        <a href="/services/">Services</a>
+        <div class="navdrop">
+          <a class="navdrop-top" href="/services/">Services</a>
+          <button class="navdrop-toggle" type="button" aria-expanded="false" aria-controls="svcMenu" aria-label="Show all services"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          <div class="navdrop-menu" id="svcMenu">
+            <a href="/services/"><b>All services</b><span>Everything we do for trade businesses</span></a>
+            <a href="/tax-agent-for-trades/"><b>Tax agent and tax planning</b><span>Returns, planning before 30 June, FBT, TPAR</span></a>
+            <a href="/bas-and-gst-for-trades/"><b>BAS and GST</b><span>Lodged by a registered tax agent</span></a>
+            <a href="/bookkeeping-and-xero-for-trades/"><b>Bookkeeping and Xero setup</b><span>Bank reconciled, job software feeding Xero</span></a>
+            <a href="/payroll-for-trades/"><b>Payroll and super</b><span>Pay runs, Single Touch Payroll, Payday Super</span></a>
+            <a href="/system.html"><b>Job profit and advisory</b><span>Quoted hours against hours on the tools, every Monday</span></a>
+          </div>
+        </div>
         <a href="/pricing.html">Pricing</a>
         <a href="/system.html">The system</a>
         <a href="/why.html">Meet Pink</a>
@@ -66,7 +77,7 @@
         <a class="btn btn-outline" href="tel:+61735446386">Call 07 3544 6386</a>
       </div>
       <div class="grid3">
-        <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours Monday to Friday, 9:00am to 4:30pm. Calls book Monday to Thursday.</p></section>
+        <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours Monday to Friday, 9:00am to 5:00pm. Calls book Monday to Thursday.</p></section>
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
         <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
@@ -154,7 +165,7 @@
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 13 September 2026.</p>
     </div>
   </footer>
-  <script src="/track.js?v=rt43"></script>
-  <script src="/nav.js?v=rt43"></script>
+  <script src="/track.js?v=rt44"></script>
+  <script src="/nav.js?v=rt44"></script>
 </body>
 </html>

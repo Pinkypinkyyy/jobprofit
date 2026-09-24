@@ -22,6 +22,27 @@
     });
   }
 
+  // Services dropdown: hover opens it on a computer; the arrow button opens it
+  // for touch and keyboard. On phones the CSS shows the list inside the menu.
+  var drop = document.querySelector(".navdrop");
+  var tog = drop && drop.querySelector(".navdrop-toggle");
+  function setDrop(open) {
+    if (!drop || !tog) return;
+    drop.classList.toggle("is-open", open);
+    tog.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  if (drop && tog) {
+    tog.addEventListener("click", function () {
+      setDrop(!drop.classList.contains("is-open"));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setDrop(false);
+    });
+    document.addEventListener("click", function (e) {
+      if (!drop.contains(e.target)) setDrop(false);
+    });
+  }
+
   var copy = {
     hvac: "Air con and refrigeration. Quoted hours versus hours on the job.",
     electrical: "Electrical. Hours on the tools versus the quote.",
