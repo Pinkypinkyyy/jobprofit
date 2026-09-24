@@ -6,7 +6,7 @@ from shared import (
     MSBOOK,
     ORIGIN,
     cash_chart,
-    enquiry_form,
+    short_enquiry_form,
     hours_check,
     faq_node,
     footer,
@@ -779,7 +779,7 @@ def book():
     <div class="wrap book-wide">
       <span class="eyebrow">Book</span>
       <h1>Book a 15‑minute call</h1>
-      <p class="lead">Talk to an accountant and registered tax agent. Pick a time first; the questions can wait.</p>
+      <p class="lead">Talk to an accountant and registered tax agent. Pick a time, then answer a few quick questions about the business. That is all we need before the call.</p>
       <section class="pick-time" id="pick-time">
         <div class="cta">
           <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
@@ -787,9 +787,6 @@ def book():
         </div>
 {trust_line()}
       </section>
-      <h2>After you book: tell us a bit more</h2>
-      <p>Optional. Revenue, staff, what is hurting, where you want the business in 12 months. Use the same email as your booking and we read it before the call.</p>
-{enquiry_form("book")}
       <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
     </div>
   </main>
@@ -825,7 +822,7 @@ def contact():
         <h2>Send a short message instead.</h2>
         <p class="sec-note">Not everyone wants to ring. Six fields. It goes to the same mailbox.</p>
       </div>
-{enquiry_form("contact", short=True, next_page="/contact.html")}
+{short_enquiry_form("contact", "/contact.html")}
     </div>
   </main>
 {footer()}"""
