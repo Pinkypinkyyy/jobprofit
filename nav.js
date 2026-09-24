@@ -254,7 +254,7 @@
             .join("\n");
           window.location.href =
             "mailto:admin@pinktax.com.au?subject=" +
-            encodeURIComponent("Service Profit intake") +
+            encodeURIComponent(data._subject || "Service Profit enquiry") +
             "&body=" +
             encodeURIComponent(body);
         })

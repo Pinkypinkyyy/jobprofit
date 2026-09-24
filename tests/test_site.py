@@ -40,19 +40,15 @@ def test_book_uses_service_profit_calendar():
     assert HOSP not in text
     assert "Open full-screen booking" in text
     assert "not taking new times" not in text
-    assert 'id="enquiryForm"' in text
-    assert 'name="business"' in text
-    assert 'name="trade"' in text
-    assert 'name="revenue"' in text
-    assert 'name="staff"' in text
-    assert 'name="hurt"' in text
-    assert 'name="position"' in text
-    assert 'name="vision"' in text
-    assert "Annual revenue" in text
-    assert "Where is the business now" in text
-    assert "Where do you want it in 12 months" in text
-    # HB 24 Sep 2026: pick a time first; the questions come after and are optional.
-    assert text.find('id="pick-time"') < text.find('id="enquiryForm"')
+    assert 'id="pick-time"' in text
+    # HB 25 Sep 2026: the Bookings calendar already asks name, email, phone, work,
+    # revenue, staff and the three questions. A second form on this page made
+    # people answer everything twice, so the page carries no form of its own.
+    assert 'id="enquiryForm"' not in text
+    assert "<form" not in text
+    for field in ('name="trade"', 'name="revenue"', 'name="staff"', 'name="hurt"', 'name="position"', 'name="vision"'):
+        assert field not in text, field
+    assert "After you book" not in text
     assert "sell-grid" not in text
     assert "book-steps" not in text
     assert "You quoted 6 hours. You did 9." not in text
@@ -286,7 +282,7 @@ def test_sitemap_has_real_pages_not_fake_trades():
 
 
 def test_forms_have_captcha_and_honeypot():
-    for page in ("book.html", "contact.html"):
+    for page in ("contact.html",):
         html = (ROOT / page).read_text(encoding="utf-8")
         assert 'name="_captcha" value="true"' in html, page
         assert 'name="_captcha" value="false"' not in html, page
@@ -353,15 +349,6 @@ def test_no_em_dashes_in_our_own_copy():
         for line in page.read_text(encoding="utf-8").splitlines():
             if "\u2014" in line:
                 assert quote in line, f"{page.name}: {line.strip()[:90]}"
-
-
-def test_booking_form_does_not_demand_three_essays():
-    import re
-    html = (ROOT / "book.html").read_text(encoding="utf-8")
-    required = re.findall(r"<(?:input|select|textarea)[^>]*\brequired\b", html)
-    assert len(required) <= 8, f"{len(required)} required fields on the booking form"
-    req_textareas = re.findall(r"<textarea[^>]*\brequired\b", html)
-    assert len(req_textareas) <= 1, f"{len(req_textareas)} required essay boxes"
 
 
 def test_live_reviews_are_parsed_filtered_and_escaped():
@@ -461,7 +448,7 @@ def test_form_endpoint_is_defined_in_one_place():
     # nav.js must not carry its own copy of the endpoint.
     assert "formsubmit.co" not in js
     assert "data-ajax" in js
-    for page in ("book.html", "contact.html"):
+    for page in ("contact.html",):
         html = (ROOT / page).read_text(encoding="utf-8")
         assert f'action="{FORM_ENDPOINT}"' in html
         assert f'data-ajax="{FORM_AJAX_ENDPOINT}"' in html
