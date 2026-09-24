@@ -674,6 +674,10 @@ def bookkeeping_xero():
         "The bank reconciled in Xero, supplier bills matched and your job software feeding in cleanly. So you can see which jobs paid.",
         """        <h2>Bookkeeping that ends in a reconciled bank</h2>
         <p>Every bank line matched to an invoice, a bill or a pay run. Supplier statements checked against the bills. Card receipts attached. The test is simple: the bank in Xero agrees with the bank.</p>
+        <h2 id="checked">Two people check the books before anything is lodged</h2>
+        <p>Before a BAS, a monthly report or a tax return goes out, the period is checked twice. One person works through it. A second person, who did not do that work, reviews it in live Xero and signs it off the same day. Anything they disagree on goes back and is fixed in Xero, not explained away.</p>
+        <ul><li>The bank in Xero agrees to your bank statement, to the cent</li><li>Wholesaler and subcontractor accounts agree to their own statements, or each difference is named</li><li>Every pay run is traced through STP, the bank and the super fund</li><li>The BAS figures agree to the file and to what was lodged before</li><li>Opening balances are checked against last year's finished figures, so an old period cannot quietly change</li></ul>
+        <p>Once a BAS is lodged, that period is locked in Xero. Changing a locked period is the principal's decision, made in writing. The principal signs off every BAS and return before it is lodged.</p>
         <h2 id="xero">Xero setup for a trade business</h2>
         <p>A chart of accounts that splits labour, materials and subcontractors. Bank feeds on. Tracking by trade or crew where it helps. Your job software connected so invoices land once, not twice. If you are moving from another accounting system, the opening balances are mapped before anything is switched off.</p>
         <h2>Your job software feeds Xero. We work in Xero.</h2>
