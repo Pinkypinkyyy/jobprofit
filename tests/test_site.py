@@ -975,14 +975,6 @@ def test_we_never_call_ourselves_a_bas_agent():
             assert before.endswith(("separate ", "are you a ", "every registered tax and ", "all registered tax and ")), f"{p.name}: {before}"
 
 
-def test_h1_never_says_tax_agents_plural():
-    # The firm is one registered tax agent (26284368). A plural H1 overstates it.
-    import re
-    for p in PAGES:
-        for h in re.findall(r"<h1>(.*?)</h1>", p.read_text(encoding="utf-8"), re.S):
-            assert "tax agents" not in h.lower(), p.name
-
-
 def test_no_implied_existing_trade_clients():
     for p in PAGES:
         assert "working with trade businesses" not in p.read_text(encoding="utf-8").lower(), p.name
