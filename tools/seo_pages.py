@@ -523,10 +523,10 @@ CATCH_UP = (
 def services():
     return service_page(
         "services",
-        "Accountants Brendale | Tax, BAS, payroll, bookkeeping",
+        "Accounting services for trades | Tax, BAS, payroll, Xero",
         "Accountant, tax agent, BAS, bookkeeping, payroll and Xero setup for air con, electrical and construction businesses. Pink Accounting, Brendale, Queensland.",
         "Services",
-        "Accountants, tax agents and bookkeepers in Brendale",
+        "Accounting, tax and bookkeeping services for trades",
         "Tax, BAS, bookkeeping, payroll and the numbers that show which jobs paid, held in one file by one firm. Pink Accounting, Brendale. Registered Tax Agent 26284368. Queensland.",
         """        <h2>Business accounting and job profit</h2>
         <p>The core of Service Profit. Every Monday: hours quoted against hours on the tools, and how much of the bank is yours once GST, PAYG, super and wages come out. <a href="/system.html">See what lands on Monday</a>.</p>
@@ -545,7 +545,7 @@ def services():
         <h2>Business advisory</h2>
         <p>Advice here means the numbers behind a real decision: can you afford another technician, can you draw more, should you hold cash for the tax. <a href="/can-i-afford-another-technician/">Can I afford another technician?</a> A written forecast sits in the Ready to Scale plan.</p>
         <h2>Where we are</h2>
-        <p>Shop 15A, 18-22 Kremzow Rd, Brendale. Working with trade businesses across Queensland. <a href="/accountant-brendale/">Accountant in Brendale</a>.</p>""",
+        <p>Shop 15A, 18-22 Kremzow Rd, Brendale. For trade businesses across Queensland. <a href="/accountant-brendale/">Accountant in Brendale</a>.</p>""",
         [
             (
                 "Do I have to take all of these?",
@@ -568,11 +568,11 @@ def tax_agent():
         """        <h2>Income tax returns for the business</h2>
         <p>Whatever structure the business trades through, the return is built from a reconciled file, not a box of receipts in July. One trading entity is included unless the letter says otherwise.</p>
         <h2 id="planning">Tax planning before 30 June</h2>
-        <p>A good year on the tools can turn into a hard August. We look at the year to date in May, while there is still time to act: what the tax is likely to be, what has already been set aside, and what a purchase would or would not change. A ute bought in June to save tax is still a ute you have to pay for.</p>
+        <p>A good year on the tools can turn into a hard August. We look at the year to date in May, while there is still time to act: what the tax is likely to be, what has already been set aside, and what a purchase would or would not change. A ute bought in June to save tax is still a ute you have to pay for. The letter says whether planning sits inside your plan.</p>
         <h2>Utes, vans and FBT</h2>
-        <p>Work vehicles, phones and tools sit across income tax and FBT. Some utes are exempt from FBT when private use is minor and irregular. Some are not. We read the log and the use, not the badge.</p>
+        <p>Work vehicles, phones and tools sit across income tax and FBT. Some utes are exempt from FBT when private use is limited to travel between home and work and other minor, infrequent and irregular trips. Some are not. We read the log and the use, not the badge.</p>
         <h2>TPAR, if you pay subcontractors</h2>
-        <p>If the business is mainly building and construction and pays contractors for that work, the ATO expects a taxable payments annual report by 28 August. Electrical, air con and fit-out businesses often fall in. We check whether yours does and lodge it with the rest.</p>
+        <p>If building and construction services make up 10% or more of your GST turnover and you pay contractors for that work, the ATO expects a taxable payments annual report by 28 August. Electrical, air con and fit-out businesses often fall in. We check whether yours does, and the letter says whether lodging it is inside your plan.</p>
         <h2>Who this page is for</h2>
         <p>Trade businesses in Queensland that want the return lodged by the same people who hold the books. If you only need the annual return, that is Compliance at $550 + GST a month, and we will say so on the call.</p>""",
         [
@@ -627,7 +627,7 @@ def payroll():
         "Payroll services in Brendale: pay runs, STP and super",
         "Pay runs, Single Touch Payroll and super, done in Xero by a registered tax agent. Since 1 July 2026 super goes with every pay, so payroll and cash have to be watched together. Queensland.",
         """        <h2>Payday Super changed the rhythm</h2>
-        <p>From 1 July 2026 employers pay super guarantee with each pay, at 12% of qualifying earnings, and the fund has to receive it within seven business days. The quarterly catch-up is gone, and so is the Small Business Superannuation Clearing House, which closed on 1 July 2026. We run super on the pay cycle so it lands on time.</p>
+        <p>From 1 July 2026 employers pay super guarantee with each pay, at 12% of qualifying earnings, and the fund has to receive it within seven business days. Quarterly super payments are gone, and so is the Small Business Superannuation Clearing House, which closed on 1 July 2026. We run super on the pay cycle so it lands on time.</p>
         <h2>Single Touch Payroll</h2>
         <p>Every pay run is reported to the ATO through Single Touch Payroll from Xero. End of year finalisation is part of the job, so your people's income statements are ready when they need them.</p>
         <h2>Apprentices, staff and subcontractors</h2>
@@ -656,7 +656,7 @@ def bookkeeping_xero():
         "Bookkeeping and Xero setup for air con, electrical and construction businesses in Queensland. Bank reconciled, job software feeding Xero. Brendale.",
         "Bookkeeping and Xero",
         "Bookkeeper in Brendale: bookkeeping and Xero setup",
-        "Bookkeeping by people who know what the numbers are for. The bank reconciled in Xero, supplier bills matched and your job software feeding in cleanly, so the file can say which jobs paid. Brendale, Queensland.",
+        "The bank reconciled in Xero, supplier bills matched and your job software feeding in cleanly, so the file can say which jobs paid. Brendale, Queensland.",
         """        <h2>Bookkeeping that ends in a reconciled bank</h2>
         <p>Every bank line matched to an invoice, a bill or a pay run. Supplier statements checked against the bills. Card receipts attached. The test is simple: the bank in Xero agrees with the bank.</p>
         <h2 id="xero">Xero setup for a trade business</h2>
@@ -687,11 +687,11 @@ def brendale():
         "Accountant and registered tax agent at Shop 15A, 18-22 Kremzow Rd, Brendale, for air con, electrical and construction businesses across Queensland.",
         "Brendale",
         "Accountant in Brendale",
-        "Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. A registered tax agent in Moreton Bay, working with trade businesses across Queensland.",
+        "Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. A registered tax agent in Moreton Bay, for trade businesses across Queensland.",
         """        <h2>Come in, or stay on the job</h2>
         <p>Phone and office hours are Monday to Thursday, 9:00am to 4:30pm. Friday and Saturday by appointment. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
         <h2>Moreton Bay, north Brisbane and the rest of Queensland</h2>
-        <p>Strathpine, Lawnton, Bray Park, Albany Creek, Warner, Petrie, Kallangur and North Lakes are close enough to drop in. Further out, the work runs the same way by phone and Xero. Service Profit takes trade businesses anywhere in Queensland.</p>
+        <p>Strathpine, Lawnton, Bray Park, Albany Creek, Warner, Petrie, Kallangur and North Lakes are close enough to meet at the office. Further out, the work runs the same way by phone and Xero. Service Profit takes trade businesses anywhere in Queensland.</p>
         <h2>What we do from Brendale</h2>
         <p><a href="/tax-agent-for-trades/">Tax returns and tax planning</a> · <a href="/bas-and-gst-for-trades/">BAS and GST</a> · <a href="/bookkeeping-and-xero-for-trades/">Bookkeeping and Xero setup</a> · <a href="/payroll-for-trades/">Payroll and super</a> · <a href="/system.html">Job profit every Monday</a> · <a href="/services/">All services</a></p>
         <h2>Who this page is for</h2>

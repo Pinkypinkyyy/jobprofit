@@ -211,13 +211,15 @@ def service_node(name, url, description):
         "name": name,
         "url": url,
         "description": description,
-        "provider": {"@id": f"{ORIGIN}/#business"},
+        # Named inline: the #business node is only on the home page.
+        "provider": {"@type": "AccountingService", "@id": f"{ORIGIN}/#business", "name": "Service Profit, Pink Accounting", "telephone": "+61735446386", "address": business_node()["address"]},
         "areaServed": {"@type": "State", "name": "Queensland"},
         "serviceType": "Accounting",
     }
 
 
 def faq_node(pairs):
+    import html
     return {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -225,7 +227,7 @@ def faq_node(pairs):
             {
                 "@type": "Question",
                 "name": q,
-                "acceptedAnswer": {"@type": "Answer", "text": a},
+                "acceptedAnswer": {"@type": "Answer", "text": html.unescape(a)},
             }
             for q, a in pairs
         ],

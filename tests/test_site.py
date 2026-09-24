@@ -922,7 +922,7 @@ def test_the_trade_photos_keep_an_ungraded_original():
 def test_service_pages_carry_the_keyword_in_the_h1():
     import re
     pages = {
-        "services": "accountants",
+        "services": "accounting",
         "tax-agent-for-trades": "tax agent",
         "bas-and-gst-for-trades": "bas and gst",
         "payroll-for-trades": "payroll",
@@ -972,7 +972,20 @@ def test_we_never_call_ourselves_a_bas_agent():
         assert "registered bas agent" not in text, p.name
         for m in re.finditer(r"bas agent", text):
             before = text[max(0, m.start() - 40):m.start()]
-            assert before.endswith(("separate ", "are you a ", "tax and ")), f"{p.name}: {before}"
+            assert before.endswith(("separate ", "are you a ", "every registered tax and ", "all registered tax and ")), f"{p.name}: {before}"
+
+
+def test_h1_never_says_tax_agents_plural():
+    # The firm is one registered tax agent (26284368). A plural H1 overstates it.
+    import re
+    for p in PAGES:
+        for h in re.findall(r"<h1>(.*?)</h1>", p.read_text(encoding="utf-8"), re.S):
+            assert "tax agents" not in h.lower(), p.name
+
+
+def test_no_implied_existing_trade_clients():
+    for p in PAGES:
+        assert "working with trade businesses" not in p.read_text(encoding="utf-8").lower(), p.name
 
 
 def test_404_is_not_indexed():

@@ -266,7 +266,7 @@ def picture(stem, alt, extra="", lazy=False, sizes="(max-width:940px) 100vw, 55v
 def index():
     h = head(
         "Accountants Brendale | Tax, BAS and bookkeeping for trades",
-        "Quoted hours versus hours on the tools. Cash that is yours versus GST, PAYG, super and wages. Tax and BAS held. Book 15 minutes. Brendale, Queensland.",
+        "Accountants and registered tax agent in Brendale for air con, electrical and construction businesses. Tax, BAS, bookkeeping and payroll. Queensland.",
         "/",
         extra=jsonld(business_node()) + jsonld(website_node()),
     )
@@ -283,7 +283,7 @@ def index():
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="kicker">Pink Accounting. Air con, electrical and construction businesses.</p>
-          <h1>Accountants and tax agents in Brendale</h1>
+          <h1>Accountants and tax agent in Brendale</h1>
           <p class="hook">You quoted 6 hours. You did 9.</p>
           <p class="lead">Then you quoted 6 again. Every Monday you see the hours you quoted against the hours you worked, and how much of the bank is actually yours. Tax and BAS held. You stay on the tools. Air con, electrical, construction services. Queensland.</p>
           <div class="cta">

@@ -106,7 +106,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 /* The H1 carries the search words. The hook sits right under it, bold, in pink. */
 .hook{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,2.4vw,1.85rem);line-height:1.2;letter-spacing:-.02em;color:var(--accent-deep);margin:0 0 6px;text-wrap:balance}
 .hero-copy .hook{color:var(--accent);margin-top:14px}
-.hero-copy h1{max-width:16ch}
 .page .cta + .prose{margin-top:40px}
 .hero h1{font-size:clamp(2rem,4.4vw,3.3rem);max-width:18ch}
 .lead{color:var(--soft);font-size:1.08rem;max-width:36em;margin:20px 0 0;text-wrap:pretty}
@@ -508,7 +507,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .hero-copy{display:flex;flex-direction:column;justify-content:center;padding-bottom:12px}
 .chart-hours{align-self:end}
 .hero-copy .kicker{color:rgba(255,255,255,.7)}
-.hero-copy h1{font-size:clamp(2.35rem,5vw,4.1rem);font-weight:800;letter-spacing:-.035em;max-width:14ch;color:#fff}
+.hero-copy h1{font-size:clamp(2.35rem,5vw,4.1rem);font-weight:800;letter-spacing:-.035em;max-width:16ch;color:#fff}
 .hero-copy .lead{color:rgba(255,255,255,.86);font-size:1.12rem;max-width:34em}
 .hero-copy .trust{color:rgba(255,255,255,.78)}
 .hero-copy .stars{color:#fff}
