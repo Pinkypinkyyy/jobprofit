@@ -564,17 +564,16 @@ def test_homepage_carries_the_no_conditions_statement():
     assert "/disclosure" in html
 
 
-def test_trading_hours_match_the_bookings_calendar():
-    """Bookings has Friday closed. The page copy and the schema must not
-    advertise a day nobody can book."""
+def test_office_hours_come_from_identity_and_bookings_stay_mon_thu():
+    """HB 24 Sep 2026: office hours are Mon-Fri for the whole firm. The trades
+    booking calendar is Mon-Thu; that is when calls book, not office hours."""
+    import json
+    ident = json.loads((ROOT / "identity.json").read_text(encoding="utf-8"))
     html = (ROOT / "contact.html").read_text(encoding="utf-8")
-    assert "Mon-Thu" in html
-    assert "Mon-Fri" not in html
-    # Friday is by appointment, so it may appear in the copy but must never
-    # be advertised as a regular open day.
-    assert "Friday and Saturday by appointment" in html
-    assert '"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"]' in html
-    assert "Friday" not in html.split('"openingHoursSpecification"')[1][:200]
+    assert ident["office"]["hours"]["display"] in html
+    assert "Calls book Monday to Thursday" in html
+    days = json.dumps(ident["office"]["hours"]["days"], separators=(",", ":"))
+    assert f'"dayOfWeek":{days}' in html
 
 
 def test_the_weekly_sample_figures_actually_add_up():
@@ -982,6 +981,91 @@ def test_no_implied_existing_trade_clients():
 
 def test_404_is_not_indexed():
     assert 'content="noindex,follow"' in (ROOT / "404.html").read_text(encoding="utf-8")
+
+
+def _identity():
+    import json
+    return json.loads((ROOT / "identity.json").read_text(encoding="utf-8"))
+
+
+def _ld_blocks(html):
+    import json, re
+    return [json.loads(b) for b in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)]
+
+
+def test_identity_file_is_the_firm_canon():
+    ident = _identity()
+    assert ident["public_name"] == "Pink Accounting"
+    assert ident["google_profile"]["count_allowed"] == 1
+
+
+def test_schema_is_one_business_with_service_profit_as_a_department():
+    """One @id for the firm on both sites. Service Profit never carries its own
+    address or phone, or Google reads a second business at Shop 15A."""
+    ident = _identity()
+    org_id = ident["schema"]["organization_id"]
+    for p in PAGES:
+        for node in _ld_blocks(p.read_text(encoding="utf-8")):
+            if node.get("@id") == org_id and "address" in node:
+                assert node["name"] == ident["public_name"], p.name
+                assert node["telephone"] == ident["office"]["phone_e164"], p.name
+                assert node["address"]["streetAddress"] == ident["office"]["street"], p.name
+                assert node["openingHoursSpecification"]["dayOfWeek"] == ident["office"]["hours"]["days"], p.name
+                assert ident["google_profile"]["maps_url"] in node["sameAs"], p.name
+                dept = node["department"][0]
+                assert dept["name"] == "Service Profit"
+                assert "address" not in dept and "telephone" not in dept
+            # No node other than the firm may claim an address.
+            if "address" in node and node.get("@type") != "PostalAddress":
+                assert node.get("@id") == org_id, f"{p.name}: second business node {node.get('@id')}"
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert f'"@id":"{org_id}"' in home
+
+
+def test_public_name_is_pink_accounting_only():
+    import html as h, re
+    ident = _identity()
+    legal = ident["legal"]["entity"]            # "... Pty Ltd"
+    stem = legal.replace(" Pty Ltd", "")
+    for p in PAGES + [ROOT / "llms.txt"]:
+        text = h.unescape(p.read_text(encoding="utf-8"))
+        for banned in ident["banned_public_names"]:
+            assert banned not in text, f"{p.name}: {banned}"
+        for m in re.finditer(re.escape(stem), text):
+            assert text[m.end():m.end() + 8] == " Pty Ltd", f"{p.name}: full name used as a business name"
+
+
+def test_every_page_links_to_the_other_service_line_once():
+    ident = _identity()["cross_links"]["on_trades_site"]
+    for p in PAGES:
+        html = p.read_text(encoding="utf-8")
+        assert html.count('data-identity="cross-link"') == 1, p.name
+        assert f'href="{ident["href"]}"' in html, p.name
+
+
+def test_nap_on_pages_matches_identity():
+    o = _identity()["office"]
+    for p in PAGES:
+        html = p.read_text(encoding="utf-8")
+        assert o["street"] in html and o["postcode"] in html, p.name
+        assert "tel:" + o["phone_e164"] in html, p.name
+
+
+def test_review_fetcher_only_accepts_the_pink_accounting_profile():
+    src = (ROOT / "tools" / "fetch_reviews.py").read_text(encoding="utf-8")
+    assert 'CID = _ID["google_profile"]["cid"]' in src
+    assert "is not the Pink Accounting profile" in src
+
+
+def test_identity_watch_passes_our_pages_and_catches_drift():
+    sys.path.insert(0, str(ROOT / "tools"))
+    import identity_watch as w
+    for page in ("index.html", "contact.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert w.check_page(html, page) == [], page
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert w.check_page(html.replace('"name":"Pink Accounting"', '"name":"Pink Tax Solutions"'), "x")
+    assert w.check_page(html.replace('data-identity="cross-link"', 'data-x="y"'), "x")
 
 
 # Must stay at the very bottom: CI runs this file as a script, and any test

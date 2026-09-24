@@ -25,8 +25,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "google_reviews.json"
 
-BUSINESS = "Pink Accounting & Tax Solutions"
-ADDRESS = "Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500"
+_ID = json.loads((ROOT / "identity.json").read_text(encoding="utf-8"))
+BUSINESS = _ID["public_name"]
+ADDRESS = _ID["office"]["one_line"]
+CID = _ID["google_profile"]["cid"]
 DETAIL_FIELDS = "rating,userRatingCount,googleMapsUri,reviews"
 TIMEOUT = 30
 
@@ -114,6 +116,11 @@ def main():
         detail = _get(url, key, DETAIL_FIELDS)
     except urllib.error.HTTPError as e:
         print(f"Places API returned {e.code}: {e.read().decode('utf-8')[:400]}", file=sys.stderr)
+        return 1
+
+    # Fail closed: only the one Pink Accounting profile may feed this site.
+    if f"cid={CID}" not in (detail.get("googleMapsUri") or ""):
+        print(f"Place {place_id} is not the Pink Accounting profile (cid {CID}). Refusing.", file=sys.stderr)
         return 1
 
     data = normalise(detail)

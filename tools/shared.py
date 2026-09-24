@@ -1,9 +1,16 @@
 """Shared HTML chrome for the Service Profit public site."""
 
+import json
+import pathlib
+
+# HB 24 Sep 2026: every business fact comes from identity.json, generated from
+# the firm's canonical file. Never hardcode the name, address, phone or hours.
+ID = json.loads((pathlib.Path(__file__).resolve().parents[1] / "identity.json").read_text(encoding="utf-8"))
+
 ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "/book.html"
 MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
-GBP = "https://www.google.com/maps?cid=17544456102082616748"
+GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
 ASSET = "rt43"
@@ -112,18 +119,58 @@ def jsonld(obj):
 
 
 def business_node():
+    """The one firm. Same @id as pinktax.com.au, so Google sees one business
+    with two service lines, not two businesses at Shop 15A."""
+    o = ID["office"]
     return {
         "@context": "https://schema.org",
-        "@type": "AccountingService",
-        "@id": f"{ORIGIN}/#business",
-        "name": "Service Profit",
-        "alternateName": "Pink Accounting",
-        "url": f"{ORIGIN}/",
-        "telephone": "+61735446386",
-        "email": "admin@pinktax.com.au",
-        "image": f"{ORIGIN}/assets/og.png",
+        "@type": ID["schema"]["type"],
+        "@id": ID["schema"]["organization_id"],
+        "name": ID["public_name"],
+        "legalName": ID["legal"]["entity"],
+        "url": ID["service_lines"]["hospitality"]["site"],
+        "telephone": o["phone_e164"],
+        "email": o["email"],
         "logo": f"{ORIGIN}/assets/logo.png",
+        "image": f"{ORIGIN}/assets/og.png",
+        "address": postal_address(),
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": o["hours"]["days"],
+            "opens": o["hours"]["opens"],
+            "closes": o["hours"]["closes"],
+        },
+        "founder": {"@type": "Person", "name": "Huong Bui"},
+        "taxID": ID["legal"]["abn"].replace(" ", ""),
+        "identifier": ID["legal"]["tax_agent_number"],
+        "sameAs": [GBP],
+        "department": [service_profit_node()],
+    }
+
+
+def postal_address():
+    o = ID["office"]
+    return {
+        "@type": "PostalAddress",
+        "streetAddress": o["street"],
+        "addressLocality": o["locality"],
+        "addressRegion": o["region"],
+        "postalCode": o["postcode"],
+        "addressCountry": o["country"],
+    }
+
+
+def service_profit_node():
+    """The trades service line. Deliberately no address or phone of its own:
+    it is a department of the firm, not a second business."""
+    return {
+        "@type": "AccountingService",
+        "@id": f"{ORIGIN}/#service-profit",
+        "name": ID["service_lines"]["trades"]["service_name"],
+        "url": f"{ORIGIN}/",
+        "parentOrganization": {"@id": ID["schema"]["organization_id"]},
         "priceRange": "$$",
+        "sameAs": [FB, LI],
         "knowsAbout": [
             "HVAC accounting",
             "air conditioning accountant",
@@ -146,43 +193,11 @@ def business_node():
             "@type": "OfferCatalog",
             "name": "Service Profit plans",
             "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "name": "Job Profit",
-                    "price": "1650.00",
-                    "priceCurrency": "AUD",
-                    "url": f"{ORIGIN}/pricing.html#level-job",
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Weekly Visibility",
-                    "price": "2650.00",
-                    "priceCurrency": "AUD",
-                    "url": f"{ORIGIN}/pricing.html#level-weekly",
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Ready to Scale",
-                    "price": "3500.00",
-                    "priceCurrency": "AUD",
-                    "url": f"{ORIGIN}/pricing.html#level-scale",
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Compliance",
-                    "price": "550.00",
-                    "priceCurrency": "AUD",
-                    "url": f"{ORIGIN}/pricing.html#level-compliance",
-                },
+                {"@type": "Offer", "name": "Job Profit", "price": "1650.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-job"},
+                {"@type": "Offer", "name": "Weekly Visibility", "price": "2650.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-weekly"},
+                {"@type": "Offer", "name": "Ready to Scale", "price": "3500.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-scale"},
+                {"@type": "Offer", "name": "Compliance", "price": "550.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-compliance"},
             ],
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Shop 15A, 18-22 Kremzow Rd",
-            "addressLocality": "Brendale",
-            "addressRegion": "QLD",
-            "postalCode": "4500",
-            "addressCountry": "AU",
         },
         "areaServed": [
             {"@type": "Place", "name": "Brendale"},
@@ -190,17 +205,6 @@ def business_node():
             {"@type": "City", "name": "Brisbane"},
             {"@type": "State", "name": "Queensland"},
         ],
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            # Bookings has Friday closed, so the page and the schema say the same.
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-            "opens": "09:00",
-            "closes": "16:30",
-        },
-        "founder": {"@type": "Person", "name": "Huong Bui"},
-        "taxID": "51682301891",
-        "identifier": "26284368",
-        "sameAs": [GBP, FB, LI],
     }
 
 
@@ -212,7 +216,7 @@ def service_node(name, url, description):
         "url": url,
         "description": description,
         # Named inline: the #business node is only on the home page.
-        "provider": {"@type": "AccountingService", "@id": f"{ORIGIN}/#business", "name": "Service Profit, Pink Accounting", "telephone": "+61735446386", "address": business_node()["address"]},
+        "provider": {"@type": "AccountingService", "@id": ID["schema"]["organization_id"], "name": ID["public_name"], "telephone": ID["office"]["phone_e164"], "address": postal_address()},
         "areaServed": {"@type": "State", "name": "Queensland"},
         "serviceType": "Accounting",
     }
@@ -235,10 +239,8 @@ def faq_node(pairs):
 
 
 def local_business_node():
-    node = business_node()
-    node["@type"] = "AccountingService"
-    node["@id"] = f"{ORIGIN}/contact.html#local"
-    return node
+    # One business, one @id. A second id here read as a second business.
+    return business_node()
 
 
 def website_node():
@@ -247,7 +249,7 @@ def website_node():
         "@type": "WebSite",
         "name": "Service Profit",
         "url": f"{ORIGIN}/",
-        "publisher": {"@id": f"{ORIGIN}/#business"},
+        "publisher": {"@id": ID["schema"]["organization_id"]},
         "inLanguage": "en-AU",
     }
 
@@ -259,7 +261,7 @@ def person_node():
         "name": "Huong Bui",
         "alternateName": "Pink",
         "jobTitle": "Registered Tax Agent",
-        "worksFor": {"@id": f"{ORIGIN}/#business"},
+        "worksFor": {"@id": ID["schema"]["organization_id"]},
         "alumniOf": "Griffith University",
         "identifier": "26284368",
         "url": f"{ORIGIN}/why.html",
@@ -330,9 +332,10 @@ def footer():
           <a href="/rights.html">Your rights</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms</a>
-          <p class="addr" style="margin-top:12px;line-height:1.8">Shop 15A, 18-22 Kremzow Rd<br>Brendale QLD 4500</p>
+          <p class="addr" style="margin-top:12px;line-height:1.8">{ID["office"]["street"]}<br>{ID["office"]["locality"]} {ID["office"]["region"]} {ID["office"]["postcode"]}</p>
         </div>
       </div>
+      <p class="sister-line" data-identity="cross-link">{ID["cross_links"]["on_trades_site"]["text"]} <a href="{ID["cross_links"]["on_trades_site"]["href"]}">{ID["cross_links"]["on_trades_site"]["link_text"]}</a>.</p>
       <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 13 September 2026.</p>
     </div>
   </footer>

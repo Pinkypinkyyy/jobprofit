@@ -1,0 +1,25 @@
+name: Identity drift watch
+
+# HB 24 Sep 2026: Pink Accounting is one business with two service lines.
+# Every morning, check both live sites and the Google profile against
+# identity.json. A red run means something drifted: fix it at the source.
+on:
+  schedule:
+    - cron: "0 21 * * *"   # 7:00am Brisbane
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Live sites and Google profile match identity.json
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+        run: python3 tools/identity_watch.py

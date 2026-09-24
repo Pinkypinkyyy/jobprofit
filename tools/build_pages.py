@@ -15,6 +15,7 @@ from shared import (
     hours_chart,
     jsonld,
     business_node,
+    ID,
     local_business_node,
     nav,
     person_node,
@@ -807,7 +808,7 @@ def contact():
         <a class="btn btn-outline" href="tel:+61735446386">Call 07 3544 6386</a>
       </div>
       <div class="grid3">
-        <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Mon-Thu, 9:00am-4:30pm. Friday and Saturday by appointment.</p></section>
+        <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours {ID["office"]["hours"]["display"]}. Calls book Monday to Thursday.</p></section>
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
         <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>

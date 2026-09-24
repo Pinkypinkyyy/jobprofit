@@ -653,3 +653,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
   .cash-bar{grid-template-columns:1fr 1fr;min-height:0}
   .cash-bar .seg{min-height:44px;border-bottom:1px solid rgba(255,255,255,.12)}
 }
+
+/* One quiet line to the firm's other service line (identity.json cross_links). */
+.foot .sister-line{margin:18px 0 0;font-size:.82rem;color:rgba(255,255,255,.72)}
+.foot .sister-line a{color:#fff;text-decoration:underline}

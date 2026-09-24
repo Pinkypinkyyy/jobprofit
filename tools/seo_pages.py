@@ -2,7 +2,7 @@
 
 import re
 
-from shared import IMG_VERSION, ORIGIN, faq_node, footer, head, jsonld, nav, service_node, webp_srcset
+from shared import ID, IMG_VERSION, ORIGIN, faq_node, footer, head, jsonld, nav, service_node, webp_srcset
 
 STEM_SIZE = {
     "tech-hvac": (838, 1059),
@@ -689,7 +689,7 @@ def brendale():
         "Accountant in Brendale",
         "Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. A registered tax agent in Moreton Bay, for trade businesses across Queensland.",
         """        <h2>Come in, or stay on the job</h2>
-        <p>Phone and office hours are Monday to Thursday, 9:00am to 4:30pm. Friday and Saturday by appointment. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
+        <p>Office hours are {ID["office"]["hours"]["display"]}. Calls book Monday to Thursday. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
         <h2>Moreton Bay, north Brisbane and the rest of Queensland</h2>
         <p>Strathpine, Lawnton, Bray Park, Albany Creek, Warner, Petrie, Kallangur and North Lakes are close enough to meet at the office. Further out, the work runs the same way by phone and Xero. Service Profit takes trade businesses anywhere in Queensland.</p>
         <h2>What we do from Brendale</h2>

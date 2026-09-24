@@ -47,3 +47,20 @@ Reviews are shown with the author name and a link back to the review, which the
 Places API terms require. There is deliberately no `aggregateRating` structured
 data: the reviews are Google's, not ours, and marking up third-party reviews as
 your own rating breaches Google's structured data policy.
+
+## One business, one identity (HB 24 Sep 2026)
+
+Pink Accounting is one business with two service lines. This site is the
+trades line, "Service Profit, a Pink Accounting service". The hospitality line
+is pinktax.com.au.
+
+`identity.json` holds the name, address, phone, hours, Google profile and the
+cross-link wording. It is generated from the firm's canonical file
+(`Pink-Accounting-Automation/scripts/brand/pink-identity.json`) by
+`Invoke-PinkIdentityGuard.py --sync`. Never edit it here, and never hardcode
+those details in `tools/`.
+
+- Tests fail if the schema, footer, hours or name drift from `identity.json`.
+- `tools/identity_watch.py` runs every morning in GitHub Actions and checks both
+  live sites and the Google profile. A red run means something changed outside
+  the code: fix it at the source.
