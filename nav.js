@@ -130,6 +130,22 @@
     });
   });
 
+  // Same events as pinktax.com.au, same GA4 property, so Google Ads counts a
+  // trade owner who books or rings off an ad. Bookings finish on Microsoft,
+  // so the click onto the calendar is the last event we can see.
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || typeof gtag !== "function") return;
+    var href = a.getAttribute("href") || "";
+    try {
+      if (href.indexOf("outlook.office.com/book/") !== -1) {
+        gtag("event", "book_click", { lead_source: "outlook_booking", link_url: href });
+      } else if (href.indexOf("tel:") === 0) {
+        gtag("event", "phone_click", { lead_source: "site_phone_link" });
+      }
+    } catch (err) {}
+  });
+
   var hoursForm = document.getElementById("hoursCheck");
   var hoursOut = document.getElementById("hoursResult");
   var hoursLine = document.getElementById("hoursResultLine");
