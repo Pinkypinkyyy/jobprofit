@@ -85,7 +85,7 @@ if errs:
     print("\n".join(errs)); sys.exit(1)
 
 H = ["Campaign", "Campaign type", "Campaign status", "Budget", "Budget type", "Bid strategy type",
-     "Networks", "Languages", "Final URL suffix", "Ad group", "Ad group status", "Keyword",
+     "Networks", "Languages", "EU political ads", "Final URL suffix", "Ad group", "Ad group status", "Keyword",
      "Criterion type", "Ad type", "Status", "Final URL", "Path 1", "Path 2"] + \
     [f"Headline {i}" for i in range(1, 16)] + [f"Description {i}" for i in range(1, 5)]
 rows = []
@@ -93,10 +93,11 @@ def row(**k): r = dict.fromkeys(H, ""); r.update(k); rows.append(r)
 
 row(**{"Campaign": C, "Campaign type": "Search", "Campaign status": "Paused", "Budget": "14.29",
        "Budget type": "Daily", "Bid strategy type": "Maximize clicks", "Networks": "Google search",
-       "Languages": "en",
+       "Languages": "en", "EU political ads": "No",
        "Final URL suffix": "utm_source=google&utm_medium=cpc&utm_campaign=sp-qld-trades&utm_content={creative}"})
 for k in CAMPAIGN_NEG:
-    row(**{"Campaign": C, "Keyword": k, "Criterion type": "Campaign negative broad"})
+    # No ad group on the row makes it a campaign-level negative.
+    row(**{"Campaign": C, "Keyword": k, "Criterion type": "Negative broad"})
 for g, s in GROUPS.items():
     row(**{"Campaign": C, "Ad group": g, "Ad group status": "Enabled"})
     for k in s["phrase"]: row(**{"Campaign": C, "Ad group": g, "Keyword": k, "Criterion type": "Phrase"})
