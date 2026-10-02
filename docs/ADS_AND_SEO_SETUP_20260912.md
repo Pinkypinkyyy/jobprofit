@@ -204,3 +204,26 @@ Instagram is not created. Do not link a personal account. Ads can still run from
 5. Separate from hospitality campaigns
 
 Spend without those five is waste.
+
+## Build, 2 October 2026
+
+The copy above is superseded by `tools/google_ads_upload.py`, which writes the bulk-upload
+CSV (Google Ads → Tools → Bulk actions → Uploads) and refuses to write if any line breaks a
+Google limit. One Search campaign, **Paused**, $14.29/day ($100/week), Maximise clicks,
+Google Search only, English. Four ad groups, each to its own page: HVAC, Electrical,
+Construction services, Trades general (home page).
+
+Changed from the spec above:
+- Dropped "Not a hospitality firm" and "Not hospitality accounting". Pink has two service
+  lines and hospitality is one of them, so both lines were false.
+- Negative "job" became jobs / careers / vacancy / salary / hiring. "job" blocked
+  "job costing accountant".
+- Every price says "+ GST" and Job Profit is "$1,650", not "from $1,650".
+- "held" became "lodged". Two descriptions were over 90 characters; shortened.
+- Added the Trades general ad group for "tradie accountant" searches.
+
+Conversions: both sites share GA4 `G-8T6SXPNSCW`, already linked to Ads. `generate_lead`
+(form) was counting; `book_click` and `phone_click` were added to `nav.js` on 2 October.
+
+Still to set in the Ads UI after upload: location Queensland (presence only), sitelinks,
+callouts, call asset. Enabling the campaign is Huong's decision.
