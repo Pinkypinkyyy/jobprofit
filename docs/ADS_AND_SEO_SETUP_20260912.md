@@ -225,5 +225,11 @@ Changed from the spec above:
 Conversions: both sites share GA4 `G-8T6SXPNSCW`, already linked to Ads. `generate_lead`
 (form) was counting; `book_click` and `phone_click` were added to `nav.js` on 2 October.
 
-Still to set in the Ads UI after upload: location Queensland (presence only), sitelinks,
-callouts, call asset. Enabling the campaign is Huong's decision.
+Live in Google Ads 3 October 2026 (campaign ID 24309346443, account 760-887-2088), **Paused**.
+Set in the UI after upload, because the upload file cannot carry them: location Queensland
+(presence only; the upload had left it at all countries), language English (upload had left
+all languages), 4 sitelinks (Book a call, Pricing, Air con and HVAC, Electrical), 4 callouts
+(Registered Tax Agent, Brendale Queensland, Job Profit $1,650 + GST, You stay on the jobs),
+call asset 07 3544 6386 shown Mon–Fri 9:00 am–5:00 pm. Ads, sitelinks and callouts sit in
+Google policy review. "Not eligible" on every row only means the campaign is paused.
+Enabling the campaign is Huong's decision.
