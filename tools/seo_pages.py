@@ -543,7 +543,7 @@ def services():
         "Services",
         "Accounting, tax and bookkeeping services for trades",
         "Tax, BAS, bookkeeping, payroll and the numbers that show which jobs paid. One firm, one file, a registered tax agent.",
-        """        <h2>Business accounting and job profit</h2>
+        f"""        <h2>Business accounting and job profit</h2>
         <p>The core of Service Profit. Every Monday: hours quoted against hours on the tools, and how much of the bank is yours once GST, PAYG, super and wages come out. <a href="/system.html">See what lands on Monday</a>.</p>
         <h2>Tax agent and income tax returns</h2>
         <p>The business return, the financial statements behind it and the FBT return, prepared and lodged by a registered tax agent. <a href="/tax-agent-for-trades/">Tax agent for trades</a>.</p>
@@ -560,7 +560,7 @@ def services():
         <h2>Business advisory</h2>
         <p>Advice here means the numbers behind a real decision: can you afford another technician, can you draw more, should you hold cash for the tax. <a href="/can-i-afford-another-technician/">Can I afford another technician?</a> A written forecast sits in the Ready to Scale plan.</p>
         <h2>Where we are</h2>
-        <p>Shop 15A, 18-22 Kremzow Rd, Brendale. For trade businesses across Queensland. <a href="/accountant-brendale/">Accountant in Brendale</a>.</p>""",
+        <p>{ID["office"]["street"]}, Brendale. For trade businesses across Queensland. <a href="/accountant-brendale/">Accountant in Brendale</a>.</p>""",
         [
             (
                 "Do I have to take all of these?",
@@ -703,10 +703,10 @@ def brendale():
     return service_page(
         "accountant-brendale",
         "Accountant Brendale QLD 4500 | Pink Accounting",
-        "Accountant and registered tax agent at Shop 15A, 18-22 Kremzow Rd, Brendale, for air con, electrical and construction businesses across Queensland.",
+        f"Accountant and registered tax agent at {ID['office']['street']}, Brendale, for air con, electrical and construction businesses across Queensland.",
         "Brendale",
         "Accountant in Brendale",
-        'Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Call <a href="tel:+61735446386">(07) 3544 6386</a> or book 15 minutes.',
+        f'{ID["office"]["one_line"]}. Call <a href="tel:+61735446386">(07) 3544 6386</a> or book 15 minutes.',
         f"""        <h2>Come in, or stay on the job</h2>
         <p>Office hours are {ID["office"]["hours"]["display"]}. 15-minute calls run Monday to Thursday. Most of the work does not need you to leave site: the file is in Xero, the first call is 15 minutes, and the Monday numbers come to you.</p>
         <h2>Moreton Bay, north Brisbane and the rest of Queensland</h2>

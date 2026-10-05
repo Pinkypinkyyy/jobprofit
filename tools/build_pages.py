@@ -787,7 +787,7 @@ def book():
         </div>
 {trust_line()}
       </section>
-      <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500 · Registered Tax Agent 26284368</p>
+      <p class="creds">Pink Accounting &amp; Tax Solutions Pty Ltd · {ID["office"]["one_line"]} · Registered Tax Agent 26284368</p>
     </div>
   </main>
 {footer()}"""
@@ -797,7 +797,7 @@ def book():
 def contact():
     h = head(
         "Contact | Service Profit Brendale | Pink Accounting",
-        "Talk to Pink Accounting at Shop 15A, 18-22 Kremzow Rd, Brendale QLD. HVAC, electrical and construction accounting across Brisbane and Queensland. 07 3544 6386.",
+        f"Talk to Pink Accounting at {ID['office']['street']}, Brendale QLD. HVAC, electrical and construction accounting across Brisbane and Queensland. 07 3544 6386.",
         "/contact.html",
         extra=jsonld(local_business_node()),
     )
@@ -815,7 +815,7 @@ def contact():
       <div class="grid3">
         <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours {ID["office"]["hours"]["display"]}. 15-minute calls run Monday to Thursday.</p></section>
         <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
-        <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>Shop 15A, 18-22 Kremzow Rd. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
+        <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>{ID["office"]["street"]}. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
       <div class="sec-head">
         <span class="eyebrow">Or write to us</span>
@@ -857,7 +857,7 @@ def privacy():
         <h2>Complaints</h2>
         <p>Privacy complaints go first to admin@pinktax.com.au or 07 3544 6386. The principal reviews them. If we cannot resolve it, you can contact the Office of the Australian Information Commissioner at oaic.gov.au.</p>
         <h2>How to contact us</h2>
-        <p>admin@pinktax.com.au or 07 3544 6386. Shop 15A, 18–22 Kremzow Rd, Brendale QLD 4500.</p>
+        <p>admin@pinktax.com.au or 07 3544 6386. {ID["office"]["one_line"]}.</p>
       </div>
     </div>
   </main>
@@ -958,7 +958,7 @@ def terms():
         <h2>Liability</h2>
         <p>Liability limited by a scheme approved under Professional Standards Legislation.</p>
         <h2>Contact</h2>
-        <p>admin@pinktax.com.au · 07 3544 6386 · Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500.</p>
+        <p>admin@pinktax.com.au · 07 3544 6386 · {ID["office"]["one_line"]}.</p>
       </div>
     </div>
   </main>
@@ -1037,7 +1037,7 @@ SITEMAP = f"""<?xml version="1.0" encoding="UTF-8"?>
 </urlset>
 """
 
-LLMS_TXT = """# Service Profit
+LLMS_TXT = f"""# Service Profit
 
 > Accounting for air con, electrical and construction services in Queensland. A line of Pink Accounting. Registered Tax Agent 26284368.
 
@@ -1086,7 +1086,7 @@ Construction services means fit-out, maintenance and installation. Not head cont
 - [Terms](https://www.serviceprofit.com.au/terms.html)
 - [Machine-readable fees](https://www.serviceprofit.com.au/pricing.md)
 
-ABN 51 682 301 891. Shop 15A, 18-22 Kremzow Rd, Brendale QLD 4500. Business clients only. Queensland.
+ABN 51 682 301 891. {ID["office"]["one_line"]}. Business clients only. Queensland.
 """
 
 PRICING_MD = """# Service Profit fees

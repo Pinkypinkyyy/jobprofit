@@ -1059,6 +1059,20 @@ def test_nap_on_pages_matches_identity():
         assert "tel:" + o["phone_e164"] in html, p.name
 
 
+def test_address_written_one_way_only():
+    # Google compares the site against the profile and directories character
+    # by character, slash included. Builders read identity.json; nothing types it.
+    import re
+    street = _identity()["office"]["street"]
+    form = re.compile(r"Shop 15A\s*[,/]?\s*18\s*[-–]\s*22 Kremzow R(?:oa)?d")
+    files = list(ROOT.glob("*.html")) + list(ROOT.glob("*/index.html")) + [ROOT / "llms.txt"]
+    for p in files:
+        for m in form.finditer(p.read_text(encoding="utf-8")):
+            assert m.group(0) == street, f"{p.name}: {m.group(0)!r}"
+    for p in (ROOT / "tools").glob("*.py"):
+        assert not form.search(p.read_text(encoding="utf-8")), f"{p.name} hard-codes the address"
+
+
 def test_review_fetcher_only_accepts_the_pink_accounting_profile():
     src = (ROOT / "tools" / "fetch_reviews.py").read_text(encoding="utf-8")
     assert 'CID = _ID["google_profile"]["cid"]' in src
