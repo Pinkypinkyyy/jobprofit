@@ -66,9 +66,9 @@ def write_pretty(root, slug, html):
     name = title.group(1).split(" | ")[0].strip() if title else slug
     html = html.replace("</head>", jsonld(breadcrumbs(slug, name)) + "</head>", 1)
     (root / slug).mkdir(exist_ok=True)
-    (root / f"{slug}.html").write_text(html, encoding="utf-8")
     (root / slug / "index.html").write_text(html, encoding="utf-8")
     print("wrote", slug)
+    return name
 
 
 def air_con():

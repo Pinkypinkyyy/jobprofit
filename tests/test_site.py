@@ -5,8 +5,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from build_pages import REVIEWS_AS_AT, REVIEWS_COUNT  # noqa: E402
 from shared import ASSET, GBP  # noqa: E402
-HTML = list(ROOT.glob("*.html"))
-REDIRECTS = {ROOT / "hvac.html", ROOT / "electrical.html", ROOT / "construction.html"}
+HTML = list(ROOT.glob("*.html")) + list(ROOT.glob("*/index.html"))
+REDIRECTS = {p for p in HTML if 'http-equiv="refresh"' in p.read_text(encoding="utf-8")}
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
 FIELD = "ServiceProfit@pinktax.com.au"
@@ -327,7 +327,7 @@ def test_callback_video_is_phone_sized():
 
 def test_titles_fit_a_search_result():
     import re
-    for page in ROOT.glob("*.html"):
+    for page in HTML:
         html = page.read_text(encoding="utf-8")
         m = re.search(r"<title>(.*?)</title>", html, re.S)
         if not m:
@@ -345,7 +345,7 @@ def test_schema_points_at_the_google_business_profile():
 def test_no_em_dashes_in_our_own_copy():
     # House style. The one Google review quote is verbatim and is exempt.
     quote = "Pink is amazing"
-    for page in ROOT.glob("*.html"):
+    for page in HTML:
         for line in page.read_text(encoding="utf-8").splitlines():
             if "\u2014" in line:
                 assert quote in line, f"{page.name}: {line.strip()[:90]}"
@@ -388,7 +388,7 @@ def test_site_falls_back_when_there_is_no_live_review_file():
 
 def test_no_api_key_is_shipped_to_the_browser():
     # The Places fetch is build-time only. A key in a page would be public.
-    for page in ROOT.glob("*.html"):
+    for page in HTML:
         html = page.read_text(encoding="utf-8")
         assert "GOOGLE_PLACES_API_KEY" not in html, page.name
         assert "places.googleapis.com" not in html, page.name
@@ -415,7 +415,7 @@ def test_mailto_fallback_carries_every_field_the_visitor_filled():
 def test_every_shipped_asset_is_actually_referenced():
     import re
     referenced = set()
-    for page in list(ROOT.glob("*.html")) + [ROOT / "styles.css"]:
+    for page in HTML + [ROOT / "styles.css"]:
         for m in re.findall(r"/assets/([A-Za-z0-9._-]+)", page.read_text(encoding="utf-8")):
             referenced.add(m)
     orphans = []
@@ -480,7 +480,7 @@ def test_no_internal_link_or_asset_404s():
     import re
 
     broken = []
-    for page in sorted(ROOT.glob("*.html")):
+    for page in sorted(HTML):
         html = page.read_text(encoding="utf-8")
         refs = (
             re.findall(r'href="([^"]+)"', html)
@@ -624,7 +624,7 @@ def test_no_claim_implies_existing_service_profit_clients():
         r"results speak",
         r"on average,? (?:our|clients)",
     )
-    for page in sorted(ROOT.glob("*.html")):
+    for page in sorted(HTML):
         text = page.read_text(encoding="utf-8").lower()
         for pattern in banned:
             assert not re.search(pattern, text), f"{page.name} matches {pattern!r}"
@@ -667,7 +667,7 @@ def test_industry_pages_are_audience_not_products():
         assert "Job Profit is $1,650 + GST a month" in html
         assert "Same plans as the rest of Service Profit" in html
         assert f'href="/{slug}/"' not in nav
-        assert (ROOT / f"{slug}.html").read_text(encoding="utf-8") == html
+        assert f'url=/{slug}/"' in (ROOT / f"{slug}.html").read_text(encoding="utf-8")
     assert "Pricing" in nav and "The system" in nav
     assert "HVAC</a>" not in nav
 
@@ -821,7 +821,7 @@ def test_audience_pages_carry_breadcrumbs():
         "can-i-afford-another-technician",
     ]
     for slug in slugs:
-        text = (ROOT / f"{slug}.html").read_text(encoding="utf-8")
+        text = (ROOT / slug / "index.html").read_text(encoding="utf-8")
         blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
         crumbs = [json.loads(b) for b in blocks]
         crumbs = [c for c in crumbs if c.get("@type") == "BreadcrumbList"]
@@ -865,7 +865,7 @@ def test_the_job_software_objection_is_answered():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert "You already have job software." in home
     assert "/job-software-and-your-accountant/" in home
-    page = (ROOT / "job-software-and-your-accountant.html").read_text(encoding="utf-8")
+    page = (ROOT / "job-software-and-your-accountant" / "index.html").read_text(encoding="utf-8")
     assert "So why an accountant?" in page
     for name in ("simPRO", "ServiceM8", "AroFlo"):
         assert name in page, name
@@ -889,7 +889,7 @@ def test_we_never_claim_to_work_inside_the_job_software():
         text = p.read_text(encoding="utf-8").lower()
         for phrase in banned:
             assert phrase not in text, f"{p.name}: {phrase}"
-    page = (ROOT / "job-software-and-your-accountant.html").read_text(encoding="utf-8")
+    page = (ROOT / "job-software-and-your-accountant" / "index.html").read_text(encoding="utf-8")
     assert "We are not your software people" in page
 
 
@@ -936,7 +936,7 @@ def test_service_pages_carry_the_keyword_in_the_h1():
     assert 'href="/services/"' in nav
     for slug, keyword in pages.items():
         html = (ROOT / slug / "index.html").read_text(encoding="utf-8")
-        assert (ROOT / f"{slug}.html").read_text(encoding="utf-8") == html
+        assert f'url=/{slug}/"' in (ROOT / f"{slug}.html").read_text(encoding="utf-8")
         heading = re.search(r"<h1>(.*?)</h1>", html, re.S).group(1)
         assert keyword in heading.lower(), slug
         assert f'rel="canonical" href="https://www.serviceprofit.com.au/{slug}/"' in html, slug

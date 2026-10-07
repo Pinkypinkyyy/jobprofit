@@ -1142,7 +1142,12 @@ def main():
     write("construction.html", redirect_to("Construction", "/construction-services-accountant-brisbane/", "construction services accountant"))
     for builder in seo_pages.PAGES:
         slug, html = builder()
-        seo_pages.write_pretty(ROOT, slug, html)
+        name = seo_pages.write_pretty(ROOT, slug, html)
+        # GitHub Pages serves /slug from slug.html with a 200. A full copy there
+        # was a second indexable page Search Console flagged as "Alternative
+        # page with proper canonical tag" (7 Oct 2026). Keep the old URL alive,
+        # but only as a redirect to the folder page.
+        write(f"{slug}.html", redirect_to(name, f"/{slug}/", name))
     write("disclosure.html", disclosure())
     (ROOT / "disclosure").mkdir(exist_ok=True)
     write("disclosure/index.html", disclosure())
