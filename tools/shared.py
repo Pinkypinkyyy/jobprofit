@@ -13,7 +13,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt47"
+ASSET = "rt48"
 IMG_VERSION = "real2"
 
 
@@ -57,19 +57,28 @@ FORM_AJAX_ENDPOINT = f"{FORM_ORIGIN}/ajax/admin@pinktax.com.au"
 CSP = (
     "default-src 'self'; "
     "img-src 'self' data: https://*.google-analytics.com https://analytics.google.com "
-    "https://www.googletagmanager.com https://stats.g.doubleclick.net "
+    "https://www.googletagmanager.com https://stats.g.doubleclick.net https://ad.doubleclick.net "
     "https://www.google.com https://www.google.com.au https://www.facebook.com https://www.facebook.com.au; "
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
     "font-src https://fonts.gstatic.com; "
     "script-src 'self' https://www.googletagmanager.com https://connect.facebook.net; "
     "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com "
     "https://analytics.google.com https://www.googletagmanager.com "
-    "https://stats.g.doubleclick.net https://www.google.com https://www.google.com.au "
+    # ad.doubleclick.net is the Google Ads measurement call from the Localsearch
+    # GTM container. trkcall.com (their call tracking) is deliberately NOT
+    # allowed: it swaps the office number for 07 3524 7162 on ad visits, held
+    # until Localsearch confirms that number rings the office (HB 13 Oct 2026).
+    "https://stats.g.doubleclick.net https://ad.doubleclick.net https://www.google.com https://www.google.com.au "
     "https://www.facebook.com " + FORM_ORIGIN + "; "
     "form-action 'self' mailto: " + FORM_ORIGIN + "; "
     "media-src 'self'; "
     "base-uri 'self'"
 )
+
+
+# Google Search Console ownership token, supplied by Localsearch 13 Oct 2026.
+# Removing it un-verifies the property in Search Console.
+GSC_VERIFY = "tlzwVH41pxRojqVfEBM7W8LJLKNGXp83ZNTj9XGuJfY"
 
 
 def head(title, description, canonical, og_image="/assets/og.png", extra=""):
@@ -85,6 +94,7 @@ def head(title, description, canonical, og_image="/assets/og.png", extra=""):
   <title>{title}</title>
   <meta name="description" content="{description}">
   <meta name="robots" content="index,follow">
+  <meta name="google-site-verification" content="{GSC_VERIFY}">
   <link rel="canonical" href="{canonical}">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="{CSP}">
