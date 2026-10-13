@@ -139,10 +139,18 @@ def test_localsearch_gtm_and_search_console():
         assert tag in text, f"{p.name} lost the Search Console tag"
         assert "GTM-PMD37325" not in text, f"{p.name} has an inline GTM snippet the CSP will block"
     from shared import CSP
-    assert "https://ad.doubleclick.net" in CSP
-    # Call tracking swaps the office number on ad visits. Held until
-    # Localsearch confirms 07 3524 7162 rings the office.
-    assert "trkcall.com" not in CSP
+    directive = {d.split()[0]: d for d in (x.strip() for x in CSP.split(";")) if d}
+    assert "https://ad.doubleclick.net" in directive["connect-src"]
+    assert "https://www.googleadservices.com" in directive["connect-src"]
+    assert "https://www.googleadservices.com" in directive["img-src"]
+    # Localsearch call tracking (confirmed by HB 13 Oct 2026): the script loads
+    # from trkcall.com and reports to s.trkcall.com. Lose either and ad calls
+    # stop being counted while the site looks fine.
+    assert "https://trkcall.com" in directive["script-src"]
+    assert "https://s.trkcall.com" in directive["connect-src"]
+    assert "'unsafe-inline'" not in directive["script-src"]
+    privacy = (ROOT / "privacy.html").read_text(encoding="utf-8")
+    assert "07 3524 7162" in privacy, "privacy page must name the ad call-tracking number"
 
 
 def test_structured_data_on_inner_pages():
