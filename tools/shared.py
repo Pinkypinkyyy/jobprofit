@@ -13,7 +13,7 @@ MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
 GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
-ASSET = "rt47"
+ASSET = "rt48"
 IMG_VERSION = "real2"
 
 
@@ -518,23 +518,58 @@ def short_enquiry_form(prefix="contact", next_page="/contact.html"):
             <input type="email" name="email" required autocomplete="email">
           </label>
           <label>Phone
-            <input type="tel" name="phone" required autocomplete="tel">
+            <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" data-phone>
+          </label>
+          <label>What work
+            <select name="trade" required>
+              <option value="">Choose one</option>
+              <option>Air con / refrigeration</option>
+              <option>Electrical</option>
+              <option>Construction services</option>
+              <option>Mix of those</option>
+            </select>
+          </label>
+          <label>Yearly turnover, roughly
+            <select name="turnover" required>
+              <option value="">Choose one</option>
+              <option>Not trading yet</option>
+              <option>Under $500k</option>
+              <option>$500k to $1M</option>
+              <option>$1M to $3M</option>
+              <option>Over $3M</option>
+              <option>Rather not say</option>
+            </select>
+          </label>
+          <label>People, including you
+            <select name="staff" required>
+              <option value="">Choose one</option>
+              <option>Just me</option>
+              <option>2 to 5</option>
+              <option>6 to 15</option>
+              <option>16 to 40</option>
+              <option>More than 40</option>
+            </select>
+          </label>
+          <label>Job or accounting software
+            <select name="software">
+              <option value="">Choose one</option>
+              <option>ServiceM8</option>
+              <option>simPRO</option>
+              <option>Tradify</option>
+              <option>AroFlo</option>
+              <option>Fergus</option>
+              <option>Xero only</option>
+              <option>MYOB</option>
+              <option>Something else</option>
+              <option>Not sure</option>
+            </select>
           </label>
         </div>
-        <label>What work
-          <select name="trade" required>
-            <option value="">Choose one</option>
-            <option>Air con / refrigeration</option>
-            <option>Electrical</option>
-            <option>Construction services</option>
-            <option>Mix of those</option>
-          </select>
-        </label>
         <label>What do you need
           <textarea class="short" name="message" rows="4" maxlength="1000" required placeholder="What is going on with the books, the BAS or the job costs. A sentence or two is enough."></textarea>
         </label>
         <button class="btn btn-primary" type="submit">Send this</button>
         <p class="form-note">Goes to admin@pinktax.com.au. A person reads it. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
-      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We will come back to you the same working day.</p>
+      <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We will come back to you the same working day. Rather pick a time now? <a href="/book.html" data-event="sent-book">Book a 15-minute call</a>.</p>
 """
