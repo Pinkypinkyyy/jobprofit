@@ -124,6 +124,25 @@ def test_analytics_tags():
     assert "track.js" in home
     privacy = (ROOT / "privacy.html").read_text(encoding="utf-8")
     assert "Google Analytics 4" in privacy
+    assert "Google Tag Manager" in privacy
+
+
+def test_localsearch_gtm_and_search_console():
+    # Localsearch's snippet is inline; our CSP blocks inline scripts, so the
+    # container must load from track.js or it silently never runs.
+    track = (ROOT / "track.js").read_text(encoding="utf-8")
+    assert 'var GTM = "GTM-PMD37325"' in track
+    assert "googletagmanager.com/gtm.js?id=" in track
+    tag = '<meta name="google-site-verification" content="tlzwVH41pxRojqVfEBM7W8LJLKNGXp83ZNTj9XGuJfY">'
+    for p in PAGES:
+        text = p.read_text(encoding="utf-8")
+        assert tag in text, f"{p.name} lost the Search Console tag"
+        assert "GTM-PMD37325" not in text, f"{p.name} has an inline GTM snippet the CSP will block"
+    from shared import CSP
+    assert "https://ad.doubleclick.net" in CSP
+    # Call tracking swaps the office number on ad visits. Held until
+    # Localsearch confirms 07 3524 7162 rings the office.
+    assert "trkcall.com" not in CSP
 
 
 def test_structured_data_on_inner_pages():

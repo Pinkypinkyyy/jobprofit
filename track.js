@@ -17,6 +17,18 @@
   s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA;
   document.head.appendChild(s);
 
+  // Google Tag Manager container from Localsearch (13 Oct 2026). Loaded here
+  // rather than as their inline snippet because the page CSP blocks inline
+  // scripts, so the pasted snippet would never run.
+  var GTM = "GTM-PMD37325";
+  if (GTM) {
+    window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var g = document.createElement("script");
+    g.async = true;
+    g.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM;
+    document.head.appendChild(g);
+  }
+
   if (META) {
     !(function (f, b, e, v, n, t, s2) {
       if (f.fbq) return;
