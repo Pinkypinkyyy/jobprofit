@@ -564,7 +564,7 @@ def services():
         [
             (
                 "Do I have to take all of these?",
-                "No. Compliance at $550 + GST a month covers income tax, FBT, financial statements, BAS and GST from a file already in order. Job Profit adds the job and cash look. Bookkeeping is an add-on from $500 + GST a month.",
+                "No. Compliance at $550 + GST a month covers income tax, FBT, financial statements, BAS and GST from a file already in order. Job Profit adds the job and cash look with books and pay handled. Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files.",
             ),
             NOT_PERSONAL,
         ],
@@ -683,7 +683,7 @@ def bookkeeping_xero():
         <h2>Your job software feeds Xero. We work in Xero.</h2>
         <p>We set up Xero. We do not set up or run your job software; that is an implementer's job, and we will say so. <a href="/job-software-and-your-accountant/">You already have job software</a>.</p>
         <h2>How bookkeeping is priced</h2>
-        <p>Bookkeeping is an add-on from $500 + GST a month, quoted in the letter when it is actually needed. Xero setup is quoted once, after we have seen what you have.</p>""",
+        <p>Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files, quoted in the letter when it is actually needed. Inside Job Profit and Service Protection it is part of the plan. Xero setup is quoted once, after we have seen what you have.</p>""",
         [
             (
                 "Are you a bookkeeper or an accountant?",
@@ -691,7 +691,7 @@ def bookkeeping_xero():
             ),
             (
                 "Can I keep doing my own bookkeeping?",
-                "Yes. If the file is in order each month, Compliance or Job Profit runs without the bookkeeping add-on. We will tell you on the call which it is.",
+                "Yes. If the file is in order each month, Compliance runs without the bookkeeping add-on. Inside Job Profit and Service Protection the books and pay are handled. We will tell you on the call which it is.",
             ),
             CATCH_UP,
         ],
