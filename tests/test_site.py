@@ -1154,3 +1154,35 @@ if __name__ == "__main__":
             fn()
             print("PASS", name)
     print("all site tests passed")
+
+
+def test_enquiry_form_asks_the_business_and_refuses_made_up_phones():
+    """Blueprint Step 3 (HB 11 Oct 2026). Three of four web enquiries to Pink in
+    three weeks were fraud, one with 0400 123 456 as the mobile and no business
+    named. The form asks what the business is and the script refuses a made-up
+    number before anything is sent."""
+    html = (ROOT / "contact.html").read_text(encoding="utf-8")
+    start = html.index('id="enquiryForm"')
+    form = html[start:html.index("</form>", start)]
+    for field in ('name="business" required', 'name="trade" required', 'name="turnover" required',
+                  'name="staff" required', 'name="software"', "data-phone"):
+        assert field in form, field
+    # The enquiry flow reads fields in this posting order (PinkLeadVerify.FORM_FIELD_ORDER).
+    order = [form.index(f'name="{key}"') for key in
+             ("name", "business", "email", "phone", "trade", "turnover", "staff", "software", "message")]
+    assert order == sorted(order), "field order no longer matches the enquiry flow"
+    nav = (ROOT / "nav.js").read_text(encoding="utf-8")
+    assert "function phoneLooksReal" in nav and '"0400123456"' in nav
+    assert "setCustomValidity" in nav
+    ok = html[html.index('id="enquiryOk"'):]
+    assert 'href="/book.html"' in ok.split("</p>")[0], "thank-you message lost its booking link"
+
+
+def test_consent_boxes_wait_for_the_lawyer_and_pinky():
+    """The consent tick boxes are with the lawyer (Pink-Accounting-Automation
+    docs/client-onboarding/Pink_Enquiry_Form_Consent_Wording_for_Lawyer_2026-10-13.docx).
+    Nothing goes live until Pinky signs it off; update this test then."""
+    for p in ROOT.rglob("*.html"):
+        text = p.read_text(encoding="utf-8")
+        for name in ("calls", "updates", "consentwording"):
+            assert f'name="{name}"' not in text, (p, name)
