@@ -183,6 +183,22 @@ def test_cache_buster_consistent():
         assert "rt15" not in text and "rt20" not in text and "rt23" not in text, p.name
 
 
+def test_ai_disclosure_on_form_and_privacy():
+    # HB 2026-10-19: same firm disclosure as the hospitality site, in
+    # general terms. The form carries the call tick plus the disclosure;
+    # the privacy page carries the full section.
+    contact = (ROOT / "contact.html").read_text(encoding="utf-8")
+    start = contact.index('id="enquiryForm"')
+    form = contact[start:contact.index("</form>", start)]
+    assert 'name="okToCall"' in form, "trades enquiry form has no call consent tick"
+    for phrase in ("AI and automated systems", "follow-ups and correspondence",
+                   "data collection", "onboarding", "ask to deal with a person"):
+        assert phrase in form, f"trades form disclosure is missing: {phrase}"
+    privacy = (ROOT / "privacy.html").read_text(encoding="utf-8")
+    assert "AI and automated systems" in privacy, "trades privacy has no AI disclosure section"
+    assert "professional judgement" in privacy, "trades AI section must keep human oversight"
+
+
 def test_privacy_and_terms_on_every_page():
     for p in PAGES:
         text = p.read_text(encoding="utf-8")
