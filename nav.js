@@ -138,7 +138,7 @@
     if (!a || typeof gtag !== "function") return;
     var href = a.getAttribute("href") || "";
     try {
-      if (href.indexOf("outlook.office.com/book/") !== -1) {
+      if (href.indexOf("leadconnectorhq.com/widget/bookings/") !== -1) {
         gtag("event", "book_click", { lead_source: "outlook_booking", link_url: href });
       } else if (href.indexOf("tel:") === 0) {
         gtag("event", "phone_click", { lead_source: "site_phone_link" });

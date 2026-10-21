@@ -9,7 +9,7 @@ HTML = list(ROOT.glob("*.html")) + list(ROOT.glob("*/index.html"))
 REDIRECTS = {p for p in HTML if 'http-equiv="refresh"' in p.read_text(encoding="utf-8")}
 PAGES = [p for p in HTML if p not in REDIRECTS]
 HOSP = "PinkAccountingTaxSolutionsClientBookings"
-FIELD = "ServiceProfit@pinktax.com.au"
+FIELD = "widget/bookings/call-with-pinky"
 CACHE = ASSET  # read from tools/shared.py so a bump cannot desync the test
 
 
@@ -34,7 +34,7 @@ def test_no_hospitality_booking():
         assert HOSP not in text, p.name
 
 
-def test_book_uses_service_profit_calendar():
+def test_book_uses_call_with_pinky_calendar():
     text = (ROOT / "book.html").read_text(encoding="utf-8")
     assert FIELD in text
     assert HOSP not in text
