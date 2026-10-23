@@ -7,7 +7,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 ## Job Profit
 
 - Fee: $1,650 + GST / month
-- Most files
+- Trade plan
 - In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity
 - Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure
 

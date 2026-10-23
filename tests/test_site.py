@@ -802,6 +802,10 @@ def test_no_competitor_attack_copy():
         "most bookkeeping",
         "should be doing",
         "stay somewhere",
+        # 23 Oct 2026: unsubstantiated "most" claims about our own files and plans.
+        "most files",
+        "most trade files",
+        "most venues",
     )
     for p in PAGES:
         text = p.read_text(encoding="utf-8").lower()

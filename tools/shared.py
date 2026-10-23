@@ -9,7 +9,8 @@ ID = json.loads((pathlib.Path(__file__).resolve().parents[1] / "identity.json").
 
 ORIGIN = "https://www.serviceprofit.com.au"
 BOOK = "/book.html"
-MSBOOK = "https://outlook.office.com/book/ServiceProfit@pinktax.com.au/"
+# GoHighLevel Call with Pinky (HB 2026-10-21). Name kept so existing imports stay valid.
+MSBOOK = "https://api.leadconnectorhq.com/widget/bookings/call-with-pinky"
 GBP = ID["google_profile"]["maps_url"]
 FB = "https://www.facebook.com/profile.php?id=61594432044788"
 LI = "https://www.linkedin.com/company/143802027/"
@@ -292,8 +293,8 @@ SERVICE_MENU = (
 def trust_line():
     """HB 24 Sep 2026: who we are, the price and the registration, under every hero button."""
     return (
-        '      <p class="trust-line">Accountants, bookkeepers and tax agents. From $550 + GST a month; '
-        f'most trade files $1,650. Registered tax agent {ID["legal"]["tax_agent_number"]}, Brendale.</p>'
+        '      <p class="trust-line">Accountants, bookkeepers and tax agents. From $550 + GST a month. '
+        f'Job Profit is $1,650 + GST a month. Registered tax agent {ID["legal"]["tax_agent_number"]}, Brendale.</p>'
     )
 
 
@@ -380,7 +381,7 @@ def footer():
         </div>
       </div>
       <p class="sister-line" data-identity="cross-link">{ID["cross_links"]["on_trades_site"]["text"]} <a href="{ID["cross_links"]["on_trades_site"]["href"]}">{ID["cross_links"]["on_trades_site"]["link_text"]}</a>.</p>
-      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 13 September 2026.</p>
+      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Claims on this site last reviewed 13 September 2026.</p>
     </div>
   </footer>
   <script src="/track.js?v={ASSET}"></script>
@@ -545,7 +546,8 @@ def short_enquiry_form(prefix="contact", next_page="/contact.html"):
           <textarea class="short" name="message" rows="4" maxlength="1000" required placeholder="What is going on with the books, the BAS or the job costs. A sentence or two is enough."></textarea>
         </label>
         <button class="btn btn-primary" type="submit">Send this</button>
-        <p class="form-note">Goes to admin@pinktax.com.au. A person reads it. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+        <label class="consent"><input type="checkbox" name="okToCall" value="yes"> Ring me about this enquiry on this number. We will text first, and I can move the time by replying.</label>
+        <p class="form-note">How we work: Pink Accounting uses AI and automated systems for parts of our processing, including follow-ups and correspondence, administration, data collection, and some steps in onboarding. Information you give us may be handled by these systems. Our work is overseen by our team, and you can ask to deal with a person at any time. Goes to admin@pinktax.com.au. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
       <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We will come back to you the same working day.</p>
 """

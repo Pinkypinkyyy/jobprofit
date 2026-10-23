@@ -24,7 +24,7 @@ def picture(stem, alt, extra="", lazy=True, sizes="(max-width:940px) 100vw, 55vw
 
 def same_offer():
     return """        <div class="same-offer">
-          <p>Same plans as the rest of Service Profit. Not a separate HVAC product, not a separate electrical product. Job Profit is $1,650 + GST a month for most files. The letter is the quote.</p>
+          <p>Same plans as the rest of Service Profit. Not a separate HVAC product, not a separate electrical product. Job Profit is $1,650 + GST a month. The letter is the quote.</p>
           <p><a href="/pricing.html">See the plans</a> · <a href="/system.html#weekly">See what lands on Monday</a> · <a href="/book.html">Book 15 minutes</a></p>
         </div>"""
 
@@ -213,7 +213,7 @@ def construction():
         ),
         (
             "Is this a different plan to HVAC and electrical?",
-            "No. Same plans. Job Profit is $1,650 + GST a month for most files. The letter is the quote.",
+            "No. Same plans. Job Profit is $1,650 + GST a month. The letter is the quote.",
         ),
         (
             "How do I start?",

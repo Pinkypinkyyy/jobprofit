@@ -394,13 +394,13 @@ def index():
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">Fees</span>
-          <h2>$1,650 + GST a month for most files.</h2>
-          <p>That is Job Profit. Billed hours, cash, tax and BAS. Not unlimited work. The letter is the quote.</p>
-          <p class="sec-note">The names, once: <b>Pink Accounting</b> is the firm and the registered tax agent. <b>Service Profit</b> is what we do for trade and service businesses. <b>Job Profit</b> is the plan most files sit on.</p>
+          <h2>Job Profit is $1,650 + GST a month.</h2>
+          <p>Billed hours, cash, tax and BAS. Not unlimited work. The letter is the quote.</p>
+          <p class="sec-note">The names, once: <b>Pink Accounting</b> is the firm and the registered tax agent. <b>Service Profit</b> is what we do for trade and service businesses. <b>Job Profit</b> is the trade plan.</p>
         </div>
         <div class="feat" id="job-profit">
           <div>
-            <span class="badge">Most files</span>
+            <span class="badge">Trade plan</span>
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
 
@@ -614,7 +614,7 @@ def pricing():
       <div class="wrap">
         <span class="eyebrow">Pricing</span>
         <h1>Plans from $550 + GST a month</h1>
-        <p class="lead">Most trade files are $1,650 + GST a month. A fixed monthly fee, set out in writing before anything starts.</p>
+        <p class="lead">Job Profit, our trade plan, is $1,650 + GST a month. A fixed monthly fee, set out in writing before anything starts.</p>
         <div class="cta">
           <a class="btn btn-primary" href="/book.html" data-event="pricing-page-book">Book a 15-minute call</a>
         </div>
@@ -624,7 +624,7 @@ def pricing():
       <div class="wrap">
         <div class="feat" id="job-profit">
           <div>
-            <span class="badge">Most files</span>
+            <span class="badge">Trade plan</span>
             <h2>Job Profit</h2>
             <div class="fprice">$1,650<small> + GST / month</small></div>
 
@@ -762,7 +762,7 @@ def check():
 {hours_check()}
       <div class="prose">
         <p>This is a sketch from the numbers you type. Not your file. Not tax advice. On the call we look at the real jobs, the bank, and tax.</p>
-        <p>Job Profit is $1,650 + GST a month for most files. The letter is the quote. You have not signed anything by booking.</p>
+        <p>Job Profit is $1,650 + GST a month. The letter is the quote. You have not signed anything by booking.</p>
       </div>
     </div>
   </main>
@@ -852,9 +852,11 @@ def privacy():
       <span class="eyebrow">Pink Accounting</span>
       <h1>Privacy</h1>
       <div class="prose">
-        <p>Pink Accounting &amp; Tax Solutions Pty Ltd (ABN 51 682 301 891) handles personal information under the Privacy Act 1988. Service Profit is a service of this firm. This page applies to the whole practice. Last reviewed 11 September 2026.</p>
+        <p>Pink Accounting &amp; Tax Solutions Pty Ltd (ABN 51 682 301 891) handles personal information under the Privacy Act 1988. Service Profit is a service of this firm. This page applies to the whole practice. Last reviewed 19 October 2026.</p>
         <h2>What we collect</h2>
         <p>Name, contact details, business details, and the financial and tax information needed to provide accounting and tax services. If you send the enquiry form, book a call or email us, we keep that correspondence. Microsoft Bookings also holds the appointment details you enter there, when that calendar is open.</p>
+        <h2>AI and automated systems</h2>
+        <p>Pink Accounting uses AI and automated systems for parts of our processing, including follow-ups and correspondence, administration, data collection, and some steps in onboarding. Information you provide may be handled by these systems. They support our team; they do not replace professional judgement. Our team oversees the work, and you can ask to deal with a person at any time.</p>
         <h2>Why we collect it</h2>
         <p>To provide the service you asked for, meet our tax-agent and legal obligations, and run the practice. We do not sell lists.</p>
         <h2>How we hold it</h2>
@@ -966,8 +968,6 @@ def terms():
         <p>Published fees are monthly, exclusive of GST, for one trading entity unless the letter says otherwise. Starting prices can rise with volume, payroll, extra entities or catch-up. The letter is the quote.</p>
         <h2>No unlimited work</h2>
         <p>Scope is defined. Extra work is quoted before we start it.</p>
-        <h2>Liability</h2>
-        <p>Liability limited by a scheme approved under Professional Standards Legislation.</p>
         <h2>Contact</h2>
         <p>admin@pinktax.com.au · 07 3544 6386 · {ID["office"]["one_line"]}.</p>
       </div>
@@ -1054,7 +1054,7 @@ LLMS_TXT = f"""# Service Profit
 
 Pink Accounting & Tax Solutions Pty Ltd is the firm. Service Profit is what we do for those trades. Not a separate company. Not hospitality. Hospitality sits on https://pinktax.com.au/.
 
-Job Profit is $1,650 + GST a month for most files. Service Protection is $990 + GST a month for non-project service work. The letter is the quote. Book 15 minutes: https://www.serviceprofit.com.au/book.html
+Job Profit is $1,650 + GST a month. Service Protection is $990 + GST a month for non-project service work. The letter is the quote. Book 15 minutes: https://www.serviceprofit.com.au/book.html
 
 ## Offer
 
@@ -1109,7 +1109,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 ## Job Profit
 
 - Fee: $1,650 + GST / month
-- Most files
+- Trade plan
 - In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity
 - Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure
 
