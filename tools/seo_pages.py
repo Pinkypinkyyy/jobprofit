@@ -127,7 +127,7 @@ def air_con():
         <p>Air con work moves in vans and on roofs. FBT on utes and phones is not a June surprise if it is watched in the file. Tax and BAS are held with the hours and the cash. You stay on the tools.</p>
         <h2>Who this page is for</h2>
         <p>Air con and refrigeration businesses in Queensland, with people on the tools or about to put someone on, who quote work and could not say today which of last month's jobs made money. One trading entity unless the letter says otherwise.</p>
-        <p>Not a fit if you only want the annual return lodged. That is Compliance at $550 + GST a month, and we will say so on the call.</p>
+        <p>Not a fit if you only want the annual return lodged. We will say so on the call.</p>
       </div>
 {same_offer()}
       <div class="faq">{faq_html}</div>
@@ -259,7 +259,7 @@ def construction():
         <p>A subcontractor invoice is easy to see. Materials sitting for a job that has not billed yet are not. The bank can look full while both are waiting. We pull GST, PAYG, super and wages out of that balance so you know what is actually yours to spend.</p>
         <h2>Who this page is for</h2>
         <p>Construction services in Queensland: fit-out, maintenance, installation. People on the tools, or about to put someone on. One trading entity unless the letter says otherwise.</p>
-        <p>Not a fit if you are a builder, or if you only want the annual return lodged. That is Compliance at $550 + GST a month.</p>
+        <p>Not a fit if you are a builder, or if you only want the annual return lodged.</p>
       </div>
 {same_offer()}
       <div class="faq">{faq_html}</div>
@@ -564,7 +564,7 @@ def services():
         [
             (
                 "Do I have to take all of these?",
-                "No. Compliance at $550 + GST a month covers income tax, FBT, financial statements, BAS and GST from a file already in order. Job Profit adds the job and cash look with books and pay handled. Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files.",
+                "No. Plans from $990 + GST a month. Job Profit adds the job and cash look with books and pay handled. Bookkeeping on its own is an add-on from $500 + GST a month.",
             ),
             NOT_PERSONAL,
         ],
@@ -589,7 +589,7 @@ def tax_agent():
         <h2>TPAR, if you pay subcontractors</h2>
         <p>If building and construction services make up 10% or more of your GST turnover and you pay contractors for that work, the ATO expects a taxable payments annual report by 28 August. Electrical, air con and fit-out businesses often fall in. We check whether yours does, and the letter says whether lodging it is inside your plan.</p>
         <h2>Who this page is for</h2>
-        <p>Trade businesses in Queensland that want the return lodged by the same people who hold the books. If you only need the annual return, that is Compliance at $550 + GST a month, and we will say so on the call.</p>""",
+        <p>Trade businesses in Queensland that want the return lodged by the same people who hold the books. If you only need the annual return, we will say so on the call.</p>""",
         [
             (
                 "Are you a registered tax agent?",
@@ -617,7 +617,7 @@ def bas_gst():
         <h2>PAYG withholding and instalments</h2>
         <p>If you have staff, the PAYG withheld from their pay goes on the BAS. If the business pays PAYG instalments, those sit there too. None of it is yours, even while it sits in your account. <a href="/cash-that-is-yours/">Cash that is yours</a>.</p>
         <h2>Who this page is for</h2>
-        <p>Air con, electrical and construction services businesses in Queensland that lodge a BAS and want the cash for it held, not found. BAS and GST are inside every plan, from Compliance at $550 + GST a month.</p>""",
+        <p>Air con, electrical and construction services businesses in Queensland that lodge a BAS and want the cash for it held, not found. BAS and GST are inside every plan, from $990 + GST a month.</p>""",
         [
             (
                 "Are you a BAS agent?",
@@ -683,7 +683,7 @@ def bookkeeping_xero():
         <h2>Your job software feeds Xero. We work in Xero.</h2>
         <p>We set up Xero. We do not set up or run your job software; that is an implementer's job, and we will say so. <a href="/job-software-and-your-accountant/">You already have job software</a>.</p>
         <h2>How bookkeeping is priced</h2>
-        <p>Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files, quoted in the letter when it is actually needed. Inside Job Profit and Service Protection it is part of the plan. Xero setup is quoted once, after we have seen what you have.</p>""",
+        <p>Bookkeeping on its own is an add-on from $500 + GST a month, quoted in the letter when it is actually needed. Inside Job Profit and Service Protection it is part of the plan. Xero setup is quoted once, after we have seen what you have.</p>""",
         [
             (
                 "Are you a bookkeeper or an accountant?",
@@ -691,7 +691,7 @@ def bookkeeping_xero():
             ),
             (
                 "Can I keep doing my own bookkeeping?",
-                "Yes. If the file is in order each month, Compliance runs without the bookkeeping add-on. Inside Job Profit and Service Protection the books and pay are handled. We will tell you on the call which it is.",
+                "Yes. If the file is in order each month you can keep doing it. Inside Job Profit and Service Protection the books and pay are handled. We will tell you on the call which it is.",
             ),
             CATCH_UP,
         ],

@@ -248,7 +248,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spac
 .feat li:first-child{border-top:0}
 .feat li b{color:var(--ink)}
 .psub{color:var(--soft);margin:32px auto 0;max-width:44em}
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
 .tier{
   display:block;background:#fff;border:1px solid var(--line);padding:24px;color:inherit;border-radius:var(--radius);
   box-shadow:0 12px 28px -22px rgba(18,22,28,.3);

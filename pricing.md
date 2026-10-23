@@ -30,12 +30,6 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 - In: Weekly Visibility, plus a written forecast: hire, draw, hold. Application only
 - Out: a guaranteed result. Unlimited work
 
-## Compliance
-
-- Fee: $550 + GST / month
-- In: income tax, FBT, financial statements, BAS and GST from a file already in order
-- Out: job-and-cash look, WhatsApp, catch-up, unlimited advisory
-
-Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files, quoted when it is actually needed. Inside Job Profit and Service Protection it is part of the plan.
+Bookkeeping on its own is an add-on from $500 + GST a month, quoted when it is actually needed. Inside Job Profit and Service Protection it is part of the plan.
 
 A booked call is not an engagement. https://www.serviceprofit.com.au/book.html

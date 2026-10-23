@@ -63,8 +63,10 @@ def test_book_uses_call_with_pinky_calendar():
 
 def test_pricing_page_exists():
     text = (ROOT / "pricing.html").read_text(encoding="utf-8")
-    for plan in ("Job Profit", "Weekly Visibility", "Ready to Scale", "Compliance"):
+    for plan in ("Job Profit", "Weekly Visibility", "Ready to Scale", "Service Protection"):
         assert plan in text
+    assert "Plans from $990 + GST a month" in text
+    assert "Compliance" not in text
     assert "What is in Job Profit?" in text
     assert "FAQPage" in text
     nav_home = (ROOT / "index.html").read_text(encoding="utf-8")
@@ -579,7 +581,7 @@ def test_homepage_lets_a_visitor_rule_themselves_out():
     # Willingness to exclude is the trust signal. It must survive edits.
     assert "You are a builder" in html
     assert "pinktax.com.au" in html
-    assert "Compliance at $550" in html
+    assert "You only want the annual return lodged" in html
 
 
 def test_homepage_says_what_happens_after_the_call():
@@ -757,7 +759,10 @@ def test_llms_and_pricing_md_are_on_the_origin():
     assert "hospitality" in llms.lower()  # the split sentence, not a hospitality offer
     assert "Job Profit" in fees
     assert "$1,650" in fees
-    assert "$550" in fees
+    assert "$990" in fees
+    assert "$550" not in fees
+    assert "$550" not in llms
+    assert "Compliance" not in fees
     robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
     assert "Disallow: /" not in robots or "Allow: /" in robots
     assert "GPTBot" not in robots  # do not block AI citation crawlers
@@ -806,6 +811,9 @@ def test_no_competitor_attack_copy():
         "most files",
         "most trade files",
         "most venues",
+        # 23 Oct 2026: the $550 Compliance plan is withdrawn. The floor is $990.
+        "$550",
+        "550.00",
     )
     for p in PAGES:
         text = p.read_text(encoding="utf-8").lower()

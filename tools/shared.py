@@ -207,7 +207,7 @@ def service_profit_node():
                 {"@type": "Offer", "name": "Job Profit", "price": "1650.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-job"},
                 {"@type": "Offer", "name": "Weekly Visibility", "price": "2650.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-weekly"},
                 {"@type": "Offer", "name": "Ready to Scale", "price": "3500.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-scale"},
-                {"@type": "Offer", "name": "Compliance", "price": "550.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-compliance"},
+                {"@type": "Offer", "name": "Service Protection", "price": "990.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-service"},
             ],
         },
         "areaServed": [
@@ -293,7 +293,7 @@ SERVICE_MENU = (
 def trust_line():
     """HB 24 Sep 2026: who we are, the price and the registration, under every hero button."""
     return (
-        '      <p class="trust-line">Accountants, bookkeepers and tax agents. From $550 + GST a month. '
+        '      <p class="trust-line">Accountants, bookkeepers and tax agents. From $990 + GST a month. '
         f'Job Profit is $1,650 + GST a month. Registered tax agent {ID["legal"]["tax_agent_number"]}, Brendale.</p>'
     )
 

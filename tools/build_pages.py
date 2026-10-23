@@ -107,19 +107,19 @@ PRICING_FAQ = [
     ),
     (
         "Do the higher plans include Job Profit?",
-        "Weekly Visibility includes Job Profit. Ready to Scale includes Weekly Visibility. Compliance does not include the job-and-cash look.",
+        "Weekly Visibility includes Job Profit. Ready to Scale includes Weekly Visibility.",
     ),
     (
         "Is bookkeeping a plan?",
-        "Bookkeeping and pay runs sit inside Job Profit and Service Protection. As a standalone add-on from $500 + GST a month it exists for Compliance files only, quoted when it is actually needed.",
+        "Bookkeeping and pay runs sit inside Job Profit and Service Protection. As a standalone add-on from $500 + GST a month, quoted when it is actually needed.",
     ),
     (
         "My bookkeeper charges $300 a month. Why is this five times that?",
-        "Because it is not the same job. A bookkeeper records what already happened. This tells you, each week, whether the hours you quoted matched the hours you paid for, and how much of the bank is actually yours once GST, PAYG, super and wages come out. It also carries the tax agent work: income tax, FBT, financial statements, BAS and GST. If what you need is the recording, keep your bookkeeper. Bookkeeping on its own is an add-on here from $500 + GST a month for Compliance files, and we will say so.",
+        "Because it is not the same job. A bookkeeper records what already happened. This tells you, each week, whether the hours you quoted matched the hours you paid for, and how much of the bank is actually yours once GST, PAYG, super and wages come out. It also carries the tax agent work: income tax, FBT, financial statements, BAS and GST. If what you need is the recording, keep your bookkeeper. Bookkeeping on its own is an add-on here from $500 + GST a month, and we will say so.",
     ),
     (
         "What happens if it does not pay for itself?",
-        "Then it is the wrong plan and you should not be on it. The fee is worth it if a job that ran long gets caught before the next quote repeats it. If your jobs already land on quote and you know what is yours in the bank, you do not need Job Profit. Compliance at $550 + GST a month does the returns and the BAS, and that is an honest answer on the call.",
+        "Then it is the wrong plan and you should not be on it. The fee is worth it if a job that ran long gets caught before the next quote repeats it. If your jobs already land on quote and you know what is yours in the bank, you do not need Job Profit.",
     ),
     (
         "What is Service Protection?",
@@ -342,7 +342,7 @@ def index():
             <ul class="ticks is-no">
               <li>You are a builder. We do construction services, not head contracting</li>
               <li>You are hospitality or retail. Same firm, different site: <a href="https://www.pinktax.com.au" rel="noopener">pinktax.com.au</a></li>
-              <li>You only want the annual return lodged. That is Compliance at $550 + GST a month and we will say so on the call</li>
+              <li>You only want the annual return lodged. We will say so on the call</li>
               <li>You want a monthly meeting and unlimited work for one fee. That is not what this is</li>
             </ul>
           </article>
@@ -404,9 +404,9 @@ def index():
             <h3>Job Profit</h3>
             <div class="fprice">$1,650<small> + GST / month</small></div>
 
-            <p class="fdesc">Billed hours versus quoted hours. Books and pay handled. How much of the bank is actually yours. Tax and BAS held. If you only need the return, that is Compliance at $550 + GST a month.</p>
+            <p class="fdesc">Billed hours versus quoted hours. Books and pay handled. How much of the bank is actually yours. Tax and BAS held.</p>
             <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-book">Book a 15-minute call</a></div>
-            <div class="fnote">Books and pay runs sit inside the plan. If the file is in order each month and you only need the returns, that is Compliance at $550 + GST a month.</div>
+            <div class="fnote">Books and pay runs sit inside the plan.</div>
           </div>
           <ul>
             <li><b>Billed time</b> quoted hours versus hours on the tools, each week. If a job ran long, the next quote should not repeat it</li>
@@ -425,11 +425,6 @@ def index():
             <div class="tname">Ready to Scale</div>
             <div class="tprice">$3,500<small> + GST/mo, from</small></div>
             <p>Plus a written forecast: hire, draw, hold. Application only. Not a guaranteed result.</p>
-          </a>
-          <a class="tier" href="/pricing.html#level-compliance">
-            <div class="tname">Compliance</div>
-            <div class="tprice">$550<small> + GST/mo</small></div>
-            <p>Income tax, FBT, financial statements, BAS and GST from a file that is already in order.</p>
           </a>
         </div>
         <p class="pricing-more"><a href="/pricing.html">Full plans, what is in, what is out, and the FAQ</a></p>
@@ -566,7 +561,7 @@ def system():
           <p>Take the weekly cost of the person. Divide by the billed rate after GST. That is the hours that must land on invoices this week, before materials and overhead. If that number is not in the diary, do not hire on a feeling.</p>
         </article>
         <article>
-          <span class="eyebrow">Compliance</span>
+          <span class="eyebrow">Tax</span>
           <h3>Income tax, FBT, financial statements</h3>
           <p>We are the tax agent. The return, FBT, BAS, GST, super and PAYG sit in the file so you are not paying tax on a mess. You stay on the jobs.</p>
           <a class="btn btn-primary" href="/book.html" data-event="system-comp" style="margin-top:18px">Book a 15-minute call</a>
@@ -601,7 +596,7 @@ def system():
 def pricing():
     h = head(
         "Pricing | Trade accounting plans and fees | Service Profit",
-        "Job Profit $1,650 + GST a month. Weekly Visibility from $2,650. Ready to Scale from $3,500. Compliance $550. What is in, what is out, and the FAQ. Queensland.",
+        "Job Profit $1,650 + GST a month. Plans from $990 + GST a month. Weekly Visibility from $2,650. Ready to Scale from $3,500. What is in, what is out, and the FAQ. Queensland.",
         "/pricing.html",
         extra=jsonld(faq_node(PRICING_FAQ)),
     )
@@ -613,7 +608,7 @@ def pricing():
     <section class="page" style="padding-bottom:0">
       <div class="wrap">
         <span class="eyebrow">Pricing</span>
-        <h1>Plans from $550 + GST a month</h1>
+        <h1>Plans from $990 + GST a month</h1>
         <p class="lead">Job Profit, our trade plan, is $1,650 + GST a month. A fixed monthly fee, set out in writing before anything starts.</p>
         <div class="cta">
           <a class="btn btn-primary" href="/book.html" data-event="pricing-page-book">Book a 15-minute call</a>
@@ -660,12 +655,6 @@ def pricing():
                 <td>Includes Weekly Visibility. Written forecast: hire, draw, hold. Application only.</td>
                 <td>A guaranteed result. Unlimited work.</td>
               </tr>
-              <tr id="level-compliance">
-                <td><strong>Compliance</strong></td>
-                <td class="price">$550 + GST / month</td>
-                <td>Income tax, FBT, financial statements, BAS and GST from records already in order. We are the registered tax agent.</td>
-                <td>Job-and-cash look. WhatsApp. Catch-up. Unlimited advisory.</td>
-              </tr>
               <tr id="level-service">
                 <td><strong>Service Protection</strong></td>
                 <td class="price">$990 + GST / month</td>
@@ -680,12 +669,11 @@ def pricing():
           <article class="scope-card" id="card-job"><h2>Job Profit</h2><div class="price">$1,650 + GST / month</div><p><b>In:</b> billed hours vs quoted hours, books and pay handled, cash that is yours, FBT watched, tax and BAS held.</p><p><b>Out:</b> a monthly meeting, a published savings figure, catch-up.</p></article>
           <article class="scope-card"><h2>Weekly Visibility</h2><div class="price">from $2,650 + GST / month</div><p><b>In:</b> Job Profit, plus a snapshot while the job is still on site.</p><p><b>Out:</b> open-ended project work unless scoped.</p></article>
           <article class="scope-card"><h2>Ready to Scale</h2><div class="price">from $3,500 + GST / month</div><p><b>In:</b> Weekly Visibility, plus a written forecast: hire, draw, hold. Application only.</p><p><b>Out:</b> a guaranteed result. Unlimited work.</p></article>
-          <article class="scope-card" id="card-compliance"><h2>Compliance</h2><div class="price">$550 + GST / month</div><p><b>In:</b> income tax, FBT, financial statements, BAS and GST from a file already in order.</p><p><b>Out:</b> job-and-cash look, WhatsApp, catch-up, unlimited advisory.</p></article>
           <article class="scope-card" id="card-service"><h2>Service Protection</h2><div class="price">$990 + GST / month</div><p><b>In:</b> books and pay handled, BAS and tax, monthly read on which clients and work made money.</p><p><b>Out:</b> project and job tracking, which stay in Job Profit.</p></article>
         </div>
         <div class="addon" id="level-bookkeeping">
           <h2>Bookkeeping add-on · from $500 + GST / month</h2>
-          <p>For Compliance files that need the books kept without the full system. Inside Job Profit and Service Protection, books and pay are already handled.</p>
+          <p>For files that need the books kept without the full system. Inside Job Profit and Service Protection, books and pay are already handled.</p>
         </div>
       </div>
     </section>
@@ -1054,12 +1042,12 @@ LLMS_TXT = f"""# Service Profit
 
 Pink Accounting & Tax Solutions Pty Ltd is the firm. Service Profit is what we do for those trades. Not a separate company. Not hospitality. Hospitality sits on https://pinktax.com.au/.
 
-Job Profit is $1,650 + GST a month. Service Protection is $990 + GST a month for non-project service work. The letter is the quote. Book 15 minutes: https://www.serviceprofit.com.au/book.html
+Plans from $990 + GST a month. Job Profit is $1,650 + GST a month. Service Protection is $990 + GST a month for non-project service work. The letter is the quote. Book 15 minutes: https://www.serviceprofit.com.au/book.html
 
 ## Offer
 
 - [Home](https://www.serviceprofit.com.au/): quoted hours versus hours on the tools
-- [Pricing](https://www.serviceprofit.com.au/pricing.html): five plans, in and out
+- [Pricing](https://www.serviceprofit.com.au/pricing.html): four plans, in and out
 - [The system](https://www.serviceprofit.com.au/system.html): billed hours, cash that is yours, tax and BAS
 - [Hours check](https://www.serviceprofit.com.au/check.html): last job, or the crew for a year
 - [Book](https://www.serviceprofit.com.au/book.html): 15 minutes
@@ -1132,13 +1120,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 - In: Weekly Visibility, plus a written forecast: hire, draw, hold. Application only
 - Out: a guaranteed result. Unlimited work
 
-## Compliance
-
-- Fee: $550 + GST / month
-- In: income tax, FBT, financial statements, BAS and GST from a file already in order
-- Out: job-and-cash look, WhatsApp, catch-up, unlimited advisory
-
-Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files, quoted when it is actually needed. Inside Job Profit and Service Protection it is part of the plan.
+Bookkeeping on its own is an add-on from $500 + GST a month, quoted when it is actually needed. Inside Job Profit and Service Protection it is part of the plan.
 
 A booked call is not an engagement. https://www.serviceprofit.com.au/book.html
 """
