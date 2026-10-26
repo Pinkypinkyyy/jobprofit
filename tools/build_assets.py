@@ -136,67 +136,128 @@ def _paste_logo(canvas, xy, height):
     canvas.paste(logo, xy, logo)
 
 
+SOCIAL = ASSETS / "social"
+MASTERS = SOCIAL / "masters"
+
+
+def _cover_crop(im, size):
+    tw, th = size
+    scale = max(tw / im.width, th / im.height)
+    resized = im.resize((round(im.width * scale), round(im.height * scale)), Image.Resampling.LANCZOS)
+    x = max(0, (resized.width - tw) // 2)
+    y = max(0, (resized.height - th) // 2)
+    return resized.crop((x, y, x + tw, y + th))
+
+
+def _scrim(im, left_alpha=225):
+    w, h = im.size
+    grad = Image.new("L", (w, h), 0)
+    px = grad.load()
+    for x in range(w):
+        a = int(left_alpha * max(0.0, 1 - x / (w * 0.72)) ** 1.35)
+        for y in range(h):
+            px[x, y] = a
+    black = Image.new("RGB", (w, h), (10, 10, 14))
+    return Image.composite(black, im, grad)
+
+
+def _master(name):
+    path = MASTERS / name
+    if not path.exists():
+        raise FileNotFoundError(f"social master missing: {path}")
+    return Image.open(path).convert("RGB")
+
+
+def _banner(size, master, headline, sub, footer, logo_h, head_size, sub_size, foot_size, pad):
+    im = _scrim(_cover_crop(_master(master), size))
+    w, h = size
+    _paste_logo(im, (pad, pad), logo_h)
+    d = ImageDraw.Draw(im)
+    y = pad + logo_h + int(h * 0.10)
+    d.text((pad, y), headline, fill=WHITE, font=_font(head_size))
+    y += int(head_size * 1.45)
+    for line in sub:
+        d.text((pad, y), line, fill=MUTED, font=_font(sub_size, bold=False))
+        y += int(sub_size * 1.5)
+    d.rectangle([pad, h - foot_size - 34, pad + 54, h - foot_size - 28], fill=PINK)
+    d.text((pad, h - foot_size - 22), footer, fill="#E8E8E8", font=_font(foot_size, bold=False))
+    d.rectangle([0, h - 6, w, h], fill=PINK)
+    return im
+
+
 def build_og() -> None:
-    og = Image.new("RGB", (1200, 630), INK)
-    d = ImageDraw.Draw(og)
-    d.rectangle([0, 0, 8, 630], fill=PINK)
-    _paste_logo(og, (72, 56), 56)
-    d.text((72, 200), "Service Profit", fill=WHITE, font=_font(64))
-    d.text((72, 286), "Pink Accounting for HVAC, electrical", fill=MUTED, font=_font(32, bold=False))
-    d.text((72, 330), "and construction service businesses.", fill=MUTED, font=_font(32, bold=False))
-    d.text((72, 520), "Queensland  ·  Registered Tax Agent 26284368", fill=SOFT, font=_font(22, bold=False))
+    og = _banner(
+        (1200, 630), "hvac-rooftop.jpg", "Service Profit",
+        ["Accounting for air con, electrical", "and construction businesses."],
+        "Pink Accounting \u00b7 Brendale QLD \u00b7 Registered Tax Agent 26284368",
+        logo_h=52, head_size=62, sub_size=29, foot_size=20, pad=64,
+    )
     png = ASSETS / "og.png"
-    webp = ASSETS / "og.webp"
     og.save(png, "PNG", optimize=True)
-    og.save(webp, "WEBP", quality=82, method=6)
-    print("og", png.stat().st_size, webp.stat().st_size)
+    print("og", png.stat().st_size)
 
 
 def build_social() -> None:
-    social = ASSETS / "social"
-    social.mkdir(exist_ok=True)
+    SOCIAL.mkdir(exist_ok=True)
 
     def save(im, name):
-        path = social / name
+        path = SOCIAL / name
         im.save(path, "PNG", optimize=True)
         print(name, im.size, path.stat().st_size)
 
     av = Image.new("RGB", (1080, 1080), INK)
+    logo = Image.open(ASSETS / "logo-white.png").convert("RGBA")
+    lh = 148
+    logo = logo.resize((int(logo.width * lh / logo.height), lh), Image.Resampling.LANCZOS)
+    av.paste(logo, ((1080 - logo.width) // 2, 262), logo)
     d = ImageDraw.Draw(av)
-    d.rectangle([0, 0, 16, 1080], fill=PINK)
-    _paste_logo(av, (96, 280), 88)
-    d.text((96, 420), "Service Profit", fill=WHITE, font=_font(64))
-    d.text((96, 510), "HVAC, electrical and construction", fill=MUTED, font=_font(28, bold=False))
-    d.text((96, 900), "Pink Accounting  ·  Tax Agent 26284368", fill=SOFT, font=_font(24, bold=False))
+    f_head = _font(94)
+    head = "Service Profit"
+    d.text(((1080 - d.textlength(head, font=f_head)) / 2, 446), head, fill=WHITE, font=f_head)
+    d.rectangle([460, 576, 620, 585], fill=PINK)
+    f_sub = _font(29, bold=False)
+    sub = "AIR CON \u00b7 ELECTRICAL \u00b7 CONSTRUCTION"
+    d.text(((1080 - d.textlength(sub, font=f_sub)) / 2, 620), sub, fill=MUTED, font=f_sub)
+    f_foot = _font(26, bold=False)
+    foot = "A Pink Accounting service"
+    d.text(((1080 - d.textlength(foot, font=f_foot)) / 2, 672), foot, fill=SOFT, font=f_foot)
     save(av, "profile-1080.png")
+    av.resize((720, 720), Image.Resampling.LANCZOS).save(SOCIAL / "profile-facebook-720.png", "PNG", optimize=True)
+    av.resize((300, 300), Image.Resampling.LANCZOS).save(SOCIAL / "profile-linkedin-300.png", "PNG", optimize=True)
+    print("profile exports 720/300 written")
 
-    fb = Image.new("RGB", (1640, 624), INK)
-    d = ImageDraw.Draw(fb)
-    d.rectangle([0, 0, 12, 624], fill=PINK)
-    _paste_logo(fb, (72, 140), 56)
-    d.text((72, 230), "Service Profit", fill=WHITE, font=_font(56))
-    d.text((72, 310), "Accounting for HVAC, electrical and construction.", fill=MUTED, font=_font(28, bold=False))
-    d.text((72, 500), "Pink Accounting  ·  Brendale  ·  Queensland", fill=SOFT, font=_font(22, bold=False))
-    save(fb, "cover-facebook.png")
+    save(_banner((1640, 624), "electrical-switchboard.jpg", "Service Profit",
+                 ["Accounting for HVAC, electrical and construction."],
+                 "Pink Accounting \u00b7 Brendale \u00b7 Queensland",
+                 logo_h=56, head_size=60, sub_size=29, foot_size=22, pad=72), "cover-facebook.png")
+    save(_banner((1584, 396), "hvac-rooftop.jpg", "Service Profit",
+                 ["HVAC, electrical and construction accounting \u00b7 Queensland"],
+                 "Pink Accounting \u00b7 Registered Tax Agent 26284368",
+                 logo_h=46, head_size=46, sub_size=21, foot_size=17, pad=56), "cover-linkedin.png")
+    save(_banner((1200, 675), "construction-fitout.jpg", "Service Profit",
+                 ["Job profit while you can still", "change the next quote."],
+                 "Pink Accounting \u00b7 Brendale QLD \u00b7 Tax Agent 26284368",
+                 logo_h=52, head_size=56, sub_size=28, foot_size=20, pad=64), "cover-google.png")
 
-    li = Image.new("RGB", (1584, 396), INK)
-    d = ImageDraw.Draw(li)
-    d.rectangle([0, 0, 10, 396], fill=PINK)
-    _paste_logo(li, (64, 48), 56)
-    d.text((64, 140), "Service Profit", fill=WHITE, font=_font(48))
-    d.text((64, 210), "HVAC, electrical and construction accounting  ·  Queensland", fill=MUTED, font=_font(22, bold=False))
-    d.text((64, 300), "Pink Accounting  ·  Registered Tax Agent 26284368", fill=SOFT, font=_font(18, bold=False))
-    save(li, "cover-linkedin.png")
+    posts = [
+        ("post-quoted-hours.png", "electrical-switchboard.jpg", "You quoted 6 hours.", "You did 9.", "We show you the gap every Monday, then fix the next quote."),
+        ("post-bank-not-yours.png", "hvac-rooftop.jpg", "The bank looks full.", "It is not all yours.", "GST, PAYG, super and wages sit in there. We pull it apart weekly."),
+        ("post-first-monday.png", "construction-fitout.jpg", "Know which jobs paid.", "While you can still act.", "Quoted hours against hours on the tools, in your inbox Monday."),
+    ]
+    for name, master, line1, line2, body in posts:
+        im = Image.new("RGB", (1080, 1350), INK)
+        photo = _cover_crop(_master(master), (1080, 700))
+        im.paste(photo, (0, 0))
+        d = ImageDraw.Draw(im)
+        d.rectangle([0, 694, 1080, 700], fill=PINK)
+        _paste_logo(im, (64, 748), 52)
+        d = ImageDraw.Draw(im)
+        d.text((64, 842), line1, fill=WHITE, font=_font(58))
+        d.text((64, 922), line2, fill="#FF6E92", font=_font(58))
+        d.text((64, 1032), body, fill=MUTED, font=_font(28, bold=False))
+        d.text((64, 1246), "Service Profit \u00b7 Pink Accounting \u00b7 (07) 3544 6386", fill=SOFT, font=_font(22, bold=False))
+        save(im, name)
 
-    g = Image.new("RGB", (1200, 675), INK)
-    d = ImageDraw.Draw(g)
-    d.rectangle([0, 0, 10, 675], fill=PINK)
-    _paste_logo(g, (64, 120), 56)
-    d.text((64, 220), "Service Profit", fill=WHITE, font=_font(56))
-    d.text((64, 300), "Job profit while you can still", fill=MUTED, font=_font(28, bold=False))
-    d.text((64, 344), "change the next quote.", fill=MUTED, font=_font(28, bold=False))
-    d.text((64, 540), "Pink Accounting  ·  Brendale QLD  ·  Tax Agent 26284368", fill=SOFT, font=_font(20, bold=False))
-    save(g, "cover-google.png")
 
 
 def build_favicon() -> None:
