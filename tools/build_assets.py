@@ -179,8 +179,10 @@ def _banner(size, master, headline, sub, footer, logo_h, head_size, sub_size, fo
     for line in sub:
         d.text((pad, y), line, fill=MUTED, font=_font(sub_size, bold=False))
         y += int(sub_size * 1.5)
-    d.rectangle([pad, h - foot_size - 34, pad + 54, h - foot_size - 28], fill=PINK)
-    d.text((pad, h - foot_size - 22), footer, fill="#E8E8E8", font=_font(foot_size, bold=False))
+    f_foot = _font(foot_size, bold=False)
+    fw = d.textlength(footer, font=f_foot)
+    d.rectangle([w - pad - fw, h - foot_size - 34, w - pad - fw + 54, h - foot_size - 28], fill=PINK)
+    d.text((w - pad - fw, h - foot_size - 22), footer, fill="#E8E8E8", font=f_foot)
     d.rectangle([0, h - 6, w, h], fill=PINK)
     return im
 
@@ -207,20 +209,17 @@ def build_social() -> None:
 
     av = Image.new("RGB", (1080, 1080), INK)
     logo = Image.open(ASSETS / "logo-white.png").convert("RGBA")
-    lh = 148
+    lh = 170
     logo = logo.resize((int(logo.width * lh / logo.height), lh), Image.Resampling.LANCZOS)
-    av.paste(logo, ((1080 - logo.width) // 2, 262), logo)
+    av.paste(logo, ((1080 - logo.width) // 2, 300), logo)
     d = ImageDraw.Draw(av)
-    f_head = _font(94)
+    f_head = _font(118)
     head = "Service Profit"
-    d.text(((1080 - d.textlength(head, font=f_head)) / 2, 446), head, fill=WHITE, font=f_head)
-    d.rectangle([460, 576, 620, 585], fill=PINK)
-    f_sub = _font(29, bold=False)
-    sub = "AIR CON \u00b7 ELECTRICAL \u00b7 CONSTRUCTION"
-    d.text(((1080 - d.textlength(sub, font=f_sub)) / 2, 620), sub, fill=MUTED, font=f_sub)
-    f_foot = _font(26, bold=False)
-    foot = "A Pink Accounting service"
-    d.text(((1080 - d.textlength(foot, font=f_foot)) / 2, 672), foot, fill=SOFT, font=f_foot)
+    d.text(((1080 - d.textlength(head, font=f_head)) / 2, 512), head, fill=WHITE, font=f_head)
+    d.rectangle([440, 662, 640, 672], fill=PINK)
+    f_sub = _font(34, bold=False)
+    sub = "A Pink Accounting service"
+    d.text(((1080 - d.textlength(sub, font=f_sub)) / 2, 700), sub, fill=MUTED, font=f_sub)
     save(av, "profile-1080.png")
     av.resize((720, 720), Image.Resampling.LANCZOS).save(SOCIAL / "profile-facebook-720.png", "PNG", optimize=True)
     av.resize((300, 300), Image.Resampling.LANCZOS).save(SOCIAL / "profile-linkedin-300.png", "PNG", optimize=True)
@@ -256,6 +255,7 @@ def build_social() -> None:
         d.text((64, 922), line2, fill="#FF6E92", font=_font(58))
         d.text((64, 1032), body, fill=MUTED, font=_font(28, bold=False))
         d.text((64, 1246), "Service Profit \u00b7 Pink Accounting \u00b7 (07) 3544 6386", fill=SOFT, font=_font(22, bold=False))
+        d.text((64, 1284), "Illustrative image.", fill=SOFT, font=_font(19, bold=False))
         save(im, name)
 
 
