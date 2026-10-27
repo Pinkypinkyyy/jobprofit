@@ -1,6 +1,11 @@
 # Service Profit social artwork
 
-Status: DRAFT for Pinky approval. Do not upload until Pinky says go.
+Status: UPLOADED 27 October 2026 (Pinky approved: profiles + covers now,
+posts after Nylon then scheduled). LinkedIn company 143802027: profile,
+banner and Overview live. Facebook Service Profit Accounting
+(61594432044788): profile and cover live. Google cover held - one Google
+profile only, Pink Accounting. Nylon PASS records: captions.nylon.json,
+overview-linkedin.nylon.json. Overview text: overview-linkedin.txt.
 
 Rebuilt 27 October 2026. The old set was flat black rectangles with small
 white text and no photography. This set is photo-led, built by

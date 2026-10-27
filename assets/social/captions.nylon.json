@@ -1,0 +1,12 @@
+{
+  "provider": "Nylon (usenylon.com)",
+  "content_sha256": "f4dd9e132ee2962a1db3fbc95a91eb7e39408ff2fc6cf451c80f1c79bc20505e",
+  "verdict": "PASS",
+  "checked_at": "2026-10-27T02:55:00Z",
+  "checker": "Claude (Muse Code muse-wonder-1.0) via signed-in Nylon AI session, conversation 599852, 27 Oct 2026",
+  "query": "Do these three short social media captions for an Australian registered tax agent (Registered Tax Agent 26284368) contain any incorrect statement of Australian tax law? Caption 1 quoted hours/tax BAS books payroll; Caption 2 bank balance GST PAYG super wages; Caption 3 job reporting Monday, registered tax agent 26284368. For each caption say PASS or name exact wrong wording.",
+  "sources": [
+    {"title": "TPB Register - Practitioner details (Pink Accounting, 26284368)", "reference": "Tax Practitioners Board public register, cited by Nylon for Captions 1 and 3"},
+    {"title": "Nylon answer, 27 Oct 2026", "reference": "All three captions PASS on Australian tax-law accuracy as at October 2026. Caveat recorded: confirm weekly reporting, Monday delivery and service scope match actual client delivery before publishing."}
+  ]
+}

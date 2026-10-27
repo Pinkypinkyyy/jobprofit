@@ -1,0 +1,12 @@
+{
+  "provider": "Nylon (usenylon.com)",
+  "content_sha256": "03b4a73fb9bbe558d4c94f45a222b3535d1ef1c19730cf4edcbdf03215da10ba",
+  "verdict": "PASS",
+  "checked_at": "2026-10-27T03:22:00Z",
+  "checker": "Claude (Muse Code muse-wonder-1.0) via signed-in Nylon AI session, conversation 599852, 27 Oct 2026",
+  "query": "Does this LinkedIn company Overview for an Australian registered tax agent contain any incorrect statement of Australian tax law? Full Overview text as published. Say PASS or name exact wrong wording.",
+  "sources": [
+    {"title": "Nylon answer, 27 Oct 2026", "reference": "PASS - no incorrect statement of Australian tax law as at 27 October 2026. Notes: GST payable takes account of input tax credits; confirm registration 26284368 against TPB Public Register (confirmed in the captions check, same session) and substantiate the 'Most owners' generalisation."},
+    {"title": "TPB Register - Practitioner details (Pink Accounting, 26284368)", "reference": "Cited by Nylon in the captions check, same session, 27 Oct 2026"}
+  ]
+}
