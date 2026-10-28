@@ -3,7 +3,7 @@ from pathlib import Path
 from shared import (
     GBP,
     IMG_VERSION,
-    MSBOOK,
+    BOOKING_URL,
     ORIGIN,
     cash_chart,
     short_enquiry_form,
@@ -793,7 +793,7 @@ def book():
       <p class="lead">Talk to an accountant and registered tax agent. Pick a time, then answer a few quick questions about the business. That is all we need before the call.</p>
       <section class="pick-time" id="pick-time">
         <div class="cta">
-          <a class="btn btn-primary" href="{MSBOOK}" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
+          <a class="btn btn-primary" href="{BOOKING_URL}" rel="noopener" data-event="book-calendar">Open full-screen booking</a>
           <a class="btn btn-outline btn-call" href="tel:{ID["office"]["phone_e164"]}" data-event="book-call">Or call {ID["office"]["phone_display"]}</a>
         </div>
 {trust_line()}
@@ -852,9 +852,11 @@ def privacy():
       <span class="eyebrow">Pink Accounting</span>
       <h1>Privacy</h1>
       <div class="prose">
-        <p>Pink Accounting &amp; Tax Solutions Pty Ltd (ABN 51 682 301 891) handles personal information under the Privacy Act 1988. Service Profit is a service of this firm. This page applies to the whole practice. Last reviewed 11 September 2026.</p>
+        <p>Pink Accounting &amp; Tax Solutions Pty Ltd (ABN 51 682 301 891) handles personal information under the Privacy Act 1988. Service Profit is a service of this firm. This page applies to the whole practice. Last reviewed 19 October 2026.</p>
         <h2>What we collect</h2>
         <p>Name, contact details, business details, and the financial and tax information needed to provide accounting and tax services. If you send the enquiry form, book a call or email us, we keep that correspondence. Microsoft Bookings also holds the appointment details you enter there, when that calendar is open.</p>
+        <h2>AI and automated systems</h2>
+        <p>Pink Accounting uses AI and automated systems for parts of our processing, including follow-ups and correspondence, administration, data collection, and some steps in onboarding. Information you provide may be handled by these systems. They support our team; they do not replace professional judgement. Our team oversees the work, and you can ask to deal with a person at any time.</p>
         <h2>Why we collect it</h2>
         <p>To provide the service you asked for, meet our tax-agent and legal obligations, and run the practice. We do not sell lists.</p>
         <h2>How we hold it</h2>
