@@ -564,7 +564,7 @@ def services():
         [
             (
                 "Do I have to take all of these?",
-                "No. Compliance at $550 + GST a month covers income tax, FBT, financial statements, BAS and GST from a file already in order. Job Profit adds the job and cash look with books and pay handled. Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files.",
+                "No. Compliance at $550 + GST a month covers one entity's financial statements, business tax return, BAS and IAS, and the ASIC annual review, from a file already in order. Owners' individual tax returns are quoted separately. Job Profit adds the job and cash look, with books and pay handled and no extra-employee charge. Need bookkeeping too? Move to Service Protection or Margin Protection at $990.",
             ),
             NOT_PERSONAL,
         ],
@@ -648,7 +648,7 @@ def payroll():
         <h2>Apprentices, staff and subcontractors</h2>
         <p>An apprentice costs more than the hourly rate, and a subcontractor who works like staff can bring super and payroll obligations with them. We show the true cost in the file. Award rates and contracts come from Fair Work, not from us. The Fair Work Ombudsman's pay calculator is the place to check a rate. <a href="/can-i-afford-another-technician/">Can I afford another technician?</a></p>
         <h2>How payroll is priced</h2>
-        <p>Payroll is not inside the monthly plans. Like bookkeeping, it is quoted in the letter when you actually need it.</p>""",
+        <p>On Service Protection, payroll for up to five staff sits inside the plan. Above that, there is a fee of $25 + GST per extra employee per month, unless you move up to the higher tier. We review that plan once you reach 10 to 15 staff. Job Profit, Weekly Visibility and Ready to Scale include payroll with no extra-employee charge.</p>""",
         [
             (
                 "Do you use Xero Payroll?",
@@ -683,7 +683,7 @@ def bookkeeping_xero():
         <h2>Your job software feeds Xero. We work in Xero.</h2>
         <p>We set up Xero. We do not set up or run your job software; that is an implementer's job, and we will say so. <a href="/job-software-and-your-accountant/">You already have job software</a>.</p>
         <h2>How bookkeeping is priced</h2>
-        <p>Bookkeeping on its own is an add-on from $500 + GST a month for Compliance files, quoted in the letter when it is actually needed. Inside Job Profit and Service Protection it is part of the plan. Xero setup is quoted once, after we have seen what you have.</p>""",
+        <p>Need bookkeeping too? Move to Service Protection or Margin Protection at $990. Inside Job Profit and Service Protection, books and pay are already handled. Xero setup is quoted once, after we have seen what you have.</p>""",
         [
             (
                 "Are you a bookkeeper or an accountant?",
@@ -691,7 +691,7 @@ def bookkeeping_xero():
             ),
             (
                 "Can I keep doing my own bookkeeping?",
-                "Yes. If the file is in order each month, Compliance runs without the bookkeeping add-on. Inside Job Profit and Service Protection the books and pay are handled. We will tell you on the call which it is.",
+                "Yes. If the file is in order each month, Compliance can run on its own. Need bookkeeping too? Move to Service Protection or Margin Protection at $990. Inside Job Profit and Service Protection the books and pay are handled. We will tell you on the call which it is.",
             ),
             CATCH_UP,
         ],

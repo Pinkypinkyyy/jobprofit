@@ -205,7 +205,7 @@ def service_profit_node():
             "name": "Service Profit plans",
             "itemListElement": [
                 {"@type": "Offer", "name": "Job Profit", "price": "1650.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-job"},
-                {"@type": "Offer", "name": "Weekly Visibility", "price": "2650.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-weekly"},
+                {"@type": "Offer", "name": "Weekly Visibility", "price": "1950.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-weekly"},
                 {"@type": "Offer", "name": "Ready to Scale", "price": "3500.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-scale"},
                 {"@type": "Offer", "name": "Compliance", "price": "550.00", "priceCurrency": "AUD", "url": f"{ORIGIN}/pricing.html#level-compliance"},
             ],
