@@ -9,7 +9,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 - Fee: $1,650 + GST / month
 - Most files
 - In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns
-- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), a published savings figure. Payroll above five staff is a set monthly fee per extra employee. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start.
+- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), a published savings figure. Payroll above five staff is $25 + GST per extra employee per month, unless you move up to the higher tier. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start.
 
 ## Service Protection
 

@@ -103,7 +103,7 @@ PRICING_FAQ = [
     ),
     (
         "What is not included?",
-        "A monthly meeting, unlimited work (ask us anything; bigger jobs are quoted first), and a published savings figure. Payroll above five staff is a set monthly fee per extra employee. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start. Xero subscription is yours.",
+        "A monthly meeting, unlimited work (ask us anything; bigger jobs are quoted first), and a published savings figure. Payroll above five staff is $25 + GST per extra employee per month, unless you move up to the higher tier. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start. Xero subscription is yours.",
     ),
     (
         "Do the higher plans include Job Profit?",
@@ -123,7 +123,7 @@ PRICING_FAQ = [
     ),
     (
         "What is Service Protection?",
-        "Service Protection is $990 + GST a month for non-project service work: books and pay for up to five staff, financial statements, the business tax return, BAS and IAS, FBT, the ASIC annual review for one business entity, and up to two owners' individual tax returns, and a monthly read on which clients and which work made money. Project and job tracking stay in Job Profit. ASIC's own fees are paid by your company directly to ASIC. Payroll above five staff is a set monthly fee per extra employee. Extra entities and catch-up periods are quoted once at the start.",
+        "Service Protection is $990 + GST a month for non-project service work: books and pay for up to five staff, financial statements, the business tax return, BAS and IAS, FBT, the ASIC annual review for one business entity, and up to two owners' individual tax returns, and a monthly read on which clients and which work made money. Project and job tracking stay in Job Profit. ASIC's own fees are paid by your company directly to ASIC. Payroll above five staff is $25 + GST per extra employee per month, unless you move up to the higher tier. Extra entities and catch-up periods are quoted once at the start.",
     ),
     (
         "Are the fees plus GST?",
@@ -646,7 +646,7 @@ def pricing():
                 <td><strong>Job Profit</strong></td>
                 <td class="price">$1,650 + GST / month</td>
                 <td>Billed hours vs quoted hours. Cash that is yours vs GST, PAYG, super, wages. FBT watched in the file. Books and pay for up to five staff. Financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns.</td>
-                <td>A monthly meeting. Unlimited work: ask anything, bigger jobs are quoted first. A published savings figure. Payroll above five staff is a set monthly fee per extra employee. Extra entities and catch-up periods are quoted once at the start.</td>
+                <td>A monthly meeting. Unlimited work: ask anything, bigger jobs are quoted first. A published savings figure. Payroll above five staff is $25 + GST per extra employee per month, unless you move up to the higher tier. Extra entities and catch-up periods are quoted once at the start.</td>
               </tr>
               <tr id="level-weekly">
                 <td><strong>Weekly Visibility</strong></td>
@@ -1113,7 +1113,7 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 - Fee: $1,650 + GST / month
 - Most files
 - In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns
-- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), a published savings figure. Payroll above five staff is a set monthly fee per extra employee. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start.
+- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), a published savings figure. Payroll above five staff is $25 + GST per extra employee per month, unless you move up to the higher tier. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start.
 
 ## Service Protection
 
