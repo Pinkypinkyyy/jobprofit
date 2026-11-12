@@ -99,11 +99,11 @@ SYSTEM_FAQ = [
 PRICING_FAQ = [
     (
         "What is in Job Profit?",
-        "Bookkeeping and data entry handled, pay runs and payroll for up to five staff, billed hours versus quoted hours each week, cash that is yours versus GST, PAYG, super and wages, FBT watched in the file, and income tax, FBT, financial statements, BAS and GST held for one trading entity as written in the letter.",
+        "Bookkeeping and data entry handled, pay runs and payroll for up to five staff, billed hours versus quoted hours each week, cash that is yours versus GST, PAYG, super and wages, FBT watched in the file, and financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns, as written in the letter.",
     ),
     (
         "What is not included?",
-        "A monthly meeting, unlimited work (ask us anything; bigger jobs are quoted first), catch-up of earlier periods, a published savings figure, and extra entities unless the letter says so. Xero subscription is yours.",
+        "A monthly meeting, unlimited work (ask us anything; bigger jobs are quoted first), and a published savings figure. Payroll above five staff is a set monthly fee per extra employee. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start. Xero subscription is yours.",
     ),
     (
         "Do the higher plans include Job Profit?",
@@ -115,7 +115,7 @@ PRICING_FAQ = [
     ),
     (
         "My bookkeeper charges $300 a month. Why is this five times that?",
-        "Because it is not the same job. A bookkeeper records what already happened. This tells you, each week, whether the hours you quoted matched the hours you paid for, and how much of the bank is actually yours once GST, PAYG, super and wages come out. It also carries the tax agent work: income tax, FBT, financial statements, BAS and GST. If what you need is the recording, keep your bookkeeper. Bookkeeping on its own is an add-on here from $500 + GST a month for Compliance files, and we will say so.",
+        "Because it is not the same job. A bookkeeper records what already happened. This tells you, each week, whether the hours you quoted matched the hours you paid for, and how much of the bank is actually yours once GST, PAYG, super and wages come out. It also carries the tax agent work: financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns. If what you need is the recording, keep your bookkeeper. Bookkeeping on its own is an add-on here from $500 + GST a month for Compliance files, and we will say so.",
     ),
     (
         "What happens if it does not pay for itself?",
@@ -123,7 +123,7 @@ PRICING_FAQ = [
     ),
     (
         "What is Service Protection?",
-        "Service Protection is $990 + GST a month for non-project service work: books, pay to five staff, BAS and tax, and a monthly read on which clients and which work made money. Project and job tracking stay in Job Profit.",
+        "Service Protection is $990 + GST a month for non-project service work: books and pay for up to five staff, financial statements, the business tax return, BAS and IAS, FBT, the ASIC annual review for one business entity, and up to two owners' individual tax returns, and a monthly read on which clients and which work made money. Project and job tracking stay in Job Profit. ASIC's own fees are paid by your company directly to ASIC. Payroll above five staff is a set monthly fee per extra employee. Extra entities and catch-up periods are quoted once at the start.",
     ),
     (
         "Are the fees plus GST?",
@@ -412,7 +412,7 @@ def index():
             <li><b>Billed time</b> quoted hours versus hours on the tools, each week. If a job ran long, the next quote should not repeat it</li>
             <li><b>Cash that is yours</b> unfinished work, GST, PAYG, super and wages pulled apart so you know what you can spend</li>
             <li><b>Utes, phones, FBT</b> watched in the file. Not left as a June surprise</li>
-            <li><b>Income tax, FBT, financial statements, BAS and GST held</b> for one trading entity, as written in the letter</li>
+            <li><b>Financial statements, the business tax return, BAS and GST, the ASIC annual review, and up to two owners' individual tax returns</b> for one business entity, as written in the letter</li>
           </ul>
         </div>
         <div class="tiers">
@@ -632,7 +632,7 @@ def pricing():
             <div class="fcta"><a class="btn btn-primary" href="/book.html" data-event="pricing-job">Book a 15-minute call</a></div>
           </div>
           <ul>
-            <li><b>In:</b> billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity</li>
+            <li><b>In:</b> billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; books and pay for up to five staff; financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns</li>
             <li><b>Out:</b> a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure</li>
           </ul>
         </div>
@@ -645,8 +645,8 @@ def pricing():
               <tr class="pop" id="level-job">
                 <td><strong>Job Profit</strong></td>
                 <td class="price">$1,650 + GST / month</td>
-                <td>Billed hours vs quoted hours. Cash that is yours vs GST, PAYG, super, wages. FBT watched in the file. Books, pay to five staff, and BAS sit under that.</td>
-                <td>A monthly meeting. Unlimited work: ask anything, bigger jobs are quoted first. Catch-up. A published savings figure.</td>
+                <td>Billed hours vs quoted hours. Cash that is yours vs GST, PAYG, super, wages. FBT watched in the file. Books and pay for up to five staff. Financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns.</td>
+                <td>A monthly meeting. Unlimited work: ask anything, bigger jobs are quoted first. A published savings figure. Payroll above five staff is a set monthly fee per extra employee. Extra entities and catch-up periods are quoted once at the start.</td>
               </tr>
               <tr id="level-weekly">
                 <td><strong>Weekly Visibility</strong></td>
@@ -669,7 +669,7 @@ def pricing():
               <tr id="level-service">
                 <td><strong>Service Protection</strong></td>
                 <td class="price">$990 + GST / month</td>
-                <td>Books and pay handled, BAS and tax, monthly read on which clients and work made money. Non-project service work.</td>
+                <td>Books and pay for up to five staff, financial statements, the business tax return, BAS and IAS, FBT, the ASIC annual review for one business entity, and up to two owners' individual tax returns, plus a monthly read on which clients and work made money. Non-project service work.</td>
                 <td>Project and job tracking, which stay in Job Profit.</td>
               </tr>
             </tbody>
@@ -677,11 +677,11 @@ def pricing():
         </div>
         <p class="table-hint">Swipe sideways for every column.</p>
         <div class="scope-cards">
-          <article class="scope-card" id="card-job"><h2>Job Profit</h2><div class="price">$1,650 + GST / month</div><p><b>In:</b> billed hours vs quoted hours, books and pay handled, cash that is yours, FBT watched, tax and BAS held.</p><p><b>Out:</b> a monthly meeting, a published savings figure, catch-up.</p></article>
+          <article class="scope-card" id="card-job"><h2>Job Profit</h2><div class="price">$1,650 + GST / month</div><p><b>In:</b> billed hours vs quoted hours, books and pay handled, cash that is yours, FBT watched, financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns.</p><p><b>Out:</b> a monthly meeting, a published savings figure. Extra entities and catch-up periods are quoted once at the start.</p></article>
           <article class="scope-card"><h2>Weekly Visibility</h2><div class="price">from $2,650 + GST / month</div><p><b>In:</b> Job Profit, plus a snapshot while the job is still on site.</p><p><b>Out:</b> open-ended project work unless scoped.</p></article>
           <article class="scope-card"><h2>Ready to Scale</h2><div class="price">from $3,500 + GST / month</div><p><b>In:</b> Weekly Visibility, plus a written forecast: hire, draw, hold. Application only.</p><p><b>Out:</b> a guaranteed result. Unlimited work.</p></article>
           <article class="scope-card" id="card-compliance"><h2>Compliance</h2><div class="price">$550 + GST / month</div><p><b>In:</b> income tax, FBT, financial statements, BAS and GST from a file already in order.</p><p><b>Out:</b> job-and-cash look, WhatsApp, catch-up, unlimited advisory.</p></article>
-          <article class="scope-card" id="card-service"><h2>Service Protection</h2><div class="price">$990 + GST / month</div><p><b>In:</b> books and pay handled, BAS and tax, monthly read on which clients and work made money.</p><p><b>Out:</b> project and job tracking, which stay in Job Profit.</p></article>
+          <article class="scope-card" id="card-service"><h2>Service Protection</h2><div class="price">$990 + GST / month</div><p><b>In:</b> books and pay for up to five staff, financial statements, the business tax return, BAS and IAS, FBT, the ASIC annual review for one business entity, and up to two owners' individual tax returns, plus a monthly read on which clients and work made money.</p><p><b>Out:</b> project and job tracking, which stay in Job Profit.</p></article>
         </div>
         <div class="addon" id="level-bookkeeping">
           <h2>Bookkeeping add-on · from $500 + GST / month</h2>
@@ -1112,14 +1112,14 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 
 - Fee: $1,650 + GST / month
 - Most files
-- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity
-- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure
+- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns
+- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), a published savings figure. Payroll above five staff is a set monthly fee per extra employee. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start.
 
 ## Service Protection
 
 - Fee: $990 + GST / month
 - Non-project service work
-- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; monthly read on which clients and work made money; BAS and tax held for one trading entity
+- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; monthly read on which clients and work made money; financial statements, the business tax return, BAS and IAS, FBT, the ASIC annual review for one business entity, and up to two owners' individual tax returns
 - Out: project and job tracking, which stay in Job Profit
 
 ## Weekly Visibility

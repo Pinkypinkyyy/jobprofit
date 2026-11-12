@@ -579,7 +579,7 @@ def tax_agent():
         "Registered tax agent for air con, electrical and construction businesses in Queensland. Income tax, tax planning, FBT, TPAR and financial statements.",
         "Tax agent",
         "Tax agent in Brendale for tax returns and tax planning",
-        "We prepare and lodge the business return, the financial statements and the FBT return. Registered tax agent 26284368, on the TPB register.",
+        "We prepare and lodge the business tax return, the financial statements, the FBT return, the ASIC annual review for one business entity, and up to two owners' individual tax returns, as written in the letter. Registered tax agent 26284368, on the TPB register.",
         """        <h2>Income tax returns for the business</h2>
         <p>Whatever structure the business trades through, the return is built from a reconciled file, not a box of receipts in July. One trading entity is included unless the letter says otherwise.</p>
         <h2 id="planning">Tax planning before 30 June</h2>

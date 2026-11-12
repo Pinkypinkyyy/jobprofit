@@ -8,14 +8,14 @@ Human page: https://www.serviceprofit.com.au/pricing.html
 
 - Fee: $1,650 + GST / month
 - Most files
-- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; income tax, FBT, financial statements, BAS and GST held for one trading entity
-- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), catch-up, a published savings figure
+- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; billed hours vs quoted hours each week; cash that is yours vs GST, PAYG, super, wages; FBT watched in the file; financial statements, the business tax return, BAS and GST, the ASIC annual review for one business entity, and up to two owners' individual tax returns
+- Out: a monthly meeting, unlimited work (ask anything; bigger jobs are quoted first), a published savings figure. Payroll above five staff is a set monthly fee per extra employee. ATO audits, reviews and amendments are quoted as needed. Extra entities and catch-up periods are quoted once at the start.
 
 ## Service Protection
 
 - Fee: $990 + GST / month
 - Non-project service work
-- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; monthly read on which clients and work made money; BAS and tax held for one trading entity
+- In: bookkeeping and data entry handled; pay runs and payroll for up to five staff; monthly read on which clients and work made money; financial statements, the business tax return, BAS and IAS, FBT, the ASIC annual review for one business entity, and up to two owners' individual tax returns
 - Out: project and job tracking, which stay in Job Profit
 
 ## Weekly Visibility
