@@ -269,7 +269,7 @@
             .map(function (k) { return (labels[k] || k) + ": " + data[k]; })
             .join("\n");
           window.location.href =
-            "mailto:admin@pinktax.com.au?subject=" +
+            "mailto:hello@pinktax.com.au?subject=" +
             encodeURIComponent(data._subject || "Service Profit enquiry") +
             "&body=" +
             encodeURIComponent(body);
