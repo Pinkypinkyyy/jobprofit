@@ -825,7 +825,7 @@ def contact():
 {trust_line()}
       <div class="grid3">
         <section class="card"><span class="eyebrow">Phone</span><h2><a href="tel:+61735446386">07 3544 6386</a></h2><p>Office hours {ID["office"]["hours"]["display"]}. 15-minute calls run Monday to Thursday.</p></section>
-        <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a></h2><p>The firm mailbox. A person reads it.</p></section>
+        <section class="card"><span class="eyebrow">Email</span><h2><a href="mailto:{ID["office"]["email"]}">{ID["office"]["email"]}</a></h2><p>The firm mailbox. A person reads it.</p></section>
         <section class="card"><span class="eyebrow">Visit</span><h2>Brendale QLD 4500</h2><p>{ID["office"]["street"]}. Moreton Bay, north of Brisbane. Service Profit is Queensland. Hospitality clients of the same firm sit on pinktax.com.au.</p></section>
       </div>
       <div class="sec-head">
@@ -864,13 +864,13 @@ def privacy():
         <h2>Who we share it with</h2>
         <p>Only where the job requires it: the ATO, ASIC, your bank or software provider with your authority, professional indemnity insurers, and regulators when the law requires it. Microsoft, Xero, Google Analytics, Meta (when the advertising pixel is active) and similar suppliers process information to run those tools. Some of those suppliers store or support data outside Australia. We use them because the practice cannot run without them. Tell us if you do not want a named tool used on your file.</p>
         <h2>This website</h2>
-        <p>This site runs Google Analytics 4 so we can see which pages are used and whether an enquiry was sent. Google Tag Manager also runs here so our marketing provider can manage the Google tags on the site. If you arrive from one of our Google ads, the phone number shown is 07 3524 7162, a call-tracking number from our marketing provider, Localsearch. It rings our office and lets us see which ads lead to calls. It uses a cookie that lasts 90 days and basic details about your browser. If a Meta pixel ID is configured, Meta also receives a page view and a lead event after a successful enquiry. We do not treat a click on Book a call as a completed enquiry. The enquiry form is sent through Formsubmit to admin@pinktax.com.au. You can ask us not to use analytics on a future visit by writing to admin@pinktax.com.au.</p>
+        <p>This site runs Google Analytics 4 so we can see which pages are used and whether an enquiry was sent. Google Tag Manager also runs here so our marketing provider can manage the Google tags on the site. If you arrive from one of our Google ads, the phone number shown is 07 3524 7162, a call-tracking number from our marketing provider, Localsearch. It rings our office and lets us see which ads lead to calls. It uses a cookie that lasts 90 days and basic details about your browser. If a Meta pixel ID is configured, Meta also receives a page view and a lead event after a successful enquiry. We do not treat a click on Book a call as a completed enquiry. The enquiry form is sent through Formsubmit to {ID["office"]["email"]}. You can ask us not to use analytics on a future visit by writing to {ID["office"]["email"]}.</p>
         <h2>Access and correction</h2>
-        <p>You can ask to see the personal information we hold about you, and ask us to correct it. Write to admin@pinktax.com.au. We will respond within 30 days. If we refuse, we will say why and how to complain.</p>
+        <p>You can ask to see the personal information we hold about you, and ask us to correct it. Write to {ID["office"]["email"]}. We will respond within 30 days. If we refuse, we will say why and how to complain.</p>
         <h2>Complaints</h2>
-        <p>Privacy complaints go first to admin@pinktax.com.au or 07 3544 6386. The principal reviews them. If we cannot resolve it, you can contact the Office of the Australian Information Commissioner at oaic.gov.au.</p>
+        <p>Privacy complaints go first to {ID["office"]["email"]} or 07 3544 6386. The principal reviews them. If we cannot resolve it, you can contact the Office of the Australian Information Commissioner at oaic.gov.au.</p>
         <h2>How to contact us</h2>
-        <p>admin@pinktax.com.au or 07 3544 6386. {ID["office"]["one_line"]}.</p>
+        <p>{ID["office"]["email"]} or 07 3544 6386. {ID["office"]["one_line"]}.</p>
       </div>
     </div>
   </main>
@@ -894,7 +894,7 @@ def rights():
         <h2>The TPB public register</h2>
         <p>The Tax Practitioners Board maintains a public register of all registered tax and BAS agents. Search it at <a href="https://www.tpb.gov.au/public-register" rel="noopener">tpb.gov.au/public-register</a>. Our registration number is <b>26284368</b>.</p>
         <h2>How to make a complaint</h2>
-        <p>If something is wrong, tell us first: <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a> or 07 3544 6386. The principal reviews every complaint. You can also complain to the TPB via <a href="https://www.tpb.gov.au/complaints" rel="noopener">tpb.gov.au/complaints</a>.</p>
+        <p>If something is wrong, tell us first: <a href="mailto:{ID["office"]["email"]}">{ID["office"]["email"]}</a> or 07 3544 6386. The principal reviews every complaint. You can also complain to the TPB via <a href="https://www.tpb.gov.au/complaints" rel="noopener">tpb.gov.au/complaints</a>.</p>
         <h2>Rights, responsibilities and obligations</h2>
         <p>As a registered tax practitioner we must act honestly and with integrity, comply with the taxation laws in our own affairs, act lawfully in your best interests, manage conflicts of interest, take reasonable care to ascertain your state of affairs and apply the tax laws correctly, keep your information confidential unless we have a legal duty or your permission to disclose it, maintain professional indemnity insurance, and not knowingly obstruct the administration of the tax laws.</p>
         <p>You have obligations too: providing complete and accurate information, keeping the records the law requires, lodging and paying on time once advised, and telling us when your circumstances change. Our letter of engagement sets out both sides before work starts.</p>
@@ -906,7 +906,7 @@ def rights():
           <li><b>Company and business names</b>. ASIC, including Pink Accounting, Pink Strategic Accounting and Service Profit Accounting, the name this site trades under, registered 24 August 2026</li>
           <li><b>Professional membership</b>. Member, Institute of Public Accountants (MIPA AFA)</li>
         </ul>
-        <p>If anything on this page disagrees with those registers, the register wins. Tell us: admin@pinktax.com.au.</p>
+        <p>If anything on this page disagrees with those registers, the register wins. Tell us: {ID["office"]["email"]}.</p>
         <h2>Smart technology, real expertise</h2>
         <p>Pink pairs experienced people with business-grade tools for research, data and drafting. We do the thinking, the judgment and the advice. Every output is reviewed and signed off by a qualified member of the team. No automated tool makes decisions about your tax affairs. We do not allow confidential information to train public models. Personal information is handled under the Privacy Act 1988. If you would prefer we did not use those tools on your file, tell us.</p>
         <h2 id="disclosure">Disclosure statements</h2>
@@ -935,9 +935,9 @@ def disclosure():
         <h2>Matters we must disclose</h2>
 {disclosure_paragraphs()}
         <h2>Check the register yourself</h2>
-        <p>The Tax Practitioners Board keeps a public register of every registered tax and BAS agent, including any conditions or sanctions. Search <b>26284368</b> at <a href="https://www.tpb.gov.au/public-register" rel="noopener">tpb.gov.au/public-register</a>. If anything here disagrees with the register, the register is correct and we want to know: <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>.</p>
+        <p>The Tax Practitioners Board keeps a public register of every registered tax and BAS agent, including any conditions or sanctions. Search <b>26284368</b> at <a href="https://www.tpb.gov.au/public-register" rel="noopener">tpb.gov.au/public-register</a>. If anything here disagrees with the register, the register is correct and we want to know: <a href="mailto:{ID["office"]["email"]}">{ID["office"]["email"]}</a>.</p>
         <h2>If you need to complain</h2>
-        <p>Tell us first. Email <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a> or call 07 3544 6386. The principal reviews every complaint. If we have not resolved it, you can take it to the TPB at <a href="https://www.tpb.gov.au/complaints" rel="noopener">tpb.gov.au/complaints</a>. Complaining to the TPB does not cost you anything and does not affect your file with us.</p>
+        <p>Tell us first. Email <a href="mailto:{ID["office"]["email"]}">{ID["office"]["email"]}</a> or call 07 3544 6386. The principal reviews every complaint. If we have not resolved it, you can take it to the TPB at <a href="https://www.tpb.gov.au/complaints" rel="noopener">tpb.gov.au/complaints</a>. Complaining to the TPB does not cost you anything and does not affect your file with us.</p>
         <h2>The rest of your rights</h2>
         <p>Our full obligations to you, your obligations to us, how we use technology on your file and how to verify the firm are on <a href="/rights.html">Your rights and our obligations</a>. How we handle personal information is on <a href="/privacy.html">Privacy</a>.</p>
       </div>
@@ -963,7 +963,7 @@ def terms():
         <h2>Who we are</h2>
         <p>Pink Accounting &amp; Tax Solutions Pty Ltd, ABN 51 682 301 891, Registered Tax Agent 26284368. Service Profit is a Queensland service line of that firm.</p>
         <h2>The call</h2>
-        <p>A booked call is a conversation to see whether there is a fit. It is not tax advice, not an engagement, and not a quote until the letter is issued. The enquiry form on this site emails admin@pinktax.com.au. Booking software is Microsoft Bookings when that calendar is open. Confirmation then goes to you and to admin@pinktax.com.au.</p>
+        <p>A booked call is a conversation to see whether there is a fit. It is not tax advice, not an engagement, and not a quote until the letter is issued. The enquiry form on this site emails {ID["office"]["email"]}. Booking software is Microsoft Bookings when that calendar is open. Confirmation then goes to you and to {ID["office"]["email"]}.</p>
         <h2>Fees on this site</h2>
         <p>Published fees are monthly, exclusive of GST, for one trading entity unless the letter says otherwise. Starting prices can rise with volume, payroll, extra entities or catch-up. The letter is the quote.</p>
         <h2>No unlimited work</h2>
@@ -971,7 +971,7 @@ def terms():
         <h2>Liability</h2>
         <p>Liability limited by a scheme approved under Professional Standards Legislation.</p>
         <h2>Contact</h2>
-        <p>admin@pinktax.com.au · 07 3544 6386 · {ID["office"]["one_line"]}.</p>
+        <p>{ID["office"]["email"]} · 07 3544 6386 · {ID["office"]["one_line"]}.</p>
       </div>
     </div>
   </main>

@@ -372,7 +372,7 @@ def footer():
         <div>
           <h2>Contact and legal</h2>
           <a href="tel:+61735446386">(07) 3544 6386</a>
-          <a href="mailto:admin@pinktax.com.au">admin@pinktax.com.au</a>
+          <a href="mailto:{ID["office"]["email"]}">{ID["office"]["email"]}</a>
           <a href="/contact.html">Contact</a>
           <a href="/rights.html">Your rights</a>
           <a href="/privacy.html">Privacy</a>
@@ -547,7 +547,7 @@ def short_enquiry_form(prefix="contact", next_page="/contact.html"):
         </label>
         <button class="btn btn-primary" type="submit">Send this</button>
         <label class="consent"><input type="checkbox" name="okToCall" value="yes"> Ring me about this enquiry on this number. We will text first, and I can move the time by replying.</label>
-        <p class="form-note">How we work: Pink Accounting uses AI and automated systems for parts of our processing, including follow-ups and correspondence, administration, data collection, and some steps in onboarding. Information you give us may be handled by these systems. Our work is overseen by our team, and you can ask to deal with a person at any time. Goes to admin@pinktax.com.au. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
+        <p class="form-note">How we work: Pink Accounting uses AI and automated systems for parts of our processing, including follow-ups and correspondence, administration, data collection, and some steps in onboarding. Information you give us may be handled by these systems. Our work is overseen by our team, and you can ask to deal with a person at any time. Goes to {ID["office"]["email"]}. Please do not send your TFN or bank details through this form. By sending you agree to our <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy</a> pages.</p>
       </form>
       <p class="enquiry-ok" id="enquiryOk" hidden>Got it. We will come back to you the same working day.</p>
 """
