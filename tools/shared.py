@@ -52,8 +52,8 @@ META_PIXEL = ""
 # example). The CSP, both form actions and the ajax path in nav.js all derive
 # from here, so nothing is left pointing at the old host.
 FORM_ORIGIN = "https://formsubmit.co"
-FORM_ENDPOINT = f"{FORM_ORIGIN}/admin@pinktax.com.au"
-FORM_AJAX_ENDPOINT = f"{FORM_ORIGIN}/ajax/admin@pinktax.com.au"
+FORM_ENDPOINT = f"{FORM_ORIGIN}/hello@pinktax.com.au"
+FORM_AJAX_ENDPOINT = f"{FORM_ORIGIN}/ajax/hello@pinktax.com.au"
 
 CSP = (
     "default-src 'self'; "

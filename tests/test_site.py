@@ -334,8 +334,7 @@ def test_forms_have_captcha_and_honeypot():
 
 def test_contact_has_a_form_not_just_phone_and_email():
     html = (ROOT / "contact.html").read_text(encoding="utf-8")
-    # Relay stays on admin@ until hello@ is activated at FormSubmit.
-    assert 'action="https://formsubmit.co/admin@pinktax.com.au"' in html
+    assert 'action="https://formsubmit.co/hello@pinktax.com.au"' in html
     assert 'name="message"' in html
     # The short form, not the full book.html intake.
     assert 'name="revenue"' not in html
@@ -454,6 +453,8 @@ def test_mailto_fallback_carries_every_field_the_visitor_filled():
     # dropped contact.html's message field.
     assert "Object.keys(data)" in js
     assert "message:" in js
+    # Ajax failure opens the visitor's mail app to the same mailbox the relay uses.
+    assert "mailto:hello@pinktax.com.au?subject=" in js
 
 
 def test_every_shipped_asset_is_actually_referenced():
@@ -1156,13 +1157,13 @@ def test_services_dropdown_on_every_page():
 
 
 PUBLIC_EMAIL = "hello@pinktax.com.au"
-RELAY_EMAIL = "admin@pinktax.com.au"
+RELAY_EMAIL = "hello@pinktax.com.au"
 
 
-def test_public_contact_is_hello_and_form_relay_stays_admin():
-    """Published mailbox is hello@. The FormSubmit relay and the ajax mailto
-    fallback stay on admin@ until that address is activated at FormSubmit."""
+def test_public_contact_and_form_relay_use_hello():
+    """Published mailbox, FormSubmit relay and the ajax mailto fallback use hello@."""
     assert _identity()["office"]["email"] == PUBLIC_EMAIL
+    assert RELAY_EMAIL == PUBLIC_EMAIL
     relay = (
         f"https://formsubmit.co/{RELAY_EMAIL}",
         f"https://formsubmit.co/ajax/{RELAY_EMAIL}",
@@ -1170,17 +1171,14 @@ def test_public_contact_is_hello_and_form_relay_stays_admin():
     for p in PAGES:
         html = p.read_text(encoding="utf-8")
         assert f"mailto:{PUBLIC_EMAIL}" in html, p.name
-        stripped = html
-        for url in relay:
-            stripped = stripped.replace(url, "")
-        assert RELAY_EMAIL not in stripped, p.name
+        assert "admin@pinktax.com.au" not in html, p.name
         assert f'"email":"{PUBLIC_EMAIL}"' in html or '"email":' not in html, p.name
     contact = (ROOT / "contact.html").read_text(encoding="utf-8")
     assert f'action="{relay[0]}"' in contact
     assert f'data-ajax="{relay[1]}"' in contact
     js = (ROOT / "nav.js").read_text(encoding="utf-8")
     assert f"mailto:{RELAY_EMAIL}?subject=" in js
-    assert PUBLIC_EMAIL not in js
+    assert PUBLIC_EMAIL in js
 
 
 def test_only_real_enquiries_count_as_leads():
