@@ -732,7 +732,7 @@ def why():
     <section class="band">
       <div class="wrap prose">
         <h2>Qualification</h2>
-        <p>Master of Professional Accounting, Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368. ASIC Registered Agent 52580.</p>
+        <p>Master of Professional Accounting, Griffith University. Member of the Institute of Public Accountants (MIPA AFA). Registered Tax Agent 26284368.</p>
         <h2>Years in the books</h2>
         <p>More than ten years. I started the firm in 2020. The work is in the file, not in a once-a-year pack.</p>
         <h2>What we hold</h2>
@@ -1092,7 +1092,7 @@ Construction services means fit-out, maintenance and installation. Not head cont
 
 ## Firm
 
-- [Meet Pink](https://www.serviceprofit.com.au/why.html): Huong Bui, Registered Tax Agent 26284368
+- [About Service Profit](https://www.serviceprofit.com.au/why.html): Huong Bui, Registered Tax Agent 26284368
 - [Disclosures](https://www.serviceprofit.com.au/disclosure)
 - [Your rights](https://www.serviceprofit.com.au/rights.html)
 - [Privacy](https://www.serviceprofit.com.au/privacy.html)

@@ -329,7 +329,7 @@ def nav(current=""):
 {services_dropdown(current)}
 {item("/pricing.html", "Pricing", "pricing")}
 {item("/system.html", "The system", "system")}
-{item("/why.html", "Meet Pink", "why")}
+{item("/why.html", "About Service Profit", "why")}
 {item("/contact.html", "Contact", "contact")}
       </nav>
       <div class="navr">
@@ -357,7 +357,7 @@ def footer():
           <a href="/services/">Services</a>
           <a href="/pricing.html">Pricing</a>
           <a href="/system.html">The system</a>
-          <a href="/why.html">Meet Pink</a>
+          <a href="/why.html">About Service Profit</a>
           <a href="/check.html">Hours check</a>
           <a href="/accountant-brendale/">Accountant in Brendale</a>
           <a href="/air-conditioning-accountant-brisbane/">Air con accountant</a>
@@ -381,7 +381,7 @@ def footer():
         </div>
       </div>
       <p class="sister-line" data-identity="cross-link">{ID["cross_links"]["on_trades_site"]["text"]} <a href="{ID["cross_links"]["on_trades_site"]["href"]}">{ID["cross_links"]["on_trades_site"]["link_text"]}</a>.</p>
-      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · ASIC Registered Agent No. 52580 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 13 September 2026.</p>
+      <p class="legal">© 2026 Pink Accounting &amp; Tax Solutions Pty Ltd. ABN 51 682 301 891. Business clients only. Queensland. Registered Tax Agent No. 26284368 · <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB Register</a><br>Liability limited by a scheme approved under Professional Standards Legislation. Claims on this site last reviewed 13 September 2026.</p>
     </div>
   </footer>
   <script src="/track.js?v={ASSET}"></script>
