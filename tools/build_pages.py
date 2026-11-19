@@ -29,29 +29,24 @@ import seo_pages
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Fallback figures, used only when data/google_reviews.json is absent, which is
-# the case before the first scheduled fetch runs or if the Places API is down.
-# tools/fetch_reviews.py is what normally supplies these.
-FALLBACK_RATING = "5.0"
-FALLBACK_COUNT = 32
-FALLBACK_AS_AT = "September 2026"
-FALLBACK_QUOTES = [
-    ("I\u2019ve had a fantastic experience working with Pinky. She is professional, knowledgeable, "
-     "and always takes the time to explain things clearly. As a small business owner, I really "
-     "appreciate her patience, attention to detail, and prompt responses.", "T D", ""),
-    ("Huong is super knowledgeable and keeps your books tidy and taxes up to date. She explains "
-     "things clearly so you actually understand your tax, not just the numbers.", "N T", ""),
-    ("Pink is amazing \u2014 super quick, really knows her stuff, and an absolute gem for any "
-     "business. She makes everything easy.", "N M", ""),
-]
+# No fallback rating. Service Profit carries no Google rating claim: any firm
+# rating lives on pinktax.com.au only, and this site must not invent one when
+# data/google_reviews.json is absent. load_reviews() returns empty values in
+# that case and index() renders no reviews section at all.
+FALLBACK_RATING = None
+FALLBACK_COUNT = 0
+FALLBACK_AS_AT = ""
+FALLBACK_QUOTES = []
 
 MONTHS = ("January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December")
 
 
 def load_reviews(path=None):
-    """Live Google data if the scheduled fetch has written it, else the
-    committed fallback. Never let a bad file take the site down."""
+    """Live Google data if the scheduled fetch has written it, else empty
+    values. There is no fallback rating: a missing or bad file means no
+    reviews section, never an invented one. Never let a bad file take the
+    site down."""
     path = path or ROOT / "data" / "google_reviews.json"
     try:
         d = json.loads(path.read_text(encoding="utf-8"))
@@ -144,8 +139,6 @@ STEM_SIZE = {
     "construction": (838, 1036),
     "tech-hvac": (838, 1059),
     "tech-electrical": (838, 1059),
-    "pink-home": (1200, 1800),
-    "pink-meet": (1080, 1350),
 }
 
 
@@ -220,23 +213,6 @@ def weekly_sample():
         <p class="note-ex">Illustration of the weekly output. Invented figures, not a client file. Your first one uses your jobs and your bank.</p>"""
 
 
-def review_quotes():
-    """Google requires the author and a link back to the review. Both are
-    carried here whenever the live fetch supplied them."""
-    import html as _html
-    out = ['        <div class="quotes">']
-    for text, author, uri in REVIEWS_QUOTES:
-        cite = _html.escape(author)
-        if uri:
-            cite = f'<a href="{_html.escape(uri)}" rel="noopener nofollow">{cite}</a>'
-        out.append("          <blockquote>")
-        out.append(f"            <p>{_html.escape(text)}</p>")
-        out.append(f"            <footer>{cite} \u00b7 Google</footer>")
-        out.append("          </blockquote>")
-    out.append("        </div>")
-    return "\n".join(out)
-
-
 # Section 45 of the Tax Agent Services (Code of Professional Conduct)
 # Determination 2024. Both rights.html and /disclosure render these, so the
 # two pages cannot drift apart. Owner and review date travel with each
@@ -306,11 +282,6 @@ def index():
           <p class="live" id="liveLine">Air con and refrigeration. Quoted hours versus hours on the job.</p>
           <p class="trade-links">Same offer. Different jobs. <a href="/air-conditioning-accountant-brisbane/">Air con</a> · <a href="/electrician-accountant-brisbane/">Electrical</a> · <a href="/construction-services-accountant-brisbane/">Construction services</a></p>
           <div class="trust">
-            <a class="stars" href="{REVIEWS_URL}" rel="noopener">
-              <span class="star-value">{REVIEWS_RATING}</span>
-              <span class="star-icons" aria-hidden="true">★★★★★</span>
-              <span>{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}</span>
-            </a>
             <span class="trust-reg">Registered Tax Agent 26284368</span>
           </div>
         </div>
@@ -465,30 +436,15 @@ def index():
       </div>
     </section>
 
-    <section class="band" id="reviews">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="eyebrow">Google reviews</span>
-          <h2>{REVIEWS_RATING} on Google.</h2>
-          <p class="sec-note">Reviews of Pink Accounting, the firm behind Service Profit. {REVIEWS_COUNT} reviews as at {REVIEWS_AS_AT}. They are not job-costing results.</p>
-        </div>
-{review_quotes()}
-        <p class="creds"><a href="{REVIEWS_URL}" rel="noopener">Read all {REVIEWS_COUNT} Google reviews</a></p>
-      </div>
-    </section>
-
     <section class="band">
       <div class="wrap meet">
-        <div class="shot photo-frame">
-{picture("pink-home", "Huong Bui, principal of Service Profit", "", True, "(max-width:940px) 100vw, 40vw")}
-        </div>
         <div>
-          <span class="eyebrow">Pink</span>
-          <h2>I am the accountant.</h2>
-          <p>Huong Bui. Registered Tax Agent 26284368. More than ten years in the books. I started the firm in 2020.</p>
+          <span class="eyebrow">Pink Accounting</span>
+          <h2>The firm behind Service Profit.</h2>
+          <p>Service Profit is Pink Accounting&rsquo;s line for HVAC, electrical and construction service businesses. Pink Accounting &amp; Tax Solutions Pty Ltd, ABN 51 682 301 891, Registered Tax Agent 26284368. Brendale, Queensland. The file is held by the firm, not by one diary.</p>
           <p>You call because the quotes and the bank no longer match, and you do not have time to sit in Xero. We take the file. You stay on the jobs.</p>
-          <p>Master of Professional Accounting, Griffith. Member of the Institute of Public Accountants. Our registration carries no conditions limiting what we can do for you, and you can check that yourself on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a> against 26284368. What else we must tell you is on <a href="/disclosure">our disclosures page</a>.</p>
-          <div class="creds"><a href="/why.html">Read more about Pink</a></div>
+          <p>Check 26284368 on the <a href="https://www.tpb.gov.au/public-register" rel="noopener">TPB public register</a>. What else we must tell you is on <a href="/disclosure">our disclosures page</a>.</p>
+          <div class="creds"><a href="/why.html">Read more about Service Profit</a></div>
           <a class="btn btn-primary" href="/book.html" data-event="meet-book">Book a 15-minute call</a>
         </div>
       </div>
@@ -716,14 +672,11 @@ def why():
   <main id="main">
     <section class="page" style="padding-bottom:0">
       <div class="wrap meet">
-        <div class="shot">
-{picture("pink-meet", "Huong Bui in a client meeting", "", False, "(max-width:940px) 100vw, 40vw")}
-        </div>
         <div class="meet-copy">
-          <span class="eyebrow">Meet Pink</span>
-          <h1>Hello, I am Pink.</h1>
-          <p class="lead">Huong Bui. Registered tax agent. More than ten years in the books. Air con, electrical and construction services in Queensland.</p>
-          <p>I take the call when I am free. If I am already booked, a team member takes it and I read the notes the same working day. The file is held by the firm, not by one diary.</p>
+          <span class="eyebrow">About Service Profit</span>
+          <h1>Meet Service Profit.</h1>
+          <p class="lead">Service Profit is Pink Accounting&rsquo;s line for HVAC, electrical and construction service businesses in Queensland. Pink Accounting &amp; Tax Solutions Pty Ltd, ABN 51 682 301 891, Registered Tax Agent 26284368, Brendale QLD.</p>
+          <p>A team member takes your call; the file is held by the firm, not by one diary.</p>
           <a class="btn btn-primary" href="/book.html" data-event="why-book">Book 15 minutes</a>
 {trust_line()}
         </div>

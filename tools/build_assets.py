@@ -9,15 +9,13 @@ JPEG_STEMS = (
     "construction",
     "tech-hvac",
     "tech-electrical",
-    "pink-home",
-    "pink-meet",
 )
 
 
 SOURCE = ASSETS / "_source"
 
-# The job photos are graded; the photos of Huong are not. The work reads as a
-# system, the person reads as a person. That difference is deliberate.
+# Only trade photos are built here. The founder photos were removed from the
+# site on 18 November 2026 and must not be regenerated.
 TRADE_STEMS = ("electrical", "construction", "tech-hvac", "tech-electrical")
 
 # Hi-vis sits in this hue band. Everything outside it loses almost all colour.

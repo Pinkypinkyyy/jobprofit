@@ -94,16 +94,19 @@ def test_homepage_does_not_repeat_trade_photos():
     assert "One line." not in home
 
 
-def test_google_reviews_visible():
+def test_no_google_rating_on_service_profit_home():
+    """HB 19 Nov 2026: Service Profit carries no Google rating. The firm rating
+    lives on pinktax.com.au only, so the home page has no reviews section, no
+    rating figure and no review quotes."""
     home = (ROOT / "index.html").read_text(encoding="utf-8")
-    assert "5.0" in home
-    # Count and date come from build_pages so the page and the test cannot drift.
-    assert f"{REVIEWS_COUNT} Google reviews as at {REVIEWS_AS_AT}" in home
-    assert f"Read all {REVIEWS_COUNT} Google reviews" in home
-    assert "Reviews of Pink Accounting, the firm behind Service Profit" in home
-    assert "T D · Google" in home
-    assert "N T · Google" in home
-    assert "N M · Google" in home
+    assert "5.0" not in home
+    assert 'id="reviews"' not in home
+    assert "Google reviews" not in home
+    assert "Read all" not in home
+    assert "Reviews of Pink Accounting" not in home
+    assert "T D · Google" not in home
+    assert "N T · Google" not in home
+    assert "N M · Google" not in home
     assert "Worked example, not a client result" in home
     assert "chart-hours" in home
     assert "Quoted 6 hours. Nine on the tools." in home
@@ -169,9 +172,12 @@ def test_lazy_load_and_webp():
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     assert home.count("loading=\"lazy\"") >= 3
     assert "tech-hvac-480.webp" in home
-    # pink-home now ships responsive variants rather than one full-size webp.
+    # Founder photos were removed from the site on 18 November 2026.
     for w in (480, 864, 1200):
-        assert (ROOT / "assets" / f"pink-home-{w}.webp").exists()
+        assert not (ROOT / "assets" / f"pink-home-{w}.webp").exists()
+        assert not (ROOT / "assets" / f"pink-meet-{w}.webp").exists()
+    assert not (ROOT / "assets" / "pink-home.jpg").exists()
+    assert not (ROOT / "assets" / "pink-meet.jpg").exists()
     assert (ROOT / "assets" / "tech-hvac-480.webp").exists()
     assert (ROOT / "favicon.ico").exists()
 
@@ -238,9 +244,7 @@ def test_404_uses_service_profit_name_and_root_paths():
 
 def test_why_has_subheadings():
     text = (ROOT / "why.html").read_text(encoding="utf-8")
-    assert text.lower().count("<h2") >= 4
-    assert "Qualification" in text
-    assert "Years in the books" in text
+    assert text.lower().count("<h2") >= 2
     assert "What we hold" in text
     assert "On the public register" in text
 
@@ -421,13 +425,16 @@ def test_review_text_from_google_is_escaped():
     assert "&lt;script&gt;" in _html.escape(injected[0][0])
 
 
-def test_site_falls_back_when_there_is_no_live_review_file():
+def test_no_rating_when_there_is_no_live_review_file():
+    """HB 19 Nov 2026: no live review file means no rating at all, never a
+    fallback figure."""
     from build_pages import load_reviews
 
     rating, count, as_at, quotes, url = load_reviews(ROOT / "tests" / "fixtures" / "nope.json")
-    assert rating == "5.0"
-    assert count == 32
-    assert len(quotes) == 3
+    assert rating is None
+    assert count == 0
+    assert as_at == ""
+    assert quotes == []
 
 
 def test_no_api_key_is_shipped_to_the_browser():
@@ -599,10 +606,14 @@ def test_homepage_explains_the_name_ladder_once():
         assert name in html
 
 
-def test_homepage_carries_the_no_conditions_statement():
-    html = (ROOT / "index.html").read_text(encoding="utf-8")
-    assert "no conditions limiting" in html
-    assert "/disclosure" in html
+def test_no_conditions_statement_lives_on_rights():
+    """The no-conditions statement sits on the rights and disclosure pages, not
+    on the home page. The home page links to the disclosures page."""
+    rights = (ROOT / "rights.html").read_text(encoding="utf-8")
+    assert "not subject to any conditions limiting" in rights
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert "/disclosure" in home
+    assert "no conditions limiting" not in home
 
 
 def test_office_hours_come_from_identity_and_bookings_stay_mon_thu():
@@ -741,11 +752,15 @@ def test_cornerstone_pages_exist():
         assert f'href="/{slug}/"' in home
 
 
-def test_why_has_person_schema_and_firm_continuity():
+def test_why_is_firm_first_not_founder_first():
+    """HB 19 Nov 2026: the about page is firm first. No Person schema, no
+    founder photo, no Meet Pink framing. The firm continuity line stays."""
     html = (ROOT / "why.html").read_text(encoding="utf-8")
-    assert '"@type":"Person"' in html
-    assert "Huong Bui" in html
-    assert "The file is held by the firm, not by one diary." in html
+    assert "the file is held by the firm, not by one diary." in html
+    assert "Meet Service Profit." in html
+    assert "Meet Pink" not in html
+    assert "pink-meet" not in html
+    assert '"@type":"Person"' not in html
 
 
 def test_llms_and_pricing_md_are_on_the_origin():
